@@ -1,2 +1,0 @@
-/usr/bin/ar cr libMath.a  CMakeFiles/Math.dir/Vector3d.o
-/usr/bin/ranlib libMath.a
