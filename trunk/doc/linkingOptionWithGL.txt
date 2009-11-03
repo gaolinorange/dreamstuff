@@ -1,0 +1,12 @@
+when linking with QGLWidget , the link error is :
+Linking CXX executable ../bin/MeshDeformer
+/usr/bin/ld: warning suggest use of -bind_at_load, as lazy binding may result in errors or different symbols being used
+symbol typeinfo name for QDashStrokerused from dynamic library /Library/Frameworks/QtGui.framework/QtGui(single module) not from earlier dynamic library QtOpenGL.framework/Versions/4/QtOpenGL(single module)
+symbol typeinfo name for QGraphicsSystemused from dynamic library /Library/Frameworks/QtGui.framework/QtGui(single module) not from earlier dynamic library QtOpenGL.framework/Versions/4/QtOpenGL(single module)
+[100%] Built target MeshDeformer
+
+
+and you can go into the building directory, and find the link.txt
+add a option in the file 'link.txt':
+/Usr/bin/c++    -Wl,-search_paths_first -headerpad_max_install_names -fPIC CMakeFiles/MeshDeformer.dir/main.cpp.o CMakeFiles/MeshDeformer.dir/main_window.cpp.o CMakeFiles/MeshDeformer.dir/main_widget.cpp.o CMakeFiles/MeshDeformer.dir/moc_main_widget.cxx.o  -o ../bin/MeshDeformer  -L/usr/local/lib ../lib/libGLWidget.a -framework QtOpenGL -framework OpenGL -framework AGL -framework QtGui -framework Carbon -framework AppKit -framework QtCore /usr/lib/libz.dylib -framework ApplicationServices -bind_at_load (note: the last one is added)
+ also, you can add an option in the CMakeLists.txt

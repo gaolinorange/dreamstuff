@@ -1,0 +1,2 @@
+/usr/bin/ar cr libMeshCore.a  CMakeFiles/MeshCore.dir/MeshCore.cpp.o
+/usr/bin/ranlib libMeshCore.a

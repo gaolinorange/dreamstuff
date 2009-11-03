@@ -1,0 +1,3 @@
+# Hashes of file build rules.
+f0731f7a0c7d7dd9cfe91dd6e2773484 MainWindow/moc_main_widget.cxx
+7c061153d6e7f180e12dc2ec9814cc15 MainWindow/moc_main_window.cxx

@@ -1,0 +1,2 @@
+/usr/bin/ar cr ../lib/libMainWindow.a  CMakeFiles/MainWindow.dir/main_window.cpp.o CMakeFiles/MainWindow.dir/main_widget.cpp.o CMakeFiles/MainWindow.dir/app_data.cpp.o CMakeFiles/MainWindow.dir/moc_main_widget.cxx.o CMakeFiles/MainWindow.dir/moc_main_window.cxx.o
+/usr/bin/ranlib ../lib/libMainWindow.a
