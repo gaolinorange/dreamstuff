@@ -1,2 +1,0 @@
-/usr/bin/ar cr ../lib/libIOPlugin.a  CMakeFiles/IOPlugin.dir/ObjReaderWriter.cpp.o
-/usr/bin/ranlib ../lib/libIOPlugin.a
