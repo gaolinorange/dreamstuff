@@ -1,0 +1,58 @@
+#include "main_window.h"
+#include <QToolBar>
+#include <QApplication>
+
+void MainWindow::setupMenu()
+{
+   mainMenuBar = new QMenuBar(this);
+   fileMenu = new QMenu(tr("File"),mainMenuBar);
+   newAction = new QAction(tr("&New"),fileMenu);
+   connect(newAction,SIGNAL(triggered()),this,SLOT(fileNew()));
+   fileMenu->addAction(newAction);
+   
+   openAction = new QAction(tr("&Open"),fileMenu);
+   connect(openAction,SIGNAL(triggered()),this,SLOT(fileOpen()));
+   fileMenu->addAction(openAction);
+   
+   fileMenu->addSeparator();
+
+   exitAction = new QAction(tr("&Exit"),fileMenu);
+   connect(exitAction,SIGNAL(triggered()),this,SLOT(fileExit()));
+   fileMenu->addAction(exitAction);
+   mainMenuBar->addMenu(fileMenu);
+
+   helpMenu = new QMenu(tr("Help"),mainMenuBar);
+   aboutAction = new QAction(tr("&About"),helpMenu);
+   connect(aboutAction,SIGNAL(triggered()),this,SLOT(helpAbout()));
+   helpMenu->addAction(aboutAction);
+   mainMenuBar->addMenu(helpMenu);
+
+   setMenuBar(mainMenuBar);
+}
+
+void MainWindow::setupToolBar()
+{
+  QToolBar * toolbar = new QToolBar(this);
+  toolbar->addAction(newAction);
+  toolbar->addAction(openAction);
+  toolbar->addAction(aboutAction);
+  addToolBar(toolbar);
+}
+
+void MainWindow::fileNew()
+{
+}
+
+void MainWindow::fileOpen()
+{
+}
+
+void MainWindow::fileExit()
+{
+  qApp->exit();
+}
+
+void MainWindow::helpAbout()
+{
+  qApp->aboutQt();
+}

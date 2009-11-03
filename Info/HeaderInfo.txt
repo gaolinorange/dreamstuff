@@ -1,0 +1,6 @@
+/**
+* MeshTool:
+* The experimental platform for writing Digital Geometry Processing algorithm.
+*
+* contact: jingwenlai@163.com
+*/
