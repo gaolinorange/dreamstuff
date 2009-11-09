@@ -7,6 +7,10 @@
 #include <QMenuBar>
 #include "main_widget.h"
 
+
+class QOutputLogger;
+
+
 class MainWindow : public QMainWindow
 {
   Q_OBJECT
@@ -16,6 +20,7 @@ class MainWindow : public QMainWindow
     {
       setupMenu();
       setupToolBar();
+      setupLogger();
        mainWidget = new MainWidget(this,NULL,flags);
         setCentralWidget(mainWidget);
     }
@@ -26,6 +31,7 @@ class MainWindow : public QMainWindow
  private:
   void setupMenu();
   void setupToolBar();
+  void setupLogger();
  protected:
 
   private slots:
@@ -44,6 +50,8 @@ class MainWindow : public QMainWindow
   QAction * exitAction;
   
   QAction * aboutAction;
+
+  QOutputLogger* logger;
 };
 
 

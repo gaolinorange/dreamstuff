@@ -19,8 +19,13 @@ private:
   static QOutputLogger* logger;
   
 private:
-  QOutputLogger(QString title = QString(QObject::tr("Logger")),QWidget * parent = 0);
-  virtual ~QOutputLogger();
+  QOutputLogger(QString title = QString(QObject::tr("Logger")),QWidget * parent = 0)
+    : QTextEdit(parent),QDockWidget(title,parent)
+  {
+  }
+  virtual ~QOutputLogger()
+  {
+  }
 };
 
 QOutputLogger* QOutputLogger::logger = NULL;
