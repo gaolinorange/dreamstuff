@@ -1,6 +1,7 @@
 #include "main_window.h"
 #include <QToolBar>
 #include <QApplication>
+#include "QOutputLogger.hpp"
 
 void MainWindow::setupMenu()
 {
@@ -37,6 +38,12 @@ void MainWindow::setupToolBar()
   toolbar->addAction(openAction);
   toolbar->addAction(aboutAction);
   addToolBar(toolbar);
+}
+
+void MainWindow::setupLogger()
+{
+  QOutputLogger::getInstance()->setAllowedAreas(Qt::BottomDockWidgetArea);
+  addDockWidget(Qt::BottomDockWidgetArea,QOutputLogger::getInstance());
 }
 
 void MainWindow::fileNew()

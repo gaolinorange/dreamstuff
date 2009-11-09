@@ -12,6 +12,7 @@ QT4_WRAP_CPP(MainWidget_MOC main_widget.h)
 qt4_wrap_cpp(MainWindow_MOC main_window.h)
 
 include_directories(${CMAKE_SOURCE_DIR}/MeshCore)
+include_directories(${CMAKE_SOURCE_DIR}/Common)
 
 include_directories(/usr/local/include)
 link_directories(/usr/local/lib)
@@ -21,5 +22,5 @@ ADD_DEFINITIONS(${QT_DEFINITIONS})
 
 
 ADD_library(MainWindow STATIC ${app_SOURCES} ${MainWidget_MOC} ${MainWindow_MOC})
-target_link_libraries(MainWindow ${QT_LIBRARIES} -bind_at_load gtest gtest_main)
+target_link_libraries(MainWindow ${QT_LIBRARIES} -bind_at_load gtest gtest_main Common)
 
