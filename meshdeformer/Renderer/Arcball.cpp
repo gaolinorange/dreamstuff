@@ -8,9 +8,10 @@
 // 02/20/03 pierre.alliez@sophia.inria.fr
 //********************************************
 
-#include "stdafx.h"
 #include <math.h>
-#include "Arcball.h"
+#include "Arcball.hpp"
+#include "Common/glheaders.hpp"
+#include "Helper.hpp"
 
 //////////////////////////////////////////////
 // DATA

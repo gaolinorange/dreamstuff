@@ -5,6 +5,7 @@
 #include <iostream>
 #include <stdarg.h>
 #include <fstream>
+#include <stdarg.h>
 using namespace std;
 
 
@@ -36,6 +37,14 @@ public:
     outFile<<message<<std::endl;
     outFile.close();
   }
+  /*
+    void printf(const char * fmt,...)
+  {
+    va_list arg_list;
+    va_start(arg_list,fmt);
+    
+  }
+  */
 private:
   Log()
   {

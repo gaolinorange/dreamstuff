@@ -8,9 +8,9 @@
 // Modified : 09/07/00
 //********************************************
 
-#include "stdafx.h"
-#include "Viewport.h"
-
+#include "Helper.hpp"
+#include "Viewport.hpp"
+#include "Common/glheaders.hpp"
 #include <math.h>
 #include <stdio.h>
 

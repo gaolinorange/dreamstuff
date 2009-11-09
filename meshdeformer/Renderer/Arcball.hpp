@@ -9,10 +9,10 @@
 #ifndef _ARCBALL_
 #define _ARCBALL_
 
-#include "Camera.h"
-#include "Quaternion.h"
-#include "Vector3d.h"
-#include "Viewport.h"
+#include "Camera.hpp"
+#include "Quaternion.hpp"
+#include "Vector3d.hpp"
+#include "Viewport.hpp"
 
 #define ARCBALL_NO_MOTION    0
 #define ARCBALL_ROTATE       1
