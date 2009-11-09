@@ -39,6 +39,7 @@ include_directories(${CMAKE_SOIURCE_DIR}/Math)
 
 add_subdirectory(test)#adding test support
 
+add_subdirectory(Renderer)
 
 add_executable(MeshDeformer main.cpp )
 target_link_libraries(MeshDeformer MainWindow MeshCore Common test)

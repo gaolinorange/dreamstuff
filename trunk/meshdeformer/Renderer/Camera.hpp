@@ -9,9 +9,9 @@
 #ifndef _CAMERA_
 #define _CAMERA_
 
-#include "Quaternion.h"
-#include "Vector3d.h"
-#include "Viewport.h"
+#include "Quaternion.hpp"
+#include "Vector3d.hpp"
+#include "Viewport.hpp"
 
 #define PI 3.1415926535897932
 

@@ -11,7 +11,7 @@
 
 typedef double CMat44[4][4];
 
-#include "Vector3d.h"
+#include "Vector3d.hpp"
 
 class CMatrix44
 {

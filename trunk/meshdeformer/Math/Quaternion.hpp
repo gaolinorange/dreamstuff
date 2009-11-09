@@ -10,8 +10,8 @@
 #ifndef _QUATERNION_
 #define _QUATERNION_
 
-#include "Matrix44.h"
-#include "Vector3d.h"
+#include "Matrix44.hpp"
+#include "Vector3d.hpp"
 
 class CQuaternion
 {

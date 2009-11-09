@@ -8,8 +8,9 @@
 // Modified : 09/07/00
 //********************************************
 
-#include "stdafx.h"
-#include "Camera.h"
+#include "Helper.hpp"
+#include "Camera.hpp"
+#include "Common/glheaders.hpp"
 #include <math.h>
 
 
