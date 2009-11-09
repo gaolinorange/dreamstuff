@@ -7,6 +7,16 @@ cmake_minimum_required(VERSION 2.6)
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin )
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib )
 
+
+
+add_definitions(-D__APPLE__)
+
+
+
+
+
+
+
 find_package(Qt4 REQUIRED)
 set(QT_USE_QTOPENGL true)
 include(${QT_USE_FILE})
