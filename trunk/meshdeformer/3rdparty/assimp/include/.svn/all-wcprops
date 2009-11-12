@@ -1,0 +1,191 @@
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svnroot/assimp/!svn/ver/495/trunk/include
+END
+assimp.h
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svnroot/assimp/!svn/ver/473/trunk/include/assimp.h
+END
+LogStream.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svnroot/assimp/!svn/ver/473/trunk/include/LogStream.h
+END
+aiAnim.h
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svnroot/assimp/!svn/ver/473/trunk/include/aiAnim.h
+END
+aiVersion.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svnroot/assimp/!svn/ver/495/trunk/include/aiVersion.h
+END
+aiCamera.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svnroot/assimp/!svn/ver/456/trunk/include/aiCamera.h
+END
+aiVector3D.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svnroot/assimp/!svn/ver/381/trunk/include/aiVector3D.h
+END
+aiMaterial.inl
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svnroot/assimp/!svn/ver/470/trunk/include/aiMaterial.inl
+END
+aiMesh.h
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svnroot/assimp/!svn/ver/374/trunk/include/aiMesh.h
+END
+aiScene.h
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svnroot/assimp/!svn/ver/402/trunk/include/aiScene.h
+END
+aiMatrix3x3.inl
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svnroot/assimp/!svn/ver/354/trunk/include/aiMatrix3x3.inl
+END
+aiMatrix4x4.inl
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svnroot/assimp/!svn/ver/356/trunk/include/aiMatrix4x4.inl
+END
+aiTexture.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svnroot/assimp/!svn/ver/385/trunk/include/aiTexture.h
+END
+NullLogger.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svnroot/assimp/!svn/ver/473/trunk/include/NullLogger.h
+END
+aiTypes.h
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svnroot/assimp/!svn/ver/473/trunk/include/aiTypes.h
+END
+aiConfig.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svnroot/assimp/!svn/ver/488/trunk/include/aiConfig.h
+END
+aiLight.h
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svnroot/assimp/!svn/ver/356/trunk/include/aiLight.h
+END
+aiDefines.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svnroot/assimp/!svn/ver/442/trunk/include/aiDefines.h
+END
+assimp.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svnroot/assimp/!svn/ver/473/trunk/include/assimp.hpp
+END
+aiVector3D.inl
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svnroot/assimp/!svn/ver/356/trunk/include/aiVector3D.inl
+END
+aiPostProcess.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svnroot/assimp/!svn/ver/488/trunk/include/aiPostProcess.h
+END
+aiQuaternion.h
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svnroot/assimp/!svn/ver/359/trunk/include/aiQuaternion.h
+END
+aiVector2D.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svnroot/assimp/!svn/ver/294/trunk/include/aiVector2D.h
+END
+aiMaterial.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svnroot/assimp/!svn/ver/468/trunk/include/aiMaterial.h
+END
+aiAssert.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svnroot/assimp/!svn/ver/456/trunk/include/aiAssert.h
+END
+aiMatrix3x3.h
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svnroot/assimp/!svn/ver/355/trunk/include/aiMatrix3x3.h
+END
+IOSystem.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svnroot/assimp/!svn/ver/473/trunk/include/IOSystem.h
+END
+aiMatrix4x4.h
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svnroot/assimp/!svn/ver/408/trunk/include/aiMatrix4x4.h
+END
+Logger.h
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svnroot/assimp/!svn/ver/473/trunk/include/Logger.h
+END
+aiFileIO.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svnroot/assimp/!svn/ver/473/trunk/include/aiFileIO.h
+END
+IOStream.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svnroot/assimp/!svn/ver/473/trunk/include/IOStream.h
+END
+DefaultLogger.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svnroot/assimp/!svn/ver/473/trunk/include/DefaultLogger.h
+END

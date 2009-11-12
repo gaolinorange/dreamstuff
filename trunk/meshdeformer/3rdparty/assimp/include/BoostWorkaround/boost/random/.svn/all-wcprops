@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svnroot/assimp/!svn/ver/293/trunk/include/BoostWorkaround/boost/random
+END
+uniform_int.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/assimp/!svn/ver/293/trunk/include/BoostWorkaround/boost/random/uniform_int.hpp
+END
+mersenne_twister.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnroot/assimp/!svn/ver/293/trunk/include/BoostWorkaround/boost/random/mersenne_twister.hpp
+END
+variate_generator.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svnroot/assimp/!svn/ver/293/trunk/include/BoostWorkaround/boost/random/variate_generator.hpp
+END
