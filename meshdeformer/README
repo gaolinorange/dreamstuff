@@ -1,0 +1,30 @@
+	Mesh Deformer
+
+* Introduction
+* Development
+  * required libraries
+  * compiled 3rdparty libraries
+    * assimp
+    
+  * recompiled the 3rdparty libraries
+* Credits
+
+
+1. Introduction
+
+2. Development
+2.1 required librareis
+    to successfully compile the sources, you should have Qt4,boost,CGAL installed
+
+2.2 compiled 3rdparty libraries
+    2.2.1 assimp
+      I use assimp to import differ file formats.
+      ref: assimp.sourceforge.net
+    2.2.2
+
+2.3 recompiled 3rdparty libraries
+
+
+
+3.Credits
+	feel free to contact: jingwenlai@163.com
