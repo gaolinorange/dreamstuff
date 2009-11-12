@@ -1,0 +1,2 @@
+svn co http://assimp.svn.sourceforge.net/svnroot/assimp/trunk assimp
+you should add 'include_directories(../include/BoostWorkaround) ' when you working on MacOSX; also, install the libboost-math is necessary
