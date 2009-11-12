@@ -25,11 +25,6 @@ endif(UNIX)
 message("Platform is ${Platform}")
 
 
-
-
-
-
-
 find_package(Qt4 REQUIRED)
 set(QT_USE_QTOPENGL true)
 include(${QT_USE_FILE})
