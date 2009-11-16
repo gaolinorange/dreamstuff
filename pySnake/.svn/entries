@@ -1,0 +1,51 @@
+9
+
+dir
+0
+https://dreamstuff.googlecode.com/svn/trunk/trunk/pySnake
+https://dreamstuff.googlecode.com/svn
+add
+
+
+
+
+
+
+
+svn:special svn:externals svn:needs-lock
+
+pysnake.py
+file
+
+
+
+add
+
+Python.png
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+Pellet.png
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
