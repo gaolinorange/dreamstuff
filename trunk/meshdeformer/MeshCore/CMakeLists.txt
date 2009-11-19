@@ -19,7 +19,10 @@ include_directories(${GLU_INCLUDE_PATH})
 link_libraries(${OPENGL_LIBRARIES})
 endif()
 
-set(CGAL_DIR /usr/local/lib/CGAL)
+if(UNIX)
+	set(CGAL_DIR /usr/local/lib/CGAL)
+endif(UNIX)
+
 
 find_package(CGAL REQUIRED)
 if(CGAL_FOUND)
