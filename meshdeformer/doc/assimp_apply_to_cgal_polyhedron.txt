@@ -1,0 +1,9 @@
+while loading with assimp library, the content of mesh file is in aiMesh struct,and it's very convient to retrive the data,using mNumFaces, and mFaces with index and then using the index to retrive the vertex's index and position.
+
+to see how to manipulate aiMesh, you can see the sample code of OpenGL_Sample_Viewer.c
+
+
+then, You can use Polyhedron_incremental_builder_ to transform mesh that CGAL can recognize.
+ rember this: 
+ begin_surface (add_vertex | (begin_facet add_vertex_to_facet* end_facet))* end_surface
+
