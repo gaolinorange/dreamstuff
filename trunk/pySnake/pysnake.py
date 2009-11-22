@@ -1,12 +1,27 @@
 import os,sys
 import pygame
 from pygame.locals import *
-from helpers import * """ the upper helpers.py class """
+"""from Helpers import * """ 
 
 
 if not pygame.font : print "warning, not font"
 if not pygame.mixer: print 'warning, not mixer'
 
+
+def load_image(name,colorkey=None):
+    fullname = os.path.join('data',name)
+    try:
+	image = pygame.image.load(fullname)
+    except pygame.error,message:
+	print 'cannot load image:',name
+	raise SystemExit, message
+    image = image.convert()
+    if colorkey is not None:
+	if colorkey is -1:
+	    colorkey = image.get_at((0,0))
+	image.set_colorkey(colorkey,RLEACCEL)
+    return image,image.get_rect()
+    
 
 class PySnakeMain(object):
     """The main pyman class- this class handles the main initialization and
@@ -62,3 +77,4 @@ if __name__ == '__main__':
         
         
         
+	
