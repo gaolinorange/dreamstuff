@@ -1,16 +1,18 @@
 #ifndef RENDERWINDOW_H
 #define RENDERWINDOW_H
 
+#include <QGLWidget>
+#include <QGLFormat>
+#include <QGLContext>
+#include <QMessageBox>
 
 #include <string>
 #include <G3D/G3D.h>
 #include <G3D/G3DAll.h>
 //#include <OSWindow.h>
 
-#include <QGLWidget>
-#include <QGLFormat>
-#include <QGLContext>
-#include <QMessageBox>
+
+
 using namespace G3D;
 
 
