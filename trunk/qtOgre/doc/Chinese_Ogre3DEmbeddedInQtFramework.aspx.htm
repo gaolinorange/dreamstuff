@@ -1,0 +1,1014 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head id="Head">
+
+<title>
+	Ogre3D嵌入Qt框架 之　小结 - 清源游民的网络笔记本 - C++博客
+</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta id="metaKeywords" name="keywords" content="Ogre3D嵌入Qt框架 之　小结"><link id="MainCss" type="text/css" rel="stylesheet" href="Chinese_Ogre3DEmbeddedInQtFramework.aspx_files/style.css"><link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cppblog.com/yuanyajie/rss.aspx"></head><body>
+    <form name="Form1" method="post" action="24528.aspx" onsubmit="javascript:return WebForm_OnSubmit();" id="Form1">
+<div>
+<input name="__EVENTTARGET" id="__EVENTTARGET" value="" type="hidden">
+<input name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" type="hidden">
+<input name="__VIEWSTATE" id="__VIEWSTATE" value="" type="hidden">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['Form1'];
+if (!theForm) {
+    theForm = document.Form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="Chinese_Ogre3DEmbeddedInQtFramework.aspx_files/WebResource.js" type="text/javascript"></script>
+
+<script language="JavaScript">
+									function ctlent(evt,id)
+											{
+												if(evt.ctrlKey && evt.keyCode == 13)
+												{	
+													try
+													{
+														TempSave(id);
+													}
+													catch(ex)
+													{
+													}
+													finally
+													{
+													    __doPostBack('AjaxHolder$PostComment$btnSubmit','')
+													}
+												}
+		
+												}</script>
+												<script language="JavaScript">function SetReplyAuhor(author){document.getElementById('AjaxHolder_PostComment_tbComment').value+="@"+author+"\n";document.getElementById('AjaxHolder_PostComment_tbComment').focus();return false}</script>
+<script src="Chinese_Ogre3DEmbeddedInQtFramework.aspx_files/ScriptResource_003.js" type="text/javascript"></script>
+<script src="Chinese_Ogre3DEmbeddedInQtFramework.aspx_files/ScriptResource.js" type="text/javascript"></script>
+<script src="Chinese_Ogre3DEmbeddedInQtFramework.aspx_files/ScriptResource_002.js" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+function WebForm_OnSubmit() {
+if (typeof(ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) return false;
+return true;
+}
+//]]>
+</script>
+
+        
+<!--done-->
+<div id="centerbody" align="center">
+<div id="header">
+	
+<!--done-->
+<div class="header">
+	<div class="headerText">
+		<a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cppblog.com/yuanyajie/">清源游民的网络笔记本</a><br>
+		记录所思所想，收藏所见所闻�?
+
+	</div>
+</div>
+
+</div>
+<div id="main">
+<div id="mytopmenu">
+	
+	<div id="mylinks">
+<!--done-->
+<a id="MyLinks1_HomeLink" class="menu" href="http://www.cppblog.com/">C++博客</a>&nbsp;&nbsp;&nbsp;
+<a id="MyLinks1_MyHomeLink" class="menu" href="http://www.cppblog.com/yuanyajie/">首页</a>&nbsp;&nbsp;&nbsp;
+<a id="MyLinks1_NewPostLink" class="menu" href="http://www.cppblog.com/yuanyajie/admin/EditPosts.aspx?opt=1">新随笔</a>&nbsp;&nbsp;&nbsp;
+<a id="MyLinks1_ContactLink" accesskey="9" class="menu" href="http://www.cppblog.com/yuanyajie/contact.aspx?id=1">联系</a>&nbsp;&nbsp;&nbsp;
+<a id="MyLinks1_Syndication" class="menu" href="http://www.cppblog.com/yuanyajie/Rss.aspx">聚合</a><a id="MyLinks1_XMLLink" href="http://www.cppblog.com/yuanyajie/Rss.aspx"><img src="Chinese_Ogre3DEmbeddedInQtFramework.aspx_files/xml.gif" style="border-width: 0px;"></a>&nbsp;&nbsp;&nbsp;
+<a id="MyLinks1_Admin" class="menu" href="http://www.cppblog.com/yuanyajie/admin/EditPosts.aspx">管理</a>
+</div>
+		<div id="mystats">
+			</div>
+	
+</div>
+<div id="centercontent">
+	
+					
+<!--done-->
+<div class="post">
+	<div class="postTitle">
+		<a id="viewpost1_TitleUrl" class="postTitle2" href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.html">Ogre3D嵌入Qt框架 之　小结</a>
+	</div>
+	<p>按
+照经典的Qt程序结构，应该有一个从QMainWindow继承而来的MainWindow,让它做为主窗口,然后子类化一个QWidget，它做为主窗
+口的"中心挂件",能过封装Ogre的部分功能，实现用Ogre对该窗体的绘制。首先，如何把Ogre这个引擎发动，不断驱动其进行工作。Qt也需要告诉
+Ogre如何把渲染的内容画到指定的窗口中去，以及用哪种方式更新窗口中的内容。当键盘或鼠标消息来的时候，如何通知Ogre进行响应。从Ogre这边来
+看，就是如何把Ogre的功能，分布到Qt的各个部分。而且与一般的ogre程序不同，不是进入到连续的循环中(一般的ogre程序中，通过执行
+mRoot-&gt;startRendering();语句进入一个不停渲染循环，通过预先安插好的帧侦听器来对消息进行响应，对程序逻辑进行处理)而
+可以是“必要时”对窗口进行更新。而且与一般ogre程序不同，由于Qt自身可以检测输入设备消息，因此，OIS不再需要。把Ogre中的内容嵌入到
+Qt,从形式来看可以许多种，也就是说可以把相关Ogre的部分拆成不同部分，按照作者的需要封装在Qt中的不同部分。比如，Ogre中描述抽象的“引
+擎”概念的部分(Root等)，因为我们想一但应用程序启动，就应该让Ogre引擎启动了，那么这些部分可以用QApplication封装，而且
+RenderWindow,与Qt中的QWidget概念上是关联的，所以就用QWidget来封装。出于简单的原因，我把Ogre都封装从
+QWidget继承而来的OgreView中了。很显然，主要考虑OgreView就可以了。<br>class OgreView : public QWidget<br>{<br>&nbsp;Q_OBJECT</p>
+<p>public:<br>&nbsp;OgreView(QWidget* parent );<br>&nbsp;~OgreView();<br>&nbsp;//QSize minimumSizeHint() const;<br>&nbsp;//QSize sizeHint() const;<br>protected:<br>&nbsp; void setupView<span style="color: rgb(51, 153, 102);">()//创建Ogre使用的内容，场景内容;</span><br>&nbsp;void update();//通过它，手动更新场景内容<br>&nbsp;void setupResources();//<br>&nbsp;void createScene();<br>&nbsp;void createLight();<br>&nbsp;void resizeEvent(QResizeEvent* evt<span style="color: rgb(51, 153, 102);">);//窗口可能缩放<br></span>&nbsp;void timerEvent(QTimerEvent* evt<span style="color: rgb(51, 153, 102);">);//可以设一时钟来更新窗口<br></span>&nbsp;void paintEvent(QPaintEvent* evt<span style="color: rgb(51, 153, 102);">);//呵，当然得处理了<br></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //消息响应<br>&nbsp;void keyPressEvent(QKeyEvent* evt);<br>&nbsp;void keyReleaseEvent(QKeyEvent* evt);<br>&nbsp;void mousePressEvent(QMouseEvent* evt);<br>&nbsp;void mouseReleaseEvent(QMouseEvent* evt);<br>&nbsp;void mouseMoveEvent(QMouseEvent* evt);<br>&nbsp;void wheelEvent(QWheelEvent* evt);</p>
+<p><span style="color: rgb(51, 153, 102);">&nbsp;//有关Ogre</span><br>&nbsp;Ogre::RenderWindow* mRenderWindow;<br>&nbsp;Ogre::SceneManager* mSceneMgr;<br>&nbsp;Ogre::Camera* mCamera;<br>&nbsp;Ogre::Viewport* mVp;<br>&nbsp;Ogre::Root* mRoot;<br>&nbsp;Ogre::Light* mainLight;<br>&nbsp;&nbsp;Ogre::Entity* mainEnt;<br>&nbsp;Ogre::SceneNode* mainNode;<br><span style="color: rgb(51, 153, 102);">&nbsp;//一些控制变量，没有完全列出</span><br>&nbsp;Ogre::Vector3 mDirection;<br>&nbsp;Ogre::Real mRotate;<br>&nbsp;<br>};<br><span style="color: rgb(51, 153, 102);">//cpp文件中的内容(部分)</span><br>OgreView::OgreView(QWidget* parent) : QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))<br>{<br>&nbsp;mRenderWindow = NULL;<br>&nbsp;mSceneMgr = NULL;<br>&nbsp;mVp = NULL;<br>&nbsp;mainEnt = NULL;<br>&nbsp;mainNode = NULL;<br>&nbsp;//....还有一些控制变量的初始化<br>&nbsp;<span style="color: rgb(0, 0, 255);">setupResources();</span><br>}</p>
+<p>OgreView::~OgreView()<br>{<br>&nbsp;// destroy Viewport and RenderWindow<br>&nbsp;if( mVp )<br>&nbsp;{<br>&nbsp;&nbsp;mRenderWindow-&gt;removeViewport(mVp-&gt;getZOrder());<br>&nbsp;&nbsp;mVp = 0;<br>&nbsp;}<br>&nbsp;<br>&nbsp;Ogre::Root::getSingleton().detachRenderTarget(mRenderWindow);<br>&nbsp;mRenderWindow = 0;<br>&nbsp;<br>&nbsp;if(mRoot != NULL){<br>&nbsp;&nbsp;delete mRoot;<br>&nbsp;&nbsp;mRoot = 0;<br>&nbsp;}<br>}</p>
+<p><br>void OgreView::setupResources()<br>{<br>&nbsp;mRoot = new Ogre::Root();<br>&nbsp;Ogre::ConfigFile cf;<br>&nbsp;cf.load("resources.cfg");</p>
+<p>&nbsp;Ogre::ConfigFile::SectionIterator seci = cf.getSectionIterator();<br>&nbsp;Ogre::String secName, typeName, archName;<br>&nbsp;while(seci.hasMoreElements())<br>&nbsp;{<br>&nbsp;&nbsp;secName = seci.peekNextKey();<br>&nbsp;&nbsp;Ogre::ConfigFile::SettingsMultiMap* settings = seci.getNext();<br>&nbsp;&nbsp;Ogre::ConfigFile::SettingsMultiMap::iterator i;<br>&nbsp;&nbsp;for(i=settings-&gt;begin(); i!=settings-&gt;end(); ++i){<br>&nbsp;&nbsp;&nbsp;typeName = i-&gt;first;<br>&nbsp;&nbsp;&nbsp;archName = i-&gt;second;<br>&nbsp;&nbsp;&nbsp;Ogre::ResourceGroupManager::getSingleton().addResourceLocation(archName, typeName, secName);<br>&nbsp;&nbsp;}<br>&nbsp;}</p>
+<p>&nbsp;if(!mRoot-&gt;restoreConfig())<br>&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;mRoot-&gt;showConfigDialog();<br>&nbsp;&nbsp;}<br>&nbsp;mRoot-&gt;initialise(false);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: rgb(51, 153, 102);">//以上都是从Ogre普通程序照搬<br></span>}<br><span style="color: rgb(51, 153, 102);">//没啥说的，代码比注释更明白<br></span>void OgreView::createScene()<br>{<br>&nbsp; mainEnt = mSceneMgr-&gt;createEntity("Head", "ogrehead.mesh");<br>&nbsp; mainNode = mSceneMgr-&gt;getRootSceneNode()-&gt;createChildSceneNode();<br>&nbsp; mainNode-&gt;attachObject(mainEnt);<br>}</p>
+<p>void OgreView::createLight()<br>{<br>&nbsp;<br>&nbsp;&nbsp;&nbsp; mSceneMgr-&gt;setAmbientLight(Ogre::ColourValue(0.5, 0.5, 0.5));<br>&nbsp;&nbsp;&nbsp; mainLight = mSceneMgr-&gt;createLight("MainLight");<br>&nbsp;&nbsp;&nbsp; mainLight-&gt;setPosition(20,80,50);<br>}</p>
+<p>void OgreView::setupView()<br>{<br>&nbsp;&nbsp;&nbsp; if(mRenderWindow)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return;<br><span style="color: rgb(51, 153, 102);">&nbsp; //createRenderWindow,当然必须得自己手工建窗口了，把窗口句柄扒出来....</span><br>&nbsp;<br>&nbsp;<span style="color: rgb(0, 0, 255);">Ogre::NameValuePairList params;<br>&nbsp;params["externalWindowHandle"] = Ogre::StringConverter::toString((size_t)(HWND)winId());<br>&nbsp;mRenderWindow = mRoot-&gt;createRenderWindow("View", width(), height(), false, &amp;params);<br></span><span style="color: rgb(51, 153, 102);">&nbsp;//SceneManager</span><br>&nbsp; mSceneMgr = mRoot-&gt;createSceneManager(Ogre::ST_GENERIC);<br><span style="color: rgb(51, 153, 102);">&nbsp; //setup camera &amp; viewport&nbsp;<br></span>&nbsp; mCamera = mSceneMgr-&gt;createCamera("PlayerCam");<br>&nbsp; mCamera-&gt;setPosition(Ogre::Vector3(0,0,80));<br>&nbsp; mCamera-&gt;lookAt(Ogre::Vector3(0,0,-300));<br>&nbsp; mCamera-&gt;setNearClipDistance(5);<br>&nbsp; mVp = mRenderWindow-&gt;addViewport(mCamera);<br>&nbsp; mVp-&gt;setBackgroundColour(Ogre::ColourValue(0, 0.0, 0.0, 1));<br>&nbsp;mCamera-&gt;setAspectRatio(Ogre::Real(mVp-&gt;getActualWidth()) / Ogre::Real(mVp-&gt;getActualHeight()));<br><span style="color: rgb(51, 153, 102);">&nbsp; //resource</span><br>&nbsp;Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();<br>&nbsp;&nbsp; createScene();<br>&nbsp;&nbsp; createLight();<br>&nbsp;&nbsp; startTimer(2);<br>}</p>
+<p>void OgreView::paintEvent(QPaintEvent *evt)<br>{<br>&nbsp;Q_UNUSED(evt);<br>&nbsp;&nbsp;&nbsp; if(mRenderWindow == NULL)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setupView();<br>&nbsp;&nbsp;update();<br>}</p>
+<p>void OgreView::timerEvent(QTimerEvent* evt)<br>{<br>&nbsp;Q_UNUSED(evt);<br>&nbsp;update();<br>&nbsp;<br>}</p>
+<p>void OgreView::update()<br>{<br><span style="color: rgb(51, 153, 102);">&nbsp;//手工更新场景内容，而不是进入到连续的循环中</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(mRenderWindow != NULL){<br>&nbsp;&nbsp;mRoot-&gt;_fireFrameStarted();<br>&nbsp;&nbsp;mRenderWindow-&gt;update();</p>
+<p>&nbsp;&nbsp;mCamera-&gt;moveRelative(mDirection);<br>&nbsp;&nbsp;mCamera-&gt;yaw(Ogre::Radian(angleX));<br>&nbsp;&nbsp;mCamera-&gt;pitch(Ogre::Radian(angleY));</p>
+<p>&nbsp;&nbsp;mRoot-&gt;_fireFrameEnded();<br>&nbsp;}<br>}</p>
+<p><br>void OgreView::resizeEvent(QResizeEvent *evt)<br>{<br>&nbsp;Q_UNUSED(evt);<br>&nbsp;if (mRenderWindow != NULL){<br>&nbsp;&nbsp;mRenderWindow-&gt;windowMovedOrResized();<br>&nbsp;&nbsp;mCamera-&gt;setAspectRatio(Ogre::Real(mVp-&gt;getActualWidth()) / Ogre::Real(mVp-&gt;getActualHeight()));<br>&nbsp;}<br>}</p>
+<p>void OgreView::keyPressEvent(QKeyEvent* evt)<br>{<br>&nbsp;if(mainEnt != NULL &amp;&amp; mainNode != NULL){<br>&nbsp;&nbsp;switch(evt-&gt;key()){<br>&nbsp;&nbsp;&nbsp;case Qt::Key_W:<br>&nbsp;&nbsp;&nbsp;case Qt::Key_Up:<br>&nbsp;&nbsp;&nbsp;&nbsp;rotX = -0.1;<br>&nbsp;&nbsp;&nbsp;&nbsp;mainNode-&gt;pitch(Ogre::Radian(rotX));<br>&nbsp;&nbsp;&nbsp;&nbsp;break;<br>&nbsp;&nbsp;&nbsp;case Qt::Key_S:<br>&nbsp;&nbsp;&nbsp;case Qt::Key_Down:<br>&nbsp;&nbsp;&nbsp;&nbsp;rotX = 0.1;<br>&nbsp;&nbsp;&nbsp;&nbsp;mainNode-&gt;pitch(Ogre::Radian(rotX));<br>&nbsp;&nbsp;&nbsp;&nbsp;break;<br>&nbsp;&nbsp;&nbsp;case Qt::Key_A:<br>&nbsp;&nbsp;&nbsp;case Qt::Key_Left:<br>&nbsp;&nbsp;&nbsp;&nbsp;rotY = -0.1;<br>&nbsp;&nbsp;&nbsp;&nbsp;mainNode-&gt;yaw(Ogre::Radian(rotY));<br>&nbsp;&nbsp;&nbsp;&nbsp;break;<br>&nbsp;&nbsp;&nbsp;case Qt::Key_D:<br>&nbsp;&nbsp;&nbsp;case Qt::Key_Right:<br>&nbsp;&nbsp;&nbsp;&nbsp;rotY = 0.1;<br>&nbsp;&nbsp;&nbsp;&nbsp;mainNode-&gt;yaw(Ogre::Radian(rotY));<br>&nbsp;&nbsp;&nbsp;&nbsp;break;<br>&nbsp;&nbsp;}<br>&nbsp;}<br>}</p>
+<p><br>void OgreView::mousePressEvent(QMouseEvent* evt)<br>{<br>&nbsp;if(evt-&gt;button() == Qt::LeftButton)<br>&nbsp;&nbsp;mouseLeftPressed = true;<br>&nbsp;if(evt-&gt;button() == Qt::RightButton){<br>&nbsp;&nbsp;mouseRightPressed = true;<br>&nbsp;&nbsp;mousePos = Ogre::Vector2(evt-&gt;x(), evt-&gt;y());<br>&nbsp;}<br>&nbsp;if(evt-&gt;button() == Qt::MidButton)<br>&nbsp;&nbsp;mouseMiddleBtn = true;<br>}</p>
+<p><br>void OgreView::wheelEvent(QWheelEvent* evt)<br>{<br>&nbsp;mDirection.z = -evt-&gt;delta()/12;<br>&nbsp;update();<br>&nbsp;mDirection.z = 0;<br>}<br></p>
+
+	<div class="postDesc">posted on 2007-05-21 11:57 <a href="http://www.cppblog.com/yuanyajie/">清源游民</a> 阅读(2337) <a href="#Post">评论(15)</a> &nbsp;<a href="http://www.cppblog.com/yuanyajie/admin/EditPosts.aspx?postid=24528">编辑</a>&nbsp;<a href="http://www.cppblog.com/yuanyajie/AddToFavorite.aspx?id=24528">收藏</a> <a href="http://www.cppblog.com/yuanyajie/services/trackbacks/24528.aspx">引用</a>  所属分类: <a href="http://www.cppblog.com/yuanyajie/category/3706.html">OGRE</a> 、<a href="http://www.cppblog.com/yuanyajie/category/3943.html">Qt</a> </div>
+</div>
+<img src="Chinese_Ogre3DEmbeddedInQtFramework.aspx_files/24528.jpg" width="1" height="1">
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+xmlns:dc="http://purl.org/dc/elements/1.1/"
+xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+<rdf:Description
+rdf:about="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.html"
+dc:identifier="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.html"
+dc:title="Ogre3D嵌入Qt框架 之　小结"
+trackback:ping="http://www.cppblog.com/yuanyajie/services/trackbacks/24528.aspx" />
+</rdf:RDF>
+-->
+
+<script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('AjaxHolder$scriptmanager1', document.getElementById('Form1'));
+Sys.WebForms.PageRequestManager.getInstance()._updateControls(['tAjaxHolder$UpdatePanel1'], [], [], 90);
+//]]>
+</script>
+
+<div id="AjaxHolder_UpdatePanel1">
+	    
+    <a name="pagedcomment"></a>
+<!--done-->
+<br>
+<b>FeedBack:</b>
+<div class="feedbackNoItems"></div>
+	
+
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a title="permalink: re: Ogre3D嵌入Qt框架 之　小结" href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.aspx#29419">#</a>&nbsp;<a name="29419"></a>re: Ogre3D嵌入Qt框架 之　小结</div>
+			<div class="feedbackListSubtitle">
+				2007-08-06 10:41 | <a id="AjaxHolder_Comments_CommentList_ctl00_NameLink" href="http://www.cppblog.com/lai3d/" target="_blank">阿来</a><br>
+				<div align="left">来我们公司搞地图编辑器怎样？&nbsp;&nbsp;<a onclick='return SetReplyAuhor("阿来")' href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.aspx#post">回复</a>&nbsp;&nbsp;<a title="查看该作者发表过的评论" href="http://www.cppblog.com/comment?author=%e9%98%bf%e6%9d%a5" target="_blank">更多评论</a><br><a id="AjaxHolder_Comments_CommentList_ctl00_DeleteLink" href="javascript:__doPostBack('AjaxHolder$Comments$CommentList$ctl00$DeleteLink','')"></a>&nbsp;&nbsp;<a id="AjaxHolder_Comments_CommentList_ctl00_EditLink"></a></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a title="permalink: re: Ogre3D嵌入Qt框架 之　小结" href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.aspx#29420">#</a>&nbsp;<a name="29420"></a>re: Ogre3D嵌入Qt框架 之　小结</div>
+			<div class="feedbackListSubtitle">
+				2007-08-06 10:41 | <a id="AjaxHolder_Comments_CommentList_ctl01_NameLink" href="http://www.cppblog.com/lai3d/" target="_blank">阿来</a><br>
+				<div align="left">有兴趣没？&nbsp;&nbsp;<a onclick='return SetReplyAuhor("阿来")' href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.aspx#post">回复</a>&nbsp;&nbsp;<a title="查看该作者发表过的评论" href="http://www.cppblog.com/comment?author=%e9%98%bf%e6%9d%a5" target="_blank">更多评论</a><br><a id="AjaxHolder_Comments_CommentList_ctl01_DeleteLink" href="javascript:__doPostBack('AjaxHolder$Comments$CommentList$ctl01$DeleteLink','')"></a>&nbsp;&nbsp;<a id="AjaxHolder_Comments_CommentList_ctl01_EditLink"></a></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a title="permalink: re: Ogre3D嵌入Qt框架 之　小结[未登录]" href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.aspx#29424">#</a>&nbsp;<a name="29424"></a>re: Ogre3D嵌入Qt框架 之　小结[未登录]</div>
+			<div class="feedbackListSubtitle">
+				2007-08-06 11:13 | <a id="AjaxHolder_Comments_CommentList_ctl02_NameLink" target="_blank">清源游民</a><br>
+				<div align="left">@阿来
+<br>什么公司呀？用什么开发呢？&nbsp;&nbsp;<a onclick='return SetReplyAuhor("清源游民")' href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.aspx#post">回复</a>&nbsp;&nbsp;<a title="查看该作者发表过的评论" href="http://www.cppblog.com/comment?author=%e6%b8%85%e6%ba%90%e6%b8%b8%e6%b0%91" target="_blank">更多评论</a><br><a id="AjaxHolder_Comments_CommentList_ctl02_DeleteLink" href="javascript:__doPostBack('AjaxHolder$Comments$CommentList$ctl02$DeleteLink','')"></a>&nbsp;&nbsp;<a id="AjaxHolder_Comments_CommentList_ctl02_EditLink"></a></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a title="permalink: re: Ogre3D嵌入Qt框架 之　小结" href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.aspx#29514">#</a>&nbsp;<a name="29514"></a>re: Ogre3D嵌入Qt框架 之　小结</div>
+			<div class="feedbackListSubtitle">
+				2007-08-07 21:59 | <a id="AjaxHolder_Comments_CommentList_ctl03_NameLink" href="http://www.cppblog.com/lai3d/" target="_blank">阿来</a><br>
+				<div align="left">征途，做网络游戏的&nbsp;&nbsp;<a onclick='return SetReplyAuhor("阿来")' href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.aspx#post">回复</a>&nbsp;&nbsp;<a title="查看该作者发表过的评论" href="http://www.cppblog.com/comment?author=%e9%98%bf%e6%9d%a5" target="_blank">更多评论</a><br><a id="AjaxHolder_Comments_CommentList_ctl03_DeleteLink" href="javascript:__doPostBack('AjaxHolder$Comments$CommentList$ctl03$DeleteLink','')"></a>&nbsp;&nbsp;<a id="AjaxHolder_Comments_CommentList_ctl03_EditLink"></a></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a title="permalink: re: Ogre3D嵌入Qt框架 之　小结" href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.aspx#29515">#</a>&nbsp;<a name="29515"></a>re: Ogre3D嵌入Qt框架 之　小结</div>
+			<div class="feedbackListSubtitle">
+				2007-08-07 21:59 | <a id="AjaxHolder_Comments_CommentList_ctl04_NameLink" href="http://www.cppblog.com/lai3d/" target="_blank">阿来</a><br>
+				<div align="left">c++
+<br>windows + vc&nbsp;&nbsp;<a onclick='return SetReplyAuhor("阿来")' href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.aspx#post">回复</a>&nbsp;&nbsp;<a title="查看该作者发表过的评论" href="http://www.cppblog.com/comment?author=%e9%98%bf%e6%9d%a5" target="_blank">更多评论</a><br><a id="AjaxHolder_Comments_CommentList_ctl04_DeleteLink" href="javascript:__doPostBack('AjaxHolder$Comments$CommentList$ctl04$DeleteLink','')"></a>&nbsp;&nbsp;<a id="AjaxHolder_Comments_CommentList_ctl04_EditLink"></a></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a title="permalink: re: Ogre3D嵌入Qt框架 之　小结" href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.aspx#29516">#</a>&nbsp;<a name="29516"></a>re: Ogre3D嵌入Qt框架 之　小结</div>
+			<div class="feedbackListSubtitle">
+				2007-08-07 22:01 | <a id="AjaxHolder_Comments_CommentList_ctl05_NameLink" href="http://www.cppblog.com/lai3d/" target="_blank">阿来</a><br>
+				<div align="left">工具我想用qt来做，包括自动更新程序 
+<br>现在的工具有用bcb做的，有的mfc,有的managed c++,有的c#&nbsp;&nbsp;<a onclick='return SetReplyAuhor("阿来")' href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.aspx#post">回复</a>&nbsp;&nbsp;<a title="查看该作者发表过的评论" href="http://www.cppblog.com/comment?author=%e9%98%bf%e6%9d%a5" target="_blank">更多评论</a><br><a id="AjaxHolder_Comments_CommentList_ctl05_DeleteLink" href="javascript:__doPostBack('AjaxHolder$Comments$CommentList$ctl05$DeleteLink','')"></a>&nbsp;&nbsp;<a id="AjaxHolder_Comments_CommentList_ctl05_EditLink"></a></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a title="permalink: re: Ogre3D嵌入Qt框架 之　小结" href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.aspx#29532">#</a>&nbsp;<a name="29532"></a>re: Ogre3D嵌入Qt框架 之　小结</div>
+			<div class="feedbackListSubtitle">
+				2007-08-08 00:16 | <a id="AjaxHolder_Comments_CommentList_ctl06_NameLink" href="http://www.cppblog.com/yuanyajie/" target="_blank">清源游民</a><br>
+				<div align="left">呵
+呵，征途。两年前，还没毕业，想实习，面试过的，做了份题，面谈了一下，便over了。当时很菜，所以正常，当然现在也很菜。原来想过进游戏行的，不过各
+种原因没有进去。刚工作一年，觉得自己经验，能力还是有差距。所以还是想先练练内功，多打打怪，有点积累再跳吧。现在工作环境较松，有时间可以多学点东
+西，据说游戏公司都很忙吧.是不是啊？
+<br>qt,bcb,mfc,managed c++,c#，你的武器还挺多,佩服！&nbsp;&nbsp;<a onclick='return SetReplyAuhor("清源游民")' href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.aspx#post">回复</a>&nbsp;&nbsp;<a title="查看该作者发表过的评论" href="http://www.cppblog.com/comment?author=%e6%b8%85%e6%ba%90%e6%b8%b8%e6%b0%91" target="_blank">更多评论</a><br><a id="AjaxHolder_Comments_CommentList_ctl06_DeleteLink" href="javascript:__doPostBack('AjaxHolder$Comments$CommentList$ctl06$DeleteLink','')"></a>&nbsp;&nbsp;<a id="AjaxHolder_Comments_CommentList_ctl06_EditLink"></a></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a title="permalink: re: Ogre3D嵌入Qt框架 之　小结" href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.aspx#29537">#</a>&nbsp;<a name="29537"></a>re: Ogre3D嵌入Qt框架 之　小结</div>
+			<div class="feedbackListSubtitle">
+				2007-08-08 01:04 | <a id="AjaxHolder_Comments_CommentList_ctl07_NameLink" href="http://www.cppblog.com/lai3d/" target="_blank">阿来</a><br>
+				<div align="left">你来征途学得更快，忙是肯定的。想来的话把简历发我一份。
+<br>现在&lt;巨人&gt;终极封测了，你进来参与这个项目&nbsp;&nbsp;<a onclick='return SetReplyAuhor("阿来")' href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.aspx#post">回复</a>&nbsp;&nbsp;<a title="查看该作者发表过的评论" href="http://www.cppblog.com/comment?author=%e9%98%bf%e6%9d%a5" target="_blank">更多评论</a><br><a id="AjaxHolder_Comments_CommentList_ctl07_DeleteLink" href="javascript:__doPostBack('AjaxHolder$Comments$CommentList$ctl07$DeleteLink','')"></a>&nbsp;&nbsp;<a id="AjaxHolder_Comments_CommentList_ctl07_EditLink"></a></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a title="permalink: re: Ogre3D嵌入Qt框架 之　小结" href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.aspx#29552">#</a>&nbsp;<a name="29552"></a>re: Ogre3D嵌入Qt框架 之　小结</div>
+			<div class="feedbackListSubtitle">
+				2007-08-08 09:55 | <a id="AjaxHolder_Comments_CommentList_ctl08_NameLink" href="http://www.cppblog.com/yuanyajie/" target="_blank">清源游民</a><br>
+				<div align="left">给个联系方式，有空的话可以先聊聊。MSN,QQ都可以。&nbsp;&nbsp;<a onclick='return SetReplyAuhor("清源游民")' href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.aspx#post">回复</a>&nbsp;&nbsp;<a title="查看该作者发表过的评论" href="http://www.cppblog.com/comment?author=%e6%b8%85%e6%ba%90%e6%b8%b8%e6%b0%91" target="_blank">更多评论</a><br><a id="AjaxHolder_Comments_CommentList_ctl08_DeleteLink" href="javascript:__doPostBack('AjaxHolder$Comments$CommentList$ctl08$DeleteLink','')"></a>&nbsp;&nbsp;<a id="AjaxHolder_Comments_CommentList_ctl08_EditLink"></a></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a title="permalink: re: Ogre3D嵌入Qt框架 之　小结" href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.aspx#29565">#</a>&nbsp;<a name="29565"></a>re: Ogre3D嵌入Qt框架 之　小结</div>
+			<div class="feedbackListSubtitle">
+				2007-08-08 13:22 | <a id="AjaxHolder_Comments_CommentList_ctl09_NameLink" href="http://www.cppblog.com/lai3d/" target="_blank">阿来</a><br>
+				<div align="left">lai3d#163 dot com
+<br>
+<br>这个是msn&nbsp;&nbsp;<a onclick='return SetReplyAuhor("阿来")' href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.aspx#post">回复</a>&nbsp;&nbsp;<a title="查看该作者发表过的评论" href="http://www.cppblog.com/comment?author=%e9%98%bf%e6%9d%a5" target="_blank">更多评论</a><br><a id="AjaxHolder_Comments_CommentList_ctl09_DeleteLink" href="javascript:__doPostBack('AjaxHolder$Comments$CommentList$ctl09$DeleteLink','')"></a>&nbsp;&nbsp;<a id="AjaxHolder_Comments_CommentList_ctl09_EditLink"></a></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a title="permalink: re: Ogre3D嵌入Qt框架 之　小结" href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.aspx#67438">#</a>&nbsp;<a name="67438"></a>re: Ogre3D嵌入Qt框架 之　小结</div>
+			<div class="feedbackListSubtitle">
+				2008-11-21 00:50 | <a id="AjaxHolder_Comments_CommentList_ctl10_NameLink" target="_blank">codespy</a><br>
+				<div align="left">我在用Ogre与Qt结合的时候，出现了名字冲突的错误。
+<br>qt-win-opensource-src-4.4.0\src\corelib\global\qglobal.h中
+<br>#ifndef QT_NAMESPACE /* user namespace */ // 这句该怎么用？
+<br>不知道你能否发给我一个简单的例子程序？我的email是info_resource￥sina.com
+<br>使用时，￥换成@。&nbsp;&nbsp;<a onclick='return SetReplyAuhor("codespy")' href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.aspx#post">回复</a>&nbsp;&nbsp;<a title="查看该作者发表过的评论" href="http://www.cppblog.com/comment?author=codespy" target="_blank">更多评论</a><br><a id="AjaxHolder_Comments_CommentList_ctl10_DeleteLink" href="javascript:__doPostBack('AjaxHolder$Comments$CommentList$ctl10$DeleteLink','')"></a>&nbsp;&nbsp;<a id="AjaxHolder_Comments_CommentList_ctl10_EditLink"></a></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a title="permalink: re: Ogre3D嵌入Qt框架 之　小结" href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.aspx#76311">#</a>&nbsp;<a name="76311"></a>re: Ogre3D嵌入Qt框架 之　小结</div>
+			<div class="feedbackListSubtitle">
+				2009-03-12 11:49 | <a id="AjaxHolder_Comments_CommentList_ctl11_NameLink" target="_blank">Wickedangel</a><br>
+				<div align="left">能发一份完整的源代码给我吗？我的邮件是flydragon_hy@163.com.谢谢！&nbsp;&nbsp;<a onclick='return SetReplyAuhor("Wickedangel")' href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.aspx#post">回复</a>&nbsp;&nbsp;<a title="查看该作者发表过的评论" href="http://www.cppblog.com/comment?author=Wickedangel" target="_blank">更多评论</a><br><a id="AjaxHolder_Comments_CommentList_ctl11_DeleteLink" href="javascript:__doPostBack('AjaxHolder$Comments$CommentList$ctl11$DeleteLink','')"></a>&nbsp;&nbsp;<a id="AjaxHolder_Comments_CommentList_ctl11_EditLink"></a></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a title="permalink: re: Ogre3D嵌入Qt框架 之　小结" href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.aspx#79271">#</a>&nbsp;<a name="79271"></a>re: Ogre3D嵌入Qt框架 之　小结</div>
+			<div class="feedbackListSubtitle">
+				2009-04-08 15:21 | <a id="AjaxHolder_Comments_CommentList_ctl12_NameLink" target="_blank">hzyy</a><br>
+				<div align="left">可以发一份原代码给我嘛？我也在试验如何把OGRE嵌入到Qt框架，做了一周都没有成功，楼主可以帮我一下嘛？
+<br>
+<br>我的邮箱是：402142793@qq.com
+<br>&nbsp;&nbsp;<a onclick='return SetReplyAuhor("hzyy")' href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.aspx#post">回复</a>&nbsp;&nbsp;<a title="查看该作者发表过的评论" href="http://www.cppblog.com/comment?author=hzyy" target="_blank">更多评论</a><br><a id="AjaxHolder_Comments_CommentList_ctl12_DeleteLink" href="javascript:__doPostBack('AjaxHolder$Comments$CommentList$ctl12$DeleteLink','')"></a>&nbsp;&nbsp;<a id="AjaxHolder_Comments_CommentList_ctl12_EditLink"></a></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a title="permalink: re: Ogre3D嵌入Qt框架 之　小结" href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.aspx#79272">#</a>&nbsp;<a name="79272"></a>re: Ogre3D嵌入Qt框架 之　小结</div>
+			<div class="feedbackListSubtitle">
+				2009-04-08 15:23 | <a id="AjaxHolder_Comments_CommentList_ctl13_NameLink" target="_blank">hzyy</a><br>
+				<div align="left">我正在试验把OGRE嵌入到QT，可惜做了一周时间，还没有成功，希望你能帮我一下，给我一个源代码。我的邮箱是：402142793·qq.com&nbsp;&nbsp;<a onclick='return SetReplyAuhor("hzyy")' href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.aspx#post">回复</a>&nbsp;&nbsp;<a title="查看该作者发表过的评论" href="http://www.cppblog.com/comment?author=hzyy" target="_blank">更多评论</a><br><a id="AjaxHolder_Comments_CommentList_ctl13_DeleteLink" href="javascript:__doPostBack('AjaxHolder$Comments$CommentList$ctl13$DeleteLink','')"></a>&nbsp;&nbsp;<a id="AjaxHolder_Comments_CommentList_ctl13_EditLink"></a></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a title="permalink: re: Ogre3D嵌入Qt框架 之　小结[未登录]" href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.aspx#79512">#</a>&nbsp;<a name="79512"></a>re: Ogre3D嵌入Qt框架 之　小结[未登录]<a name="Post"></a></div>
+			<div class="feedbackListSubtitle">
+				2009-04-10 15:50 | <a id="AjaxHolder_Comments_CommentList_ctl14_NameLink" target="_blank">DD</a><br>
+				<div align="left">没有 keyReleaseEvent ()的实现咧？
+<br>我的是QT4.4.3 
+<br>实现了KeyReleaseEvent()与keyPressEvent() 
+<br>可是KeyReleaseEvent()不能触发。。楼主遇到这种问题么？&nbsp;&nbsp;<a onclick='return SetReplyAuhor("DD")' href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.aspx#post">回复</a>&nbsp;&nbsp;<a title="查看该作者发表过的评论" href="http://www.cppblog.com/comment?author=DD" target="_blank">更多评论</a><br><a id="AjaxHolder_Comments_CommentList_ctl14_DeleteLink" href="javascript:__doPostBack('AjaxHolder$Comments$CommentList$ctl14$DeleteLink','')"></a>&nbsp;&nbsp;<a id="AjaxHolder_Comments_CommentList_ctl14_EditLink"></a></div>
+			</div>
+			
+			
+		</div>
+	
+
+
+
+<div id="AjaxHolder_Comments_divRefreshComments" style="text-align: right; margin-right: 10px; margin-bottom: 5px; font-size: 12px;"><a id="AjaxHolder_Comments_refreshList" href="javascript:__doPostBack('AjaxHolder$Comments$refreshList','')">刷新评论列表</a></div>
+<style>
+td { font-size: 12px }
+.commentTextBox 
+{ 
+    font-family : Verdana; 
+    font-size: 13px;
+ }
+</style>
+<!--Beging Temp Save-->
+<style>.userData { BEHAVIOR: url(#default#userdata) }
+	</style>
+<div class="userData" id="CommentsPersistDiv"></div>
+<script type="text/javascript">
+function pageLoad()
+{
+    Sys.WebForms.PageRequestManager.getInstance().add_initializeRequest(handleInitializeRequest);
+    //Sys.WebForms.PageRequestManager.getInstance().add_endRequest(handleEndRequest);
+}
+
+function handleInitializeRequest(sender, args)
+{
+    var prm = Sys.WebForms.PageRequestManager.getInstance();
+    var eid = args.get_postBackElement().id;
+    if (eid.indexOf("DeleteLink")>0) 
+    {
+       args.get_postBackElement().innerHTML = "<font color='red'>正在删除...</font>";         
+    }    
+    if (eid.indexOf("btnSubmit")>0) 
+    {
+       document.getElementById("AjaxHolder_PostComment_ltSubmitMsg").innerHTML="正在提交...";
+       document.getElementById("AjaxHolder_PostComment_btnSubmit").disabled = true;
+       
+    }    
+   
+}	
+
+function TempSave(ElementID)
+{
+	try
+	{
+	CommentsPersistDiv.setAttribute("CommentContent",document.getElementById(ElementID).value);
+	CommentsPersistDiv.save("CommentXMLStore");
+	}
+	catch(ex)
+	{
+	}
+	
+}
+function Restore(ElementID)
+{
+	CommentsPersistDiv.load("CommentXMLStore");
+	document.getElementById(ElementID).value=CommentsPersistDiv.getAttribute("CommentContent");
+}	
+			
+			
+</script>
+<!--Ene TempSave-->
+<div class="commentform">
+<script type="text/javascript" src="Chinese_Ogre3DEmbeddedInQtFramework.aspx_files/google_service.js">
+</script>
+<script type="text/javascript">
+try{
+  GS_googleAddAdSenseService("ca-pub-4210569241504288");
+  GS_googleEnableAllServices();
+  } catch (e) { }
+</script><script src="Chinese_Ogre3DEmbeddedInQtFramework.aspx_files/google_ads.js"></script>
+<script type="text/javascript">
+try{
+  GA_googleAddSlot("ca-pub-4210569241504288", "cppblog_blogpost_bottom");
+  GA_googleAddSlot("ca-pub-4210569241504288", "cppblog_commentbox_up");
+  } catch (e) { }
+</script>
+<script type="text/javascript">
+try{
+  GA_googleFetchAds();
+  } catch (e) { }
+</script>
+<span id="AjaxHolder_PostComment_ltSubmitMsg" style="color: Red;"></span>
+<br>
+<a name="Feedback"></a>
+	<table border="0" cellpadding="1" cellspacing="1">
+		<tbody><tr>
+			<td colspan="3" height="5">
+<script type="Text/Javascript">
+try{
+  GA_googleFillSlot("cppblog_commentbox_up");
+  } catch (e) { }
+</script><script src="Chinese_Ogre3DEmbeddedInQtFramework.aspx_files/ads_002"></script><div id="google_ads_div_cppblog_commentbox_up">
+<iframe style="border: 0pt none ;" marginheight="0" marginwidth="0" name="google_ads_iframe_cppblog_commentbox_up" id="google_ads_iframe_cppblog_commentbox_up" width="468" frameborder="0" height="60" scrolling="no"></iframe></div>
+<script>GA_googleCreateDomIframe('google_ads_div_cppblog_commentbox_up' ,'cppblog_commentbox_up');</script>
+<br> </td>
+		</tr>
+		<tr>
+			<td width="75"></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td colspan="2">
+			<a href="http://news.cnblogs.com/" target="_blank">IT新闻</a>&nbsp;&nbsp;<a href="http://job.cnblogs.com/" target="_blank">程序员招聘</a>
+			</td>
+		</tr>
+		<tr>
+			<td width="55">标题</td>
+			<td><input name="AjaxHolder$PostComment$tbTitle" value="re: Ogre3D嵌入Qt框架 之　小结" id="AjaxHolder_PostComment_tbTitle" class="commenttb" style="width: 320px;" type="text"></td>
+			<td><span id="AjaxHolder_PostComment_RequiredFieldValidator1" style="color: Red; visibility: hidden;">请输入标题</span></td>
+		</tr>
+		<tr>
+			<td>姓名</td>
+			<td><input name="AjaxHolder$PostComment$tbName" id="AjaxHolder_PostComment_tbName" class="commenttb" style="width: 320px;" type="text"></td>
+			<td><span id="AjaxHolder_PostComment_RequiredFieldValidator2" style="color: Red; visibility: hidden;">请输入你的姓名</span></td>
+		</tr>
+		<tr>
+			<td>主页</td>
+			<td><input name="AjaxHolder$PostComment$tbUrl" id="AjaxHolder_PostComment_tbUrl" class="commenttb" style="width: 320px;" type="text"></td>
+			<td><font face="宋体"></font></td>
+		</tr>
+		<tr>
+			<td colspan="3" align="left">
+				<table id="AjaxHolder_PostComment_tbCaptchaImage" class="CommentForm" border="0" cellpadding="0" cellspacing="0">
+		<tbody><tr>
+			<td colspan="3">
+							<span id="AjaxHolder_PostComment_Requiredfieldvalidator4" style="color: Red; display: none;">请输入验证码</span>
+							<span id="AjaxHolder_PostComment_lblImage" style="color: Red; font-weight: bold;"></span>
+						</td>
+		</tr>
+		<tr>
+			<td width="78">验证码</td>
+			<td><input name="AjaxHolder$PostComment$CodeNumberTextBox" id="AjaxHolder_PostComment_CodeNumberTextBox" type="text">*</td>
+			<td align="left">
+							<img src="Chinese_Ogre3DEmbeddedInQtFramework.aspx_files/JpegImage.jpg" id="AjaxHolder_PostComment_Img1">
+						</td>
+		</tr>
+	</tbody></table>
+	
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3">内容(提交失败后,可以通过“恢复上次提交”恢复刚刚提交的内容)
+				<span id="AjaxHolder_PostComment_RequiredFieldValidator3" style="color: Red; visibility: hidden;">请输入评论内容</span><br>
+				<textarea name="AjaxHolder$PostComment$tbComment" rows="10" cols="50" id="AjaxHolder_PostComment_tbComment" class="commentTextBox" onkeydown="ctlent(event,'AjaxHolder_PostComment_tbComment')" style="width: 480px; height: 220px;"></textarea></td>
+		</tr>
+		<tr>
+			<td colspan="3">
+		<span id="AjaxHolder_PostComment_Message" style="color: Red;"></span>
+		</td>
+		</tr><tr>
+			<td colspan="3"><input id="AjaxHolder_PostComment_chkRemember" name="AjaxHolder$PostComment$chkRemember" checked="checked" tabindex="-1" type="checkbox"><label for="AjaxHolder_PostComment_chkRemember">Remember Me?</label></td>
+		</tr>
+		<tr>
+			<td height="23"><input name="AjaxHolder$PostComment$btnSubmit" value="提交" onclick="TempSave('AjaxHolder_PostComment_tbComment');WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;AjaxHolder$PostComment$btnSubmit&quot;, &quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, false))" id="AjaxHolder_PostComment_btnSubmit" type="submit">
+				</td>
+			<td colspan="2" height="23">&nbsp;
+				<a id="AjaxHolder_PostComment_lnkLogin" href="http://www.cppblog.com/login.aspx?ReturnURL=http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.aspx&amp;SourceURL=/yuanyajie/archive/2007/05/21/24528.aspx">登录</a>&nbsp;&nbsp;<a id="AjaxHolder_PostComment_linkLoginComment" onclick="if(document.getElementById('AjaxHolder_PostComment_tbComment').value != '') return confirm('未提交的评论内容将会丢失, 你真的要进入高级评论吗?');" href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.aspx?login=1#Post">使用高级评论</a>&nbsp;&nbsp;<a href="http://www.cppblog.com/RequireRegister.aspx">新用户注册</a>&nbsp;&nbsp;<a href="#Top">返回页首</a>&nbsp;&nbsp;<a id="AjaxHolder_PostComment_lbRestore" onclick="Restore('AjaxHolder_PostComment_tbComment'); return false;" href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.aspx#Post">恢复上次提交</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</td>
+		</tr>
+		<tr>
+			<td colspan="3">[使用Ctrl+Enter键可以直接提交]</td>
+		</tr>
+		<tr>
+			<td colspan="3"><a href="http://kb.cnblogs.com/zt/windows7/" target="_blank">Windows 7专题</a></td>
+		</tr>
+		<tr>			
+		<td colspan="3">
+		<div id="itnews_block" style="line-height: 180%;" class="other_info_list">IT新闻：<br>· <a href="http://news.cnblogs.com/n/51901/" target="_blank">WordPress获得2009开源CMS大奖综合类评比冠军</a><br>· <a href="http://news.cnblogs.com/n/51900/" target="_blank">Google Chrome OS 与 微软 “挨挤”</a><br>· <a href="http://news.cnblogs.com/n/51898/" target="_blank">纽约时报：超级计算机的平民化运动</a><br>· <a href="http://news.cnblogs.com/n/51897/" target="_blank">360与金山毒霸因口水战反目:合作推广全面暂停</a><br>· <a href="http://news.cnblogs.com/n/51896/" target="_blank">CNNIC发布《中国网络游戏市场研究报告》</a><br></div><div id="job_block" style="line-height: 180%;" class="other_info_list">招聘信息：<br>· <a href="http://job.cnblogs.com/offer/2515/" target="_blank">JAVA开发工程师(三星数据系统（中国）有限公司)</a><br>· <a href="http://job.cnblogs.com/offer/2770/" target="_blank">PB工程师(北京赛优科技有限公司)</a><br>· <a href="http://job.cnblogs.com/offer/2876/" target="_blank">.NET 开发工程师(南京吉美思系统集成有限公司)</a><br>· <a href="http://job.cnblogs.com/offer/2673/" target="_blank">.NET程序员(上海古大网络技术有限公司)</a><br>· <a href="http://job.cnblogs.com/offer/2984/" target="_blank">C#高级软件工程师(常州网视领航网络科技有限公司)</a><br></div>
+		</td>
+		</tr>
+		<tr>
+		<td colspan="3">
+		<script type="text/javascript">
+		try{
+		  GA_googleFillSlot("cppblog_blogpost_bottom");
+		  } catch (e) { }
+		</script><script src="Chinese_Ogre3DEmbeddedInQtFramework.aspx_files/ads"></script><div id="google_ads_div_cppblog_blogpost_bottom">
+<iframe style="border: 0pt none ;" marginheight="0" marginwidth="0" name="google_ads_iframe_cppblog_blogpost_bottom" id="google_ads_iframe_cppblog_blogpost_bottom" width="300" frameborder="0" height="250" scrolling="no"></iframe></div>
+<script>GA_googleCreateDomIframe('google_ads_div_cppblog_blogpost_bottom' ,'cppblog_blogpost_bottom');</script>
+		</td>
+		</tr>
+		<tr>
+			<td colspan="3" height="5">
+<div id="divRelativePosts">
+相关文章:
+	
+			<ul style="margin-top: 0px;">
+		
+			<li style="list-style-type: none; list-style-image: none; list-style-position: outside; display: none;">
+				<a id="AjaxHolder_PostComment_ctl07_RelativePostsList_ctl01_Hyperlink1" href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.html">Ogre3D嵌入Qt框架 之　小结</a>
+			</li>
+		
+			<li style="list-style-type: none; list-style-image: none; list-style-position: outside;">
+				<a id="AjaxHolder_PostComment_ctl07_RelativePostsList_ctl02_Hyperlink1" href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24506.html">Ogre3D嵌入Qt框架 之　秀图</a>
+			</li>
+		
+			<li style="list-style-type: none; list-style-image: none; list-style-position: outside;">
+				<a id="AjaxHolder_PostComment_ctl07_RelativePostsList_ctl03_Hyperlink1" href="http://www.cppblog.com/yuanyajie/archive/2007/03/21/20302.html">《Pro Ogre 3D Programming》读书笔记 之 第十一章 动态阴影</a>
+			</li>
+		
+			<li style="list-style-type: none; list-style-image: none; list-style-position: outside;">
+				<a id="AjaxHolder_PostComment_ctl07_RelativePostsList_ctl04_Hyperlink1" href="http://www.cppblog.com/yuanyajie/archive/2007/03/20/20227.html">《Pro Ogre 3D Programming》读书笔记 之 第十章 布告板与粒子　第二部分 </a>
+			</li>
+		
+			<li style="list-style-type: none; list-style-image: none; list-style-position: outside;">
+				<a id="AjaxHolder_PostComment_ctl07_RelativePostsList_ctl05_Hyperlink1" href="http://www.cppblog.com/yuanyajie/archive/2007/03/20/20216.html">《Pro Ogre 3D Programming》读书笔记 之 第十章 布告板与粒子　第一部分 </a>
+			</li>
+		
+			<li style="list-style-type: none; list-style-image: none; list-style-position: outside;">
+				<a id="AjaxHolder_PostComment_ctl07_RelativePostsList_ctl06_Hyperlink1" href="http://www.cppblog.com/yuanyajie/archive/2007/03/16/19974.html">《Pro Ogre 3D Programming》 读书笔记 之 第九章 动画 第一部分 </a>
+			</li>
+		
+			<li style="list-style-type: none; list-style-image: none; list-style-position: outside;">
+				<a id="AjaxHolder_PostComment_ctl07_RelativePostsList_ctl07_Hyperlink1" href="http://www.cppblog.com/yuanyajie/archive/2007/03/15/19910.html">《Pro Ogre 3D Programming》 读书笔记 之 第八章 渲染对象</a>
+			</li>
+		
+			<li style="list-style-type: none; list-style-image: none; list-style-position: outside;">
+				<a id="AjaxHolder_PostComment_ctl07_RelativePostsList_ctl08_Hyperlink1" href="http://www.cppblog.com/yuanyajie/archive/2007/03/14/19827.html">《Pro Ogre 3D Programming》 读书笔记 之 第七章 资源管理  第一部分</a>
+			</li>
+		
+			<li style="list-style-type: none; list-style-image: none; list-style-position: outside;">
+				<a id="AjaxHolder_PostComment_ctl07_RelativePostsList_ctl09_Hyperlink1" href="http://www.cppblog.com/yuanyajie/archive/2007/03/13/19754.html">《Pro Ogre 3D Programming》 读书笔记 之 第六章 材质　材质复制 </a>
+			</li>
+		
+			<li style="list-style-type: none; list-style-image: none; list-style-position: outside;">
+				<a id="AjaxHolder_PostComment_ctl07_RelativePostsList_ctl10_Hyperlink1" href="http://www.cppblog.com/yuanyajie/archive/2007/03/13/19703.html">《Pro Ogre 3D Programming》 读书笔记 之 第六章 材质　概念</a>
+			</li>
+		
+			</ul>
+		
+</div>
+</td>
+		</tr>
+		<tr>
+			<td colspan="3"></td>
+		</tr>
+		<tr>
+			<td colspan="3" height="1">网站导航:<div id="blogsite">
+			<a href="http://www.cnblogs.com/">博客园</a>&nbsp;&nbsp;
+			<a href="http://news.cnblogs.com/">IT新闻</a>&nbsp;&nbsp;
+			<a href="http://home.cnblogs.com/">博客园个人主页</a>&nbsp;&nbsp;
+			<a href="http://www.blogjava.net/">BlogJava</a>&nbsp;&nbsp;
+			<a href="http://www.cnweblog.com/">博客生活</a>&nbsp;&nbsp;
+			<a href="http://www.cnitblog.com/">IT博客网</a>&nbsp;&nbsp;
+			<a href="http://www.phpweblog.net/">PHP博客</a>&nbsp;&nbsp;
+			<a href="http://space.cnblogs.com/">博客园社区</a>&nbsp;&nbsp;
+			<a href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.aspx?opt=admin">管理</a>
+			</div></td>
+		</tr>
+		<tr>
+			<td colspan="3">
+				
+<br>
+在知识库中查看：<br><a href="http://kb.cnblogs.com/c/24528/">Ogre3D嵌入Qt框架 之　小结</a>
+<br>
+
+
+</td>
+		</tr>
+	</tbody></table>	
+</div>
+<div id="AjaxHolder_PostComment_ValidationSummary1" style="color: Red; display: none;">
+
+	</div>
+
+</div>
+
+				
+	
+<!--done-->
+<div class="footer">
+	
+	Copyright ©2009  清源游民 Powered By: <a href="http://www.cnblogs.com/">博客园</a> 模板提供：<a href="http://blog.hjenglish.com/">沪江博客</a>
+</div>
+</div>
+
+<div id="leftcontent">
+	
+		<div id="leftcontentcontainer">
+			<table id="Calendar1_entryCal" class="Cal" title="Calendar" style="border: 0px none ; border-collapse: collapse;" border="0" cellpadding="0" cellspacing="0">
+	<tbody><tr><td colspan="7" style="background-color: Transparent;"><table class="CalTitle" style="width: 100%; border-collapse: collapse;" border="0" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev" style="width: 15%;"><a href="javascript:__doPostBack('Calendar1$entryCal','V2588')" style="color: Black;" title="Go to the previous month">&lt;</a></td><td style="width: 70%;" align="center">2007年3月</td><td class="CalNextPrev" style="width: 15%;" align="right"><a href="javascript:__doPostBack('Calendar1$entryCal','V2647')" style="color: Black;" title="Go to the next month">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" abbr="日" scope="col" align="center">日</th><th class="CalDayHeader" abbr="一" scope="col" align="center">一</th><th class="CalDayHeader" abbr="二" scope="col" align="center">二</th><th class="CalDayHeader" abbr="三" scope="col" align="center">三</th><th class="CalDayHeader" abbr="四" scope="col" align="center">四</th><th class="CalDayHeader" abbr="五" scope="col" align="center">五</th><th class="CalDayHeader" abbr="六" scope="col" align="center">六</th></tr><tr><td class="CalOtherMonthDay" style="width: 14%;" align="center">25</td><td class="CalOtherMonthDay" style="width: 14%;" align="center">26</td><td class="CalOtherMonthDay" style="width: 14%;" align="center">27</td><td class="CalOtherMonthDay" style="width: 14%;" align="center">28</td><td style="width: 14%;" align="center"><a href="http://www.cppblog.com/yuanyajie/archive/2007/03/01.html"><u>1</u></a></td><td style="width: 14%;" align="center"><a href="http://www.cppblog.com/yuanyajie/archive/2007/03/02.html"><u>2</u></a></td><td class="CalWeekendDay" style="width: 14%;" align="center">3</td></tr><tr><td class="CalWeekendDay" style="width: 14%;" align="center">4</td><td style="width: 14%;" align="center"><a href="http://www.cppblog.com/yuanyajie/archive/2007/03/05.html"><u>5</u></a></td><td style="width: 14%;" align="center"><a href="http://www.cppblog.com/yuanyajie/archive/2007/03/06.html"><u>6</u></a></td><td style="width: 14%;" align="center"><a href="http://www.cppblog.com/yuanyajie/archive/2007/03/07.html"><u>7</u></a></td><td style="width: 14%;" align="center"><a href="http://www.cppblog.com/yuanyajie/archive/2007/03/08.html"><u>8</u></a></td><td style="width: 14%;" align="center"><a href="http://www.cppblog.com/yuanyajie/archive/2007/03/09.html"><u>9</u></a></td><td class="CalWeekendDay" style="width: 14%;" align="center">10</td></tr><tr><td class="CalWeekendDay" style="width: 14%;" align="center"><a href="http://www.cppblog.com/yuanyajie/archive/2007/03/11.html"><u>11</u></a></td><td style="width: 14%;" align="center">12</td><td style="width: 14%;" align="center"><a href="http://www.cppblog.com/yuanyajie/archive/2007/03/13.html"><u>13</u></a></td><td style="width: 14%;" align="center"><a href="http://www.cppblog.com/yuanyajie/archive/2007/03/14.html"><u>14</u></a></td><td style="width: 14%;" align="center"><a href="http://www.cppblog.com/yuanyajie/archive/2007/03/15.html"><u>15</u></a></td><td style="width: 14%;" align="center"><a href="http://www.cppblog.com/yuanyajie/archive/2007/03/16.html"><u>16</u></a></td><td class="CalWeekendDay" style="width: 14%;" align="center">17</td></tr><tr><td class="CalWeekendDay" style="width: 14%;" align="center">18</td><td style="width: 14%;" align="center">19</td><td style="width: 14%;" align="center"><a href="http://www.cppblog.com/yuanyajie/archive/2007/03/20.html"><u>20</u></a></td><td style="width: 14%;" align="center"><a href="http://www.cppblog.com/yuanyajie/archive/2007/03/21.html"><u>21</u></a></td><td style="width: 14%;" align="center">22</td><td style="width: 14%;" align="center">23</td><td class="CalWeekendDay" style="width: 14%;" align="center">24</td></tr><tr><td class="CalWeekendDay" style="width: 14%;" align="center">25</td><td style="width: 14%;" align="center">26</td><td style="width: 14%;" align="center"><a href="http://www.cppblog.com/yuanyajie/archive/2007/03/27.html"><u>27</u></a></td><td style="width: 14%;" align="center">28</td><td style="width: 14%;" align="center">29</td><td style="width: 14%;" align="center"><a href="http://www.cppblog.com/yuanyajie/archive/2007/03/30.html"><u>30</u></a></td><td class="CalWeekendDay" style="width: 14%;" align="center">31</td></tr><tr><td class="CalOtherMonthDay" style="width: 14%;" align="center">1</td><td class="CalOtherMonthDay" style="width: 14%;" align="center">2</td><td class="CalOtherMonthDay" style="width: 14%;" align="center">3</td><td class="CalOtherMonthDay" style="width: 14%;" align="center">4</td><td class="CalOtherMonthDay" style="width: 14%;" align="center">5</td><td class="CalOtherMonthDay" style="width: 14%;" align="center">6</td><td class="CalOtherMonthDay" style="width: 14%;" align="center">7</td></tr>
+</tbody></table>
+<br>
+			
+			
+<h3>留言簿<span style="font-size: 11px; font-weight: normal;">(27)</span></h3>
+<ul>
+	<li>
+		<a id="SingleColumn1__33d8fa_lnkMessages" href="http://www.cppblog.com/yuanyajie/Contact.aspx?id=1">给我留言</a>
+	</li><li>
+		<a id="SingleColumn1__33d8fa_lnkPublicMsgView" href="http://www.cppblog.com/yuanyajie/default.aspx?opt=msg">查看公开留言</a>
+	</li><li>
+		<a id="SingleColumn1__33d8fa_lnkPrivateMsgView" href="http://www.cppblog.com/yuanyajie/admin/MyMessages.aspx">查看私人留言</a>
+	</li>
+</ul>
+
+<!--done-->
+
+		<h1 class="catListTitle">随笔分类<span style="font-size: 11px; font-weight: normal;">(78)</span></h1>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl01_Link" class="listitem" href="http://www.cppblog.com/yuanyajie/category/10380.html">Boost</a><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl01_RssLink" title="Subscribe to Boost" class="listitem" href="http://www.cppblog.com/yuanyajie/category/10380.html/rss"><img title="Subscribe to Boost" src="Chinese_Ogre3DEmbeddedInQtFramework.aspx_files/xml_002.gif" style="border-width: 0px;"></a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl02_Link" class="listitem" href="http://www.cppblog.com/yuanyajie/category/3707.html">C++(14)</a><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl02_RssLink" title="Subscribe to C++(14)" class="listitem" href="http://www.cppblog.com/yuanyajie/category/3707.html/rss"><img title="Subscribe to C++(14)" src="Chinese_Ogre3DEmbeddedInQtFramework.aspx_files/xml_002.gif" style="border-width: 0px;"></a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl03_Link" class="listitem" href="http://www.cppblog.com/yuanyajie/category/10381.html">DirectX</a><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl03_RssLink" title="Subscribe to DirectX" class="listitem" href="http://www.cppblog.com/yuanyajie/category/10381.html/rss"><img title="Subscribe to DirectX" src="Chinese_Ogre3DEmbeddedInQtFramework.aspx_files/xml_002.gif" style="border-width: 0px;"></a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl04_Link" class="listitem" href="http://www.cppblog.com/yuanyajie/category/10378.html">gamebyro</a><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl04_RssLink" title="Subscribe to gamebyro" class="listitem" href="http://www.cppblog.com/yuanyajie/category/10378.html/rss"><img title="Subscribe to gamebyro" src="Chinese_Ogre3DEmbeddedInQtFramework.aspx_files/xml_002.gif" style="border-width: 0px;"></a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl05_Link" class="listitem" href="http://www.cppblog.com/yuanyajie/category/3942.html">Lua(6)</a><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl05_RssLink" title="Subscribe to Lua(6)" class="listitem" href="http://www.cppblog.com/yuanyajie/category/3942.html/rss"><img title="Subscribe to Lua(6)" src="Chinese_Ogre3DEmbeddedInQtFramework.aspx_files/xml_002.gif" style="border-width: 0px;"></a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl06_Link" class="listitem" href="http://www.cppblog.com/yuanyajie/category/10377.html">MFC(1)</a><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl06_RssLink" title="Subscribe to MFC(1)" class="listitem" href="http://www.cppblog.com/yuanyajie/category/10377.html/rss"><img title="Subscribe to MFC(1)" src="Chinese_Ogre3DEmbeddedInQtFramework.aspx_files/xml_002.gif" style="border-width: 0px;"></a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl07_Link" class="listitem" href="http://www.cppblog.com/yuanyajie/category/10382.html">mmorpg</a><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl07_RssLink" title="Subscribe to mmorpg" class="listitem" href="http://www.cppblog.com/yuanyajie/category/10382.html/rss"><img title="Subscribe to mmorpg" src="Chinese_Ogre3DEmbeddedInQtFramework.aspx_files/xml_002.gif" style="border-width: 0px;"></a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl08_Link" class="listitem" href="http://www.cppblog.com/yuanyajie/category/3706.html">OGRE(28)</a><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl08_RssLink" title="Subscribe to OGRE(28)" class="listitem" href="http://www.cppblog.com/yuanyajie/category/3706.html/rss"><img title="Subscribe to OGRE(28)" src="Chinese_Ogre3DEmbeddedInQtFramework.aspx_files/xml_002.gif" style="border-width: 0px;"></a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl09_Link" class="listitem" href="http://www.cppblog.com/yuanyajie/category/10375.html">Python(2)</a><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl09_RssLink" title="Subscribe to Python(2)" class="listitem" href="http://www.cppblog.com/yuanyajie/category/10375.html/rss"><img title="Subscribe to Python(2)" src="Chinese_Ogre3DEmbeddedInQtFramework.aspx_files/xml_002.gif" style="border-width: 0px;"></a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl10_Link" class="listitem" href="http://www.cppblog.com/yuanyajie/category/3943.html">Qt(23)</a><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl10_RssLink" title="Subscribe to Qt(23)" class="listitem" href="http://www.cppblog.com/yuanyajie/category/3943.html/rss"><img title="Subscribe to Qt(23)" src="Chinese_Ogre3DEmbeddedInQtFramework.aspx_files/xml_002.gif" style="border-width: 0px;"></a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl11_Link" class="listitem" href="http://www.cppblog.com/yuanyajie/category/10379.html">ScaleForm</a><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl11_RssLink" title="Subscribe to ScaleForm" class="listitem" href="http://www.cppblog.com/yuanyajie/category/10379.html/rss"><img title="Subscribe to ScaleForm" src="Chinese_Ogre3DEmbeddedInQtFramework.aspx_files/xml_002.gif" style="border-width: 0px;"></a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl12_Link" class="listitem" href="http://www.cppblog.com/yuanyajie/category/10376.html">Unreal Engine 3(1)</a><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl12_RssLink" title="Subscribe to Unreal Engine 3(1)" class="listitem" href="http://www.cppblog.com/yuanyajie/category/10376.html/rss"><img title="Subscribe to Unreal Engine 3(1)" src="Chinese_Ogre3DEmbeddedInQtFramework.aspx_files/xml_002.gif" style="border-width: 0px;"></a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl13_Link" class="listitem" href="http://www.cppblog.com/yuanyajie/category/3944.html">Virtools(2)</a><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl13_RssLink" title="Subscribe to Virtools(2)" class="listitem" href="http://www.cppblog.com/yuanyajie/category/3944.html/rss"><img title="Subscribe to Virtools(2)" src="Chinese_Ogre3DEmbeddedInQtFramework.aspx_files/xml_002.gif" style="border-width: 0px;"></a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl14_Link" class="listitem" href="http://www.cppblog.com/yuanyajie/category/4818.html">杂记(1)</a><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl14_RssLink" title="Subscribe to 杂记(1)" class="listitem" href="http://www.cppblog.com/yuanyajie/category/4818.html/rss"><img title="Subscribe to 杂记(1)" src="Chinese_Ogre3DEmbeddedInQtFramework.aspx_files/xml_002.gif" style="border-width: 0px;"></a></li>
+			
+				</ul>
+			
+	
+		<h1 class="catListTitle">随笔档案<span style="font-size: 11px; font-weight: normal;">(74)</span></h1>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl01_Link" class="listitem" href="http://www.cppblog.com/yuanyajie/archive/2009/05.html">2009年5月 (3)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl02_Link" class="listitem" href="http://www.cppblog.com/yuanyajie/archive/2009/04.html">2009年4月 (3)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl03_Link" class="listitem" href="http://www.cppblog.com/yuanyajie/archive/2007/11.html">2007年11月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl04_Link" class="listitem" href="http://www.cppblog.com/yuanyajie/archive/2007/10.html">2007年10月 (4)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl05_Link" class="listitem" href="http://www.cppblog.com/yuanyajie/archive/2007/09.html">2007年9月 (5)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl06_Link" class="listitem" href="http://www.cppblog.com/yuanyajie/archive/2007/08.html">2007年8月 (4)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl07_Link" class="listitem" href="http://www.cppblog.com/yuanyajie/archive/2007/06.html">2007年6月 (8)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl08_Link" class="listitem" href="http://www.cppblog.com/yuanyajie/archive/2007/05.html">2007年5月 (5)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl09_Link" class="listitem" href="http://www.cppblog.com/yuanyajie/archive/2007/04.html">2007年4月 (5)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl10_Link" class="listitem" href="http://www.cppblog.com/yuanyajie/archive/2007/03.html">2007年3月 (25)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl11_Link" class="listitem" href="http://www.cppblog.com/yuanyajie/archive/2007/02.html">2007年2月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl12_Link" class="listitem" href="http://www.cppblog.com/yuanyajie/archive/2006/12.html">2006年12月 (6)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl13_Link" class="listitem" href="http://www.cppblog.com/yuanyajie/archive/2006/11.html">2006年11月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl14_Link" class="listitem" href="http://www.cppblog.com/yuanyajie/archive/2006/10.html">2006年10月 (2)</a></li>
+			
+				</ul>
+			
+	
+		<h1 class="catListTitle">文章档案<span style="font-size: 11px; font-weight: normal;">(5)</span></h1>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl02_LinkList_ctl01_Link" class="listitem" href="http://www.cppblog.com/yuanyajie/archives/2007/04.html">2007年4月 (3)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl02_LinkList_ctl02_Link" class="listitem" href="http://www.cppblog.com/yuanyajie/archives/2006/10.html">2006年10月 (2)</a></li>
+			
+				</ul>
+			
+	
+
+
+<script language="JavaScript">
+function SearchGoogle(key,evt,site)
+		{
+			if(evt.keyCode==13 || evt.keyCode==0 || evt.type =='click')
+			{
+				key.focus();
+				var keystr = encodeURIComponent(key.value);
+				url = "http://www.google.com/search?q=";
+				url = url+keystr;
+				url += "&ie=UTF-8&oe=GB2312&hl=zh-CN&domains="+site+"&sitesearch="+site;
+				window.location=url;
+				return false;
+			}
+		}
+</script>
+<h3>搜索</h3>
+<ul>
+	<li>
+		</li><li><input style="width: 130px;" name="q" id="q" onkeydown="return SearchGoogle(document.getElementById('q'),event,'www.cppblog.com/yuanyajie')" type="text">&nbsp;<input onclick="SearchGoogle(document.getElementById('q'),event,'www.cppblog.com/yuanyajie')" value="搜索" name="sa" type="button">
+	</li>
+</ul>
+
+<h3>最新评论
+	<a id="SingleColumn1__3288259_RSSHyperlink1" href="http://www.cppblog.com/yuanyajie/CommentsRSS.aspx"><img src="Chinese_Ogre3DEmbeddedInQtFramework.aspx_files/xml.gif" style="border-width: 0px;"></a></h3>
+<div class="RecentComment">
+	
+			<ul>
+		
+			<li style="">
+				<a id="SingleColumn1__3288259_CommentList_ctl01_Hyperlink1" href="http://www.cppblog.com/yuanyajie/archive/2009/11/12/32795.html#100808">1.&nbsp;re: 我的QT笔记打包下载[未登录]</a>
+			</li>
+			<li style="">
+				thank you! you are so kind.
+			</li>
+			<li style="text-align: right; margin-right: 4px;">
+				--wen</li>
+		
+			<li style="">
+				<a id="SingleColumn1__3288259_CommentList_ctl02_Hyperlink1" href="http://www.cppblog.com/yuanyajie/archive/2009/11/04/16427.html#100159">2.&nbsp;re: CString和string的互相转换[未登录]</a>
+			</li>
+			<li style="">
+				评论内容较长,点击标题查看
+			</li>
+			<li style="text-align: right; margin-right: 4px;">
+				--King</li>
+		
+			<li style="">
+				<a id="SingleColumn1__3288259_CommentList_ctl03_Hyperlink1" href="http://www.cppblog.com/yuanyajie/archive/2009/10/30/32795.html#99803">3.&nbsp;re: 我的QT笔记打包下载[未登录]</a>
+			</li>
+			<li style="">
+				thanks
+			</li>
+			<li style="text-align: right; margin-right: 4px;">
+				--a</li>
+		
+			<li style="">
+				<a id="SingleColumn1__3288259_CommentList_ctl04_Hyperlink1" href="http://www.cppblog.com/yuanyajie/archive/2009/10/29/21128.html#99727">4.&nbsp;re: 学习lua中的闭包</a>
+			</li>
+			<li style="">
+				f1(1979)()  &lt;-&gt; 1989
+<br>f1(1979)()  &lt;-&gt; 1989
+<br>闭包是妙，不知道应用如何
+<br>
+			</li>
+			<li style="text-align: right; margin-right: 4px;">
+				--炮灰九段</li>
+		
+			<li style="">
+				<a id="SingleColumn1__3288259_CommentList_ctl05_Hyperlink1" href="http://www.cppblog.com/yuanyajie/archive/2009/09/14/16427.html#96133">5.&nbsp;re: CString和string的互相转换</a>
+			</li>
+			<li style="">
+				学习了，谢谢
+			</li>
+			<li style="text-align: right; margin-right: 4px;">
+				--mxs</li>
+		
+			</ul>
+		
+</div>
+
+<h3>阅读排行榜</h3>
+<div class="RecentComment">
+	
+			<ul style="">
+		
+			<li>
+				<a id="SingleColumn1__3431bda_TopList_ctl01_Hyperlink1" href="http://www.cppblog.com/yuanyajie/archive/2006/12/14/16427.aspx">1.&nbsp;CString和string的互相转换(5678)</a>
+			</li>
+		
+			<li>
+				<a id="SingleColumn1__3431bda_TopList_ctl02_Hyperlink1" href="http://www.cppblog.com/yuanyajie/archive/2007/09/24/32795.aspx">2.&nbsp;我的QT笔记打包下载(3649)</a>
+			</li>
+		
+			<li>
+				<a id="SingleColumn1__3431bda_TopList_ctl03_Hyperlink1" href="http://www.cppblog.com/yuanyajie/archive/2007/06/15/26387.aspx">3.&nbsp;Qt Model/View 学习笔记  (一)(3265)</a>
+			</li>
+		
+			<li>
+				<a id="SingleColumn1__3431bda_TopList_ctl04_Hyperlink1" href="http://www.cppblog.com/yuanyajie/archive/2007/06/13/26283.aspx">4.&nbsp;QT中的事件机制(3088)</a>
+			</li>
+		
+			<li>
+				<a id="SingleColumn1__3431bda_TopList_ctl05_Hyperlink1" href="http://www.cppblog.com/yuanyajie/archive/2007/09/26/32960.aspx">5.&nbsp;QT的Graphics View柜架(1/3)(2670)</a>
+			</li>
+		
+			</ul>
+		
+</div>
+
+<h3>评论排行榜</h3>
+<div class="RecentComment">
+	
+			<ul style="">
+		
+			<li>
+				<a id="SingleColumn1__167bee3_TopList_ctl01_Hyperlink1" href="http://www.cppblog.com/yuanyajie/archive/2007/09/24/32795.aspx">1.&nbsp;我的QT笔记打包下载(30)</a>
+			</li>
+		
+			<li>
+				<a id="SingleColumn1__167bee3_TopList_ctl02_Hyperlink1" href="http://www.cppblog.com/yuanyajie/archive/2007/05/21/24528.aspx">2.&nbsp;Ogre3D嵌入Qt框架 之　小结(15)</a>
+			</li>
+		
+			<li>
+				<a id="SingleColumn1__167bee3_TopList_ctl03_Hyperlink1" href="http://www.cppblog.com/yuanyajie/archive/2007/02/28/19037.aspx">3.&nbsp;（转）CEGUI 中文输入(8)</a>
+			</li>
+		
+			<li>
+				<a id="SingleColumn1__167bee3_TopList_ctl04_Hyperlink1" href="http://www.cppblog.com/yuanyajie/archive/2007/04/17/22134.aspx">4.&nbsp;用C++实现的一种插件体系结构-----概述(8)</a>
+			</li>
+		
+			<li>
+				<a id="SingleColumn1__167bee3_TopList_ctl05_Hyperlink1" href="http://www.cppblog.com/yuanyajie/archive/2007/04/02/21128.aspx">5.&nbsp;学习lua中的闭包(7)</a>
+			</li>
+		
+			</ul>
+		
+</div>
+</div>
+	
+</div>
+
+</div>
+
+</div>
+    
+    
+<script type="text/javascript">
+//<![CDATA[
+var Page_ValidationSummaries =  new Array(document.getElementById("AjaxHolder_PostComment_ValidationSummary1"));
+var Page_Validators =  new Array(document.getElementById("AjaxHolder_PostComment_RequiredFieldValidator1"), document.getElementById("AjaxHolder_PostComment_RequiredFieldValidator2"), document.getElementById("AjaxHolder_PostComment_Requiredfieldvalidator4"), document.getElementById("AjaxHolder_PostComment_RequiredFieldValidator3"));
+//]]>
+</script>
+
+<script type="text/javascript">
+//<![CDATA[
+var AjaxHolder_PostComment_RequiredFieldValidator1 = document.all ? document.all["AjaxHolder_PostComment_RequiredFieldValidator1"] : document.getElementById("AjaxHolder_PostComment_RequiredFieldValidator1");
+AjaxHolder_PostComment_RequiredFieldValidator1.controltovalidate = "AjaxHolder_PostComment_tbTitle";
+AjaxHolder_PostComment_RequiredFieldValidator1.errormessage = "请输入标题";
+AjaxHolder_PostComment_RequiredFieldValidator1.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+AjaxHolder_PostComment_RequiredFieldValidator1.initialvalue = "";
+var AjaxHolder_PostComment_RequiredFieldValidator2 = document.all ? document.all["AjaxHolder_PostComment_RequiredFieldValidator2"] : document.getElementById("AjaxHolder_PostComment_RequiredFieldValidator2");
+AjaxHolder_PostComment_RequiredFieldValidator2.controltovalidate = "AjaxHolder_PostComment_tbName";
+AjaxHolder_PostComment_RequiredFieldValidator2.errormessage = "请输入你的姓名";
+AjaxHolder_PostComment_RequiredFieldValidator2.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+AjaxHolder_PostComment_RequiredFieldValidator2.initialvalue = "";
+var AjaxHolder_PostComment_Requiredfieldvalidator4 = document.all ? document.all["AjaxHolder_PostComment_Requiredfieldvalidator4"] : document.getElementById("AjaxHolder_PostComment_Requiredfieldvalidator4");
+AjaxHolder_PostComment_Requiredfieldvalidator4.controltovalidate = "AjaxHolder_PostComment_CodeNumberTextBox";
+AjaxHolder_PostComment_Requiredfieldvalidator4.errormessage = "请输入验证码";
+AjaxHolder_PostComment_Requiredfieldvalidator4.display = "Dynamic";
+AjaxHolder_PostComment_Requiredfieldvalidator4.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+AjaxHolder_PostComment_Requiredfieldvalidator4.initialvalue = "";
+var AjaxHolder_PostComment_RequiredFieldValidator3 = document.all ? document.all["AjaxHolder_PostComment_RequiredFieldValidator3"] : document.getElementById("AjaxHolder_PostComment_RequiredFieldValidator3");
+AjaxHolder_PostComment_RequiredFieldValidator3.controltovalidate = "AjaxHolder_PostComment_tbComment";
+AjaxHolder_PostComment_RequiredFieldValidator3.errormessage = "请输入评论内容";
+AjaxHolder_PostComment_RequiredFieldValidator3.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+AjaxHolder_PostComment_RequiredFieldValidator3.initialvalue = "";
+var AjaxHolder_PostComment_ValidationSummary1 = document.all ? document.all["AjaxHolder_PostComment_ValidationSummary1"] : document.getElementById("AjaxHolder_PostComment_ValidationSummary1");
+AjaxHolder_PostComment_ValidationSummary1.showmessagebox = "True";
+AjaxHolder_PostComment_ValidationSummary1.showsummary = "False";
+//]]>
+</script>
+
+
+<script type="text/javascript">
+//<![CDATA[
+
+var Page_ValidationActive = false;
+if (typeof(ValidatorOnLoad) == "function") {
+    ValidatorOnLoad();
+}
+
+function ValidatorOnSubmit() {
+    if (Page_ValidationActive) {
+        return ValidatorCommonOnSubmit();
+    }
+    else {
+        return true;
+    }
+}
+        
+document.getElementById('AjaxHolder_PostComment_ValidationSummary1').dispose = function() {
+    Array.remove(Page_ValidationSummaries, document.getElementById('AjaxHolder_PostComment_ValidationSummary1'));
+}
+Sys.Application.initialize();
+
+document.getElementById('AjaxHolder_PostComment_RequiredFieldValidator1').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('AjaxHolder_PostComment_RequiredFieldValidator1'));
+}
+
+document.getElementById('AjaxHolder_PostComment_RequiredFieldValidator2').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('AjaxHolder_PostComment_RequiredFieldValidator2'));
+}
+
+document.getElementById('AjaxHolder_PostComment_Requiredfieldvalidator4').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('AjaxHolder_PostComment_Requiredfieldvalidator4'));
+}
+
+document.getElementById('AjaxHolder_PostComment_RequiredFieldValidator3').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('AjaxHolder_PostComment_RequiredFieldValidator3'));
+}
+//]]>
+</script>
+</form>
+    <script type="text/javascript">
+        if (document.getElementById('cnblogsgooglead') != null) {
+            document.getElementById('cnblogsgooglead').innerHTML = document.getElementById('cnblogsgoogleadcode').innerHTML;
+            document.getElementById('cnblogsgoogleadcode').innerHTML = '';
+        }
+
+        if (document.getElementById('leftcontent') != null) {
+            if (document.getElementById('leftcontent').style.display == 'none') {
+                document.getElementById('leftcontent').style.display = 'inline';
+            }
+        }
+        if (document.getElementById('Blogleftcontent') != null) {
+            if (document.getElementById('cnblogsleftcontent').style.display == 'none') {
+                document.getElementById('cnblogsleftcontent').style.display = 'inline';
+            }
+        }
+
+        if (document.getElementById('cnblogsleftcontent') != null) {
+            if (document.getElementById('cnblogsleftcontent').style.display == 'none') {
+                document.getElementById('cnblogsleftcontent').style.display = 'inline';
+            }
+        }
+
+        if (document.getElementById('rightmenu') != null) {
+            if (document.getElementById('rightmenu').style.display == 'none') {
+                document.getElementById('rightmenu').style.display = 'inline';
+            }
+        }
+        if (document.getElementById('leftmenu') != null) {
+            if (document.getElementById('leftmenu').style.display == 'none') {
+                document.getElementById('leftmenu').style.display = 'inline';
+            }
+            if (document.getElementById('lefttemp') != null) {
+                document.getElementById('leftmenu').innerHTML = document.getElementById('lefttemp').innerHTML;
+                document.getElementById('lefttemp').innerHTML = '';
+            }
+        }
+
+        if (document.getElementById('left') != null) {
+            if (document.getElementById('left').style.display == 'none') {
+                document.getElementById('left').style.display = 'inline';
+            }
+        }
+
+        if (document.getElementById('cnblogsleftmenu') != null) {
+            if (document.getElementById('cnblogsleftmenu').style.display == 'none') {
+                document.getElementById('cnblogsleftmenu').style.display = 'inline';
+            }
+        }
+
+        if (document.getElementById('menu') != null) {
+            if (document.getElementById('menu').style.display == 'none') {
+                document.getElementById('menu').style.display = 'inline';
+            }
+        }
+
+        if (document.getElementById('cnblogsmenu') != null) {
+            if (document.getElementById('cnblogsmenu').style.display == 'none') {
+                document.getElementById('cnblogsmenu').style.display = 'inline';
+            }
+        }
+    </script>    
+	<script type="text/javascript">
+	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script><script src="Chinese_Ogre3DEmbeddedInQtFramework.aspx_files/ga.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	try {
+	var pageTracker = _gat._getTracker("UA-476124-5");
+	pageTracker._trackPageview();
+	} catch(err) {}</script>
+</body></html>
