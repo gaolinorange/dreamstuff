@@ -1,0 +1,26 @@
+Ogre Mesh reading notes
+jingwenlai 2009-11-24
+
+Introduction:
+	There maybe two ways to incorporate the objects for rendering with OGRE,
+	first is use the ManualObject, the second maybe Mesh(todo)
+
+The first way: ManualObject
+    using manualObject is just like using GL-code.you specify position,normal,and colour for the vertex, and this can be recognized by OGRE.
+  like any other MovableObject you should attach the object to a SceneNode to make it visible.
+  here is a paragraph that may be useful:
+  You can also use beginUpdate() to alter the geometry later if you wish. If you do this, you should call setDynamic(true) before your first call to begin(),
+  and also consider using estimateVertexCount/estimateIndexCount if your geometry is going to be growing,to avoid buffer recreation during growth.
+  note: the first tip is useful when you creating mesh deformation appliccation,
+  the second tip is useful when you creating subdivision application.
+    See the documentations for more details
+
+ <Bold>The second way</Bold>
+	   The *Mesh* class:
+	   The mesh class is much more complex.
+	   TODO: read the .mesh format specification ,and read the source about
+	   how to read a .mesh file in OGRE maybe a good starting point to
+	   know how OGRE work with it's Mesh Class.
+
+	   
+ 
