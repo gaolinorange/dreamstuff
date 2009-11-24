@@ -1,0 +1,388 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+
+	
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="generator" content="MediaWiki 1.13.3">
+		<meta name="keywords" content="QtOgre,Alanic">
+		<link rel="shortcut icon" href="http://www.ogre3d.org/favicon.ico">
+		<link rel="search" type="application/opensearchdescription+xml" href="http://www.ogre3d.org/wiki/opensearch_desc.php" title="Ogre Wiki (en)">
+		<link title="Creative Commons" type="application/rdf+xml" href="http://www.ogre3d.org/wiki/index.php?title=QtOgre&amp;action=creativecommons" rel="meta">
+		<link rel="copyright" href="http://www.gnu.org/copyleft/fdl.html">
+		<link rel="alternate" type="application/rss+xml" title="Ogre Wiki RSS Feed" href="http://www.ogre3d.org/wiki/index.php?title=Special:RecentChanges&amp;feed=rss">
+		<link rel="alternate" type="application/atom+xml" title="Ogre Wiki Atom Feed" href="http://www.ogre3d.org/wiki/index.php?title=Special:RecentChanges&amp;feed=atom">
+		<title>QtOgre - Ogre Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "/wiki/skins/common/shared.css?164";
+			@import "/wiki/skins/monobook/main.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="QtOgre_files/commonPrint.css">
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/wiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/wiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/wiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/wiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/wiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type="text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/wiki/skins";
+var wgArticlePath = "/wiki/index.php/$1";
+var wgScriptPath = "/wiki";
+var wgScript = "/wiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://www.ogre3d.org";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "QtOgre";
+var wgTitle = "QtOgre";
+var wgAction = "view";
+var wgArticleId = "2743";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "19731";
+var wgVersion = "1.13.3";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="QtOgre_files/wikibits.js"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="QtOgre_files/ajax.js"></script>
+		<script type="text/javascript" src="QtOgre_files/index.php"><!-- site js --></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "/wiki/index.php?title=MediaWiki:Common.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/wiki/index.php?title=MediaWiki:Monobook.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/wiki/index.php?title=-&action=raw&gen=css&maxage=18000&useskin=monobook";
+/*]]>*/</style>
+	</head><body class="mediawiki ns-0 ltr page-QtOgre">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">QtOgre</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From Ogre Wiki</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<p>Note: There is a recent QOgreWidget written by djbe that is tested on Mac and Linux: <a href="http://www.ogre3d.org/phpBB2/viewtopic.php?p=258064" class="external free" title="http://www.ogre3d.org/phpBB2/viewtopic.php?p=258064" rel="nofollow">http://www.ogre3d.org/phpBB2/viewtopic.php?p=258064</a> <a href="http://www.ogre3d.org/wiki/index.php?title=User:Alanic&amp;action=edit&amp;redlink=1" class="new" title="User:Alanic (not yet written)">Alanic</a>
+</p><p><br>
+I found this documentation: <a href="http://lakin.weckers.net/index_ogre.html" class="external text" title="http://lakin.weckers.net/index_ogre.html" rel="nofollow">Lakin's Ogre-Qt</a>.
+</p><p>It is for Linux.. I prefer to do my development on my Windows
+machine (it has more ram / better video) and when I develop on Windows
+I use Visual Studio. As such, <a href="http://www.qtnode.net/wiki/Qt4_with_Visual_Studio" class="external text" title="http://www.qtnode.net/wiki/Qt4_with_Visual_Studio" rel="nofollow">these instructions</a> are priceless.
+</p><p>Once you have Qt built and you've set up your environment
+variables, you can run qmake on Ogre-Qt to get a vcproj. Open that up
+in visual studio and the first thing you'll have to do is add the OGRE
+include directory to the C++ Additional Include Directories. If you try
+to build now you will see some errors like this:
+</p>
+<pre>1&gt;c:\qt-4.2.3-msvc2005\include\qtcore\../../src/corelib/tools/qhash.h(175)&nbsp;: error C2872: 'uint'&nbsp;: ambiguous symbol
+1&gt;        could be 'c:\qt-4.2.3-msvc2005\include\qtcore\../../src/corelib/global/qglobal.h(632)&nbsp;: unsigned int uint'
+1&gt;        or 'c:\ogresdk\include\OgrePrerequisites.h(134)&nbsp;: Ogre::uint'
+</pre>
+<p>There's a whole bunch of these, you need to add&nbsp;:: to the front
+of any reference to uint in the Qt code. You shouldn't need to
+recompile Qt after you do this.
+</p><p>Then you need to add the OGRE lib directory to the Linker Additional Library Directories and add OgreMain.lib to Linker Inputs.
+</p><p>For the debug configuration you will want to do the same but use OgreMain_d.lib.
+</p><p>Of course, so far my success rate hasn't been too high.
+</p>
+<a name="An_Example_using_QT4_and_Ogre_Eihort"></a><h2> <span class="mw-headline"> An Example using QT4 and Ogre Eihort </span></h2>
+<p>This is a standard QT Widget with an Ogre instance in it. You can
+create one on QT's designer by elevating a regular widget to an
+"OgreWidget" and including ogrewidget.h in your project. You'll
+probably want to do something about the chooseRenderer() function,
+since it doesn't really do much right now. I generally derive another
+class from this one and reimplement chooseRenderer(), and build my
+world in that class. Good Luck with it!
+</p><p>ogrewidget.h:
+</p>
+<pre>#ifndef __OGREWIDGET_H__
+#define __OGREWIDGET_H__
+
+#include &lt;OGRE/Ogre.h&gt;
+#include &lt;QGLWidget&gt;
+#include &lt;QX11Info&gt;
+
+class OgreWidget&nbsp;: public QGLWidget
+{
+  //Q_OBJECT;
+  
+ public:
+  OgreWidget( QWidget *parent=0 ):
+    QGLWidget( parent ),
+    mOgreWindow(NULL)
+    {
+      init( "../bin/plugins.cfg", "../bin/ogre.cfg", "../bin/ogre.log" );
+    }
+  
+  virtual ~OgreWidget()
+    {
+      mOgreRoot-&gt;shutdown();
+      delete mOgreRoot;
+      destroy();
+    }
+  
+ protected:
+  virtual void initializeGL();
+  virtual void resizeGL( int, int );
+  virtual void paintGL();
+
+  void init( std::string, std::string, std::string );
+
+  virtual Ogre::RenderSystem* chooseRenderer( Ogre::RenderSystemList* );
+
+  Ogre::Root *mOgreRoot;
+  Ogre::RenderWindow *mOgreWindow;
+  Ogre::Camera *mCamera;
+  Ogre::Viewport *mViewport;
+  Ogre::SceneManager *mSceneMgr;
+};
+
+#endif
+</pre>
+<p>ogrewidget.cpp:
+</p>
+<pre>#include "ogrewidget.h"
+
+#define THIS OgreWidget
+
+/**
+ * @brief init the object
+ * @author kito berg-taylor
+ */
+void THIS::init( std::string plugins_file,
+		 std::string ogre_cfg_file,
+		 std::string ogre_log )
+{
+  // create the main ogre object
+  mOgreRoot = new Ogre::Root( plugins_file, ogre_cfg_file, ogre_log );
+
+  // setup a renderer
+  Ogre::RenderSystemList *renderers = mOgreRoot-&gt;getAvailableRenderers();
+  assert(&nbsp;!renderers-&gt;empty() ); // we need at least one renderer to do anything useful
+
+  Ogre::RenderSystem *renderSystem;
+  renderSystem = chooseRenderer( renderers );
+
+  assert( renderSystem ); // user might pass back a null renderer, which would be bad!
+
+  mOgreRoot-&gt;setRenderSystem( renderSystem );
+  QString dimensions = QString( "%1x%2" )
+    				.arg(this-&gt;width())
+    				.arg(this-&gt;height());
+
+  renderSystem-&gt;setConfigOption( "Video Mode", dimensions.toStdString() );
+
+  // initialize without creating window
+  mOgreRoot-&gt;getRenderSystem()-&gt;setConfigOption( "Full Screen", "No" );
+  mOgreRoot-&gt;saveConfig();
+  mOgreRoot-&gt;initialise(false); // don't create a window
+}
+
+/**
+ * @brief setup the rendering context
+ * @author Kito Berg-Taylor
+ */
+void THIS::initializeGL()
+{
+  //== Creating and Acquiring Ogre Window ==//
+
+  // Get the parameters of the window QT created
+  QX11Info info = x11Info();
+  Ogre::String winHandle;
+  winHandle  = Ogre::StringConverter::toString((unsigned long)(info.display()));
+  winHandle += ":";
+  winHandle += Ogre::StringConverter::toString((unsigned int)(info.screen()));
+  winHandle += ":";
+  winHandle += Ogre::StringConverter::toString((unsigned long)(this-&gt;parentWidget()-&gt;winId()));
+  
+  Ogre::NameValuePairList params;
+  params["parentWindowHandle"] = winHandle;
+
+  mOgreWindow = mOgreRoot-&gt;createRenderWindow( "QOgreWidget_RenderWindow",
+					       this-&gt;width(),
+					       this-&gt;height(),
+					       false,
+					       &amp;params );
+
+  mOgreWindow-&gt;setActive(true);
+  WId ogreWinId = 0x0;
+  mOgreWindow-&gt;getCustomAttribute( "WINDOW", &amp;ogreWinId );
+  
+  assert( ogreWinId );
+
+  this-&gt;create( ogreWinId );
+  setAttribute( Qt::WA_PaintOnScreen, true );
+  setAttribute( Qt::WA_NoBackground );
+
+  //== Ogre Initialization ==//
+  Ogre::SceneType scene_manager_type = Ogre::ST_EXTERIOR_CLOSE;
+
+  mSceneMgr = mOgreRoot-&gt;createSceneManager( scene_manager_type );
+  mSceneMgr-&gt;setAmbientLight( Ogre::ColourValue(1,1,1) );
+
+  mCamera = mSceneMgr-&gt;createCamera( "QOgreWidget_Cam" );
+  mCamera-&gt;setPosition( Ogre::Vector3(0,1,0) );
+  mCamera-&gt;lookAt( Ogre::Vector3(0,0,0) );
+  mCamera-&gt;setNearClipDistance( 1.0 );
+
+  Ogre::Viewport *mViewport = mOgreWindow-&gt;addViewport( mCamera );
+  mViewport-&gt;setBackgroundColour( Ogre::ColourValue( 0.8,0.8,1 ) );
+}
+
+/**
+ * @brief render a frame
+ * @author Kito Berg-Taylor
+ */
+void THIS::paintGL()
+{
+  assert( mOgreWindow );
+  mOgreRoot-&gt;renderOneFrame();
+}
+
+/**
+ * @brief resize the GL window
+ * @author Kito Berg-Taylor
+ */
+void THIS::resizeGL( int width, int height )
+{
+  assert( mOgreWindow );
+  mOgreWindow-&gt;windowMovedOrResized();
+}
+
+/**
+ * @brief choose the right renderer
+ * @author Kito Berg-Taylor
+ */
+Ogre::RenderSystem* THIS::chooseRenderer( Ogre::RenderSystemList *renderers )
+{
+  // It would probably be wise to do something more friendly 
+  // that just use the first available renderer
+  return *renderers-&gt;begin();
+}
+</pre>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 13/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key ogre-wiki_:pcache:idhash:2743-0!1!0!!en!2!edit=0 and timestamp 20091123215101 -->
+<div class="printfooter">
+Retrieved from "<a href="http://www.ogre3d.org/wiki/index.php/QtOgre">http://www.ogre3d.org/wiki/index.php/QtOgre</a>"</div>
+			<div id="catlinks" class="catlinks"><div id="mw-normal-catlinks"><a href="http://www.ogre3d.org/wiki/index.php/Special:Categories" title="Special:Categories">Category</a>: <span dir="ltr"><a href="http://www.ogre3d.org/wiki/index.php/Category:Embedding_OGRE" title="Category:Embedding OGRE">Embedding OGRE</a></span></div></div>			<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="http://www.ogre3d.org/wiki/index.php/QtOgre" title="View the content page [alt-shift-c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://www.ogre3d.org/wiki/index.php?title=Talk:QtOgre&amp;action=edit" title="Discussion about the content page [alt-shift-t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://www.ogre3d.org/wiki/index.php?title=QtOgre&amp;action=edit" title="This page is protected.
+You can view its source. [alt-shift-e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://www.ogre3d.org/wiki/index.php?title=QtOgre&amp;action=history" title="Past versions of this page. [alt-shift-h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-login"><a href="http://www.ogre3d.org/wiki/index.php?title=Special:UserLogin&amp;returnto=QtOgre" title="You are encouraged to log in, it is not mandatory however. [alt-shift-o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(/wiki/skins/monobook/wiki.png);" href="http://www.ogre3d.org/wiki/index.php/Main_Page" title="Visit the Main Page [alt-shift-z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class="generated-sidebar portlet" id="p-navigation">
+		<h5>Navigation</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-mainpage"><a href="http://www.ogre3d.org/wiki/index.php/Main_Page" title="Visit the Main Page [alt-shift-z]" accesskey="z">Main Page</a></li>
+				<li id="n-FAQ"><a href="http://www.ogre3d.org/wiki/index.php/CommonMistakes">FAQ</a></li>
+				<li id="n-Tutorials"><a href="http://www.ogre3d.org/wiki/index.php/Ogre_Tutorials">Tutorials</a></li>
+				<li id="n-Lexicon"><a href="http://www.ogre3d.org/wiki/index.php/Category:OgreLexicon">Lexicon</a></li>
+				<li id="n-Categories"><a href="http://www.ogre3d.org/wiki/index.php/Special:Categories">Categories</a></li>
+				<li id="n-randompage"><a href="http://www.ogre3d.org/wiki/index.php/Special:Random" title="Load a random page [alt-shift-x]" accesskey="x">Random page</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-links">
+		<h5>links</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-ogre3d.org"><a href="http://ogre3d.org/">ogre3d.org</a></li>
+				<li id="n-Forums"><a href="http://www.ogre3d.org/forums/">Forums</a></li>
+				<li id="n-Add-on-Forums"><a href="http://www.ogre3d.org/addonforums/">Add-on Forums</a></li>
+				<li id="n-Manual"><a href="http://www.ogre3d.org/docs/manual/">Manual</a></li>
+				<li id="n-API"><a href="http://www.ogre3d.org/docs/api/html/">API</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-administration">
+		<h5>administration</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-help"><a href="http://www.ogre3d.org/wiki/index.php/Help:Contents" title="The place to find out.">Help</a></li>
+				<li id="n-recentchanges"><a href="http://www.ogre3d.org/wiki/index.php/Special:RecentChanges" title="The list of recent changes in the wiki. [alt-shift-r]" accesskey="r">Recent changes</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="/wiki/index.php/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" title="Search Ogre Wiki [alt-shift-f]" accesskey="f" type="text">
+				<input name="go" class="searchButton" id="searchGoButton" value="Go" title="Go to a page with this exact name if exists" type="submit">&nbsp;
+				<input name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" type="submit">
+			</div></form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="http://www.ogre3d.org/wiki/index.php/Special:WhatLinksHere/QtOgre" title="List of all wiki pages that link here [alt-shift-j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="http://www.ogre3d.org/wiki/index.php/Special:RecentChangesLinked/QtOgre" title="Recent changes in pages linked from this page [alt-shift-k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="http://www.ogre3d.org/wiki/index.php/Special:Upload" title="Upload files [alt-shift-u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="http://www.ogre3d.org/wiki/index.php/Special:SpecialPages" title="List of all special pages [alt-shift-q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://www.ogre3d.org/wiki/index.php?title=QtOgre&amp;printable=yes" title="Printable version of this page [alt-shift-p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://www.ogre3d.org/wiki/index.php?title=QtOgre&amp;oldid=19731" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="QtOgre_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki"></a></div>
+				<div id="f-copyrightico"><a href="http://www.gnu.org/copyleft/fdl.html"><img src="QtOgre_files/gnu-fdl.png" alt="GNU Free Documentation License 1.2"></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 15 February 2009, at 18:56.</li>
+				<li id="viewcount">This page has been accessed 8,408 times.</li>
+				<li id="copyright">Source code is public domain, other content is available under <a href="http://www.gnu.org/copyleft/fdl.html" class="external " title="http://www.gnu.org/copyleft/fdl.html" rel="nofollow">GNU Free Documentation License 1.2</a>.</li>
+				<li id="privacy"><a href="http://www.ogre3d.org/wiki/index.php/Ogre_Wiki:Privacy_policy" title="Ogre Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="http://www.ogre3d.org/wiki/index.php/Ogre_Wiki:About" title="Ogre Wiki:About">About Ogre Wiki</a></li>
+				<li id="disclaimer"><a href="http://www.ogre3d.org/wiki/index.php/Ogre_Wiki:General_disclaimer" title="Ogre Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.228 secs. --></body></html>
