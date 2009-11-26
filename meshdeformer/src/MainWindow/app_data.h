@@ -5,10 +5,9 @@
 #define APPDATA_H
 
 
-//#include <QObject>
 
-
-#include "MeshCore.h"
+//#include "MeshCore.h"
+#include "MeshCore/MeshCore.h"
 
 
 
