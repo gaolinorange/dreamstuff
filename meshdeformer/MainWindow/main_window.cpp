@@ -42,7 +42,8 @@ void MainWindow::setupToolBar()
 
 void MainWindow::setupLogger()
 {
-  QOutputLogger::getInstance()->setAllowedAreas(Qt::BottomDockWidgetArea);
+	QOutputLogger::logger = new QOutputLogger(QString(tr("Logger")),this);
+	QOutputLogger::getInstance()->setAllowedAreas(Qt::BottomDockWidgetArea);
   addDockWidget(Qt::BottomDockWidgetArea,QOutputLogger::getInstance());
 }
 
