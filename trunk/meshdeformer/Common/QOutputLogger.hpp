@@ -1,31 +1,42 @@
 #ifndef MESHDEFORMER_COMMON_QOUTPUTLOGGER_H
 #define MESHDEFORMER_COMMON_QOUTPUTLOGGER_H
 
-#include <QTextEdit>
+#include <QListWidget>
 #include <QDockWidget>
 
-class QOutputLogger : public QTextEdit , public QDockWidget
+class QOutputLogger : public QDockWidget
 {
 public:
   static QOutputLogger* getInstance()
   {
-    if(NULL == logger)
+    /*if(NULL == logger)
       {
 	logger = new QOutputLogger();
       }
-    return logger;
+	  */
+	  Q_ASSERT(logger != NULL);
+	  return logger;
   }
-private:
+public:
   static QOutputLogger* logger;
-  
-private:
+public:
   QOutputLogger(QString title = QString(QObject::tr("Logger")),QWidget * parent = 0)
-    : QTextEdit(parent),QDockWidget(title,parent)
+    : QDockWidget(title,parent)
   {
+	  listWidget = new QListWidget(this);
+	  setWidget(listWidget);
   }
   virtual ~QOutputLogger()
   {
+	  delete listWidget; listWidget = 0;
   }
+public:
+	void appendMessage(const QString& message)
+	{
+		listWidget->addItem(message);
+	}
+private:
+	QListWidget* listWidget;
 };
 
 QOutputLogger* QOutputLogger::logger = NULL;

@@ -1,10 +1,11 @@
 #include <iostream>
-//#include "appwindow.h"
+
 #include <QApplication>
 #include "GLWidget.h"
 
 #include <G3D/G3DAll.h>
 #include <GLG3D/GLG3D.h>
+
 
 G3D_START_AT_MAIN();
 
