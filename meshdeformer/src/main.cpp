@@ -2,7 +2,7 @@
 #include "main_window.h"
 #include <gtest/gtest.h>
 
-//#include "test/test.h" //the test cases
+#include "test/test.h" //the test cases
 
 
 
