@@ -6,6 +6,7 @@ void MainWidget::initializeGL()
   glShadeModel(GL_FLAT);
   glEnable(GL_DEPTH_TEST);
   glEnable(GL_CULL_FACE);  
+  
 }
 
 void MainWidget::resizeGL(int w,int h)

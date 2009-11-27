@@ -40,7 +40,9 @@ endif()
 
 #the MainWindow subcore
 include_directories(MainWindow)
-include_directories(./)
+include_directories(Math)
+
+
 
 ADD_SUBDIRECTORY(MainWindow)
 #the MeshCore subcore
@@ -48,7 +50,6 @@ add_subdirectory(MeshCore)
 
 #the IO Plugin subcore
 add_subdirectory(IOPlugin)
-
 
 #the math subcore
 add_subdirectory(Math)
