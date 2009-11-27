@@ -24,6 +24,7 @@ qt4_wrap_cpp(MainWindow_MOC main_window.h)
 include_directories(../)
 include_directories(../Renderer)
 include_directories(../Math)
+include_directories(../Common)
 
 include_directories(/usr/local/include)
 link_directories(/usr/local/lib)

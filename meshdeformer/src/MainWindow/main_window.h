@@ -10,7 +10,6 @@
 
 class QOutputLogger;
 
-
 class MainWindow : public QMainWindow
 {
   Q_OBJECT
@@ -38,16 +37,21 @@ class MainWindow : public QMainWindow
   void fileNew();
   void fileOpen();
   void fileExit();
+  void viewLog();
   void helpAbout();
  private:
   MainWidget * mainWidget;
 
   QMenuBar * mainMenuBar;
   QMenu * fileMenu;
+  QMenu * viewMenu;
   QMenu * helpMenu;
+
   QAction * newAction;
   QAction * openAction;
   QAction * exitAction;
+
+  QAction* actViewLog;
   
   QAction * aboutAction;
 

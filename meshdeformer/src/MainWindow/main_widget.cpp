@@ -5,6 +5,7 @@
 #include "Viewport.hpp"
 #include "Camera.hpp"
 #include "Arcball.hpp"
+#include "globals.hpp"
 
 
 void MainWidget::initializeGL()
@@ -51,20 +52,17 @@ void MainWidget::resizeGL(int w,int h)
 	m_pViewport->Trace();
 	m_pCamera->Trace();
 	m_pArcball->Trace();
-//	glDrawBuffer(GL_BACK);
 
 	m_pArcball->Show();
 }
 
 void MainWidget::updateGL()
 {
-  //for animation 
-	paintGL();
+ 	paintGL();
 }
 
 void MainWidget::paintGL()
 {
-	qDebug()<<"paintGL";
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
   if(m_pArcball)
@@ -105,14 +103,6 @@ void MainWidget::wheelEvent(QWheelEvent* event)
 
 void MainWidget::mousePressEvent(QMouseEvent * event)
 {
-	if(event->buttons() == Qt::RightButton | Qt::LeftButton){
-		if(m_pArcball){
-			m_pArcball->Clear();//Reset the state
-			qDebug()<<"Reset the Arcball";
-			updateGL();
-		}
-	}
-
 	if(event->button() == Qt::RightButton){
 		int x = event->pos().x();
 		int y = event->pos().y();
@@ -185,18 +175,19 @@ void MainWidget::mouseMoveEvent(QMouseEvent * event)
 
 void MainWidget::draw()
 {
-	testDrawCube();
-/*
-	if(pData)
-    {
-      pData->render();
-    }  
-*/
+	if(true ==RUNNING_AT_TEST_MODE ){
+		testDrawCube();
+	}
+	else{
+		if(pData)
+		{
+			pData->render();
+		}  
+	}
 }
 
 void MainWidget::testDrawCube()
 {
-	QOutputLogger::getInstance()->appendMessage(QString(tr("testDrawCube")));
 	glTranslatef(0.0f,0.0f,0.0f);
 		// Code from http://www.morrowland.com/apron/tutorials/gl/gl_rotating_cube.php
 		glBegin(GL_QUADS);
