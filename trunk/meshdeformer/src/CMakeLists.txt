@@ -40,6 +40,8 @@ endif()
 
 #the MainWindow subcore
 include_directories(MainWindow)
+include_directories(./)
+
 ADD_SUBDIRECTORY(MainWindow)
 #the MeshCore subcore
 add_subdirectory(MeshCore)
@@ -47,16 +49,12 @@ add_subdirectory(MeshCore)
 #the IO Plugin subcore
 add_subdirectory(IOPlugin)
 
-#the Common module
-
-add_subdirectory(Common)
-
 
 #the math subcore
-
+add_subdirectory(Math)
 add_subdirectory(Renderer)
 
 add_executable(meshdeformer main.cpp )
-target_link_libraries(meshdeformer MainWindow MeshCore Common )
+target_link_libraries(meshdeformer MainWindow MeshCore Renderer Math )
 
 

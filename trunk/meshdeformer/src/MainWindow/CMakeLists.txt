@@ -17,7 +17,6 @@ QT4_WRAP_CPP(MainWidget_MOC main_widget.h)
 qt4_wrap_cpp(MainWindow_MOC main_window.h)
 
 include_directories(../)
-#include_directories(../Common)
 
 include_directories(/usr/local/include)
 link_directories(/usr/local/lib)
@@ -27,5 +26,5 @@ ADD_DEFINITIONS(${QT_DEFINITIONS})
 
 
 ADD_library(MainWindow STATIC ${app_SOURCES} ${MainWidget_MOC} ${MainWindow_MOC} ${app_HEADERS})
-target_link_libraries(MainWindow ${QT_LIBRARIES} gtest gtest_main Common MeshCore)
+target_link_libraries(MainWindow ${QT_LIBRARIES} gtest gtest_main MeshCore)
 
