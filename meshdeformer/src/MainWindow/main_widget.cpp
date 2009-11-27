@@ -19,7 +19,7 @@ void MainWidget::initializeGL()
   m_pViewport = new CViewport();
   m_pCamera = new CCamera();
 
-  m_pCamera->SetPosition(CVector3d(0,0,5));
+  m_pCamera->SetPosition(CVector3d(0,0,10));
   m_pCamera->SetOrientation(0,1,0,0);
   m_pCamera->SetHeightAngle(45.0f);
   m_pCamera->SetNearDistance(0.1f);
@@ -27,11 +27,14 @@ void MainWidget::initializeGL()
 
   m_pArcball = new CArcball();
   m_pArcball->SetCenter(CVector3d(0,0,0));
-  m_pArcball->SetRadius(10.0f);  
+  m_pArcball->SetRadius(1.0f);  
 }
 
 void MainWidget::resizeGL(int w,int h)
 {
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+
 	if(m_pViewport)
 	{
 		m_pViewport->SetOrigin(0,0);
@@ -41,42 +44,140 @@ void MainWidget::resizeGL(int w,int h)
 	{
 		m_pViewport = new CViewport(w,h);
 	}
+	
 	m_pViewport->glDraw();
 	m_pCamera->glDraw(*m_pViewport);
+
 	m_pViewport->Trace();
 	m_pCamera->Trace();
 	m_pArcball->Trace();
+//	glDrawBuffer(GL_BACK);
+
+	m_pArcball->Show();
 }
 
 void MainWidget::updateGL()
 {
   //for animation 
+	paintGL();
 }
 
 void MainWidget::paintGL()
 {
+	qDebug()<<"paintGL";
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-/*
+
   if(m_pArcball)
   {
 	  m_pArcball->glDraw();
   }
-*/  
+
   draw();
   swapBuffers();
 }
 
+/*
+void MainWidget::wheelEvent(QWheelEvent* event)
+{
+	qDebug()<<"MainWidget::wheelEvent: delta "<<event->delta();
+	if(m_pArcball){
+		int numDegrees = event->delta()/8;
+		int numSteps = numDegrees/15;
+		CVector3d offsetVec = CVector3d(0,0.2,0);
+
+		m_pArcball->SetMode(ARCBALL_TRANSLATE_Z);	
+		int x = event->pos().x();
+		int y = event->pos().y();
+		CVector3d vec = m_pArcball->Intersect(x,
+			m_pViewport->yRes()-y,
+			*m_pCamera,
+			*m_pViewport
+			);
+		m_pArcball->BeginDrag(vec);
+		m_pArcball->Motion(vec+offsetVec*numSteps);
+		m_pArcball->EndDrag(vec);
+		updateGL();
+		event->accept();
+	}
+	event->ignore();
+}
+*/
 
 void MainWidget::mousePressEvent(QMouseEvent * event)
 {
+	if(event->button() == Qt::RightButton){
+		qDebug()<<"event pos: "<<event->pos();
+		int x = event->pos().x();
+		int y = event->pos().y();
+	
+		CVector3d vec = m_pArcball->Intersect(x,
+			m_pViewport->yRes()-y,
+			*m_pCamera,
+			*m_pViewport
+			);
+		m_pArcball->EndDrag(vec);
+
+		if(event->modifiers() == Qt::NoModifier){
+			m_pArcball->SetMode(ARCBALL_ROTATE);
+		}
+		/*else if(event->modifiers() == Qt::ShiftModifier){
+			m_pArcball->SetMode(ARCBALL_TRANSLATE_XY);
+		}*/
+		else if(event->modifiers() == Qt::ControlModifier){
+			m_pArcball->SetMode(ARCBALL_TRANSLATE_Z);
+		}
+
+		vec = m_pArcball->Intersect(x,
+			m_pViewport->yRes()-y,
+			*m_pCamera,
+			*m_pViewport);
+		m_pArcball->BeginDrag(vec);
+		bArcballIsDragging = true;
+		event->accept();
+	}
+	else
+		event->ignore();
+}
+
+void MainWidget::mouseReleaseEvent(QMouseEvent* event)
+{
+	if(event->button() == Qt::RightButton){
+		qDebug()<<"event pos: "<<event->pos();
+		int x = event->pos().x();
+		int y = event->pos().y();
+		CVector3d vec = m_pArcball->Intersect(x,
+			m_pViewport->yRes()-y,
+			*m_pCamera,
+			*m_pViewport
+			);
+		m_pArcball->EndDrag(vec);
+		bArcballIsDragging = false;
+		updateGL();
+		event->accept();
+	}
+	else
+		event->ignore();
 }
 
 void MainWidget::mouseMoveEvent(QMouseEvent * event)
 {
-}
-
-void MainWidget::mouseDoubleClickEvent(QMouseEvent * event)
-{
+	qDebug()<<"mouseMoveEvent: ";
+	if(bArcballIsDragging){
+		qDebug()<<"mouseMoveEvnet event pos: "<<event->pos();
+		int x = event->pos().x();
+		int y = event->pos().y();
+		CVector3d vec = m_pArcball->Intersect(x,
+			m_pViewport->yRes()-y,
+			*m_pCamera,
+			*m_pViewport
+			);
+		m_pArcball->Motion(vec);
+		//		updateGL();
+		paintGL();
+		event->accept();
+	}
+	else
+		event->ignore();
 }
 
 void MainWidget::draw()
