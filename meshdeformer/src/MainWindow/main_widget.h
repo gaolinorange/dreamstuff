@@ -3,6 +3,14 @@
 
 #include <QGLWidget>
 #include "app_data.h"
+/*
+#include "Viewport.hpp"
+#include "Camera.hpp"
+#include "Arcball.hpp"
+*/
+class CViewport;
+class CCamera;
+class CArcball;
 
 class MainWidget : public QGLWidget
 {
@@ -12,6 +20,9 @@ public:
     : QGLWidget(parent,shareWidget,flags)
     {
       pData =  new AppData();
+	  m_pArcball = 0;
+	  m_pCamera = 0;
+	  m_pViewport = 0;
     }
   ~MainWidget()
     {
@@ -19,6 +30,15 @@ public:
 	{
 	  delete pData; pData = 0;
 	}
+	  if(m_pViewport)
+		  delete m_pViewport;
+	  m_pViewport = 0;
+	  if(m_pCamera)
+		  delete m_pCamera;
+	  m_pCamera = 0;
+	  if(m_pArcball)
+		  delete m_pArcball;
+	  m_pArcball = 0;
     }
  protected:
   void initializeGL();
@@ -35,6 +55,9 @@ public:
 
  private:
   AppData * pData;
+  CArcball* m_pArcball;
+  CViewport* m_pViewport;
+  CCamera* m_pCamera;
 };
 
 #endif
