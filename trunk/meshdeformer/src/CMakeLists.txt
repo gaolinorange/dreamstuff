@@ -25,7 +25,7 @@ endif(UNIX)
 message("Platform is ${Platform}")
 
 
-find_package(Qt4 REQUIRED)
+find_package(Qt4 COMPONENTS QtGui QtCore QtOpenGL QtTest REQUIRED)
 set(QT_USE_QTOPENGL true)
 include(${QT_USE_FILE})
 
