@@ -2,12 +2,13 @@
 #define MAINWIDGET_H
 
 #include <QGLWidget>
+#include <QtGui>
 #include "app_data.h"
 
 class CViewport;
 class CCamera;
 class CArcball;
-
+//#include "Viewport.hpp"
 
 class MainWidget : public QGLWidget
 {
@@ -43,9 +44,11 @@ public:
   void updateGL();
   void paintGL();
 
+//  void wheelEvent(QWheelEvent* event);
   void mousePressEvent(QMouseEvent * event);
+  void mouseReleaseEvent(QMouseEvent* event);
   void mouseMoveEvent(QMouseEvent* event);
-  void mouseDoubleClickEvent(QMouseEvent * event);
+//  void mouseDoubleClickEvent(QMouseEvent * event);
   
  private:
   void draw();
@@ -57,6 +60,7 @@ public:
   CArcball* m_pArcball;
   CViewport* m_pViewport;
   CCamera* m_pCamera;
+  bool bArcballIsDragging;
 };
 
 #endif
