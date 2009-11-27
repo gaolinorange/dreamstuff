@@ -8,10 +8,10 @@
 // Modified : 09/07/00
 //********************************************
 
-#include "stdafx.h"
+#include "Helper.hpp"
 #include <math.h>
 
-#include "Quaternion.h"
+#include "Quaternion.hpp"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
