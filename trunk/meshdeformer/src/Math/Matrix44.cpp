@@ -8,10 +8,10 @@
 // Modified : 05/06/00
 //********************************************
 
-#include "stdafx.h"
-#include <math.h>
 
-#include "Matrix44.h"
+#include <math.h>
+#include "Helper.hpp"
+#include "Matrix44.hpp"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
