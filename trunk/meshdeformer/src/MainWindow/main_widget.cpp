@@ -228,3 +228,13 @@ void MainWidget::testDrawCube()
 		glVertex3f( 1.0f,-1.0f,-1.0f);// Bottom Right Of The Quad (Right)
 		glEnd();
 }
+
+
+void MainWidget::saveImage(const QString& filename)
+{
+	//when you open a dialog, the glbuffer is overlap by a dialog, so you
+	//select the back buffer to grab
+	glReadBuffer(GL_BACK);
+	QImage image = grabFrameBuffer(true);
+	image.save(filename);
+}

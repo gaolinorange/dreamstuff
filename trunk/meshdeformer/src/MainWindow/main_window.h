@@ -36,6 +36,7 @@ class MainWindow : public QMainWindow
   private slots:
   void fileNew();
   void fileOpen();
+  void fileSaveImage();
   void fileExit();
   void viewLog();
   void helpAbout();
@@ -49,6 +50,7 @@ class MainWindow : public QMainWindow
 
   QAction * newAction;
   QAction * openAction;
+  QAction* actSaveImage;
   QAction * exitAction;
 
   QAction* actViewLog;

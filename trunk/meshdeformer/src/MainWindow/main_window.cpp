@@ -1,5 +1,6 @@
 #include "main_window.h"
 #include <QToolBar>
+#include <QtGui>
 #include <QApplication>
 #include "QOutputLogger.hpp"
 
@@ -15,6 +16,10 @@ void MainWindow::setupMenu()
    connect(openAction,SIGNAL(triggered()),this,SLOT(fileOpen()));
    fileMenu->addAction(openAction);
    
+   actSaveImage = new QAction(tr("&Save Image"),fileMenu);
+   connect(actSaveImage,SIGNAL(triggered()),this,SLOT(fileSaveImage()));
+   fileMenu->addAction(actSaveImage);
+
    fileMenu->addSeparator();
 
    exitAction = new QAction(tr("E&xit"),fileMenu);
@@ -60,6 +65,16 @@ void MainWindow::fileNew()
 
 void MainWindow::fileOpen()
 {
+}
+
+void MainWindow::fileSaveImage()
+{
+	QString filename = QFileDialog::getSaveFileName(this,
+		QString(QObject::tr("Save File")),
+		QString(QObject::tr("../result.png")),
+		QString(QObject::tr("Images (*.png)"))
+		);
+	mainWidget->saveImage(filename);
 }
 
 void MainWindow::fileExit()
