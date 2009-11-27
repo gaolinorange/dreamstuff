@@ -27,6 +27,7 @@ message("Platform is ${Platform}")
 
 find_package(Qt4 COMPONENTS QtGui QtCore QtOpenGL QtTest REQUIRED)
 set(QT_USE_QTOPENGL true)
+set(QT_USE_QTTEST true)
 include(${QT_USE_FILE})
 
 #find_package(BOOST REQUIRED)
@@ -56,6 +57,6 @@ add_subdirectory(Math)
 add_subdirectory(Renderer)
 
 add_executable(meshdeformer main.cpp )
-target_link_libraries(meshdeformer MainWindow MeshCore Renderer Math )
+target_link_libraries(meshdeformer MainWindow MeshCore Renderer Math ${QT_LIBRARIES} )
 
 
