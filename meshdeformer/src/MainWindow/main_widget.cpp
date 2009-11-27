@@ -105,8 +105,15 @@ void MainWidget::wheelEvent(QWheelEvent* event)
 
 void MainWidget::mousePressEvent(QMouseEvent * event)
 {
+	if(event->buttons() == Qt::RightButton | Qt::LeftButton){
+		if(m_pArcball){
+			m_pArcball->Clear();//Reset the state
+			qDebug()<<"Reset the Arcball";
+			updateGL();
+		}
+	}
+
 	if(event->button() == Qt::RightButton){
-		qDebug()<<"event pos: "<<event->pos();
 		int x = event->pos().x();
 		int y = event->pos().y();
 	
@@ -120,9 +127,9 @@ void MainWidget::mousePressEvent(QMouseEvent * event)
 		if(event->modifiers() == Qt::NoModifier){
 			m_pArcball->SetMode(ARCBALL_ROTATE);
 		}
-		/*else if(event->modifiers() == Qt::ShiftModifier){
+		else if(event->modifiers() == Qt::ShiftModifier){
 			m_pArcball->SetMode(ARCBALL_TRANSLATE_XY);
-		}*/
+		}
 		else if(event->modifiers() == Qt::ControlModifier){
 			m_pArcball->SetMode(ARCBALL_TRANSLATE_Z);
 		}
@@ -142,7 +149,6 @@ void MainWidget::mousePressEvent(QMouseEvent * event)
 void MainWidget::mouseReleaseEvent(QMouseEvent* event)
 {
 	if(event->button() == Qt::RightButton){
-		qDebug()<<"event pos: "<<event->pos();
 		int x = event->pos().x();
 		int y = event->pos().y();
 		CVector3d vec = m_pArcball->Intersect(x,
@@ -161,9 +167,7 @@ void MainWidget::mouseReleaseEvent(QMouseEvent* event)
 
 void MainWidget::mouseMoveEvent(QMouseEvent * event)
 {
-	qDebug()<<"mouseMoveEvent: ";
 	if(bArcballIsDragging){
-		qDebug()<<"mouseMoveEvnet event pos: "<<event->pos();
 		int x = event->pos().x();
 		int y = event->pos().y();
 		CVector3d vec = m_pArcball->Intersect(x,
@@ -172,8 +176,7 @@ void MainWidget::mouseMoveEvent(QMouseEvent * event)
 			*m_pViewport
 			);
 		m_pArcball->Motion(vec);
-		//		updateGL();
-		paintGL();
+		updateGL();
 		event->accept();
 	}
 	else
