@@ -17,7 +17,7 @@ void MainWindow::setupMenu()
    
    fileMenu->addSeparator();
 
-   exitAction = new QAction(tr("&Exit"),fileMenu);
+   exitAction = new QAction(tr("E&xit"),fileMenu);
    connect(exitAction,SIGNAL(triggered()),this,SLOT(fileExit()));
    fileMenu->addAction(exitAction);
    mainMenuBar->addMenu(fileMenu);

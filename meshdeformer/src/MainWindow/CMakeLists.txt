@@ -4,6 +4,7 @@ SET(app_SOURCES
 	main_window.cpp 
 	main_widget.cpp 
 	app_data.cpp
+	QOutputLogger.cpp
 	)
 SET(app_HEADERS 
 	main_window.h 

@@ -3,14 +3,11 @@
 
 #include <QGLWidget>
 #include "app_data.h"
-/*
-#include "Viewport.hpp"
-#include "Camera.hpp"
-#include "Arcball.hpp"
-*/
+
 class CViewport;
 class CCamera;
 class CArcball;
+
 
 class MainWidget : public QGLWidget
 {
@@ -23,7 +20,7 @@ public:
 	  m_pArcball = 0;
 	  m_pCamera = 0;
 	  m_pViewport = 0;
-    }
+  }
   ~MainWidget()
     {
       if(pData)
@@ -39,7 +36,7 @@ public:
 	  if(m_pArcball)
 		  delete m_pArcball;
 	  m_pArcball = 0;
-    }
+  }
  protected:
   void initializeGL();
   void resizeGL(int w,int h);
@@ -52,9 +49,11 @@ public:
   
  private:
   void draw();
+  void testDrawCube();
 
  private:
   AppData * pData;
+
   CArcball* m_pArcball;
   CViewport* m_pViewport;
   CCamera* m_pCamera;

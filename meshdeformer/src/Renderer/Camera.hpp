@@ -63,7 +63,7 @@ public :
   CVector3d GetRight();
   CVector3d GetUp();
   CVector3d GetToward();
-
+  void Trace();
   // Ray Casting
   CVector3d GetRayDirection(int x, int y, CViewport& vp);
 

@@ -72,6 +72,13 @@ CCamera::GetUp()
   return CVector3d(rotMat[0][1],rotMat[1][1],rotMat[2][1]);
 }
 
+void CCamera::Trace()
+{
+	TRACE("** Camera**");
+	TRACE("pos: %d,%d,%d",position.x(),position.y(),position.z());
+	TRACE("target: %d,%d,%d",GetToward().x(),GetToward().y(),GetToward().z());
+
+}
 //********************************************
 // GetToward
 //********************************************

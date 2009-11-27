@@ -39,7 +39,7 @@ private:
 	QListWidget* listWidget;
 };
 
-QOutputLogger* QOutputLogger::logger = NULL;
+
 
 
 

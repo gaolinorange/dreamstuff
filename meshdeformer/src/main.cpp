@@ -4,7 +4,7 @@
 
 #include "test/test.h" //the test cases
 
-
+#define TESTMODE true
 
 
 int main(int argc,char ** argv)
