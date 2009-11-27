@@ -17,7 +17,7 @@ void MainWindow::setupMenu()
    fileMenu->addAction(openAction);
    
    actSaveImage = new QAction(tr("&Save Image"),fileMenu);
-   actSaveImage->setShortCut(Qt::CTRL,Qt::Key_S);
+   actSaveImage->setShortcut(QKeySequence(Qt::CTRL,Qt::Key_S));
    connect(actSaveImage,SIGNAL(triggered()),this,SLOT(fileSaveImage()));
    fileMenu->addAction(actSaveImage);
 
