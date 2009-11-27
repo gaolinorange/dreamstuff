@@ -38,6 +38,8 @@ public:
 		  delete m_pArcball;
 	  m_pArcball = 0;
   }
+public:
+	void saveImage(const QString& filename);
  protected:
   void initializeGL();
   void resizeGL(int w,int h);
