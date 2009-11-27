@@ -22,6 +22,12 @@ void MainWindow::setupMenu()
    fileMenu->addAction(exitAction);
    mainMenuBar->addMenu(fileMenu);
 
+   viewMenu = new QMenu(tr("&View"),mainMenuBar);
+   actViewLog = new QAction(tr("&Log"),viewMenu);
+   connect(actViewLog,SIGNAL(triggered()),this,SLOT(viewLog()));
+   viewMenu->addAction(actViewLog);
+   mainMenuBar->addMenu(viewMenu);
+
    helpMenu = new QMenu(tr("Help"),mainMenuBar);
    aboutAction = new QAction(tr("&About"),helpMenu);
    connect(aboutAction,SIGNAL(triggered()),this,SLOT(helpAbout()));
@@ -44,7 +50,8 @@ void MainWindow::setupLogger()
 {
 	QOutputLogger::logger = new QOutputLogger(QString(tr("Logger")),this);
 	QOutputLogger::getInstance()->setAllowedAreas(Qt::BottomDockWidgetArea);
-  addDockWidget(Qt::BottomDockWidgetArea,QOutputLogger::getInstance());
+	addDockWidget(Qt::BottomDockWidgetArea,QOutputLogger::getInstance());
+	QOutputLogger::getInstance()->setVisible(false);
 }
 
 void MainWindow::fileNew()
@@ -63,4 +70,14 @@ void MainWindow::fileExit()
 void MainWindow::helpAbout()
 {
   qApp->aboutQt();
+}
+
+void MainWindow::viewLog()
+{
+	if(QOutputLogger::getInstance()->isVisible()){
+		QOutputLogger::getInstance()->setVisible(false);
+	}
+	else{
+		QOutputLogger::getInstance()->setVisible(true);
+	}
 }

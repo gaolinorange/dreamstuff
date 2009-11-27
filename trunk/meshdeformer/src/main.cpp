@@ -1,10 +1,9 @@
 #include <QApplication>
 #include "main_window.h"
 #include <gtest/gtest.h>
+#include "Common/globals.hpp"
 
 #include "test/test.h" //the test cases
-
-#define TESTMODE true
 
 
 int main(int argc,char ** argv)
