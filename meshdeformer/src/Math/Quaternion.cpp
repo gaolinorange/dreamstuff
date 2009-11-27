@@ -78,7 +78,7 @@ CQuaternion::CQuaternion(const double s,
 CQuaternion::CQuaternion(const CVector3d &vecFrom, 
 												 const CVector3d &vecTo)
 {
-  CVector3d& vecHalf = vecTo + vecFrom;
+  CVector3d vecHalf = vecTo + vecFrom;
   vecHalf.Normalize();
   m_s = vecHalf.Dot(vecTo);
   m_v = vecHalf.Cross(vecTo);
