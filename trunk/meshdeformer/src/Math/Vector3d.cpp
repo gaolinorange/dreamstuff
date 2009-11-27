@@ -8,7 +8,8 @@
 // Modified : 09/07/00
 //********************************************
 
-#include "Log.hpp"
+//#include "Log.hpp"
+#include "Helper.hpp"
 #include "Vector3d.hpp"
 
 #include <math.h>
@@ -42,7 +43,7 @@ CVector3d::Get(double& x, double& y, double& z) const
 void
 CVector3d::Trace() const
 {
-  Log::getInstance()->logString("** Vector **");
+ // Log::getInstance()->logString("** Vector **");
   /*
   char * message = new char [100];
   sprintf(message,"Address : %x \n",this);
