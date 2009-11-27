@@ -1,4 +1,6 @@
 #include "app_data.h"
+#include "MeshCore/MeshCore.h"
+
 
 AppData::AppData()
 {

@@ -6,8 +6,8 @@
 
 
 
-//#include "MeshCore.h"
-#include "MeshCore/MeshCore.h"
+
+class MeshCore;
 
 
 
