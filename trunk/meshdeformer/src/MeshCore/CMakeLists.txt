@@ -29,6 +29,7 @@ if(CGAL_FOUND)
   include(${CGAL_USE_FILE})   
 endif()
   
+include_directories(../Common)  
 include_directories(/usr/local/include)
 link_directories(/usr/local/lib)
 
