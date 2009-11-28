@@ -4,7 +4,7 @@
 #ifndef APPDATA_H
 #define APPDATA_H
 
-
+#include <QtGui>
 
 
 class MeshCore;
@@ -17,7 +17,7 @@ class AppData //: public QObject
   AppData();
   ~AppData();
  public:
-  void init();
+  void initATetrahedron();
   void load(const QString& filename);
   void update();
   void render();

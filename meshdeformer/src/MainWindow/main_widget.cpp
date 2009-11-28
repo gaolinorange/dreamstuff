@@ -30,7 +30,7 @@ void MainWidget::initializeGL()
   m_pArcball->SetCenter(CVector3d(0,0,0));
   m_pArcball->SetRadius(1.0f);  
 
-  pData->init();
+  pData->initATetrahedron();
 }
 
 void MainWidget::resizeGL(int w,int h)
@@ -66,6 +66,19 @@ void MainWidget::updateGL()
 void MainWidget::paintGL()
 {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  switch(polygonMode){
+	  case PM_WIREFRAME:
+		  glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
+		  break;
+	  case PM_SOLID:
+		  glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
+		  break;
+	  case PM_POINT:
+		  glPolygonMode(GL_FRONT_AND_BACK,GL_POINT);
+		  break;
+	  default:
+		  break;  
+  }
 
   if(m_pArcball)
   {
@@ -73,6 +86,7 @@ void MainWidget::paintGL()
   }
 
   draw();
+  glFlush();
   swapBuffers();
 }
 
