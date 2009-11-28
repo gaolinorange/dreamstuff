@@ -18,6 +18,7 @@ class AppData //: public QObject
   ~AppData();
  public:
   void init();
+  void load(const QString& filename);
   void update();
   void render();
  private:
