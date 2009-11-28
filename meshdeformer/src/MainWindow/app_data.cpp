@@ -1,5 +1,6 @@
 #include "app_data.h"
 #include "MeshCore/MeshCore.h"
+#include <QtDebug>
 
 
 AppData::AppData()
@@ -19,7 +20,10 @@ void AppData::init()
 {
   if(pMesh == 0)
     pMesh = new MeshCore();
+
   pMesh->make_tetrahedron();
+
+  qDebug()<<pMesh->is_pure_triangle()<<" pMesh is pure_triangle?";
 }
 
 void AppData::update()

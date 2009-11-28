@@ -1,7 +1,7 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
-#define RUNNING_AT_TEST_MODE true
+#define RUNNING_AT_TEST_MODE false
 
 /*
 //Some facility for debugging, defined in global mode

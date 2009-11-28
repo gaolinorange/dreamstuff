@@ -29,6 +29,8 @@ void MainWidget::initializeGL()
   m_pArcball = new CArcball();
   m_pArcball->SetCenter(CVector3d(0,0,0));
   m_pArcball->SetRadius(1.0f);  
+
+  pData->init();
 }
 
 void MainWidget::resizeGL(int w,int h)
@@ -53,7 +55,7 @@ void MainWidget::resizeGL(int w,int h)
 	m_pCamera->Trace();
 	m_pArcball->Trace();
 
-	m_pArcball->Show();
+//	m_pArcball->Show();
 }
 
 void MainWidget::updateGL()

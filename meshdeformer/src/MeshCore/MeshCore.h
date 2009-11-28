@@ -22,9 +22,9 @@ typedef Polyhedron::Edge_iterator Edge_iterator;
 
 typedef Polyhedron::Facet_handle Facet_handle;
 typedef Polyhedron::Facet_iterator Facet_iterator;
-typedef Polyhedron::Halfedge_around_vertex_const_circulator HVC_circulator;
-typedef Polyhedron::Halfedge_around_vertex_circulator HV_circulator;
-typedef Polyhedron::Halfedge_around_facet_circulator HF_circulator;
+typedef Polyhedron::Halfedge_around_vertex_const_circulator Halfedge_around_vertex_const_circulator;
+typedef Polyhedron::Halfedge_around_vertex_circulator Halfedge_around_vertex_circulator;
+typedef Polyhedron::Halfedge_around_facet_circulator Halfedge_around_facet_circulator;
 
 class MeshCore : public Polyhedron
 {
