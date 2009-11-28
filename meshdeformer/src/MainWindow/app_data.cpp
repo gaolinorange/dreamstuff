@@ -16,14 +16,19 @@ AppData::~AppData()
     }
 }
 
-void AppData::init()
+void AppData::initATetrahedron()
 {
   if(pMesh == 0)
     pMesh = new MeshCore();
 
-  pMesh->make_tetrahedron();
+  pMesh->make_tetrahedron(Point_3(0,0,0),Point_3(1,0,0),Point_3(0,1,0),Point_3(0,0,1));
 
   qDebug()<<pMesh->is_pure_triangle()<<" pMesh is pure_triangle?";
+}
+
+void AppData::load(const QString& filename)
+{
+
 }
 
 void AppData::update()

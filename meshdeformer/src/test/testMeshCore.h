@@ -24,7 +24,7 @@ TEST_F(MeshCoreTest,testInit)
 
 TEST_F(MeshCoreTest,testMakeTetrahedron)
 {
-  Halfedge_handle h = pMesh->make_tetrahedron();
+  Halfedge_handle h = pMesh->make_tetrahedron(Point_3(0,0,0),Point_3(0,0,1),Point_3(0,1,0),Point_3(1,0,0));
   EXPECT_EQ(true,pMesh->is_tetrahedron(h));
 }
 
