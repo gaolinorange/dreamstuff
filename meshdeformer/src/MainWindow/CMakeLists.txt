@@ -26,6 +26,10 @@ include_directories(../Renderer)
 include_directories(../Math)
 include_directories(../Common)
 
+#assimp importer module
+include_directories(../../3rdparty/include)
+link_directories(../../3rdparty/lib)
+
 include_directories(/usr/local/include)
 link_directories(/usr/local/lib)
 

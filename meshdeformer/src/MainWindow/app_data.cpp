@@ -26,9 +26,39 @@ void AppData::initATetrahedron()
   qDebug()<<pMesh->is_pure_triangle()<<" pMesh is pure_triangle?";
 }
 
-void AppData::load(const QString& filename)
+bool AppData::load(const QString& filename)
 {
+  /*
+  QString filename = QFileDialog::getOpenFileName(this,
+						  QString(tr("Open file")),
+						  QString(tr("../")),
+						  QString(tr("*.obj,*.off,*.ply")));
+  Importer * aiImporter = new Importer;
+  aiScene* scene = aiImporter->ReadFile(filename,0);
+  if(NULL == scene)
+    {
+      QMessageBox::warning(this,QString(tr("warning")),QString(tr("could not load the mesh")));
+      return;
+    }
+  qDebug()<<"num of meshes: "<<scene->mNumMeshes;
+  if(scene->HasMeshes() == false)
+    {
+      qDebug()<<"the scene has no meshes";
+      return false;
+    }
+  Q_ASSERT(scene->mNumMeshes == 1);
+  aiMesh* mesh = scene->mMeshes[0];
+  // converte aiMesh to MeshCore format
+  if(pMesh)
+    {
+      delete pMesh; pMesh = 0;
+    }
+  if(pMesh == 0)
+    pMesh = new MeshCore();
 
+  */
+  
+  return true;						  
 }
 
 void AppData::update()
