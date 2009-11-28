@@ -39,6 +39,8 @@ class MainWindow : public QMainWindow
   void fileSaveImage();
   void fileExit();
   void viewLog();
+  void viewWireFrame();
+  void viewSolid();
   void helpAbout();
  private:
   MainWidget * mainWidget;
@@ -54,6 +56,8 @@ class MainWindow : public QMainWindow
   QAction * exitAction;
 
   QAction* actViewLog;
+  QAction* actViewWireframe;
+  QAction* actViewSolid;
   
   QAction * aboutAction;
 

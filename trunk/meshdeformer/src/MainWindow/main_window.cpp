@@ -32,6 +32,12 @@ void MainWindow::setupMenu()
    actViewLog = new QAction(tr("&Log"),viewMenu);
    connect(actViewLog,SIGNAL(triggered()),this,SLOT(viewLog()));
    viewMenu->addAction(actViewLog);
+   actViewWireframe = new QAction(tr("&WireFrame"),viewMenu);
+   connect(actViewWireframe,SIGNAL(triggered()),this,SLOT(viewWireFrame()));
+   viewMenu->addAction(actViewWireframe);
+   actViewSolid = new QAction(tr("&Solid"),viewMenu);
+   connect(actViewSolid,SIGNAL(triggered()),this,SLOT(viewSolid()));
+   viewMenu->addAction(actViewSolid);
    mainMenuBar->addMenu(viewMenu);
 
    helpMenu = new QMenu(tr("Help"),mainMenuBar);
@@ -96,4 +102,16 @@ void MainWindow::viewLog()
 	else{
 		QOutputLogger::getInstance()->setVisible(true);
 	}
+}
+
+void MainWindow::viewWireFrame()
+{
+	if(mainWidget)
+		mainWidget->setPolygonMode(PolygonMode::PM_WIREFRAME);
+}
+
+void MainWindow::viewSolid()
+{
+	if(mainWidget)
+		mainWidget->setPolygonMode(PolygonMode::PM_SOLID);
 }

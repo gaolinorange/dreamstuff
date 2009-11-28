@@ -10,6 +10,12 @@ class CCamera;
 class CArcball;
 //#include "Viewport.hpp"
 
+enum PolygonMode{
+	PM_WIREFRAME=0,
+	PM_SOLID,
+	PM_POINT
+};
+
 class MainWidget : public QGLWidget
 {
   Q_OBJECT
@@ -21,6 +27,7 @@ public:
 	  m_pArcball = 0;
 	  m_pCamera = 0;
 	  m_pViewport = 0;
+	  polygonMode = PM_WIREFRAME;
   }
   ~MainWidget()
     {
@@ -55,7 +62,12 @@ public:
  private:
   void draw();
   void testDrawCube();
-
+public:
+	void setPolygonMode(PolygonMode mode)
+	{
+		polygonMode = mode;
+		updateGL();
+	}
  private:
   AppData * pData;
 
@@ -63,6 +75,7 @@ public:
   CViewport* m_pViewport;
   CCamera* m_pCamera;
   bool bArcballIsDragging;
+  PolygonMode polygonMode;
 };
 
 #endif
