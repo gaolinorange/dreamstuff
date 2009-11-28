@@ -5,7 +5,13 @@
 #define APPDATA_H
 
 #include <QtGui>
+/*
+#include "assimp.hpp"
 
+typedef class Assimp::Importer Importer;
+typedef class Assimp::aiScene aiScene;
+typedef class Assimp::aiMesh aiMesh;
+*/
 
 class MeshCore;
 
@@ -18,7 +24,7 @@ class AppData //: public QObject
   ~AppData();
  public:
   void initATetrahedron();
-  void load(const QString& filename);
+  bool load(const QString& filename);
   void update();
   void render();
  private:
