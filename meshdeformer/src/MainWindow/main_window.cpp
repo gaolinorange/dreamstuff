@@ -107,11 +107,13 @@ void MainWindow::viewLog()
 void MainWindow::viewWireFrame()
 {
 	if(mainWidget)
-		mainWidget->setPolygonMode(PolygonMode::PM_WIREFRAME);
+	  {
+	    mainWidget->setPolygonMode(PM_WIREFRAME);
+	  }
 }
 
 void MainWindow::viewSolid()
 {
 	if(mainWidget)
-		mainWidget->setPolygonMode(PolygonMode::PM_SOLID);
+		mainWidget->setPolygonMode(PM_SOLID);
 }
