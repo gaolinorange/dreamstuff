@@ -9,7 +9,6 @@
 #include <gtest/gtest.h>
 #include <QtTest>
 #include <QtGui>
-#include "../Common/globals.hpp"
 
 class RendererTest: public ::testing::Test
 {
@@ -20,6 +19,7 @@ protected:
   virtual void TearDown(){
     
   }
+
 public:
 	void readTestImage()
 	{
@@ -34,12 +34,10 @@ TEST_F(RendererTest,testInit)
 {
 }
 
-TEST_F(RendererTest,testEqual)
+
+TEST_F(RenderTest,testEqual)
 {
-//	RUNNING_AT_TEST_MODE = true;
-  readTestImage();
-  //TODO: how to read the running mainWidget for comparison ?
-  //See VTK for reference
+  
 
 }
 
