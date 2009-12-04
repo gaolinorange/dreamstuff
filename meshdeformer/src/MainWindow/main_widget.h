@@ -68,6 +68,11 @@ public:
 		polygonMode = mode;
 		updateGL();
 	}
+public:
+	AppData* GetAppData()
+	{
+		return pData;
+	}
  private:
   AppData * pData;
 

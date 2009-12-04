@@ -56,6 +56,11 @@ add_subdirectory(IOPlugin)
 add_subdirectory(Math)
 add_subdirectory(Renderer)
 
+
+#add external link libraries
+link_directories(../3rdparty/assimp/lib)
+
+
 add_executable(meshdeformer main.cpp )
 target_link_libraries(meshdeformer MainWindow MeshCore Renderer Math ${QT_LIBRARIES} )
 

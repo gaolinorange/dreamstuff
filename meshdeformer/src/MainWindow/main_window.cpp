@@ -7,7 +7,7 @@
 void MainWindow::setupMenu()
 {
    mainMenuBar = new QMenuBar(this);
-   fileMenu = new QMenu(tr("File"),mainMenuBar);
+   fileMenu = new QMenu(tr("&File"),mainMenuBar);
    newAction = new QAction(tr("&New"),fileMenu);
    connect(newAction,SIGNAL(triggered()),this,SLOT(fileNew()));
    fileMenu->addAction(newAction);
@@ -17,6 +17,10 @@ void MainWindow::setupMenu()
    fileMenu->addAction(openAction);
    
    actSaveImage = new QAction(tr("&Save Image"),fileMenu);
+<<<<<<< HEAD:meshdeformer/src/MainWindow/main_window.cpp
+=======
+   actSaveImage->setShortcut(QKeySequence(Qt::CTRL,Qt::Key_S));
+>>>>>>> master:meshdeformer/src/MainWindow/main_window.cpp
 
    connect(actSaveImage,SIGNAL(triggered()),this,SLOT(fileSaveImage()));
    fileMenu->addAction(actSaveImage);
@@ -40,7 +44,7 @@ void MainWindow::setupMenu()
    viewMenu->addAction(actViewSolid);
    mainMenuBar->addMenu(viewMenu);
 
-   helpMenu = new QMenu(tr("Help"),mainMenuBar);
+   helpMenu = new QMenu(tr("&Help"),mainMenuBar);
    aboutAction = new QAction(tr("&About"),helpMenu);
    connect(aboutAction,SIGNAL(triggered()),this,SLOT(helpAbout()));
    helpMenu->addAction(aboutAction);
@@ -72,6 +76,12 @@ void MainWindow::fileNew()
 
 void MainWindow::fileOpen()
 {
+	QString filename = QFileDialog::getOpenFileName(this,
+		QString(tr("Open File")),
+		QString(tr("../*.*")),
+		QString(tr("Mesh files(*.off,*.obj,*.ply)"))
+		);
+	mainWidget->GetAppData()->loadMesh(filename);
 }
 
 void MainWindow::fileSaveImage()
