@@ -33,7 +33,6 @@ void MeshCore::render()
 			do{
 				Point_3 point = pHalfedge->vertex()->point();
 				glVertex3f(point[0],point[1],point[2]);
-				qDebug()<<point[0]<<","<<point[1]<<","<<point[2];
 			}while(++pHalfedge != pFacet->facet_begin());
 			glEnd();
 	}

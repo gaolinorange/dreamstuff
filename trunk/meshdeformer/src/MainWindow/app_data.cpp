@@ -1,6 +1,12 @@
 #include "app_data.h"
 #include "MeshCore/MeshCore.h"
+#include "MeshCore/MeshBuilder.h"
+#include "MeshCore/MeshLoader.h"
+#include "QOutputLogger.hpp"
 #include <QtDebug>
+
+#include <QtGui>
+#include <QtCore>
 
 
 AppData::AppData()
@@ -26,28 +32,8 @@ void AppData::initATetrahedron()
   qDebug()<<pMesh->is_pure_triangle()<<" pMesh is pure_triangle?";
 }
 
-bool AppData::load(const QString& filename)
+bool AppData::loadMesh(const QString& filename)
 {
-  /*
-  QString filename = QFileDialog::getOpenFileName(this,
-						  QString(tr("Open file")),
-						  QString(tr("../")),
-						  QString(tr("*.obj,*.off,*.ply")));
-  Importer * aiImporter = new Importer;
-  aiScene* scene = aiImporter->ReadFile(filename,0);
-  if(NULL == scene)
-    {
-      QMessageBox::warning(this,QString(tr("warning")),QString(tr("could not load the mesh")));
-      return;
-    }
-  qDebug()<<"num of meshes: "<<scene->mNumMeshes;
-  if(scene->HasMeshes() == false)
-    {
-      qDebug()<<"the scene has no meshes";
-      return false;
-    }
-  Q_ASSERT(scene->mNumMeshes == 1);
-  aiMesh* mesh = scene->mMeshes[0];
   // converte aiMesh to MeshCore format
   if(pMesh)
     {
@@ -55,9 +41,25 @@ bool AppData::load(const QString& filename)
     }
   if(pMesh == 0)
     pMesh = new MeshCore();
+//TODO: copy the data in aiMesh to MeshCore style pMesh
+  MeshLoader * loader = new MeshLoader();
+  bool ret = loader->load(filename.toAscii().data());
+  if(ret == false)
+  {
+	  QOutputLogger::getInstance()->appendMessage(QString(QObject::tr("MeshLoader failed to load the mesh")));
+  }
+  else
+	  QOutputLogger::getInstance()->appendMessage(QString(QObject::tr("MeshLoader load the mesh ok")));
 
-  */
-  
+  MeshBuilder<Polyhedron::HalfedgeDS> builder(loader);
+  pMesh->delegate(builder);
+
+  QString message;
+  QTextStream(&message)<<"Mesh info: vertices num: "<<pMesh->size_of_vertices()<<" facet num: "<<pMesh->size_of_facets();
+  QOutputLogger::getInstance()->appendMessage(message);
+
+  delete loader;//delete local meshloader to save memory
+
   return true;						  
 }
 

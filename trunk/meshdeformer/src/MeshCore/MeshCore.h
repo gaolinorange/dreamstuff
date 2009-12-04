@@ -1,17 +1,22 @@
 #ifndef MESHCORE_H
 #define MESHCORE_H
 
-#include <CGAL/Cartesian.h>
+#include <CGAL/basic.h>
+//#include <CGAL/Cartesian.h>
+#include <CGAL/Simple_cartesian.h>
 #include <CGAL/Polyhedron_3.h>
 #include <CGAL/IO/Polyhedron_iostream.h>
+#include <CGAL/Polyhedron_incremental_builder_3.h>
 
 #define KernelType float
 
 
-typedef CGAL::Cartesian<KernelType> Kernel;
+//typedef CGAL::Cartesian<KernelType> Kernel;
+typedef CGAL::Simple_cartesian<KernelType> Kernel;
 typedef Kernel::Vector_3 Vector_3;
 typedef Kernel::Point_3 Point_3;
 typedef CGAL::Polyhedron_3<Kernel> Polyhedron;
+
 
 typedef Polyhedron::Vertex Vertex;
 typedef Polyhedron::Vertex_iterator Vertex_iterator;

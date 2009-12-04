@@ -28,12 +28,15 @@ find_package(CGAL REQUIRED)
 if(CGAL_FOUND)
   include(${CGAL_USE_FILE})   
 endif()
+
+set(MeshCore_HEADERS MeshCore.h MeshBuilder.h MeshLoader.h)
+set(MeshCore_SOURCES MeshCore.cpp)
   
 include_directories(../Common)  
 include_directories(/usr/local/include)
 link_directories(/usr/local/lib)
 
 
-add_library(MeshCore STATIC MeshCore.cpp )
+add_library(MeshCore STATIC ${MeshCore_HEADERS} ${MeshCore_SOURCES})
 target_link_libraries(MeshCore ${Boost_LIBRARIES})
 
