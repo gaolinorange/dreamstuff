@@ -1,12 +1,11 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
-<<<<<<< HEAD:meshdeformer/src/Common/globals.hpp
-#define RUNNING_AT_TEST_MODE true
-=======
+
+
 //#define RUNNING_AT_TEST_MODE true
 #define RUNNING_AT_TEST_MODE false
->>>>>>> master:meshdeformer/src/Common/globals.hpp
+
 
 /*
 //Some facility for debugging, defined in global mode

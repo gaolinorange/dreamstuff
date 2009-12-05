@@ -17,10 +17,9 @@ void MainWindow::setupMenu()
    fileMenu->addAction(openAction);
    
    actSaveImage = new QAction(tr("&Save Image"),fileMenu);
-<<<<<<< HEAD:meshdeformer/src/MainWindow/main_window.cpp
-=======
-   actSaveImage->setShortcut(QKeySequence(Qt::CTRL,Qt::Key_S));
->>>>>>> master:meshdeformer/src/MainWindow/main_window.cpp
+
+   actSaveImage->setShortcut(QKeySequence(tr("Ctrl+S")));
+
 
    connect(actSaveImage,SIGNAL(triggered()),this,SLOT(fileSaveImage()));
    fileMenu->addAction(actSaveImage);

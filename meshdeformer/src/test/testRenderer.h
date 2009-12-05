@@ -35,7 +35,7 @@ TEST_F(RendererTest,testInit)
 }
 
 
-TEST_F(RenderTest,testEqual)
+TEST_F(RendererTest,testEqual)
 {
   
 
