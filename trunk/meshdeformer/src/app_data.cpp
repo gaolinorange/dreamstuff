@@ -75,3 +75,13 @@ void AppData::render()
     }
 }
 
+void AppData::printBoundingBox()
+{
+	if(pMesh){
+		BoundingBox box = pMesh->getBoundingBox();
+		QString message;
+		QTextStream(&message)<<"min(x,y,z): "<<box.d_min_x<<","<<box.d_min_y<<","<<box.d_min_z
+			<<" max(x,y,z): "<<box.d_max_x<<","<<box.d_max_y<<","<<box.d_max_z;
+		QOutputLogger::getInstance()->appendMessage(message);
+	}
+}

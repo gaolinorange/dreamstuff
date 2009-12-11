@@ -39,3 +39,25 @@ void MeshCore::render()
 			glEnd();
 	}
 }
+
+
+BoundingBox& MeshCore::getBoundingBox()
+{
+	BoundingBox box;
+	box.d_min_x = box.d_min_y = box.d_min_z = FLT_MAX;
+	box.d_max_x = box.d_max_y = box.d_max_z = -FLT_MAX;
+
+	//loop throught the vertices and foind the minimal & maximal
+	Point_iterator pPoint;
+	for(pPoint = points_begin(); pPoint != points_end(); pPoint++){
+		if((*pPoint)[0] < box.d_min_x)  box.d_min_x = (*pPoint)[0];
+		if((*pPoint)[0] > box.d_max_x) box.d_max_x = (*pPoint)[0];
+		if((*pPoint)[1] < box.d_min_y) box.d_min_y = (*pPoint)[1];
+		if((*pPoint)[1] > box.d_max_y) box.d_max_y = (*pPoint)[1];
+		if((*pPoint)[2] < box.d_min_z) box.d_min_z = (*pPoint)[2];
+		if((*pPoint)[2] > box.d_max_z) box.d_max_z = (*pPoint)[2];
+	}
+
+
+	return box;
+}

@@ -20,6 +20,7 @@ class AppData //: public QObject
   bool loadMesh(const QString& filename);
   void update();
   void render();
+  void printBoundingBox();
  private:
   MeshCore * pMesh;
 
