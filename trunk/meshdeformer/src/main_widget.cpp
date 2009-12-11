@@ -90,6 +90,7 @@ void MainWidget::paintGL()
   swapBuffers();
 }
 
+
 /*
 void MainWidget::wheelEvent(QWheelEvent* event)
 {
@@ -116,6 +117,7 @@ void MainWidget::wheelEvent(QWheelEvent* event)
 	event->ignore();
 }
 */
+
 
 void MainWidget::mousePressEvent(QMouseEvent * event)
 {
@@ -188,6 +190,7 @@ void MainWidget::mouseMoveEvent(QMouseEvent * event)
 	else
 		event->ignore();
 }
+
 
 void MainWidget::draw()
 {
