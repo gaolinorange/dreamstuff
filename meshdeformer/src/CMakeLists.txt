@@ -1,67 +1,67 @@
 #CMake file for project ROOT
 
-#PROJECT(MeshDeformer)
-
 cmake_minimum_required(VERSION 2.6)
-
-SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin )
-SET(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib )
-
-
-if(UNIX)
-  if(APPLE)
-    add_definitions(-D__APPLE__)
-    set(Platform "apple")
-  else(APPLE)
-    add_definitions(-D__LINUX__)
-    set(Platform "linux")
-  endif(APPLE)
-else(UNIX)
-  if(WIN32)
-    add_definitions(-D__WIN32__)
-    set(Platform "win32")
-  endif(WIN32)
-endif(UNIX)
-message("Platform is ${Platform}")
-
 
 find_package(Qt4 COMPONENTS QtGui QtCore QtOpenGL QtTest REQUIRED)
 set(QT_USE_QTOPENGL true)
 set(QT_USE_QTTEST true)
+
 include(${QT_USE_FILE})
 
-#find_package(BOOST REQUIRED)
 find_package(Boost)
 if(Boost_FOUND)
   include_directories(${Boost_INCLUDE_DIRS})
   link_directories(${Boost_LIBRARY_DIRS})
 endif()
 
-  
 
-#the MainWindow subcore
-include_directories(MainWindow)
+SET(MAINWINDOW_SOURCES
+	main_window.cpp 
+	main_widget.cpp 
+	app_data.cpp
+	QOutputLogger.cpp
+	)
+SET(MAINWINDOW_HEADERS
+	main_window.h 
+	main_widget.h 
+	app_data.h
+	QOutputLogger.hpp
+	)
+
+
+#warp the Q_OBJECT file
+qt4_wrap_cpp(MainWidget_MOC main_widget.h)
+qt4_wrap_cpp(MainWindow_MOC main_window.h)
+
+include_directories(Renderer)
 include_directories(Math)
+include_directories(Common)
+include_directories(MeshCore)
 
 
+if(UNIX)
+include_directories(/usr/local/include)
+link_directories(/usr/local/lib)
+endif(UNIX)
 
-ADD_SUBDIRECTORY(MainWindow)
-#the MeshCore subcore
-add_subdirectory(MeshCore)
+ADD_DEFINITIONS(${QT_DEFINITIONS})
 
-#the IO Plugin subcore
-add_subdirectory(IOPlugin)
-
-#the math subcore
-add_subdirectory(Math)
+add_subdirectory(MeshCore)#the MeshCore subcore
+add_subdirectory(Math)	#the math subcore
 add_subdirectory(Renderer)
 
-
-#add external link libraries
+#assimp importer module
+include_directories(../3rdparty/assimp/include)
 link_directories(../3rdparty/assimp/lib)
 
 
-add_executable(meshdeformer main.cpp )
-target_link_libraries(meshdeformer MainWindow MeshCore Renderer Math ${QT_LIBRARIES} )
+
+add_executable(meshdeformer main.cpp 
+	${MAINWINDOW_HEADERS} 
+	${MAINWINDOW_SOURCES} 
+	${MainWindow_MOC} 
+	${MainWidget_MOC}
+	)
+target_link_libraries(meshdeformer MeshCore Renderer Math ${QT_LIBRARIES} gtest gtest_main assimp)
 
 

@@ -8,7 +8,7 @@
 class CViewport;
 class CCamera;
 class CArcball;
-//#include "Viewport.hpp"
+
 
 enum PolygonMode{
 	PM_WIREFRAME=0,
@@ -21,8 +21,8 @@ class MainWidget : public QGLWidget
   Q_OBJECT
 public:
   MainWidget(QWidget * parent = 0,const QGLWidget * shareWidget = 0,Qt::WindowFlags flags = 0)
-    : QGLWidget(parent,shareWidget,flags)
-    {
+   : QGLWidget(parent,shareWidget,flags)
+   {
       pData =  new AppData();
 	  m_pArcball = 0;
 	  m_pCamera = 0;
@@ -35,7 +35,7 @@ public:
 	{
 	  delete pData; pData = 0;
 	}
-	  if(m_pViewport)
+  if(m_pViewport)
 		  delete m_pViewport;
 	  m_pViewport = 0;
 	  if(m_pCamera)
@@ -52,14 +52,15 @@ public:
   void resizeGL(int w,int h);
   void updateGL();
   void paintGL();
-
+  
 //  void wheelEvent(QWheelEvent* event);
+
   void mousePressEvent(QMouseEvent * event);
   void mouseReleaseEvent(QMouseEvent* event);
   void mouseMoveEvent(QMouseEvent* event);
-//  void mouseDoubleClickEvent(QMouseEvent * event);
+
   
- private:
+protected:
   void draw();
   void testDrawCube();
 public:
@@ -79,6 +80,7 @@ public:
   CArcball* m_pArcball;
   CViewport* m_pViewport;
   CCamera* m_pCamera;
+
   bool bArcballIsDragging;
   PolygonMode polygonMode;
 };
