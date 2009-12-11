@@ -52,7 +52,7 @@ add_subdirectory(Renderer)
 
 #assimp importer module
 include_directories(../3rdparty/assimp/include)
-link_directories(../3rdparty/assimp/lib)
+link_directories(../../3rdparty/assimp/lib)
 
 
 
