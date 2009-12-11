@@ -14,6 +14,7 @@ Add your content here.
 先熟悉ShowMesh的代码先了。
 之前看过一个利用OGRE与Qt来做地图编辑器的，好像叫ogrit,但是现在找不到了，晕。
 
+(2009-12-09: The Editor for Game creation is named Ogitor, it is a excellent tool.)
 
 = Details =
 
