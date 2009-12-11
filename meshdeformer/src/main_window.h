@@ -33,7 +33,7 @@ class MainWindow : public QMainWindow
   void setupLogger();
  protected:
 
-  private slots:
+private slots:
   void fileNew();
   void fileOpen();
   void fileSaveImage();
@@ -42,6 +42,7 @@ class MainWindow : public QMainWindow
   void viewWireFrame();
   void viewSolid();
   void helpAbout();
+  void infoPrintBoundingBox();
  private:
   MainWidget * mainWidget;
 
@@ -60,6 +61,9 @@ class MainWindow : public QMainWindow
   QAction* actViewSolid;
   
   QAction * aboutAction;
+
+  QMenu * infoMenu;
+  QAction* actInfoBoundingBox;
 
   QOutputLogger* logger;
 };

@@ -49,6 +49,12 @@ void MainWindow::setupMenu()
    helpMenu->addAction(aboutAction);
    mainMenuBar->addMenu(helpMenu);
 
+   infoMenu = new QMenu(tr("Info"),mainMenuBar);
+   actInfoBoundingBox = new QAction(tr("BoundingBox"),infoMenu);
+   connect(actInfoBoundingBox,SIGNAL(triggered()),this,SLOT(infoPrintBoundingBox()));
+   infoMenu->addAction(actInfoBoundingBox);
+   mainMenuBar->addMenu(infoMenu);
+
    setMenuBar(mainMenuBar);
 }
 
@@ -125,4 +131,13 @@ void MainWindow::viewSolid()
 {
 	if(mainWidget)
 		mainWidget->setPolygonMode(PM_SOLID);
+}
+
+
+void MainWindow::infoPrintBoundingBox()
+{
+	if(mainWidget){
+		mainWidget->GetAppData()->printBoundingBox();
+	}
+
 }
