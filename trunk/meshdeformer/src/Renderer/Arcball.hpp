@@ -47,6 +47,7 @@ public :
 
   // Data setting
   void Clear();
+  void Reset() { Clear(); }
   void Set(const double x, const double y, const double z, 
 	   const double r = 1.0f);
   void Set(CVector3d center, const double r = 1.0f);

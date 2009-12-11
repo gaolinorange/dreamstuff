@@ -6,7 +6,7 @@
 #include "Camera.hpp"
 #include "Arcball.hpp"
 #include "globals.hpp"
-
+#include <QtDebug>
 
 void MainWidget::initializeGL()
 {
@@ -191,6 +191,16 @@ void MainWidget::mouseMoveEvent(QMouseEvent * event)
 		event->ignore();
 }
 
+void MainWidget::mouseDoubleClickEvent(QMouseEvent* event)
+{
+	if(m_pArcball && event->button() == Qt::MidButton){
+		m_pArcball->Reset();
+		updateGL();
+		event->accept();
+	}
+	else
+		event->ignore();
+}
 
 void MainWidget::draw()
 {
@@ -198,8 +208,7 @@ void MainWidget::draw()
 		testDrawCube();
 	}
 	else{
-		if(pData)
-		{
+		if(pData){
 			pData->render();
 		}  
 	}
