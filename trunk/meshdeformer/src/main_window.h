@@ -43,6 +43,7 @@ private slots:
   void viewSolid();
   void helpAbout();
   void infoPrintBoundingBox();
+  void infoShowDebugInfo();
  private:
   MainWidget * mainWidget;
 
@@ -64,6 +65,7 @@ private slots:
 
   QMenu * infoMenu;
   QAction* actInfoBoundingBox;
+  QAction* actInfoShowDebugInfo;
 
   QOutputLogger* logger;
 };

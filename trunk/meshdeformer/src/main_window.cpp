@@ -53,6 +53,10 @@ void MainWindow::setupMenu()
    actInfoBoundingBox = new QAction(tr("BoundingBox"),infoMenu);
    connect(actInfoBoundingBox,SIGNAL(triggered()),this,SLOT(infoPrintBoundingBox()));
    infoMenu->addAction(actInfoBoundingBox);
+   actInfoShowDebugInfo = new QAction(tr("Debug Info"),infoMenu);
+   connect(actInfoShowDebugInfo,SIGNAL(triggered()),this,SLOT(infoShowDebugInfo()));
+   infoMenu->addAction(actInfoShowDebugInfo);
+				      
    mainMenuBar->addMenu(infoMenu);
 
    setMenuBar(mainMenuBar);
@@ -140,4 +144,11 @@ void MainWindow::infoPrintBoundingBox()
 		mainWidget->GetAppData()->printBoundingBox();
 	}
 
+}
+
+void MainWindow::infoShowDebugInfo()
+{
+  if(mainWidget){
+    mainWidget->printDebugInfo();
+  }
 }
