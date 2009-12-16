@@ -4,10 +4,7 @@
 #include <QGLWidget>
 #include <QtGui>
 #include "app_data.h"
-
-class CViewport;
-class CCamera;
-class CArcball;
+#include <QGLViewer/qglviewer.h>
 
 
 enum PolygonMode{
@@ -16,18 +13,18 @@ enum PolygonMode{
 	PM_POINT
 };
 
-class MainWidget : public QGLWidget
+//class MainWidget : public QGLWidget
+class MainWidget : public QGLViewer
 {
   Q_OBJECT
 public:
   MainWidget(QWidget * parent = 0,const QGLWidget * shareWidget = 0,Qt::WindowFlags flags = 0)
-   : QGLWidget(parent,shareWidget,flags)
+    //   : QGLWidget(parent,shareWidget,flags)
+    : QGLViewer(parent,shareWidget,flags)
    {
       pData =  new AppData();
-	  m_pArcball = 0;
-	  m_pCamera = 0;
-	  m_pViewport = 0;
-	  polygonMode = PM_WIREFRAME;
+      polygonMode = PM_WIREFRAME;
+      pCamera = new qglviewer::Camera();
   }
   ~MainWidget()
     {
@@ -35,15 +32,9 @@ public:
 	{
 	  delete pData; pData = 0;
 	}
-  if(m_pViewport)
-		  delete m_pViewport;
-	  m_pViewport = 0;
-	  if(m_pCamera)
-		  delete m_pCamera;
-	  m_pCamera = 0;
-	  if(m_pArcball)
-		  delete m_pArcball;
-	  m_pArcball = 0;
+      if(pCamera){
+	delete pCamera; pCamera = 0;
+      }
   }
 public:
 	void saveImage(const QString& filename);
@@ -52,14 +43,6 @@ public:
   void resizeGL(int w,int h);
   void updateGL();
   void paintGL();
-  
-//  void wheelEvent(QWheelEvent* event);
-
-  void mousePressEvent(QMouseEvent * event);
-  void mouseReleaseEvent(QMouseEvent* event);
-  void mouseMoveEvent(QMouseEvent* event);
-
-  void mouseDoubleClickEvent(QMouseEvent* event);
 protected:
   void draw();
   void testDrawCube();
@@ -74,14 +57,11 @@ public:
 	{
 		return pData;
 	}
+ public:
+	void printDebugInfo();
  private:
   AppData * pData;
-
-  CArcball* m_pArcball;
-  CViewport* m_pViewport;
-  CCamera* m_pCamera;
-
-  bool bArcballIsDragging;
+  qglviewer::Camera* pCamera;
   PolygonMode polygonMode;
 };
 

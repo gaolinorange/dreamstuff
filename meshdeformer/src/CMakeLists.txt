@@ -5,6 +5,7 @@ cmake_minimum_required(VERSION 2.6)
 find_package(Qt4 COMPONENTS QtGui QtCore QtOpenGL QtTest REQUIRED)
 set(QT_USE_QTOPENGL true)
 set(QT_USE_QTTEST true)
+set(QT_USE_QTXML true)
 
 include(${QT_USE_FILE})
 
@@ -33,11 +34,11 @@ SET(MAINWINDOW_HEADERS
 qt4_wrap_cpp(MainWidget_MOC main_widget.h)
 qt4_wrap_cpp(MainWindow_MOC main_window.h)
 
-include_directories(Renderer)
+#include_directories(Renderer)
 include_directories(Math)
 include_directories(Common)
 include_directories(MeshCore)
-
+include_directories(Camera)
 
 if(UNIX)
 include_directories(/usr/local/include)
@@ -48,11 +49,22 @@ ADD_DEFINITIONS(${QT_DEFINITIONS})
 
 add_subdirectory(MeshCore)#the MeshCore subcore
 add_subdirectory(Math)	#the math subcore
-add_subdirectory(Renderer)
+#add_subdirectory(Renderer)
+add_subdirectory(Camera)
 
 #assimp importer module
 include_directories(../3rdparty/assimp/include)
 link_directories(../../3rdparty/assimp/lib)
+
+#for libQGLViewer
+if(APPLE)
+include_directories(/usr/local/include)
+link_directories(/usr/local/lib)
+endif(APPLE)
+if(LINUX)
+  include_directories(/usr/include)
+  link_directories(/usr/lib)
+endif(LINUX)
 
 
 
@@ -62,6 +74,6 @@ add_executable(meshdeformer main.cpp
 	${MainWindow_MOC} 
 	${MainWidget_MOC}
 	)
-target_link_libraries(meshdeformer MeshCore Renderer Math ${QT_LIBRARIES} gtest gtest_main assimp)
+target_link_libraries(meshdeformer MeshCore Camera Math ${QT_LIBRARIES} gtest gtest_main assimp QGLViewer)
 
 
