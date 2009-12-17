@@ -38,19 +38,13 @@ qt4_wrap_cpp(MainWindow_MOC main_window.h)
 include_directories(Math)
 include_directories(Common)
 include_directories(MeshCore)
-include_directories(Camera)
 
-if(UNIX)
-include_directories(/usr/local/include)
-link_directories(/usr/local/lib)
-endif(UNIX)
 
 ADD_DEFINITIONS(${QT_DEFINITIONS})
 
 add_subdirectory(MeshCore)#the MeshCore subcore
 add_subdirectory(Math)	#the math subcore
 #add_subdirectory(Renderer)
-add_subdirectory(Camera)
 
 #assimp importer module
 include_directories(../3rdparty/assimp/include)
@@ -65,7 +59,10 @@ if(LINUX)
   include_directories(/usr/include)
   link_directories(/usr/lib)
 endif(LINUX)
-
+if(WIN32)
+include_directories("D:\DevTools")
+link_directories("D:\DevTools\QGLViewer\release")
+endif(WIN32)
 
 
 add_executable(meshdeformer main.cpp 
@@ -74,6 +71,6 @@ add_executable(meshdeformer main.cpp
 	${MainWindow_MOC} 
 	${MainWidget_MOC}
 	)
-target_link_libraries(meshdeformer MeshCore Camera Math ${QT_LIBRARIES} gtest gtest_main assimp QGLViewer)
+target_link_libraries(meshdeformer MeshCore Math ${QT_LIBRARIES} gtest gtest_main assimp QGLViewer)
 
 
