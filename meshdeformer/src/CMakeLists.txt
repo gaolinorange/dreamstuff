@@ -71,6 +71,9 @@ add_executable(meshdeformer main.cpp
 	${MainWindow_MOC} 
 	${MainWidget_MOC}
 	)
+if(WIN32)
+  target_link_libraries(meshdeformer MeshCore Math ${QT_LIBRARIES} gtest gtest_main assimp QGLViewer2)
+elseif(WIN32)
 target_link_libraries(meshdeformer MeshCore Math ${QT_LIBRARIES} gtest gtest_main assimp QGLViewer)
-
+endif(WIN32)
 
