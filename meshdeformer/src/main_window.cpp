@@ -3,6 +3,7 @@
 #include <QtGui>
 #include <QApplication>
 #include "QOutputLogger.hpp"
+#include "globals.hpp"
 
 void MainWindow::setupMenu()
 {
@@ -56,6 +57,9 @@ void MainWindow::setupMenu()
    actInfoShowDebugInfo = new QAction(tr("Debug Info"),infoMenu);
    connect(actInfoShowDebugInfo,SIGNAL(triggered()),this,SLOT(infoShowDebugInfo()));
    infoMenu->addAction(actInfoShowDebugInfo);
+   actInfoToggleRunningMode = new QAction(tr("ToggleRunningMode"),infoMenu);
+   connect(actInfoToggleRunningMode,SIGNAL(triggered()),this,SLOT(infoToggleRunningMode()));
+   infoMenu->addAction(actInfoToggleRunningMode);
 				      
    mainMenuBar->addMenu(infoMenu);
 
@@ -90,7 +94,7 @@ void MainWindow::fileOpen()
 		QString(tr("../*.*")),
 		QString(tr("Mesh files(*.off,*.obj,*.ply)"))
 		);
-	mainWidget->GetAppData()->loadMesh(filename);
+	mainWidget->reloadMesh(filename);
 }
 
 void MainWindow::fileSaveImage()
@@ -151,4 +155,9 @@ void MainWindow::infoShowDebugInfo()
   if(mainWidget){
     mainWidget->printDebugInfo();
   }
+}
+
+void MainWindow::infoToggleRunningMode()
+{
+  RUNNING_AT_TEST_MODE = !RUNNING_AT_TEST_MODE; 
 }

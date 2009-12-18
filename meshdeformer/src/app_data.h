@@ -7,7 +7,7 @@
 #include <QtGui>
 
 
-class MeshCore;
+#include "MeshCore.h"
 
 
 class AppData //: public QObject
@@ -21,6 +21,7 @@ class AppData //: public QObject
   void update();
   void render();
   void printBoundingBox();
+  BoundingBox& getBoundingBox();
  private:
   MeshCore * pMesh;
 

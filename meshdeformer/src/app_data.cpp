@@ -85,3 +85,10 @@ void AppData::printBoundingBox()
 		QOutputLogger::getInstance()->appendMessage(message);
 	}
 }
+
+BoundingBox& AppData::getBoundingBox()
+{
+	if(pMesh){
+		return pMesh->getBoundingBox();
+	}
+}
