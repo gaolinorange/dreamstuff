@@ -91,8 +91,8 @@ void MainWindow::fileOpen()
 {
 	QString filename = QFileDialog::getOpenFileName(this,
 		QString(tr("Open File")),
-		QString(tr("../*.*")),
-		QString(tr("Mesh files(*.off,*.obj,*.ply)"))
+		QString(tr(".")),
+		QString(tr("Mesh files(*.off *.obj *.ply *)"))
 		);
 	mainWidget->reloadMesh(filename);
 }
