@@ -38,6 +38,7 @@ public:
   }
 public:
 	void saveImage(const QString& filename);
+	void reloadMesh(QString& filename);
  protected:
   void initializeGL();
   void resizeGL(int w,int h);

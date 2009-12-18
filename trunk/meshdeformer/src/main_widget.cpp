@@ -8,7 +8,6 @@
 
 void MainWidget::initializeGL()
 {
-  printf("entering initializeGL.. \n");
   qglClearColor(Qt::black);
   glShadeModel(GL_FLAT);
   glEnable(GL_DEPTH_TEST);
@@ -23,7 +22,7 @@ void MainWidget::initializeGL()
   pCamera->setUpVector(qglviewer::Vec(0,1,0));
   setCamera(pCamera);
   
-  setSceneRadius(10.0);
+  setSceneRadius(1.0);
   setSceneCenter(qglviewer::Vec(0,0,0));
   camera()->showEntireScene();
 
@@ -32,7 +31,6 @@ void MainWidget::initializeGL()
 
 void MainWidget::resizeGL(int w,int h)
 {
-  printf("resizeGL \n");
   camera()->setAspectRatio(float(w)/h);
   camera()->setScreenWidthAndHeight(w,h);
 
@@ -41,7 +39,6 @@ void MainWidget::resizeGL(int w,int h)
 
 void MainWidget::updateGL()
 {
-  printf("updateGL \n");
   paintGL();
   
   QGLViewer::updateGL();
@@ -49,8 +46,9 @@ void MainWidget::updateGL()
 
 void MainWidget::paintGL()
 {
-    printf("paintGL \n");
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  glDisable(GL_LIGHTING); //the lighting of QGLViewer may not you wanted.
+
   switch(polygonMode){
 	  case PM_WIREFRAME:
 		  glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
@@ -75,9 +73,6 @@ void MainWidget::paintGL()
 
 void MainWidget::draw()
 {
-  printf("draw \n");
-  testDrawCube();
-#if 0
   if(true ==RUNNING_AT_TEST_MODE ){
 		testDrawCube();
 	}
@@ -86,7 +81,21 @@ void MainWidget::draw()
 			pData->render();
 		}  
 	}
-#endif
+}
+
+void MainWidget::reloadMesh(QString& filename)
+{
+	pData->loadMesh(filename);
+	BoundingBox box = pData->getBoundingBox();
+	QString message;
+	QTextStream(&message)<<"retrived bounding box: "<<box.d_min_x<<","<<box.d_min_y<<","<<box.d_min_z
+		<<"    >> "<<box.d_max_x<<","<<box.d_max_y<<box.d_max_z;
+	QOutputLogger::getInstance()->appendMessage(message);
+
+	pCamera->setSceneBoundingBox(qglviewer::Vec(box.d_min_x,box.d_min_y,box.d_min_z),
+		qglviewer::Vec(box.d_max_x,box.d_max_y,box.d_max_z));
+	pCamera->showEntireScene();
+	updateGL();
 }
 
 void MainWidget::testDrawCube()

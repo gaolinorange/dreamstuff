@@ -1,3 +1,4 @@
+
 #CMake file for project ROOT
 
 cmake_minimum_required(VERSION 2.6)
@@ -60,8 +61,8 @@ if(LINUX)
   link_directories(/usr/lib)
 endif(LINUX)
 if(WIN32)
-include_directories("D:\DevTools")
-link_directories("D:\DevTools\QGLViewer\release")
+include_directories("D:/DevTools")
+link_directories("D:/DevTools/QGLViewer/release")
 endif(WIN32)
 
 
@@ -72,8 +73,11 @@ add_executable(meshdeformer main.cpp
 	${MainWidget_MOC}
 	)
 if(WIN32)
-  target_link_libraries(meshdeformer MeshCore Math ${QT_LIBRARIES} gtest gtest_main assimp QGLViewer2)
-elseif(WIN32)
-target_link_libraries(meshdeformer MeshCore Math ${QT_LIBRARIES} gtest gtest_main assimp QGLViewer)
+target_link_libraries(meshdeformer MeshCore Math ${QT_LIBRARIES} gtest gtest_main assimp QGLViewer2)
 endif(WIN32)
+
+if(UNIX)
+  target_link_libraries(meshdeformer MeshCore Math ${QT_LIBRARIES} gtest gtest_main assimp QGLViewer)
+endif(UNIX)
+
 

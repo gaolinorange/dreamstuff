@@ -4,7 +4,7 @@
 
 
 //#define RUNNING_AT_TEST_MODE true
-#define RUNNING_AT_TEST_MODE false
+extern bool RUNNING_AT_TEST_MODE;
 
 
 /*

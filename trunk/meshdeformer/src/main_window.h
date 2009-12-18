@@ -44,6 +44,7 @@ private slots:
   void helpAbout();
   void infoPrintBoundingBox();
   void infoShowDebugInfo();
+  void infoToggleRunningMode();
  private:
   MainWidget * mainWidget;
 
@@ -66,7 +67,8 @@ private slots:
   QMenu * infoMenu;
   QAction* actInfoBoundingBox;
   QAction* actInfoShowDebugInfo;
-
+  QAction* actInfoToggleRunningMode;
+  
   QOutputLogger* logger;
 };
 

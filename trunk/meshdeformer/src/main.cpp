@@ -5,6 +5,7 @@
 
 #include "test/test.h" //the test cases
 
+bool RUNNING_AT_TEST_MODE = false;
 
 int main(int argc,char ** argv)
 {
