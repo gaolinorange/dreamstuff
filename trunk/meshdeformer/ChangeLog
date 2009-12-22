@@ -1,2 +1,5 @@
-2009-11-26: change the total directory layout of mesh_deformer project
+ChangeLog:
+	
+	2009-12-20: use libQGLViewer to view the models
+	2009-11-26: change the total directory layout of mesh_deformer project
 	
