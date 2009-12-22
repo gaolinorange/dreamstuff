@@ -1,3 +1,8 @@
+1. use DevIL for imaging unit testing
+2. python script support for automatic testing
+3. with the DevIL generated image, convert the sequences to video. or parsed
+the stored script,then convert a video for later use.
+
 
 To Setup A Render for common use
 
