@@ -17,10 +17,16 @@
     to successfully compile the sources, you should have Qt4,boost,CGAL installed
 
 2.2 compiled 3rdparty libraries
-    2.2.1 assimp
+    2.2.1 assimp      
       I use assimp to import differ file formats.
       ref: assimp.sourceforge.net
-    2.2.2
+    2.2.2 libQGLViewer
+    	  I use libQGLViewer to ease the development of render and manipulator
+	  ref. www.libqglviewer.com
+    2.2.3 CGAL
+    	  CGAL is used to store the internal structure of the mesh
+    2.2.4 
+	  
 
 2.3 recompiled 3rdparty libraries
 
