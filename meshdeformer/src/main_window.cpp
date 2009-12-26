@@ -4,6 +4,8 @@
 #include <QApplication>
 #include "QOutputLogger.hpp"
 #include "globals.hpp"
+#include "ui/AboutDialog.hpp"
+
 
 void MainWindow::setupMenu()
 {
@@ -114,7 +116,8 @@ void MainWindow::fileExit()
 
 void MainWindow::helpAbout()
 {
-  qApp->aboutQt();
+  AboutDialog* aboutDialog = new AboutDialog(this);
+  aboutDialog->exec();
 }
 
 void MainWindow::viewLog()
