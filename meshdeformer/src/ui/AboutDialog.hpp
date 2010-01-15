@@ -18,9 +18,9 @@ public:
   void setVersion(int main,int major,int minor)
   {
     QString aboutString;
-    QTextStream(&aboutString)<<"QGenUI: version: "<<main<<"."<<major<<"."<<minor<<"\n";
+    QTextStream(&aboutString)<<"\t MeshDeformer: version: "<<main<<"."<<major<<"."<<minor<<"\n";
     QDate date = QDate::currentDate();
-    QTextStream(&aboutString)<<"\t Build Date: "<<date.year()<<":"<<date.month()<<":"<<date.day()<<"\n";
+    QTextStream(&aboutString)<<"\t\t Build Date: "<<date.year()<<":"<<date.month()<<":"<<date.day()<<"\n";
 
     labelAbout->setText(aboutString);
   }
