@@ -11,13 +11,15 @@ void MainWindow::setupMenu()
 {
    mainMenuBar = new QMenuBar(this);
    fileMenu = new QMenu(tr("&File"),mainMenuBar);
-   newAction = new QAction(tr("&New"),fileMenu);
-   connect(newAction,SIGNAL(triggered()),this,SLOT(fileNew()));
-   fileMenu->addAction(newAction);
    
    openAction = new QAction(tr("&Open"),fileMenu);
    connect(openAction,SIGNAL(triggered()),this,SLOT(fileOpen()));
    fileMenu->addAction(openAction);
+
+   actSave = new QAction(tr("&Save"),fileMenu);
+   connect(actSave,SIGNAL(triggered()),this,SLOT(fileSave()));
+   fileMenu->addAction(actSave);
+
    
    actSaveImage = new QAction(tr("&Save Image"),fileMenu);
 
@@ -41,10 +43,16 @@ void MainWindow::setupMenu()
    actViewWireframe = new QAction(tr("&WireFrame"),viewMenu);
    connect(actViewWireframe,SIGNAL(triggered()),this,SLOT(viewWireFrame()));
    viewMenu->addAction(actViewWireframe);
-   actViewSolid = new QAction(tr("&Solid"),viewMenu);
-   connect(actViewSolid,SIGNAL(triggered()),this,SLOT(viewSolid()));
-   viewMenu->addAction(actViewSolid);
+
+   actViewSolidFlat = new QAction(tr("&Solid Flat"),viewMenu);
+   connect(actViewSolidFlat,SIGNAL(triggered()),this,SLOT(viewSolidFlat()));
+   viewMenu->addAction(actViewSolidFlat);
+   
+   actViewSolidSmooth = new QAction(tr("&Solid Smooth"),viewMenu);
+   connect(actViewSolidSmooth,SIGNAL(triggered()),this,SLOT(viewSolidSmooth()));
+   viewMenu->addAction(actViewSolidSmooth);
    mainMenuBar->addMenu(viewMenu);
+   
 
    helpMenu = new QMenu(tr("&Help"),mainMenuBar);
    aboutAction = new QAction(tr("&About"),helpMenu);
@@ -71,7 +79,6 @@ void MainWindow::setupMenu()
 void MainWindow::setupToolBar()
 {
   QToolBar * toolbar = new QToolBar(this);
-  toolbar->addAction(newAction);
   toolbar->addAction(openAction);
   toolbar->addAction(aboutAction);
   addToolBar(toolbar);
@@ -85,8 +92,10 @@ void MainWindow::setupLogger()
 	QOutputLogger::getInstance()->setVisible(false);
 }
 
-void MainWindow::fileNew()
+void MainWindow::fileSave()
 {
+  QOutputLogger::getInstance()->appendMessage(QString(tr("Save mesh. TODO ")));
+  
 }
 
 void MainWindow::fileOpen()
@@ -138,10 +147,16 @@ void MainWindow::viewWireFrame()
 	  }
 }
 
-void MainWindow::viewSolid()
+void MainWindow::viewSolidFlat()
 {
 	if(mainWidget)
-		mainWidget->setPolygonMode(PM_SOLID);
+		mainWidget->setPolygonMode(PM_SOLID_FLAT);
+}
+
+void MainWindow::viewSolidSmooth()
+{
+  if(mainWidget)
+    mainWidget->setPolygonMode(PM_SOLID_SMOOTH);
 }
 
 

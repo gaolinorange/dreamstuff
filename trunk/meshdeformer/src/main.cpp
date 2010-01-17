@@ -13,7 +13,7 @@ int main(int argc,char ** argv)
 
   MainWindow * mainWindow = new MainWindow();
   mainWindow->resize(800,600);
-  mainWindow->show();
+  mainWindow->showMaximized();
 
   ::testing::InitGoogleTest(&argc,argv);
   RUN_ALL_TESTS();

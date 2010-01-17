@@ -8,9 +8,11 @@
 
 
 enum PolygonMode{
-	PM_WIREFRAME=0,
-	PM_SOLID,
-	PM_POINT
+	PM_WIREFRAME=0x01,
+	PM_SOLID_FLAT=0x02,
+	PM_SOLID_SMOOTH=0x04,
+	
+	PM_POINT=0x08
 };
 
 //class MainWidget : public QGLWidget
