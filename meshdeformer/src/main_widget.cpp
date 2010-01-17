@@ -11,7 +11,8 @@ void MainWidget::initializeGL()
   qglClearColor(Qt::black);
   glShadeModel(GL_FLAT);
   glEnable(GL_DEPTH_TEST);
-  glEnable(GL_CULL_FACE); 
+  glEnable(GL_CULL_FACE);
+  glCullFace(GL_BACK);
   glDisable(GL_LIGHTING);
 
   //setup render related class
@@ -53,9 +54,14 @@ void MainWidget::paintGL()
 	  case PM_WIREFRAME:
 		  glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
 		  break;
-	  case PM_SOLID:
-		  glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
-		  break;
+	  case PM_SOLID_SMOOTH:
+	    glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
+	    glShadeModel(GL_SMOOTH);
+	    break;
+  case PM_SOLID_FLAT:
+    glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
+    glShadeModel(GL_FLAT);
+    break;
 	  case PM_POINT:
 		  glPolygonMode(GL_FRONT_AND_BACK,GL_POINT);
 		  break;

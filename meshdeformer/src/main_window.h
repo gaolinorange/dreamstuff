@@ -34,13 +34,14 @@ class MainWindow : public QMainWindow
  protected:
 
 private slots:
-  void fileNew();
   void fileOpen();
+  void fileSave();
   void fileSaveImage();
   void fileExit();
   void viewLog();
   void viewWireFrame();
-  void viewSolid();
+  void viewSolidFlat();
+  void viewSolidSmooth();
   void helpAbout();
   void infoPrintBoundingBox();
   void infoShowDebugInfo();
@@ -53,14 +54,15 @@ private slots:
   QMenu * viewMenu;
   QMenu * helpMenu;
 
-  QAction * newAction;
+  QAction * actSave;
   QAction * openAction;
   QAction* actSaveImage;
   QAction * exitAction;
 
   QAction* actViewLog;
   QAction* actViewWireframe;
-  QAction* actViewSolid;
+  QAction* actViewSolidFlat;
+  QAction* actViewSolidSmooth;
   
   QAction * aboutAction;
 
