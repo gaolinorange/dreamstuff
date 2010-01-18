@@ -1,17 +1,8 @@
 Add some links that maybe useful.
 
-= Introduction =
-
-Add your content here.
 
 
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
-
-
-
-PythonQt: http://pythonqt.sourceforge.net/
+TODO: 1. Add the Scriptable python console in the application, it's useful for interactive
+programming. Objective: expore the data in the app to python console, and use numpy&scipy to
+dynamically compute the numerical problem, and then inject the output to the application for 
+later use. Useful Link:  PythonQt: http://pythonqt.sourceforge.net/
