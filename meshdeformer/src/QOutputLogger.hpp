@@ -1,19 +1,26 @@
+/**
+   MeshDeformer
+   An experimental environment for mesh deformation
+   author: jingwenlai@163.com
+   links: blog.csdn.net/jingwenlai_scut
+ */
+
 #ifndef MESHDEFORMER_COMMON_QOUTPUTLOGGER_H
 #define MESHDEFORMER_COMMON_QOUTPUTLOGGER_H
 
 #include <QListWidget>
 #include <QDockWidget>
 
+/**
+   QOutputLogger
+   @brief: Logger for displaying messages
+   @details: an singleton instance of logger
+ */
 class QOutputLogger : public QDockWidget
 {
 public:
   static QOutputLogger* getInstance()
   {
-    /*if(NULL == logger)
-      {
-	logger = new QOutputLogger();
-      }
-	  */
 	  Q_ASSERT(logger != NULL);
 	  return logger;
   }
@@ -30,7 +37,12 @@ public:
   {
 	  delete listWidget; listWidget = 0;
   }
+
 public:
+  /**
+     appendMessage:
+     @param: message, the message append to the logger
+   */
 	void appendMessage(const QString& message)
 	{
 		listWidget->addItem(message);

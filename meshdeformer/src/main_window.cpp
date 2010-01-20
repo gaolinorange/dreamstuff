@@ -1,3 +1,4 @@
+
 #include "main_window.h"
 #include <QToolBar>
 #include <QtGui>

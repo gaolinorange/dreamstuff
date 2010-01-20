@@ -6,7 +6,7 @@
 #include "testMeshCore.h"
 #include "testLog.h"
 #include "testHelper.h"
-#include "testRenderer.h"
+//#include "testRenderer.h"
 
 
 
