@@ -2,7 +2,7 @@
 #define MESHDEFORMER_TEST_TESTHELPER_H
 
 
-#include "../Helper/Helper.hpp"
+#include "Helper/Helper.hpp"
 
 #include <gtest/gtest.h>
 

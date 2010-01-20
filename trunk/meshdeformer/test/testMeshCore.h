@@ -1,4 +1,4 @@
-#include "../MeshCore/MeshCore.h"
+#include "MeshCore/MeshCore.h"
 #include <fstream>
 #include <gtest/gtest.h>
 

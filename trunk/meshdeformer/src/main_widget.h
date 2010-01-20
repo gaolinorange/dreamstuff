@@ -1,5 +1,12 @@
-#ifndef MAINWIDGET_H
-#define MAINWIDGET_H
+/**
+   Mesh Deformer
+   An experimental environment for mesh deformation
+   @author: jingwenlai@163.com
+   @website: blog.csdn.net/jingwenlai_scut
+*/
+
+#ifndef MESHDEFORMER_MAINWIDGET_H
+#define MESHDEFORMER_MAINWIDGET_H
 
 #include <QGLWidget>
 #include <QtGui>
@@ -15,13 +22,17 @@ enum PolygonMode{
 	PM_POINT=0x08
 };
 
-//class MainWidget : public QGLWidget
+/**
+   MainWidget
+   @brief: The Main displaying widget for displaying OpenGL Views
+   @details: inherite the QGLViewer, a part of libQGLViewer library,
+   to make the creation of Rendering more easy
+ */
 class MainWidget : public QGLViewer
 {
   Q_OBJECT
 public:
   MainWidget(QWidget * parent = 0,const QGLWidget * shareWidget = 0,Qt::WindowFlags flags = 0)
-    //   : QGLWidget(parent,shareWidget,flags)
     : QGLViewer(parent,shareWidget,flags)
    {
       pData =  new AppData();
@@ -39,7 +50,15 @@ public:
       }
   }
 public:
+  /**
+     save the rendered view to an Image
+   */
 	void saveImage(const QString& filename);
+	/**
+	   load a mesh
+	   @param: filename, the filename of the mesh
+	   @detailed: currently, I use assimp library to load the mesh.
+	 */
 	void reloadMesh(QString& filename);
  protected:
   void initializeGL();
@@ -56,6 +75,9 @@ public:
 		updateGL();
 	}
 public:
+	/**
+	   AppData is the model part of MVC design pattern
+	 */
 	AppData* GetAppData()
 	{
 		return pData;

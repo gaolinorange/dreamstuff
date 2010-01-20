@@ -2,12 +2,13 @@
    testRenderer:
    use the pre-saved file for comparison.
    in RUNNING_AT_TEST_MODE, store the image and compare it with pre-saved image file.
+   @todo: currently , I have no good idea to test the rendered results,
+   maybe by comparing the pixels of images by DevIL
 */
 #ifndef TEST_RENDERER_H
 #define TEST_RENDERER_H
 
 #include <gtest/gtest.h>
-#include <QtTest>
 #include <QtGui>
 
 class RendererTest: public ::testing::Test

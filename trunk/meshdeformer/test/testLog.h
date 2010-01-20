@@ -1,4 +1,4 @@
-#include "../Common/Log.hpp"
+#include "Common/Log.hpp"
 
 #include <gtest/gtest.h>
 
@@ -9,7 +9,7 @@ TEST(LogTest,testInit)
 
 TEST(LogTest,testLogString)
 {
-  Log::getInstance()->logString("testLogString");
+  //  Log::getInstance()->logString("testLogString");
 }
 
 TEST(LogTest,testPrintf)

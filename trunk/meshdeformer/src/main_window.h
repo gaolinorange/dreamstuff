@@ -1,5 +1,12 @@
-#ifndef APPWINDOW_H
-#define APPWINDOW_H
+/**
+   Mesh Deformer
+   An experimental environment for mesh deformation
+   @authro: jingwenlai@163.com
+   @website: blog.csdn.net/jingwenlai_scut
+ */
+
+#ifndef MESHDEFORMER_MAINWINDOW_H
+#define MESHDEFORMER_MAINWINDOW_H
 
 #include <QMainWindow>
 #include <QAction>
@@ -10,6 +17,10 @@
 
 class QOutputLogger;
 
+/**
+   MainWindow:
+   @brief: The MainWindow of the application
+ */
 class MainWindow : public QMainWindow
 {
   Q_OBJECT
@@ -47,25 +58,26 @@ private slots:
   void infoShowDebugInfo();
   void infoToggleRunningMode();
  private:
+  //The main displaying widget
   MainWidget * mainWidget;
 
   QMenuBar * mainMenuBar;
+  //File Menu
   QMenu * fileMenu;
-  QMenu * viewMenu;
-  QMenu * helpMenu;
-
-  QAction * actSave;
   QAction * openAction;
+  QAction * actSave;
   QAction* actSaveImage;
   QAction * exitAction;
-
+  //View Menu
+  QMenu * viewMenu;
   QAction* actViewLog;
   QAction* actViewWireframe;
   QAction* actViewSolidFlat;
   QAction* actViewSolidSmooth;
-  
+  //Help Menu
+  QMenu * helpMenu;  
   QAction * aboutAction;
-
+  //Info Menu(some extra and tmp debug message)
   QMenu * infoMenu;
   QAction* actInfoBoundingBox;
   QAction* actInfoShowDebugInfo;
