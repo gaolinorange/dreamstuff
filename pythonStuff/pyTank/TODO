@@ -1,0 +1,6 @@
+step1: map array and map displaying
+       step1.1: the Surface and Sprite difference
+       step1.2: Performance
+step2: tank moving
+step3: collision detection
+step4: the main loop and rendering
