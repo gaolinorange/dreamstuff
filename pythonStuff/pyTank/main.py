@@ -29,13 +29,14 @@ class TankGame(object):
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
-            self.tank_sprites.draw(self.screen)
+            #self.tank_sprites.draw(self.screen)
 	    self.screen.blit(self.map.map_surface,(0,0))
+	    self.screen.blit(self.tank.image,(0,0))
             pygame.display.flip()
             
     def loadSprites(self):
         self.tank = Tank()
-	self.map = Map(self.width,self.height,32,32)
+	self.map = Map(self.height,self.height,32,32)
 	"""currently it is tank_sprites,later, you should decouple these"""
 	self.tank_sprites = pygame.sprite.RenderPlain((self.tank))
         
