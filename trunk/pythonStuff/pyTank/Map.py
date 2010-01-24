@@ -57,15 +57,17 @@ class Map(pygame.sprite.Sprite):
 		elif(self.map_data[i][j] == 1):
 		    blit_image = self.wall_image
 		elif(self.map_data[i][j] == 2):
-		    blit_image = self.steal_image;
+		    blit_image = self.steal_image
 		elif(self.map_data[i][j] == 3):
-		    blit_image = self.water_image;
+		    blit_image = self.water_image
 		elif(self.map_data[i][j] == 4):
-		    blit_image = self.water2_image;
+		    blit_image = self.water2_image
 		elif(self.map_data[i][j] == 5):
-		    blit_image = self.grass_image;
+		    blit_image = self.grass_image
 		elif(self.map_data[i][j] == 6):
-		    blit_image = self.edge_image;
+		    blit_image = self.edge_image
+		else:
+		    print "did not define this type of element"
 		
 		map_surface.blit(blit_image,pos)
 		
