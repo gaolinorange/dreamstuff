@@ -24,7 +24,8 @@ class Map(pygame.sprite.Sprite):
 	for i in range(self.row_num):
 	    self.map_data.append([])
 	    for j in range(self.col_num):
-		self.map_data[i].append((i+j)%6) #the magic number 6 is the number of map elements
+		self.map_data[i].append((i+j)%7) #the magic number 6 is the number of map elements,and the '0' is the default background
+	print self.map_data
 				
 
     def loadSprites(self):
@@ -44,30 +45,37 @@ class Map(pygame.sprite.Sprite):
 	genreate map surface by using blit
 	"""
 	map_surface = pygame.Surface((self.width,self.height))
-	
-	blit_image = self.wall_image #the default blit image
+	background_tile_image = pygame.Surface((self.element_width,self.element_height))
+	background_tile_image.fill((0,0,0))
+
+	blit_image = background_tile_image #the default blit image
 	for i in range(self.row_num):
 	    for j in range(self.col_num):
 		pos = (i*self.element_width,j*self.element_height)
 		if(self.map_data[i][j] == 0):
-		    blit_image = self.wall_image
+		    blit_image = background_tile_image
 		elif(self.map_data[i][j] == 1):
-		    blit_image = self.steal_image;
+		    blit_image = self.wall_image
 		elif(self.map_data[i][j] == 2):
-		    blit_image = self.water_image;
+		    blit_image = self.steal_image;
 		elif(self.map_data[i][j] == 3):
-		    blit_image = self.water2_image;
+		    blit_image = self.water_image;
 		elif(self.map_data[i][j] == 4):
-		    blit_image = self.grass_image;
+		    blit_image = self.water2_image;
 		elif(self.map_data[i][j] == 5):
+		    blit_image = self.grass_image;
+		elif(self.map_data[i][j] == 6):
 		    blit_image = self.edge_image;
 		
 		map_surface.blit(blit_image,pos)
+		
 	return map_surface
 
 	
     def printMap(self):
 	""" Test Method for print the map data"""
+	print "map row num: ",self.row_num
+	print "map col num: ",self.col_num
 	print self.map_data
 
 
