@@ -35,15 +35,32 @@ class TankGame(object):
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
+
+	    pressed_keys = pygame.key.get_pressed()
+
+	    if pressed_keys[K_UP]:
+		self.tank.move_up()
+	    elif pressed_keys[K_DOWN]:
+		self.tank.move_down()
+	    elif pressed_keys[K_RIGHT]:
+		self.tank.move_right()
+	    elif pressed_keys[K_LEFT]:
+		self.tank.move_left()
+
+	    
+	    self.screen.blit(self.tank.image,(self.tank.pos.x,self.tank.pos.y))
+	    
+		    
             #self.tank_sprites.draw(self.screen)
 #	    self.screen.blit(self.map.map_surface,(0,0))
 #	    self.screen.blit(self.tank.image,(0,0))
 
+
 	    time_passed = clock.tick(50)
 
 # Test exploration 
-	    self.exploration.updateAnimation()
-	    self.screen.blit(self.exploration.image,(0,0),self.exploration.render_area)
+#	    self.exploration.updateAnimation()
+#	    self.screen.blit(self.exploration.image,(0,0),self.exploration.render_area)
 
 #update and render
 #	    self.exploration.updateAnimation()
