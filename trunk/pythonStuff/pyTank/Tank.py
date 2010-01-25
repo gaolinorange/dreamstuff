@@ -8,7 +8,11 @@ class Tank(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.image,self.rect = load_image('tank.png',-1)
         self.lives = 3
-	
+	self.pos = Vector2(0,0)
 
         
-        
+    def move_up(self):
+	"""
+	"""
+	
+
