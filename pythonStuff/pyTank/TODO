@@ -4,3 +4,7 @@ step1: map array and map displaying
 step2: tank moving
 step3: collision detection
 step4: the main loop and rendering
+ 
+step5: AI
+	1 thought: A* path finding , one enemy want to go to desitnation=> all enemies going to desination. it will be funny to deal with such a hard game. :)
+
