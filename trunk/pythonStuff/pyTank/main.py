@@ -39,6 +39,16 @@ class TankGame(object):
 
 	    pressed_keys = pygame.key.get_pressed()
 
+#test trigger exploration
+	    if pressed_keys[K_x]:
+		self.exploration.trigger_animate()
+
+	    # for testing convinence
+	    if pressed_keys[K_ESCAPE]:
+		sys.exit()
+	    
+		
+
 #draw the background first
 	    self.screen.blit(self.map.map_surface,(0,0))
 

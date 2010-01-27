@@ -9,6 +9,7 @@ class Exploration(pygame.sprite.Sprite):
         """
 	pygame.sprite.Sprite.__init__(self)
 	self.image,self.rect = load_image('explore.png',-1)
+	self.boom_sound = load_sound('boom.wav')
 
 	self.updateIndex = 0
 	self.element_width = 32
@@ -22,6 +23,7 @@ class Exploration(pygame.sprite.Sprite):
     def trigger_animate(self):
         self.animate_end = False
         self.updateIndex = 0
+	self.boom_sound.play()
         
     def updateAnimation(self):
 	"""
