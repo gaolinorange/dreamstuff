@@ -46,12 +46,16 @@ class TankGame(object):
 		self.tank.move_right()
 	    elif pressed_keys[K_LEFT]:
 		self.tank.move_left()
+            elif pressed_keys[K_SPACE]:
+                self.exploration.trigger_animate()
+                
 
 #draw the background first
 	    self.screen.blit(self.map.map_surface,(0,0))
 	   
 	    self.screen.blit(self.tank.image,(self.tank.pos.x,self.tank.pos.y))
 	    
+
 	    
 		    
             #self.tank_sprites.draw(self.screen)
@@ -66,17 +70,17 @@ class TankGame(object):
 #	    self.screen.blit(self.exploration.image,(0,0),self.exploration.render_area)
 
 #update and render
-#	    self.exploration.updateAnimation()
-#	    self.exploration.render(self.screen)
+	    self.exploration.updateAnimation()
+	    self.exploration.render()
 
 
 	    pygame.display.update()
             
     def loadSprites(self):
         self.tank = Tank()
-	self.exploration = Exploration()
-	
+	self.exploration = Exploration(self.screen,(100,100))
 	self.map = Map(self.height,self.height,32,32)
+        
 	"""currently it is tank_sprites,later, you should decouple these"""
 	#self.tank_sprites = pygame.sprite.RenderPlain((self.tank))
         
