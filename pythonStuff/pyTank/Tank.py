@@ -5,12 +5,13 @@ from Vector2 import *
 class Tank(pygame.sprite.Sprite):
     """This is our snake that will move around the screen
     """    
-    def __init__(self ):
+    def __init__(self,screen ):
         pygame.sprite.Sprite.__init__(self)
         self.image,self.rect = load_image('tank.png',-1)
         self.lives = 3
 	#test position
 	self.pos = Vector2(100,100)
+        self.screen = screen
 
         
     def move_up(self):
@@ -31,6 +32,9 @@ class Tank(pygame.sprite.Sprite):
 	"""
 	self.pos += Vector2(1,0)
 
+    def render(self):
+        self.screen.blit(self.image,(self.pos.x,self.pos.y))
+        
 
         
     

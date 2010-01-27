@@ -53,7 +53,7 @@ class TankGame(object):
 #draw the background first
 	    self.screen.blit(self.map.map_surface,(0,0))
 	   
-	    self.screen.blit(self.tank.image,(self.tank.pos.x,self.tank.pos.y))
+	    self.tank.render()
 	    
 
 	    
@@ -77,7 +77,7 @@ class TankGame(object):
 	    pygame.display.update()
             
     def loadSprites(self):
-        self.tank = Tank()
+        self.tank = Tank(self.screen)
 	self.exploration = Exploration(self.screen,(100,100))
 	self.map = Map(self.height,self.height,32,32)
         
