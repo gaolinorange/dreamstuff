@@ -36,7 +36,20 @@ class Tank(pygame.sprite.Sprite):
         self.screen.blit(self.image,(self.pos.x,self.pos.y))
         
 
+    def update_movement(self,pressed_keys):
+        if pressed_keys[K_UP]:
+            self.move_up()
+        elif pressed_keys[K_DOWN]:
+            self.move_down()
+        elif pressed_keys[K_RIGHT]:
+            self.move_right()
+        elif pressed_keys[K_LEFT]:
+            self.move_left()
+        elif pressed_keys[K_SPACE]:
+            self.fire()
         
+    def fire(self):
+        print "fire"
     
 	
 
