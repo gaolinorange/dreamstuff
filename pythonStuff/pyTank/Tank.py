@@ -8,6 +8,7 @@ class Tank(pygame.sprite.Sprite):
     def __init__(self,screen ):
         pygame.sprite.Sprite.__init__(self)
         self.image,self.rect = load_image('tank.png',-1)
+	self.shoot_sound = load_sound('shoot.wav')
         self.lives = 3
 	#test position
 	self.pos = Vector2(100,100)
@@ -74,11 +75,15 @@ class Tank(pygame.sprite.Sprite):
             self.move_right()
         elif pressed_keys[K_LEFT]:
             self.move_left()
-        elif pressed_keys[K_SPACE]:
+
+        #fire when press SPACE,sepearate from movement
+        if pressed_keys[K_SPACE]:
             self.fire()
         
     def fire(self):
         print "fire"
+	self.shoot_sound.play()
+	
     
 	
 
