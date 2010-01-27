@@ -5,6 +5,7 @@ from pygame.locals import *
 from Tank import *
 from Map import *
 from Exploration import *
+from EnemyTank import *
 
 
 if not pygame.font : print "warning, not font"
@@ -50,6 +51,10 @@ class TankGame(object):
 	    self.exploration.updateAnimation()
 	    self.exploration.render()
 
+	    self.enemyTank.update_movement()
+	    self.enemyTank.render()
+
+
 
 	    pygame.display.update()
             
@@ -57,7 +62,8 @@ class TankGame(object):
         self.tank = Tank(self.screen)
 	self.exploration = Exploration(self.screen,(100,100))
 	self.map = Map(self.height,self.height,32,32)
-        
+        self.enemyTank = EnemyTank(self.screen)
+	
 	"""currently it is tank_sprites,later, you should decouple these"""
 	#self.tank_sprites = pygame.sprite.RenderPlain((self.tank))
         

@@ -1,4 +1,5 @@
 from Helpers import *
+from Vector2 import *
 import random
 
 
@@ -30,15 +31,19 @@ class EnemyTank(pygame.sprite.Sprite):
     def update_movement(self):
         """generate random movement, or using the A* path finding for movement"""
         print "todo: update_movement"
-        move_direction = random.randrange(4)
+        move_direction = random.randrange(5)
         if move_direction == 0:
-            move_up()
-        elif move_direction = 1:
-            move_down()
-        elif move_direction = 2:
-            move_left()
-        elif move_direction = 3:
-            move_right()
+            self.move_up()
+        elif move_direction == 1:
+            self.move_down()
+        elif move_direction == 2:
+            self.move_left()
+        elif move_direction == 3:
+            self.move_right()
+	else:
+	    self.fire()
+
+	
         
 
     
