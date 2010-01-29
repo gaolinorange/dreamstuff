@@ -5,9 +5,11 @@ import random
 
 class EnemyTank(pygame.sprite.Sprite):
 
-    def __init__(self,screen):
+    def __init__(self):
+	#be sure to call the base initializer before adding to Group
+	pygame.sprite.Sprite.__init__(self)
         self.image,self.rect = load_image('enemytank.png',-1)
-        self.screen = screen
+
         self.pos = Vector2(100,100)
         self.direction = Vector2(1,0)
         self.speed = 3
@@ -56,13 +58,10 @@ class EnemyTank(pygame.sprite.Sprite):
 	    self.render_area = ((self.element_width*5,0),(self.element_width,self.element_height))
 	    self.render_swap_flag = True
 
-    def render(self):
-        self.screen.blit(self.image,(self.pos.x,self.pos.y),self.render_area)
-
     def fire(self):
         print "todo: enemy fire"
 
-    def update_movement(self):
+    def update(self):
         """generate random movement, or using the A* path finding for movement"""
         print "todo: update_movement"
         move_direction = random.randrange(5)
