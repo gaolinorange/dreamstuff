@@ -17,12 +17,15 @@ class Tank(pygame.sprite.Sprite):
 	self.render_area = ((0,0),(32,32))
 	#the flag to swap the tank rendering in the same direction
 	self.render_swap_flag = True
+        self.direction = Vector2(1,0)
+        self.speed = 2
 
         
     def move_up(self):
 	"""
 	"""
-	self.pos += Vector2(0,-1)
+        self.direction = Vector2(0,-1)
+	self.pos += self.direction * self.speed
 
 	if self.render_swap_flag == True:
 	    self.render_area = ((0,0),(self.element_width,self.element_height))
@@ -32,7 +35,8 @@ class Tank(pygame.sprite.Sprite):
 	    self.render_swap_flag = True
 	
     def move_down(self):
-	self.pos += Vector2(0,1)
+        self.direction = Vector2(0,1)
+	self.pos += self.direction * self.speed
 	if self.render_swap_flag == True:
 	    self.render_area = ((self.element_width*6,0),(self.element_width,self.element_height))
 	    self.render_swap_flag = False
@@ -44,7 +48,8 @@ class Tank(pygame.sprite.Sprite):
     def move_left(self):
 	"""
 	"""
-	self.pos += Vector2(-1,0)
+        self.direction = Vector2(-1,0)
+	self.pos += self.direction * self.speed
 	if self.render_swap_flag == True:
 	    self.render_area = ((self.element_width*2,0),(self.element_width,self.element_height))
 	    self.render_swap_flag = False
@@ -55,7 +60,8 @@ class Tank(pygame.sprite.Sprite):
     def move_right(self):
 	"""
 	"""
-	self.pos += Vector2(1,0)
+        self.direction = Vector2(1,0)
+	self.pos += self.direction * self.speed
 	if self.render_swap_flag == True:
 	    self.render_area = ((self.element_width*4,0),(self.element_width,self.element_height))
 	    self.render_swap_flag = False

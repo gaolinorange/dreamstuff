@@ -9,13 +9,16 @@ class EnemyTank(pygame.sprite.Sprite):
         self.image,self.rect = load_image('enemytank.png',-1)
         self.screen = screen
         self.pos = Vector2(100,100)
+        self.direction = Vector2(1,0)
+        self.speed = 3
 	self.element_width = 32
 	self.element_height = 32
 	self.render_area = ((0,0),(self.element_width,self.element_height))
 	self.render_swap_flag = True
 
     def move_up(self):
-        self.pos += Vector2(0,-1)
+        self.direction = Vector2(0,-1)
+        self.pos += self.direction * self.speed
 	if self.render_swap_flag == True:
 	    self.render_area = ((0,0),(self.element_width,self.element_height))
 	    self.render_swap_flag = False
@@ -24,7 +27,8 @@ class EnemyTank(pygame.sprite.Sprite):
 	    self.render_swap_flag = True
 
     def move_down(self):
-        self.pos += Vector2(0,1)
+        self.direction = Vector2(0,1)
+        self.pos += self.direction * self.speed
 	if self.render_swap_flag == True:
 	    self.render_area = ((self.element_width*6,0),(self.element_width,self.element_height))
 	    self.render_swap_flag = False
@@ -33,7 +37,8 @@ class EnemyTank(pygame.sprite.Sprite):
 	    self.render_swap_flag = True
 
     def move_left(self):
-        self.pos += Vector2(-1,0)
+        self.direction = Vector2(-1,0)
+        self.pos += self.direction * self.speed
 	if self.render_swap_flag == True:
 	    self.render_area = ((self.element_width*2,0),(self.element_width,self.element_height))
 	    self.render_swap_flag = False
@@ -42,7 +47,8 @@ class EnemyTank(pygame.sprite.Sprite):
 	    self.render_swap_flag = True
 
     def move_right(self):
-        self.pos += Vector2(1,0)
+        self.direction = Vector2(1,0)
+        self.pos += self.direction * self.speed
 	if self.render_swap_flag == True:
 	    self.render_area = ((self.element_width*4,0),(self.element_width,self.element_height))
 	    self.render_swap_flag = False
