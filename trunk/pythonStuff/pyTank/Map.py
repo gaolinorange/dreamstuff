@@ -25,7 +25,7 @@ class Map(pygame.sprite.Sprite):
 	    self.map_data.append([])
 	    for j in range(self.col_num):
 		self.map_data[i].append((i+j)%7) #the magic number 6 is the number of map elements,and the '0' is the default background
-	print self.map_data
+
 				
 
     def loadSprites(self):
