@@ -8,3 +8,8 @@ step4: the main loop and rendering
 step5: AI
 	1 thought: A* path finding , one enemy want to go to desitnation=> all enemies going to desination. it will be funny to deal with such a hard game. :)
 
+
+todo: bugs:
+	1. the enemytank resources, right movement need the changing of feet
+	2. another pose need to delete the unwanted black color on the tank
+
