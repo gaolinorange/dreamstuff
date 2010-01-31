@@ -14,7 +14,7 @@ class EnemyTank(pygame.sprite.Sprite):
 
         self.pos = Vector2(100,100)
         self.direction = Vector2(1,0)
-        self.speed = 1
+        self.speed = 3
 	self.move_direction = 0
 	self.element_width = 32
 	self.element_height = 32
