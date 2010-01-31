@@ -49,6 +49,8 @@ class TankGame(object):
 	    # for testing convinence
 	    if pressed_keys[K_ESCAPE]:
 		sys.exit()
+	    if pressed_keys[K_q]:
+		sys.exit()
 
 	    self.empty_map.render()	    
 		
@@ -68,8 +70,15 @@ class TankGame(object):
 	    self.exploration.render()
 
 
+	    self.enemy_tank0.update()
+	    self.enemy_tank1.update()
+	    
+	    self.enemy_tank0.render()
+	    self.enemy_tank1.render()
+
 #	    self.enemy_tank_group.update()
-	    self.enemy_tank_group.draw(self.screen)
+#	    self.enemy_tank_group.draw(self.screen)
+
 
 	    pygame.display.update()
             
@@ -78,18 +87,8 @@ class TankGame(object):
 	self.exploration = Exploration(self.screen,(100,100))
 	self.map = Map(self.height,self.height,32,32)
 
-	self.active_enemy_tanks_count = 5
-	self.enemy_tank_group = pygame.sprite.Group()
-	print self.enemy_tank_group
-	self.enemy_tank0 = EnemyTank()
-	self.enemy_tank_group.add(self.enemy_tank0)
-	self.enemy_tank1 = EnemyTank()
-	self.enemy_tank2 = EnemyTank()
-	self.enemy_tank3 = EnemyTank()
-	self.enemy_tank4 = EnemyTank()
-
-	
-	
+	self.enemy_tank0 = EnemyTank(self.screen)
+	self.enemy_tank1 = EnemyTank(self.screen)
 	    
 	    
 	self.empty_map = EmptyMap(self.screen,self.width,self.height)
