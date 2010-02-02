@@ -1,5 +1,6 @@
 from Helpers import *
 from Vector2 import *
+from Settings import *
 
 
 class Tank(pygame.sprite.Sprite):
@@ -26,6 +27,11 @@ class Tank(pygame.sprite.Sprite):
 	"""
         self.direction = Vector2(0,-1)
 	self.pos += self.direction * self.speed
+	if self.pos.y <= 0:
+	    self.pos.y = 0
+
+	#update rect for collision detection
+	self.rect = ((self.pos.x,self.pos.y),(self.pos.x+self.element_width,self.pos.y+self.element_height))
 
 	if self.render_swap_flag == True:
 	    self.render_area = ((0,0),(self.element_width,self.element_height))
@@ -37,6 +43,12 @@ class Tank(pygame.sprite.Sprite):
     def move_down(self):
         self.direction = Vector2(0,1)
 	self.pos += self.direction * self.speed
+	if self.pos.y >= MAP_HEIGHT-self.element_height:
+	    self.pos.y = MAP_HEIGHT-self.element_height
+	
+	#update rect for collision detection
+	self.rect = (self.pos.x,self.pos.y,self.pos.x+self.element_width,self.pos.y+self.element_height)
+	
 	if self.render_swap_flag == True:
 	    self.render_area = ((self.element_width*6,0),(self.element_width,self.element_height))
 	    self.render_swap_flag = False
@@ -50,6 +62,12 @@ class Tank(pygame.sprite.Sprite):
 	"""
         self.direction = Vector2(-1,0)
 	self.pos += self.direction * self.speed
+	if self.pos.x <= 0:
+	    self.pos.x = 0
+	    
+	#update rect for collision detection
+	self.rect = (self.pos.x,self.pos.y,self.pos.x+self.element_width,self.pos.y+self.element_height)
+	
 	if self.render_swap_flag == True:
 	    self.render_area = ((self.element_width*2,0),(self.element_width,self.element_height))
 	    self.render_swap_flag = False
@@ -62,12 +80,21 @@ class Tank(pygame.sprite.Sprite):
 	"""
         self.direction = Vector2(1,0)
 	self.pos += self.direction * self.speed
+	if self.pos.x >= MAP_WIDTH - self.element_width:
+	    self.pos.x = MAP_WIDTH - self.element_width
+	    
+	#update rect for collision detection
+	self.rect = (self.pos.x,self.pos.y,self.pos.x+self.element_width,self.pos.y+self.element_height)
+	
 	if self.render_swap_flag == True:
 	    self.render_area = ((self.element_width*4,0),(self.element_width,self.element_height))
 	    self.render_swap_flag = False
 	else:
 	    self.render_area = ((self.element_width*5,0),(self.element_width,self.element_height))
 	    self.render_swap_flag = True
+
+    def stand_still(self):
+	pass
 
     def render(self):
         self.screen.blit(self.image,(self.pos.x,self.pos.y),self.render_area)

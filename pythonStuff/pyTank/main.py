@@ -70,11 +70,12 @@ class TankGame(object):
 	    self.exploration.render()
 
 
-	    self.enemy_tank0.update()
-	    self.enemy_tank1.update()
+	    self.enemy_group.update()
+	    for enemy in self.enemy_group:
+		enemy.render()
 	    
-	    self.enemy_tank0.render()
-	    self.enemy_tank1.render()
+#	    self.enemy_tank0.render()
+#	    self.enemy_tank1.render()
 
 #	    self.enemy_tank_group.update()
 #	    self.enemy_tank_group.draw(self.screen)
@@ -87,9 +88,13 @@ class TankGame(object):
 	self.exploration = Exploration(self.screen,(100,100))
 	self.map = Map(self.height,self.height,32,32)
 
-	self.enemy_tank0 = EnemyTank(self.screen)
-	self.enemy_tank1 = EnemyTank(self.screen)
-	    
+	enemy_tank0 = EnemyTank(self.screen)
+	enemy_tank1 = EnemyTank(self.screen)
+
+	self.enemy_group = pygame.sprite.Group()
+	self.enemy_group.add(enemy_tank0,enemy_tank1)
+
+	
 	    
 	self.empty_map = EmptyMap(self.screen,self.width,self.height)
 	

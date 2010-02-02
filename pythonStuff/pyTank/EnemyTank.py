@@ -9,10 +9,12 @@ class EnemyTank(pygame.sprite.Sprite):
     def __init__(self,screen):
 	#be sure to call the base initializer before adding to Group
 	pygame.sprite.Sprite.__init__(self)
+	
 	self.screen = screen
         self.image,self.rect = load_image('enemytank.png',-1)
 
         self.pos = Vector2(100,100)
+
         self.direction = Vector2(1,0)
         self.speed = 3
 	self.move_direction = 0
@@ -24,6 +26,9 @@ class EnemyTank(pygame.sprite.Sprite):
     def move_up(self):
         self.direction = Vector2(0,-1)
         self.pos += self.direction * self.speed
+	#update rect for collision detection
+	self.rect = (self.pos.x,self.pos.y,self.pos.x+self.element_width,self.pos.y+self.element_height)
+	
 	if self.render_swap_flag == True:
 	    self.render_area = ((0,0),(self.element_width,self.element_height))
 	    self.render_swap_flag = False
@@ -34,6 +39,10 @@ class EnemyTank(pygame.sprite.Sprite):
     def move_down(self):
         self.direction = Vector2(0,1)
         self.pos += self.direction * self.speed
+	#update rect for collision detection
+	self.rect = (self.pos.x,self.pos.y,self.pos.x+self.element_width,
+		     self.pos.y+self.element_height)
+	
 	if self.render_swap_flag == True:
 	    self.render_area = ((self.element_width*6,0),(self.element_width,self.element_height))
 	    self.render_swap_flag = False
@@ -44,6 +53,10 @@ class EnemyTank(pygame.sprite.Sprite):
     def move_left(self):
         self.direction = Vector2(-1,0)
         self.pos += self.direction * self.speed
+	#update rect for collision detection
+	self.rect = (self.pos.x,self.pos.y,self.pos.x+self.element_width,
+		     self.pos.y+self.element_height)
+	
 	if self.render_swap_flag == True:
 	    self.render_area = ((self.element_width*2,0),(self.element_width,self.element_height))
 	    self.render_swap_flag = False
@@ -54,12 +67,19 @@ class EnemyTank(pygame.sprite.Sprite):
     def move_right(self):
         self.direction = Vector2(1,0)
         self.pos += self.direction * self.speed
+	#update rect for collision detection
+	self.rect = (self.pos.x,self.pos.y,self.pos.x+self.element_width,
+		     self.pos.y+self.element_height)
+	
 	if self.render_swap_flag == True:
 	    self.render_area = ((self.element_width*4,0),(self.element_width,self.element_height))
 	    self.render_swap_flag = False
 	else:
 	    self.render_area = ((self.element_width*5,0),(self.element_width,self.element_height))
 	    self.render_swap_flag = True
+
+    def stand_still(self):
+	pass
 
     def fire(self):
         print "todo: enemy fire"
