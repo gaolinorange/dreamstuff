@@ -90,10 +90,13 @@ class TankGame(object):
 
 	enemy_tank0 = EnemyTank(self.screen)
 	enemy_tank1 = EnemyTank(self.screen)
+        enemy_tank2 = EnemyTank(self.screen)
+        enemy_tank3 = EnemyTank(self.screen)
+        enemy_tank4 = EnemyTank(self.screen)
+        
 
 	self.enemy_group = pygame.sprite.Group()
-	self.enemy_group.add(enemy_tank0,enemy_tank1)
-
+	self.enemy_group.add(enemy_tank0,enemy_tank1,enemy_tank2,enemy_tank3,enemy_tank4)
 	
 	    
 	self.empty_map = EmptyMap(self.screen,self.width,self.height)
