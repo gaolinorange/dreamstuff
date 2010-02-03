@@ -73,6 +73,7 @@ class Tank(pygame.sprite.Sprite):
 	    self.render_swap_flag = False
 	else:
 	    self.render_area = ((self.element_width*3,0),(self.element_width,self.element_height))
+            self.render_swap_flag = True
 	    
 
     def move_right(self):
