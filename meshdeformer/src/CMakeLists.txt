@@ -18,22 +18,22 @@ endif()
 
 
 SET(MAINWINDOW_SOURCES
-	main_window.cpp 
-	main_widget.cpp 
-	app_data.cpp
+	MainWindow.cpp 
+	MainWidget.cpp 
+	AppData.cpp
 	QOutputLogger.cpp
 	)
 SET(MAINWINDOW_HEADERS
-	main_window.h 
-	main_widget.h 
-	app_data.h
+	MainWindow.h 
+	MainWidget.h 
+	AppData.h
 	QOutputLogger.hpp
 	)
 
 
 #warp the Q_OBJECT file
-qt4_wrap_cpp(MainWidget_MOC main_widget.h)
-qt4_wrap_cpp(MainWindow_MOC main_window.h)
+qt4_wrap_cpp(MainWidget_MOC MainWidget.h)
+qt4_wrap_cpp(MainWindow_MOC MainWindow.h)
 
 #include_directories(Renderer)
 include_directories(Math)

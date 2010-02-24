@@ -3,6 +3,8 @@
 
 #include "ui_AboutDialog.hpp"
 #include "../Common/globals.hpp"
+#include <QString>
+
 
 class AboutDialog : public QDialog,public Ui_Dialog
 {
@@ -11,7 +13,8 @@ public:
     : QDialog(parent,f)
   {
     setupUi(this);
-    setVersion(MAIN_VERSION,MAJOR_VERSION,MINOR_VERSION);    
+    setVersion(MAIN_VERSION,MAJOR_VERSION,MINOR_VERSION);
+    setWindowTitle("Mesh Deformer");
   }
   ~AboutDialog()
   {}

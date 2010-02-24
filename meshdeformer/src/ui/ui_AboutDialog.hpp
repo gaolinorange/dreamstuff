@@ -55,7 +55,7 @@ public:
         tabCredicts = new QWidget();
         tabCredicts->setObjectName(QString::fromUtf8("tabCredicts"));
         labelCredicts = new QLabel(tabCredicts);
-        labelCredicts->setObjectName(QString::fromUtf8("labelCredicts"));
+        labelCredicts->setObjectName(QString::fromUtf8("labelCredits"));
         labelCredicts->setGeometry(QRect(50, 80, 261, 71));
         tabWidget->addTab(tabCredicts, QString());
 
