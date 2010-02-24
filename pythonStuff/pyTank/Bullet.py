@@ -25,8 +25,22 @@ class Bullet(pygame.sprite.Sprite):
 	self.pos += self.direction * self.speed
 	self.rect = (self.pos.x,self.pos.y,self.pos.x+self.element_width,
 		     self.pos.y+self.element_height)
+	if self.hit_wall():
+	    return True
 
     def render(self):
 	self.surface.blit(self.image,self.rect)
     
-        
+    def hit_wall(self):
+	if self.pos.x > MAP_WIDTH:
+	    return True
+	if self.pos.x <  0:
+	    return True
+	if self.pos.y < 0:
+	    return True
+	if self.pos.y > MAP_HEIGHT:
+	    return True
+
+	return False
+	
+	

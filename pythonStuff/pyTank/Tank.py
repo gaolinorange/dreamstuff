@@ -1,7 +1,7 @@
 from Helpers import *
 from Vector2 import *
 from Settings import *
-
+from Bullet import *
 
 class Tank(pygame.sprite.Sprite):
     """This is our snake that will move around the screen
@@ -20,6 +20,7 @@ class Tank(pygame.sprite.Sprite):
 	self.render_swap_flag = True
         self.direction = Vector2(1,0)
         self.speed = 2
+	self.bullet = None
 
         
     def move_up(self):
@@ -99,6 +100,8 @@ class Tank(pygame.sprite.Sprite):
 
     def render(self):
         self.screen.blit(self.image,(self.pos.x,self.pos.y),self.render_area)
+	if self.bullet is not None:
+	    self.bullet.render()
         
     def update_movement(self,pressed_keys):
         if pressed_keys[K_UP]:
@@ -110,12 +113,20 @@ class Tank(pygame.sprite.Sprite):
         elif pressed_keys[K_LEFT]:
             self.move_left()
 
+	if self.bullet is not None:
+	    hit_wall = self.bullet.update()
+	    if hit_wall == True:
+		del self.bullet
+		self.bullet = None
+
         #fire when press SPACE,sepearate from movement
         if pressed_keys[K_SPACE]:
             self.fire()
         
     def fire(self):
-        print "fire"
+	if self.bullet is None:
+	    self.bullet = Bullet(self.screen,self.pos,self.direction)
+	    
 	self.shoot_sound.play()
 	
     
