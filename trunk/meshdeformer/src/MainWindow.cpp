@@ -1,5 +1,5 @@
 
-#include "main_window.h"
+#include "MainWindow.h"
 #include <QToolBar>
 #include <QtGui>
 #include <QApplication>

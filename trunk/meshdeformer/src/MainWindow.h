@@ -12,7 +12,7 @@
 #include <QAction>
 #include <QMenu>
 #include <QMenuBar>
-#include "main_widget.h"
+#include "MainWidget.h"
 
 
 class QOutputLogger;

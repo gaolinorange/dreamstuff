@@ -59,7 +59,7 @@
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="tabCredicts">
+   <widget class="QWidget" name="tabCredits">
     <attribute name="title">
      <string>Credicts</string>
     </attribute>

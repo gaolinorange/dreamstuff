@@ -1,4 +1,4 @@
-#include "main_widget.h"
+#include "MainWidget.h"
 #include "QOutputLogger.hpp"
 
 #include "globals.hpp"
@@ -11,8 +11,10 @@ void MainWidget::initializeGL()
   qglClearColor(Qt::black);
   glShadeModel(GL_FLAT);
   glEnable(GL_DEPTH_TEST);
+
   glEnable(GL_CULL_FACE);
   glCullFace(GL_BACK);
+  
   glDisable(GL_LIGHTING);
 
   //setup render related class

@@ -10,7 +10,7 @@
 
 #include <QGLWidget>
 #include <QtGui>
-#include "app_data.h"
+#include "AppData.h"
 #include <QGLViewer/qglviewer.h>
 
 

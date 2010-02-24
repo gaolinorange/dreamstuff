@@ -1,5 +1,5 @@
 #include <QApplication>
-#include "main_window.h"
+#include "MainWindow.h"
 #include "Common/globals.hpp"
 
 bool RUNNING_AT_TEST_MODE = false;
