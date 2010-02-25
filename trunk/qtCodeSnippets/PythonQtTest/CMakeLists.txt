@@ -15,6 +15,7 @@ endif(PYTHONLIBS_FOUND)
 
 #
 qt4_wrap_cpp(PyExampleObject_MOC PyExampleObject.h)
+qt4_add_resources(PyScriptingConsole_RCS_SOURCES PyScriptingConsole.qrc)
 
 
 
@@ -30,6 +31,7 @@ set(APP_HEADERS
 set(APP_SOURCES
 	PyExampleObject.cpp
 	main.cpp
+	${PyScriptingConsole_RCS_SOURCES}
 	)
 
 set(PYTHONQT_LIBRARIES PythonQt PythonQtGui)
