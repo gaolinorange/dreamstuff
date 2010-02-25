@@ -6,19 +6,33 @@ include(${QT_USE_FILE})
 
 
 find_package(PythonLibs REQUIRED)
-include(${PYTHON_INCLUDE_PATH})
+if(PYTHONLIBS_FOUND)
+  include_directories(${PYTHON_INCLUDE_PATH})
+else(PYTHONLIBS_FOUND)
+message("could not find PythonLibs")
+endif(PYTHONLIBS_FOUND)
+
+
+#
+qt4_wrap_cpp(PyExampleObject_MOC PyExampleObject.h)
 
 
 
+
+#PythonQt related
 include_directories(/usr/local/include/PythonQt)
 link_directories(/usr/local/lib)
+
+set(APP_HEADERS
+  PyExampleObject.h
+  )
 
 set(APP_SOURCES
 	PyExampleObject.cpp
 	main.cpp
 	)
 
-set(PYTHONQT_LIBRARIES PythonQt)
+set(PYTHONQT_LIBRARIES PythonQt PythonQtGui)
 
-add_executable(test ${APP_SOURCES})
+add_executable(test ${APP_SOURCES} ${APP_HEADERS} ${PyExampleObject_MOC})
 target_link_libraries(test ${PYTHONQT_LIBRARIES} ${QT_LIBRARIES} ${PYTHON_LIBRARIES})	
