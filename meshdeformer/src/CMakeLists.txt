@@ -21,13 +21,13 @@ SET(MAINWINDOW_SOURCES
 	MainWindow.cpp 
 	MainWidget.cpp 
 	AppData.cpp
-	QOutputLogger.cpp
+	LoggerWidget.cpp
 	)
 SET(MAINWINDOW_HEADERS
 	MainWindow.h 
 	MainWidget.h 
 	AppData.h
-	QOutputLogger.hpp
+	LoggerWidget.h
 	)
 
 

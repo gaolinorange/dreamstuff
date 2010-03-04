@@ -3,7 +3,7 @@
 #include <QToolBar>
 #include <QtGui>
 #include <QApplication>
-#include "QOutputLogger.hpp"
+#include "LoggerWidget.h"
 #include "globals.hpp"
 #include "ui/AboutDialog.hpp"
 

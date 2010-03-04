@@ -1,4 +1,4 @@
-#include "QOutputLogger.hpp"
+#include "LoggerWidget.h"
 
 
 QOutputLogger* QOutputLogger::logger = NULL;

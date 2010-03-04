@@ -2,7 +2,7 @@
 #include "MeshCore/MeshCore.h"
 #include "MeshCore/MeshBuilder.h"
 #include "MeshCore/MeshLoader.h"
-#include "QOutputLogger.hpp"
+#include "LoggerWidget.h"
 #include <QtDebug>
 
 #include <QtGui>

@@ -1,5 +1,5 @@
 #include "MainWidget.h"
-#include "QOutputLogger.hpp"
+#include "LoggerWidget.h"
 
 #include "globals.hpp"
 #include <QtDebug>
