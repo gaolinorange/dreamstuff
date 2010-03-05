@@ -5,54 +5,38 @@
    links: blog.csdn.net/jingwenlai_scut
  */
 
-#ifndef MESHDEFORMER_COMMON_QOUTPUTLOGGER_H
-#define MESHDEFORMER_COMMON_QOUTPUTLOGGER_H
+#ifndef MESHDEFORMER_COMMON_LOGGERWIDGET_H
+#define MESHDEFORMER_COMMON_LOGGERWIDGET_H
 
 #include <QListWidget>
-#include <QDockWidget>
+
 
 /**
-   QOutputLogger
-   @brief: Logger for displaying messages
+   LoggerWidget
+   @brief:
+   A widget for displaying Logging messages 
    @details: an singleton instance of logger
  */
-class QOutputLogger : public QDockWidget
+class LoggerWidget : public QListWidget
 {
 public:
-  static QOutputLogger* getInstance()
+  LoggerWidget(QWidget * parent = 0)
+    : QListWidget(parent)
   {
-	  Q_ASSERT(logger != NULL);
-	  return logger;
   }
-public:
-  static QOutputLogger* logger;
-public:
-  QOutputLogger(QString title = QString(QObject::tr("Logger")),QWidget * parent = 0)
-    : QDockWidget(title,parent)
+  ~LoggerWidget()
   {
-	  listWidget = new QListWidget(this);
-	  setWidget(listWidget);
   }
-  virtual ~QOutputLogger()
-  {
-	  delete listWidget; listWidget = 0;
-  }
-
 public:
   /**
      appendMessage:
      @param: message, the message append to the logger
    */
-	void appendMessage(const QString& message)
-	{
-		listWidget->addItem(message);
-	}
-private:
-	QListWidget* listWidget;
+  void appendMessage(const QString& message)
+  {
+	addItem(message);
+  }
 };
-
-
-
 
 
 #endif /* MESHDEFORMER_COMMON_QOUTPUTLOGGER_H */

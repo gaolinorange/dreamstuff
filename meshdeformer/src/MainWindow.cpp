@@ -3,7 +3,7 @@
 #include <QToolBar>
 #include <QtGui>
 #include <QApplication>
-#include "LoggerWidget.h"
+#include "ConsoleWidget.h"
 #include "globals.hpp"
 #include "ui/AboutDialog.hpp"
 
@@ -85,17 +85,17 @@ void MainWindow::setupToolBar()
   addToolBar(toolbar);
 }
 
-void MainWindow::setupLogger()
+void MainWindow::setupConsoleWidget()
 {
-	QOutputLogger::logger = new QOutputLogger(QString(tr("Logger")),this);
-	QOutputLogger::getInstance()->setAllowedAreas(Qt::BottomDockWidgetArea);
-	addDockWidget(Qt::BottomDockWidgetArea,QOutputLogger::getInstance());
-	QOutputLogger::getInstance()->setVisible(false);
+	ConsoleWidget::consoleWidget = new ConsoleWidget(this);
+	ConsoleWidget::getInstance()->setAllowedAreas(Qt::BottomDockWidgetArea);
+	addDockWidget(Qt::BottomDockWidgetArea,ConsoleWidget::getInstance());
+	ConsoleWidget::getInstance()->setVisible(false);
 }
 
 void MainWindow::fileSave()
 {
-  QOutputLogger::getInstance()->appendMessage(QString(tr("Save mesh. TODO ")));
+  ConsoleWidget::getInstance()->logMessage(QString(tr("Save mesh. TODO ")));
   
 }
 
@@ -132,11 +132,11 @@ void MainWindow::helpAbout()
 
 void MainWindow::viewLog()
 {
-	if(QOutputLogger::getInstance()->isVisible()){
-		QOutputLogger::getInstance()->setVisible(false);
+	if(ConsoleWidget::getInstance()->isVisible()){
+		ConsoleWidget::getInstance()->setVisible(false);
 	}
 	else{
-		QOutputLogger::getInstance()->setVisible(true);
+		ConsoleWidget::getInstance()->setVisible(true);
 	}
 }
 
