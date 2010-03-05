@@ -1,5 +1,5 @@
 #include "MainWidget.h"
-#include "LoggerWidget.h"
+#include "ConsoleWidget.h"
 
 #include "globals.hpp"
 #include <QtDebug>
@@ -98,7 +98,7 @@ void MainWidget::reloadMesh(QString& filename)
 	QString message;
 	QTextStream(&message)<<"retrived bounding box: "<<box.d_min_x<<","<<box.d_min_y<<","<<box.d_min_z
 		<<"    >> "<<box.d_max_x<<","<<box.d_max_y<<box.d_max_z;
-	QOutputLogger::getInstance()->appendMessage(message);
+	ConsoleWidget::getInstance()->logMessage(message);
 
 	pCamera->setSceneBoundingBox(qglviewer::Vec(box.d_min_x,box.d_min_y,box.d_min_z),
 		qglviewer::Vec(box.d_max_x,box.d_max_y,box.d_max_z));

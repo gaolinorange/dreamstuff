@@ -2,7 +2,8 @@
 #include "MeshCore/MeshCore.h"
 #include "MeshCore/MeshBuilder.h"
 #include "MeshCore/MeshLoader.h"
-#include "LoggerWidget.h"
+
+#include "ConsoleWidget.h"
 #include <QtDebug>
 
 #include <QtGui>
@@ -46,17 +47,17 @@ bool AppData::loadMesh(const QString& filename)
   bool ret = loader->load(filename.toAscii().data());
   if(ret == false)
   {
-	  QOutputLogger::getInstance()->appendMessage(QString(QObject::tr("MeshLoader failed to load the mesh")));
+	 ConsoleWidget::getInstance()->logMessage(QString(QObject::tr("MeshLoader failed to load the mesh")));
   }
   else
-	  QOutputLogger::getInstance()->appendMessage(QString(QObject::tr("MeshLoader load the mesh ok")));
+	 ConsoleWidget::getInstance()->logMessage(QString(QObject::tr("MeshLoader load the mesh ok")));
 
   MeshBuilder<Polyhedron::HalfedgeDS> builder(loader);
   pMesh->delegate(builder);
 
   QString message;
   QTextStream(&message)<<"Mesh info: vertices num: "<<pMesh->size_of_vertices()<<" facet num: "<<pMesh->size_of_facets();
-  QOutputLogger::getInstance()->appendMessage(message);
+  ConsoleWidget::getInstance()->logMessage(message);
 
   delete loader;//delete local meshloader to save memory
 
@@ -82,7 +83,7 @@ void AppData::printBoundingBox()
 		QString message;
 		QTextStream(&message)<<"min(x,y,z): "<<box.d_min_x<<","<<box.d_min_y<<","<<box.d_min_z
 			<<" max(x,y,z): "<<box.d_max_x<<","<<box.d_max_y<<","<<box.d_max_z;
-		QOutputLogger::getInstance()->appendMessage(message);
+		ConsoleWidget::getInstance()->logMessage(message);
 	}
 }
 

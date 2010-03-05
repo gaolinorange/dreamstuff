@@ -15,7 +15,7 @@
 #include "MainWidget.h"
 
 
-class QOutputLogger;
+class ConsoleWidget;
 
 /**
    MainWindow:
@@ -30,7 +30,7 @@ class MainWindow : public QMainWindow
     {
       setupMenu();
       setupToolBar();
-      setupLogger();
+      setupConsoleWidget();
        mainWidget = new MainWidget(this,NULL,flags);
         setCentralWidget(mainWidget);
     }
@@ -41,7 +41,7 @@ class MainWindow : public QMainWindow
  private:
   void setupMenu();
   void setupToolBar();
-  void setupLogger();
+  void setupConsoleWidget();
  protected:
 
 private slots:
@@ -83,7 +83,7 @@ private slots:
   QAction* actInfoShowDebugInfo;
   QAction* actInfoToggleRunningMode;
   
-  QOutputLogger* logger;
+  ConsoleWidget* consoleWidget;
 };
 
 

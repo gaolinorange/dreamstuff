@@ -17,10 +17,24 @@ if(Boost_FOUND)
 endif()
 
 
+# for PythonConsoleWidget
+find_package(PythonLibs REQUIRED)
+if(PYTHONLIBS_FOUND)
+  include_directories(${PYTHON_INCLUDE_PATH})
+  include_directories(/usr/local/include/PythonQt) # for PythonQt
+  link_directories(/usr/local/lib)
+else(PYTHONLIBS_FOUND)
+  message("could not find PythonLibs")
+endif(PYTHONLIBS_FOUND)
+
+
+
 SET(MAINWINDOW_SOURCES
 	MainWindow.cpp 
 	MainWidget.cpp 
 	AppData.cpp
+	ConsoleWidget.cpp
+	PythonConsoleWidget.cpp
 	LoggerWidget.cpp
 	)
 SET(MAINWINDOW_HEADERS
@@ -28,6 +42,8 @@ SET(MAINWINDOW_HEADERS
 	MainWidget.h 
 	AppData.h
 	LoggerWidget.h
+	ConsoleWidget.cpp
+	PythonConsoleWidget.cpp
 	)
 
 
@@ -56,28 +72,32 @@ if(APPLE)
 include_directories(/usr/local/include)
 link_directories(/usr/local/lib)
 endif(APPLE)
+
 if(LINUX)
   include_directories(/usr/include)
   link_directories(/usr/lib)
 endif(LINUX)
+
 if(WIN32)
 include_directories("D:/DevTools")
 link_directories("D:/DevTools/QGLViewer/release")
 endif(WIN32)
 
 
-add_executable(meshdeformer main.cpp 
-	${MAINWINDOW_HEADERS} 
-	${MAINWINDOW_SOURCES} 
-	${MainWindow_MOC} 
-	${MainWidget_MOC}
-	)
+add_executable(meshdeformer
+  main.cpp 
+  ${MAINWINDOW_HEADERS} 
+  ${MAINWINDOW_SOURCES} 
+  ${MainWindow_MOC} 
+  ${MainWidget_MOC}
+  )
+
 if(WIN32)
 target_link_libraries(meshdeformer MeshCore Math ${QT_LIBRARIES} gtest gtest_main assimp QGLViewer2)
 endif(WIN32)
 
 if(UNIX)
-  target_link_libraries(meshdeformer MeshCore Math ${QT_LIBRARIES} gtest gtest_main assimp QGLViewer)
+  target_link_libraries(meshdeformer MeshCore Math ${QT_LIBRARIES} gtest gtest_main assimp QGLViewer PythonQt)
 endif(UNIX)
 
 
