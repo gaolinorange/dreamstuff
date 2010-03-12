@@ -1,0 +1,1 @@
+valgrind --log-file=valgrind.log --leak-check=full build/bin/meshdeformer
