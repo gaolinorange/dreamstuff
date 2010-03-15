@@ -5,12 +5,9 @@
 #include <boost/property_map.hpp>
 using namespace boost;
 
-#include "TestGraph.h"
 
 int main()
 {
-  TestGraph* g = new TestGraph();
-
   typedef std::map<int,float> IdValueMap;
   IdValueMap idValues;
 
@@ -26,6 +23,8 @@ int main()
 
    new_value = 30.0f;
    boost::put(idValuePropertyMap,1,new_value);
+
+   boost::put(idValuePropertyMap,2,3.0f);
 
    for(std::map<int,float>::iterator i = idValues.begin();
        i != idValues.end(); i++){
