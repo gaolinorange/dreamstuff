@@ -5,7 +5,7 @@
 #include <QApplication>
 #include "ConsoleWidget.h"
 #include "globals.hpp"
-#include "ui/AboutDialog.hpp"
+#include "widgets/aboutDialog/AboutDialog.hpp"
 
 
 void MainWindow::setupMenu()
