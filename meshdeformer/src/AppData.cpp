@@ -29,7 +29,8 @@ void AppData::initATetrahedron()
     pMesh = new MeshCore();
 
   pMesh->make_tetrahedron(Point_3(0,0,0),Point_3(1,0,0),Point_3(0,1,0),Point_3(0,0,1));
-
+  pMesh->set_indices();
+  
   qDebug()<<pMesh->is_pure_triangle()<<" pMesh is pure_triangle?";
 }
 
@@ -54,6 +55,7 @@ bool AppData::loadMesh(const QString& filename)
 
   MeshBuilder<Polyhedron::HalfedgeDS> builder(loader);
   pMesh->delegate(builder);
+  pMesh->set_indices();
 
   QString message;
   QTextStream(&message)<<"Mesh info: vertices num: "<<pMesh->size_of_vertices()<<" facet num: "<<pMesh->size_of_facets();

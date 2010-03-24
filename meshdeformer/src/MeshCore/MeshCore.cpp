@@ -61,3 +61,43 @@ BoundingBox& MeshCore::getBoundingBox()
 
 	return box;
 }
+
+
+
+
+void MeshCore::set_vertex_indices()
+{
+  std::size_t vertex_id = 0;
+    
+  for(Vertex_iterator vit = vertices_begin();
+      vit != vertices_end(); vit++){
+    vit->id() = vertex_id++;    
+  }
+}
+
+void MeshCore::set_facet_indices()
+{
+  std::size_t facet_id = 0;
+  
+  for(Facet_iterator fit = facets_begin();
+      fit != facets_end(); fit++){
+    fit->id() = facet_id++;
+  }
+}
+
+void MeshCore::set_halfedge_indices()
+{
+  std::size_t halfedge_id = 0;
+
+  for(Halfedge_iterator hit = halfedges_begin();
+      hit != halfedges_end(); hit++){
+    hit->id() = halfedge_id++;
+  }
+}
+
+void MeshCore::set_indices()
+{
+  set_vertex_indices();
+  set_facet_indices();
+  set_halfedge_indices();
+}
