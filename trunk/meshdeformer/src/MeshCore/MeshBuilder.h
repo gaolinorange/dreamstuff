@@ -4,6 +4,8 @@
 #include <CGAL/basic.h>
 #include <CGAL/Polyhedron_incremental_builder_3.h>
 #include "MeshLoader.h"
+#include <CGAL/Polyhedron_items_with_id_3.h>
+#include "MeshCore.h"
 
 template<class HDS>
 class MeshBuilder : public CGAL::Modifier_base<HDS>
@@ -37,7 +39,6 @@ public:
 			builder.end_facet();
 		}
 		
-
 		builder.end_surface();
 	}
 private:

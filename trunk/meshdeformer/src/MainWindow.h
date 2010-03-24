@@ -21,7 +21,7 @@ class ConsoleWidget;
    MainWindow:
    @brief: The MainWindow of the application
  */
-class MainWindow : public QMainWindow
+class MainWindow : public QMainWindow 
 {
   Q_OBJECT
  public:

@@ -7,6 +7,8 @@
 #include <CGAL/Polyhedron_3.h>
 #include <CGAL/IO/Polyhedron_iostream.h>
 #include <CGAL/Polyhedron_incremental_builder_3.h>
+#include <CGAL/Polyhedron_items_with_id_3.h>
+
 
 #define KernelType float
 
@@ -15,7 +17,8 @@
 typedef CGAL::Simple_cartesian<KernelType> Kernel;
 typedef Kernel::Vector_3 Vector_3;
 typedef Kernel::Point_3 Point_3;
-typedef CGAL::Polyhedron_3<Kernel> Polyhedron;
+typedef CGAL::Polyhedron_3<Kernel,
+  CGAL::Polyhedron_items_with_id_3> Polyhedron;
 
 
 typedef Polyhedron::Vertex Vertex;
@@ -58,7 +61,12 @@ class MeshCore : public Polyhedron
  public:
   MeshCore();
   ~MeshCore();
+ private:
+  void set_vertex_indices();
+  void set_facet_indices();
+  void set_halfedge_indices();
  public:
+  void set_indices();
   void render();
   BoundingBox& getBoundingBox();
 };
