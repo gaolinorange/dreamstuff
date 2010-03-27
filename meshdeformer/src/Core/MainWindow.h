@@ -12,14 +12,17 @@
 #include <QAction>
 #include <QMenu>
 #include <QMenuBar>
-#include "MainWidget.h"
+
+#include "Viewer.h"
+#include "Model.h"
 
 
-class ConsoleWidget;
+class ConsoleWidgetManager;
 
 /**
    MainWindow:
    @brief: The MainWindow of the application
+   @detail: this class should be seen as a Controller class
  */
 class MainWindow : public QMainWindow 
 {
@@ -31,13 +34,19 @@ class MainWindow : public QMainWindow
       setupMenu();
       setupToolBar();
       setupConsoleWidget();
-       mainWidget = new MainWidget(this,NULL,flags);
-        setCentralWidget(mainWidget);
+
+      mainModel_ = new Model();
+      mainViewer_ = new Viewer(mainModel_,this,NULL,flags);
+
+      //TODO: add Layout and splitter support to suppport multiviewer
+      setCentralWidget(mainViewer_);
     }
   ~MainWindow()
     {
-      delete mainWidget;
+      delete mainModel_;
+      delete mainViewer_;
     }
+  
  private:
   void setupMenu();
   void setupToolBar();
@@ -59,8 +68,12 @@ private slots:
   void infoToggleRunningMode();
  private:
   //The main displaying widget
-  MainWidget * mainWidget;
+  Viewer * mainViewer_;
+  Model* mainModel_;
 
+
+
+ private://UI related
   QMenuBar * mainMenuBar;
   //File Menu
   QMenu * fileMenu;
@@ -83,7 +96,7 @@ private slots:
   QAction* actInfoShowDebugInfo;
   QAction* actInfoToggleRunningMode;
   
-  ConsoleWidget* consoleWidget;
+  ConsoleWidgetManager* consoleWidgetManager;
 };
 
 

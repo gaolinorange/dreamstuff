@@ -5,11 +5,12 @@
    links: blog.csdn.net/jingwenlai_scut
  */
 
-#ifndef MESHDEFORMER_COMMON_LOGGERWIDGET_H
-#define MESHDEFORMER_COMMON_LOGGERWIDGET_H
+#ifndef COREWIDGETS_LOGGERWIDGET_LOGGERWIDGET_H
+#define COREWIDGETS_LOGGERWIDGET_LOGGERWIDGET_H
 
 #include <QListWidget>
 
+#include "widgets/consoleWidgets/AbstractConsoleWidget.h"
 
 /**
    LoggerWidget
@@ -17,7 +18,7 @@
    A widget for displaying Logging messages 
    @details: an singleton instance of logger
  */
-class LoggerWidget : public QListWidget
+class LoggerWidget : public QListWidget, public AbstractConsoleWidget
 {
 public:
   LoggerWidget(QWidget * parent = 0)
@@ -26,6 +27,11 @@ public:
   }
   ~LoggerWidget()
   {
+  }
+ public:
+  QString name() const
+  {
+    return QString("LoggerWidget");
   }
 public:
   /**

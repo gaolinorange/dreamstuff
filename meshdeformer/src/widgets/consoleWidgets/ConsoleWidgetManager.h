@@ -10,33 +10,32 @@
 
 #include <QListWidget>
 #include <QDockWidget>
-#include "LoggerWidget.h"
-#include "PythonConsoleWidget.h"
+#include "loggerWidget/LoggerWidget.h"
+#include "pythonConsoleWidget/PythonConsoleWidget.h"
 
 /**
-   ConsoleWidget
+   ConsoleWidgetManager
    @brief:
    A widget for displaying Logging messages and showing Python Console
    @details: an singleton instance of logger
  */
 
-class ConsoleWidget : public QDockWidget
+class ConsoleWidgetManager : public QDockWidget
 {
 public:
-  static ConsoleWidget* getInstance()
+  static ConsoleWidgetManager* getInstance()
   {
-	  Q_ASSERT(consoleWidget!= NULL);
-	  return consoleWidget;
+	  Q_ASSERT(consoleWidgetManager!= NULL);
+	  return consoleWidgetManager;
   }
 public:
-  static ConsoleWidget* consoleWidget;
+  static ConsoleWidgetManager* consoleWidgetManager;
 private:
   QTabWidget* tabWidget;
   LoggerWidget* loggerWidget;
-  PythonConsoleWidget* pythonConsoleWidget;
-    
+  PythonConsoleWidget* pythonConsoleWidget;    
 public:
-  ConsoleWidget(QWidget * parent = 0)
+  ConsoleWidgetManager(QWidget * parent = 0)
     : QDockWidget(QString(tr("App Console")),parent)
   {
     tabWidget = new QTabWidget(this);
@@ -47,7 +46,7 @@ public:
         
     setWidget(tabWidget);
   }
-  ~ConsoleWidget()
+  ~ConsoleWidgetManager()
   {
     delete loggerWidget;
     delete pythonConsoleWidget;

@@ -3,7 +3,7 @@
 #include <QToolBar>
 #include <QtGui>
 #include <QApplication>
-#include "ConsoleWidget.h"
+#include "widgets/consoleWidgets/ConsoleWidgetManager.h"
 #include "globals.hpp"
 #include "widgets/aboutDialog/AboutDialog.hpp"
 
@@ -87,15 +87,15 @@ void MainWindow::setupToolBar()
 
 void MainWindow::setupConsoleWidget()
 {
-	ConsoleWidget::consoleWidget = new ConsoleWidget(this);
-	ConsoleWidget::getInstance()->setAllowedAreas(Qt::BottomDockWidgetArea);
-	addDockWidget(Qt::BottomDockWidgetArea,ConsoleWidget::getInstance());
-	ConsoleWidget::getInstance()->setVisible(false);
+	ConsoleWidgetManager::consoleWidgetManager = new ConsoleWidgetManager(this);
+	ConsoleWidgetManager::getInstance()->setAllowedAreas(Qt::BottomDockWidgetArea);
+	addDockWidget(Qt::BottomDockWidgetArea,ConsoleWidgetManager::getInstance());
+	ConsoleWidgetManager::getInstance()->setVisible(false);
 }
 
 void MainWindow::fileSave()
 {
-  ConsoleWidget::getInstance()->logMessage(QString(tr("Save mesh. TODO ")));
+  ConsoleWidgetManager::getInstance()->logMessage(QString(tr("Save mesh. TODO ")));
   
 }
 
@@ -106,7 +106,7 @@ void MainWindow::fileOpen()
 		QString(tr(".")),
 		QString(tr("Mesh files(*.off *.obj *.ply *)"))
 		);
-	mainWidget->reloadMesh(filename);
+	mainViewer_->reloadMesh(filename);
 }
 
 void MainWindow::fileSaveImage()
@@ -116,7 +116,7 @@ void MainWindow::fileSaveImage()
 		QString(QObject::tr("../result.png")),
 		QString(QObject::tr("Images (*.png)"))
 		);
-	mainWidget->saveImage(filename);
+	mainViewer_->saveImage(filename);
 }
 
 void MainWindow::fileExit()
@@ -132,47 +132,47 @@ void MainWindow::helpAbout()
 
 void MainWindow::viewLog()
 {
-	if(ConsoleWidget::getInstance()->isVisible()){
-		ConsoleWidget::getInstance()->setVisible(false);
+	if(ConsoleWidgetManager::getInstance()->isVisible()){
+		ConsoleWidgetManager::getInstance()->setVisible(false);
 	}
 	else{
-		ConsoleWidget::getInstance()->setVisible(true);
+		ConsoleWidgetManager::getInstance()->setVisible(true);
 	}
 }
 
 void MainWindow::viewWireFrame()
 {
-	if(mainWidget)
+	if(mainViewer_)
 	  {
-	    mainWidget->setPolygonMode(PM_WIREFRAME);
+	    mainViewer_->setPolygonMode(PM_WIREFRAME);
 	  }
 }
 
 void MainWindow::viewSolidFlat()
 {
-	if(mainWidget)
-		mainWidget->setPolygonMode(PM_SOLID_FLAT);
+	if(mainViewer_)
+		mainViewer_->setPolygonMode(PM_SOLID_FLAT);
 }
 
 void MainWindow::viewSolidSmooth()
 {
-  if(mainWidget)
-    mainWidget->setPolygonMode(PM_SOLID_SMOOTH);
+  if(mainViewer_)
+    mainViewer_->setPolygonMode(PM_SOLID_SMOOTH);
 }
 
 
 void MainWindow::infoPrintBoundingBox()
 {
-	if(mainWidget){
-		mainWidget->GetAppData()->printBoundingBox();
+	if(mainViewer_){
+	  //		mainViewer_->getModel()->printBoundingBox();
 	}
 
 }
 
 void MainWindow::infoShowDebugInfo()
 {
-  if(mainWidget){
-    mainWidget->printDebugInfo();
+  if(mainViewer_){
+    mainViewer_->printDebugInfo();
   }
 }
 

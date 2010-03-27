@@ -1,12 +1,12 @@
-#include "MainWidget.h"
-#include "ConsoleWidget.h"
+#include "Viewer.h"
+#include "widgets/consoleWidget/ConsoleWidgetManager.h"
 
 #include "globals.hpp"
 #include <QtDebug>
 #include <QtGui>
 #include <iostream>
 
-void MainWidget::initializeGL()
+void Viewer::initializeGL()
 {
   qglClearColor(Qt::black);
   glShadeModel(GL_FLAT);
@@ -32,7 +32,7 @@ void MainWidget::initializeGL()
   QGLViewer::initializeGL();
 }
 
-void MainWidget::resizeGL(int w,int h)
+void Viewer::resizeGL(int w,int h)
 {
   camera()->setAspectRatio(float(w)/h);
   camera()->setScreenWidthAndHeight(w,h);
@@ -85,16 +85,16 @@ void MainWidget::draw()
 		testDrawCube();
 	}
 	else{
-		if(pData){
-			pData->render();
+		if(pModel){
+			pModel->render();
 		}  
 	}
 }
 
 void MainWidget::reloadMesh(QString& filename)
 {
-	pData->loadMesh(filename);
-	BoundingBox box = pData->getBoundingBox();
+	pModel->loadMesh(filename);
+	//	BoundingBox box = pData->getBoundingBox();
 	QString message;
 	QTextStream(&message)<<"retrived bounding box: "<<box.d_min_x<<","<<box.d_min_y<<","<<box.d_min_z
 		<<"    >> "<<box.d_max_x<<","<<box.d_max_y<<box.d_max_z;
@@ -161,7 +161,7 @@ void MainWidget::saveImage(const QString& filename)
 }
 
 
-void MainWidget::printDebugInfo()
+void Viewer::printDebugInfo()
 {
 
 }
