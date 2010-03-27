@@ -7,24 +7,24 @@
 #include <QtGui>
 
 
-#include "MeshCore.h"
+#include "MeshCore/MeshCore.h"
 
 
-class AppData //: public QObject
+class Model : public QObject
 {
+  Q_OBJECT
  public:
-  AppData();
-  ~AppData();
+  Model();
+  ~Model();
  public:
   void initATetrahedron();
   bool loadMesh(const QString& filename);
   void update();
   void render();
-  void printBoundingBox();
-  BoundingBox& getBoundingBox();
+  //  void printBoundingBox();
+  //  BoundingBox& getBoundingBox();
  private:
   MeshCore * pMesh;
-
 };
 
 #endif

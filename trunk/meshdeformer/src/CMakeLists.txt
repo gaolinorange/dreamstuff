@@ -2,6 +2,9 @@
 #CMake file for project ROOT
 
 cmake_minimum_required(VERSION 2.6)
+set(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g -ggdb")
+set(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O3 -Wall")
+
 
 find_package(Qt4 COMPONENTS QtGui QtCore QtOpenGL QtTest REQUIRED)
 set(QT_USE_QTOPENGL true)
@@ -29,38 +32,39 @@ endif(PYTHONLIBS_FOUND)
 
 
 
-SET(MAINWINDOW_SOURCES
-	MainWindow.cpp 
-	MainWidget.cpp 
-	AppData.cpp
-	ConsoleWidget.cpp
-	PythonConsoleWidget.cpp
-	LoggerWidget.cpp
+include_directories(.)
+include_directories(Common)
+include_directories(MeshCore)
+
+
+
+
+
+SET(APP_SOURCES
+	Core/MainWindow.cpp 
+	Core/Viewer.cpp 
+	Core/Model.cpp
+	widgets/consoleWidgets/ConsoleWidgetManager.cpp
 	)
-SET(MAINWINDOW_HEADERS
-	MainWindow.h 
-	MainWidget.h 
-	AppData.h
-	LoggerWidget.h
-	ConsoleWidget.cpp
-	PythonConsoleWidget.cpp
+SET(APP_HEADERS
+	Core/MainWindow.h 
+	Core/Viewer.h 
+	Core/Model.h
+	widgets/consoleWidgets/ConsoleWidgetManager.h
 	)
 
 
 #warp the Q_OBJECT file
-qt4_wrap_cpp(MainWidget_MOC MainWidget.h)
-qt4_wrap_cpp(MainWindow_MOC MainWindow.h)
+#qt4_wrap_cpp(MainWidget_MOC MainWidget.h)
+#qt4_wrap_cpp(MainWindow_MOC MainWindow.h)
+qt4_wrap_cpp(SOURCE_MOCS ${APP_HEADERS})
 
-#include_directories(Renderer)
-include_directories(Math)
-include_directories(Common)
-include_directories(MeshCore)
 
 
 ADD_DEFINITIONS(${QT_DEFINITIONS})
 
 add_subdirectory(MeshCore)#the MeshCore subcore
-add_subdirectory(Math)	#the math subcore
+#add_subdirectory(Math)	#the math subcore
 #add_subdirectory(Renderer)
 
 #assimp importer module
@@ -86,10 +90,9 @@ endif(WIN32)
 
 add_executable(meshdeformer
   main.cpp 
-  ${MAINWINDOW_HEADERS} 
-  ${MAINWINDOW_SOURCES} 
-  ${MainWindow_MOC} 
-  ${MainWidget_MOC}
+  ${APP_HEADERS} 
+  ${APP_SOURCES} 
+  ${SOURCE_MOCS} 
   )
 
 if(WIN32)

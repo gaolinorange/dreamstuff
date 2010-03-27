@@ -10,7 +10,7 @@
 
 #include <QGLWidget>
 #include <QtGui>
-#include "AppData.h"
+#include "Model.h"
 #include <QGLViewer/qglviewer.h>
 
 
@@ -28,23 +28,19 @@ enum PolygonMode{
    @details: inherite the QGLViewer, a part of libQGLViewer library,
    to make the creation of Rendering more easy
  */
-class MainWidget : public QGLViewer
+class Viewer : public QGLViewer
 {
   Q_OBJECT
 public:
-  MainWidget(QWidget * parent = 0,const QGLWidget * shareWidget = 0,Qt::WindowFlags flags = 0)
+  Viewer(Model* model,QWidget * parent = 0,const QGLWidget * shareWidget = 0,Qt::WindowFlags flags = 0)
     : QGLViewer(parent,shareWidget,flags)
    {
-      pData =  new AppData();
+     pModel = model;
       polygonMode = PM_WIREFRAME;
       pCamera = new qglviewer::Camera();
   }
-  ~MainWidget()
+  ~Viewer()
     {
-      if(pData)
-	{
-	  delete pData; pData = 0;
-	}
       if(pCamera){
 	delete pCamera; pCamera = 0;
       }
@@ -78,14 +74,14 @@ public:
 	/**
 	   AppData is the model part of MVC design pattern
 	 */
-	AppData* GetAppData()
+	Model* getModel()
 	{
-		return pData;
+		return pModel;
 	}
  public:
 	void printDebugInfo();
  private:
-  AppData * pData;
+  Model * pModel;
   qglviewer::Camera* pCamera;
   PolygonMode polygonMode;
 };

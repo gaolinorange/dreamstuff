@@ -1,4 +1,4 @@
-#include "AppData.h"
+#include "Model.h"
 #include "MeshCore/MeshCore.h"
 #include "MeshCore/MeshBuilder.h"
 #include "MeshCore/MeshLoader.h"
@@ -10,12 +10,12 @@
 #include <QtCore>
 
 
-AppData::AppData()
+Model::Model()
 {
   pMesh = 0;
 }
 
-AppData::~AppData()
+Model::~Model()
 {
   if(pMesh)
     {
@@ -23,18 +23,16 @@ AppData::~AppData()
     }
 }
 
-void AppData::initATetrahedron()
+void Model::initATetrahedron()
 {
   if(pMesh == 0)
     pMesh = new MeshCore();
 
   pMesh->make_tetrahedron(Point_3(0,0,0),Point_3(1,0,0),Point_3(0,1,0),Point_3(0,0,1));
   pMesh->set_indices();
-  
-  qDebug()<<pMesh->is_pure_triangle()<<" pMesh is pure_triangle?";
 }
 
-bool AppData::loadMesh(const QString& filename)
+bool Model::loadMesh(const QString& filename)
 {
   // converte aiMesh to MeshCore format
   if(pMesh)
@@ -66,11 +64,11 @@ bool AppData::loadMesh(const QString& filename)
   return true;						  
 }
 
-void AppData::update()
+void Model::update()
 {
 }
 
-void AppData::render()
+void Model::render()
 {
   if(pMesh)
     {
@@ -78,7 +76,8 @@ void AppData::render()
     }
 }
 
-void AppData::printBoundingBox()
+/*
+void Model::printBoundingBox()
 {
 	if(pMesh){
 		BoundingBox box = pMesh->getBoundingBox();
@@ -89,9 +88,10 @@ void AppData::printBoundingBox()
 	}
 }
 
-BoundingBox& AppData::getBoundingBox()
+BoundingBox& Model::getBoundingBox()
 {
 	if(pMesh){
 		return pMesh->getBoundingBox();
 	}
 }
+*/
