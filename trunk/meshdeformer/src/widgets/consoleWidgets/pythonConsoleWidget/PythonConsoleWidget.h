@@ -8,6 +8,7 @@
 
 class PythonConsoleWidget : public PythonQtScriptingConsole,public AbstractConsoleWidget
 {
+  Q_OBJECT
  public:
   PythonConsoleWidget(QWidget* parent,const PythonQtObjectPtr& context);
   ~PythonConsoleWidget();

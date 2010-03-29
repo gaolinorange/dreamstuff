@@ -22,6 +22,7 @@
 
 class ConsoleWidgetManager : public QDockWidget
 {
+  Q_OBJECT
 public:
   static ConsoleWidgetManager* getInstance()
   {

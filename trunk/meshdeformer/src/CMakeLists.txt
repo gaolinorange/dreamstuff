@@ -45,12 +45,16 @@ SET(APP_SOURCES
 	Core/Viewer.cpp 
 	Core/Model.cpp
 	widgets/consoleWidgets/ConsoleWidgetManager.cpp
+	widgets/consoleWidgets/pythonConsoleWidget/PythonConsoleWidget.cpp
+	widgets/consoleWidgets/loggerWidget/LoggerWidget.cpp
 	)
 SET(APP_HEADERS
 	Core/MainWindow.h 
 	Core/Viewer.h 
 	Core/Model.h
 	widgets/consoleWidgets/ConsoleWidgetManager.h
+	widgets/consoleWidgets/pythonConsoleWidget/PythonConsoleWidget.h
+	widgets/consoleWidgets/loggerWidget/LoggerWidget.h
 	)
 
 
@@ -96,11 +100,11 @@ add_executable(meshdeformer
   )
 
 if(WIN32)
-target_link_libraries(meshdeformer MeshCore Math ${QT_LIBRARIES} gtest gtest_main assimp QGLViewer2)
+target_link_libraries(meshdeformer MeshCore ${QT_LIBRARIES} gtest gtest_main assimp QGLViewer2)
 endif(WIN32)
 
 if(UNIX)
-  target_link_libraries(meshdeformer MeshCore Math ${QT_LIBRARIES} gtest gtest_main assimp QGLViewer PythonQt)
+  target_link_libraries(meshdeformer MeshCore ${QT_LIBRARIES} gtest gtest_main assimp QGLViewer PythonQt)
 endif(UNIX)
 
 
