@@ -2,8 +2,6 @@
 #CMake file for project ROOT
 
 cmake_minimum_required(VERSION 2.6)
-set(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g -ggdb")
-set(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O3 -Wall")
 
 
 find_package(Qt4 COMPONENTS QtGui QtCore QtOpenGL QtTest REQUIRED)
@@ -24,12 +22,19 @@ endif()
 find_package(PythonLibs REQUIRED)
 if(PYTHONLIBS_FOUND)
   include_directories(${PYTHON_INCLUDE_PATH})
-  include_directories(/usr/local/include/PythonQt) # for PythonQt
-  link_directories(/usr/local/lib)
+#  include_directories(/usr/local/include/PythonQt) # for PythonQt
+#  link_directories(/usr/local/lib)
 else(PYTHONLIBS_FOUND)
   message("could not find PythonLibs")
 endif(PYTHONLIBS_FOUND)
 
+find_package(PythonQt)
+if(PythonQt_FOUND)
+  include_directories(${PYTHONQT_INCLUDE_DIR})
+  link_directories(${PYTHONQT_LIBRARY})
+else(PythonQt_FOUND)
+  message(FATAL_ERROR,"Cound not find the PythonQt library")
+endif(PythonQt_FOUND)  
 
 
 include_directories(.)
