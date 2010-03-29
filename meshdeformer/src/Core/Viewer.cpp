@@ -1,7 +1,7 @@
 #include "Viewer.h"
-#include "widgets/consoleWidget/ConsoleWidgetManager.h"
+#include "widgets/consoleWidgets/ConsoleWidgetManager.h"
 
-#include "globals.hpp"
+#include "Common/globals.hpp"
 #include <QtDebug>
 #include <QtGui>
 #include <iostream>
@@ -18,7 +18,7 @@ void Viewer::initializeGL()
   glDisable(GL_LIGHTING);
 
   //setup render related class
-  pData->initATetrahedron();
+  pModel->initATetrahedron();
 
   pCamera->setPosition(qglviewer::Vec(0,0,-2));
   pCamera->setViewDirection(qglviewer::Vec(0,0,1));
@@ -40,14 +40,14 @@ void Viewer::resizeGL(int w,int h)
   QGLViewer::resizeGL(w,h);
 }
 
-void MainWidget::updateGL()
+void Viewer::updateGL()
 {
   paintGL();
   
   QGLViewer::updateGL();
 }
 
-void MainWidget::paintGL()
+void Viewer::paintGL()
 {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   glDisable(GL_LIGHTING); //the lighting of QGLViewer may not you wanted.
@@ -79,7 +79,7 @@ void MainWidget::paintGL()
 }
 
 
-void MainWidget::draw()
+void Viewer::draw()
 {
   if(true ==RUNNING_AT_TEST_MODE ){
 		testDrawCube();
@@ -91,22 +91,25 @@ void MainWidget::draw()
 	}
 }
 
-void MainWidget::reloadMesh(QString& filename)
+void Viewer::reloadMesh(QString& filename)
 {
 	pModel->loadMesh(filename);
 	//	BoundingBox box = pData->getBoundingBox();
+	/*
 	QString message;
 	QTextStream(&message)<<"retrived bounding box: "<<box.d_min_x<<","<<box.d_min_y<<","<<box.d_min_z
 		<<"    >> "<<box.d_max_x<<","<<box.d_max_y<<box.d_max_z;
 	ConsoleWidget::getInstance()->logMessage(message);
-
-	pCamera->setSceneBoundingBox(qglviewer::Vec(box.d_min_x,box.d_min_y,box.d_min_z),
+	*/
+	/*
+		pCamera->setSceneBoundingBox(qglviewer::Vec(box.d_min_x,box.d_min_y,box.d_min_z),
 		qglviewer::Vec(box.d_max_x,box.d_max_y,box.d_max_z));
+	*/
 	pCamera->showEntireScene();
 	updateGL();
 }
 
-void MainWidget::testDrawCube()
+void Viewer::testDrawCube()
 {
   printf("testDrawCube \n");
 	glTranslatef(0.0f,0.0f,0.0f);
@@ -151,7 +154,7 @@ void MainWidget::testDrawCube()
 }
 
 
-void MainWidget::saveImage(const QString& filename)
+void Viewer::saveImage(const QString& filename)
 {
 	//when you open a dialog, the glbuffer is overlap by a dialog, so you
 	//select the back buffer to grab

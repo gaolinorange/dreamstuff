@@ -1,4 +1,4 @@
-#include "ConsoleWidget.h"
+#include "ConsoleWidgetManager.h"
 
 
-ConsoleWidgetManger* ConsoleWidgetManager::consoleWidgetManager = NULL;
+ConsoleWidgetManager* ConsoleWidgetManager::consoleWidgetManager = NULL;

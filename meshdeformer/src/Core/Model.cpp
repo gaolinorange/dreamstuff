@@ -3,7 +3,7 @@
 #include "MeshCore/MeshBuilder.h"
 #include "MeshCore/MeshLoader.h"
 
-#include "ConsoleWidget.h"
+#include "widgets/consoleWidgets/ConsoleWidgetManager.h"
 #include <QtDebug>
 
 #include <QtGui>
@@ -46,10 +46,10 @@ bool Model::loadMesh(const QString& filename)
   bool ret = loader->load(filename.toAscii().data());
   if(ret == false)
   {
-	 ConsoleWidget::getInstance()->logMessage(QString(QObject::tr("MeshLoader failed to load the mesh")));
+	 ConsoleWidgetManager::getInstance()->logMessage(QString(QObject::tr("MeshLoader failed to load the mesh")));
   }
   else
-	 ConsoleWidget::getInstance()->logMessage(QString(QObject::tr("MeshLoader load the mesh ok")));
+	 ConsoleWidgetManager::getInstance()->logMessage(QString(QObject::tr("MeshLoader load the mesh ok")));
 
   MeshBuilder<Polyhedron::HalfedgeDS> builder(loader);
   pMesh->delegate(builder);
@@ -57,7 +57,7 @@ bool Model::loadMesh(const QString& filename)
 
   QString message;
   QTextStream(&message)<<"Mesh info: vertices num: "<<pMesh->size_of_vertices()<<" facet num: "<<pMesh->size_of_facets();
-  ConsoleWidget::getInstance()->logMessage(message);
+  ConsoleWidgetManager::getInstance()->logMessage(message);
 
   delete loader;//delete local meshloader to save memory
 
