@@ -88,16 +88,15 @@ void MainWindow::setupToolBar()
 
 void MainWindow::setupConsoleWidget()
 {
-	ConsoleWidgetManager::consoleWidgetManager = new ConsoleWidgetManager(this);
-	ConsoleWidgetManager::getInstance()->setAllowedAreas(Qt::BottomDockWidgetArea);
-	addDockWidget(Qt::BottomDockWidgetArea,ConsoleWidgetManager::getInstance());
-	ConsoleWidgetManager::getInstance()->setVisible(false);
+	consoleWidgetManager = new ConsoleWidgetManager(this);
+	consoleWidgetManager->setAllowedAreas(Qt::BottomDockWidgetArea);
+	addDockWidget(Qt::BottomDockWidgetArea,consoleWidgetManager);
+	consoleWidgetManager->setVisible(false);
 }
 
 void MainWindow::fileSave()
 {
-  ConsoleWidgetManager::getInstance()->logMessage(QString(tr("Save mesh. TODO ")));
-  
+  consoleWidgetManager->logMessage(QString(tr("Save mesh. TODO ")));
 }
 
 void MainWindow::fileOpen()
@@ -133,11 +132,11 @@ void MainWindow::helpAbout()
 
 void MainWindow::viewLog()
 {
-	if(ConsoleWidgetManager::getInstance()->isVisible()){
-		ConsoleWidgetManager::getInstance()->setVisible(false);
+	if(consoleWidgetManager->isVisible()){
+		consoleWidgetManager->setVisible(false);
 	}
 	else{
-		ConsoleWidgetManager::getInstance()->setVisible(true);
+		consoleWidgetManager->setVisible(true);
 	}
 }
 

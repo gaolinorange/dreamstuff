@@ -46,18 +46,19 @@ bool Model::loadMesh(const QString& filename)
   bool ret = loader->load(filename.toAscii().data());
   if(ret == false)
   {
-	 ConsoleWidgetManager::getInstance()->logMessage(QString(QObject::tr("MeshLoader failed to load the mesh")));
+	 emit log(QString("MeshLoader failed to load the mesh"));
   }
-  else
-	 ConsoleWidgetManager::getInstance()->logMessage(QString(QObject::tr("MeshLoader load the mesh ok")));
-
+  else{
+    emit log(QString(QObject::tr("MeshLoader load the mesh ok")));
+  }
+  
   MeshBuilder<Polyhedron::HalfedgeDS> builder(loader);
   pMesh->delegate(builder);
   pMesh->set_indices();
 
   QString message;
   QTextStream(&message)<<"Mesh info: vertices num: "<<pMesh->size_of_vertices()<<" facet num: "<<pMesh->size_of_facets();
-  ConsoleWidgetManager::getInstance()->logMessage(message);
+  emit log(message);
 
   delete loader;//delete local meshloader to save memory
 
