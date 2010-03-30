@@ -60,6 +60,7 @@ SET(APP_HEADERS
 	widgets/consoleWidgets/ConsoleWidgetManager.h
 	widgets/consoleWidgets/pythonConsoleWidget/PythonConsoleWidget.h
 	widgets/consoleWidgets/loggerWidget/LoggerWidget.h
+	TestPlugin.h
 	)
 
 

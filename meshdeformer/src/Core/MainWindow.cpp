@@ -7,6 +7,7 @@
 #include "globals.hpp"
 #include "widgets/aboutDialog/AboutDialog.hpp"
 
+#include "../TestPlugin.h"
 
 void MainWindow::setupMenu()
 {
@@ -179,4 +180,10 @@ void MainWindow::infoShowDebugInfo()
 void MainWindow::infoToggleRunningMode()
 {
   RUNNING_AT_TEST_MODE = !RUNNING_AT_TEST_MODE; 
+}
+
+
+void MainWindow::slotLog(const QString& message)
+{
+  consoleWidgetManager->logMessage(message);
 }
