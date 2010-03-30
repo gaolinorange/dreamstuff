@@ -19,6 +19,8 @@
 
 class ConsoleWidgetManager;
 
+#include "../TestPlugin.h"
+
 /**
    MainWindow:
    @brief: The MainWindow of the application
@@ -40,6 +42,13 @@ class MainWindow : public QMainWindow
 
       //TODO: add Layout and splitter support to suppport multiviewer
       setCentralWidget(mainViewer_);
+
+
+      testPlugin = new TestPlugin();
+
+      connect(testPlugin,SIGNAL(log(const QString&)),this,SLOT(slotLog(const QString&)));
+
+      testPlugin->callTest();
     }
   ~MainWindow()
     {
@@ -66,6 +75,11 @@ private slots:
   void infoPrintBoundingBox();
   void infoShowDebugInfo();
   void infoToggleRunningMode();
+
+
+  //LoggingInterface
+public slots:
+  void slotLog(const QString& message);
  private:
   //The main displaying widget
   Viewer * mainViewer_;
@@ -97,6 +111,9 @@ private slots:
   QAction* actInfoToggleRunningMode;
   
   ConsoleWidgetManager* consoleWidgetManager;
+
+
+  TestPlugin* testPlugin;
 };
 
 
