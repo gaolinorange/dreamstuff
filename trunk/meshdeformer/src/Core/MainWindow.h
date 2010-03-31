@@ -47,11 +47,7 @@ class MainWindow : public QMainWindow
       testPlugin = new TestPlugin();
 
       connect(testPlugin,SIGNAL(log(const QString&)),this,SLOT(slotLog(const QString&)));
-      //Connect the model's loading message to the logging window
-      connect(mainModel_,SIGNAL(log(const QString&)),this,SLOT(slotLog(const QString&)));
-      
 
-      
       testPlugin->callTest();
     }
   ~MainWindow()

@@ -3,6 +3,7 @@
 #include "MeshCore/MeshBuilder.h"
 #include "MeshCore/MeshLoader.h"
 
+#include "widgets/consoleWidgets/ConsoleWidgetManager.h"
 #include <QtDebug>
 
 #include <QtGui>
