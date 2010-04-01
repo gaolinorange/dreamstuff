@@ -35,6 +35,21 @@ TEST_F(MeshCoreTest,testWriteTetrahedron)
   outFile<<(*pMesh);
 }
 
+TEST_F(MeshCoreTest,testBoundingBox)
+{
+  //  pMesh->make_tetrahedron();
+  Halfedge_handle h = pMesh->make_tetrahedron(Point_3(0,0,0),Point_3(0,0,1),Point_3(0,1,0),Point_3(1,0,0));
+  pMesh->compute_bounding_box();
+  Iso_cuboid_3 box = pMesh->get_bounding_box();
+  EXPECT_FLOAT_EQ(0,box.xmin());
+  EXPECT_FLOAT_EQ(0,box.ymin());
+  EXPECT_FLOAT_EQ(0,box.zmin());
+
+  EXPECT_FLOAT_EQ(1,box.xmax());
+  EXPECT_FLOAT_EQ(1,box.ymax());
+  EXPECT_FLOAT_EQ(1,box.zmax());  
+}
+
 
   
   
