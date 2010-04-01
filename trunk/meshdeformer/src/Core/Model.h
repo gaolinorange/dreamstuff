@@ -23,16 +23,19 @@ class Model : public QObject,public LoggingInterface
   bool loadMesh(const QString& filename);
   void update();
   void render();
-  //  void printBoundingBox();
-  //  BoundingBox& getBoundingBox();
+  Iso_cuboid_3& get_bounding_box(){
+    if(pMesh){
+      return pMesh->get_bounding_box();
+    }
+  }
+    
  signals:
   void log(const QString& message);
  public:
   QString description() const
   {
     return QString("Model");
-  }
-  
+  }  
  private:
   MeshCore * pMesh;
 };

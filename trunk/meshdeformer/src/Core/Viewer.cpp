@@ -1,5 +1,5 @@
 #include "Viewer.h"
-#include "widgets/consoleWidgets/ConsoleWidgetManager.h"
+//#include "widgets/consoleWidgets/ConsoleWidgetManager.h"
 
 #include "Common/globals.hpp"
 #include <QtDebug>
@@ -94,17 +94,21 @@ void Viewer::draw()
 void Viewer::reloadMesh(QString& filename)
 {
 	pModel->loadMesh(filename);
-	//	BoundingBox box = pData->getBoundingBox();
-	/*
+	Iso_cuboid_3 box = pModel->get_bounding_box();
 	QString message;
-	QTextStream(&message)<<"retrived bounding box: "<<box.d_min_x<<","<<box.d_min_y<<","<<box.d_min_z
-		<<"    >> "<<box.d_max_x<<","<<box.d_max_y<<box.d_max_z;
-	ConsoleWidget::getInstance()->logMessage(message);
-	*/
-	/*
-		pCamera->setSceneBoundingBox(qglviewer::Vec(box.d_min_x,box.d_min_y,box.d_min_z),
-		qglviewer::Vec(box.d_max_x,box.d_max_y,box.d_max_z));
-	*/
+	QTextStream(&message)<<"retrived bounding box: ("
+			     <<box.xmin()<<","
+			     <<box.ymin()<<","
+			     <<box.zmin()<<")"
+			     <<"    >>    ("
+			     <<box.xmax()<<","
+			     <<box.ymax()<<","
+			     <<box.zmax()<<")";
+	emit log(message);
+
+	pCamera->setSceneBoundingBox(qglviewer::Vec(box.xmin(),box.ymin(),box.zmin()),
+				     qglviewer::Vec(box.xmax(),box.ymax(),box.zmax()));
+
 	pCamera->showEntireScene();
 	updateGL();
 }
