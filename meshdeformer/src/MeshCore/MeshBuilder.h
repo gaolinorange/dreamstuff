@@ -43,7 +43,6 @@ public:
 	}
 private:
 	MeshLoader * meshloader;
-	
 };
 
 #endif

@@ -41,30 +41,6 @@ void MeshCore::render()
 }
 
 
-BoundingBox& MeshCore::getBoundingBox()
-{
-	BoundingBox box;
-	box.d_min_x = box.d_min_y = box.d_min_z = FLT_MAX;
-	box.d_max_x = box.d_max_y = box.d_max_z = -FLT_MAX;
-
-	//loop throught the vertices and foind the minimal & maximal
-	Point_iterator pPoint;
-	for(pPoint = points_begin(); pPoint != points_end(); pPoint++){
-		if((*pPoint)[0] < box.d_min_x)  box.d_min_x = (*pPoint)[0];
-		if((*pPoint)[0] > box.d_max_x) box.d_max_x = (*pPoint)[0];
-		if((*pPoint)[1] < box.d_min_y) box.d_min_y = (*pPoint)[1];
-		if((*pPoint)[1] > box.d_max_y) box.d_max_y = (*pPoint)[1];
-		if((*pPoint)[2] < box.d_min_z) box.d_min_z = (*pPoint)[2];
-		if((*pPoint)[2] > box.d_max_z) box.d_max_z = (*pPoint)[2];
-	}
-
-
-	return box;
-}
-
-
-
-
 void MeshCore::set_vertex_indices()
 {
   std::size_t vertex_id = 0;
@@ -101,3 +77,33 @@ void MeshCore::set_indices()
   set_facet_indices();
   set_halfedge_indices();
 }
+
+
+
+void MeshCore::compute_bounding_box()
+{
+  if(size_of_vertices() == 0)
+    return;
+
+  FT xmin,xmax,ymin,ymax,zmin,zmax;
+  Vertex_iterator pVertex = vertices_begin();
+  xmin = xmax = pVertex->point().x();
+  ymin = ymax = pVertex->point().y();
+  zmin = zmax = pVertex->point().z();
+
+  for( ; pVertex != vertices_end(); pVertex++){
+    const Point_3& p = pVertex->point();
+
+    xmin = std::min(xmin,p.x());
+    ymin = std::min(ymin,p.y());
+    zmin = std::min(zmin,p.z());
+
+    xmax = std::max(xmax,p.x());
+    ymax = std::max(ymax,p.y());
+    zmax = std::max(zmax,p.z());
+  }
+
+  bounding_box_ = Iso_cuboid_3(xmin,ymin,zmin,
+			       xmax,ymax,zmax);
+}
+

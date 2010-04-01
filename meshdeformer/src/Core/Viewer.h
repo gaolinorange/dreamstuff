@@ -12,7 +12,7 @@
 #include <QtGui>
 #include "Model.h"
 #include <QGLViewer/qglviewer.h>
-
+#include "BasePlugins/LoggingInterface.h"
 
 enum PolygonMode{
 	PM_WIREFRAME=0x01,
@@ -28,9 +28,11 @@ enum PolygonMode{
    @details: inherite the QGLViewer, a part of libQGLViewer library,
    to make the creation of Rendering more easy
  */
-class Viewer : public QGLViewer
+class Viewer : public QGLViewer, public LoggingInterface
 {
   Q_OBJECT
+    Q_INTERFACES(LoggingInterface)
+    
 public:
   Viewer(Model* model,QWidget * parent = 0,const QGLWidget * shareWidget = 0,Qt::WindowFlags flags = 0)
     : QGLViewer(parent,shareWidget,flags)
@@ -56,6 +58,14 @@ public:
 	   @detailed: currently, I use assimp library to load the mesh.
 	 */
 	void reloadMesh(QString& filename);
+ signals:
+	void log(const QString& );
+ public:
+	/*virtual*/
+	QString description() const
+	{
+	  return QString("Viewer");
+	}
  protected:
   void initializeGL();
   void resizeGL(int w,int h);
