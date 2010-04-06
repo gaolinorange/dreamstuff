@@ -8,6 +8,9 @@ class MeshCoreTest : public ::testing::Test
   virtual void SetUp()
   {
     pMesh = new MeshCore();
+    Halfedge_handle h = pMesh->make_tetrahedron(Point_3(0,0,0),Point_3(0,0,1),Point_3(0,1,0),Point_3(1,0,0));
+
+    pMesh->set_indices();
   }
   virtual void TearDown()
   {
@@ -50,6 +53,20 @@ TEST_F(MeshCoreTest,testBoundingBox)
   EXPECT_FLOAT_EQ(1,box.zmax());  
 }
 
+TEST_F(MeshCoreTest,testVertexHandlePrint)
+{
+  pMesh->test_print_vertex_handles(); 
+}
+
+TEST_F(MeshCoreTest,testHalfedgeHandlePrint)
+{
+  pMesh->test_print_halfedge_handles();
+}
+
+TEST_F(MeshCoreTest,testFacetHandlePrint)
+{
+  pMesh->test_print_facet_handles();
+}
 
   
   

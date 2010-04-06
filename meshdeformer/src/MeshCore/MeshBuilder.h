@@ -17,6 +17,7 @@ public:
 	void operator()(HDS& hds)
 	{
 		CGAL::Polyhedron_incremental_builder_3<HDS> builder(hds,true);
+
 		typedef typename HDS::Vertex Vertex;
 		typedef typename HDS::Vertex::Point Point;
 

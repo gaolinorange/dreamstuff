@@ -14,7 +14,7 @@ MeshCore::~MeshCore()
 
 void MeshCore::render()
 {
-	/*
+  //Render the outline
   Vertex_handle v0,v1;
   for(Halfedge_iterator pHalfedge = halfedges_begin();
       pHalfedge != halfedges_end(); pHalfedge++)
@@ -25,9 +25,10 @@ void MeshCore::render()
       glVertex3f(v0->point().x(),v0->point().y(),v0->point().z());
       glVertex3f(v1->point().x(),v1->point().y(),v1->point().z());
       glEnd();
-    }*/
+    }
+
+  //Render facets
 	Halfedge_around_facet_circulator pHalfedge;
-	//Vertex_handle pVertex;
 	for(Facet_iterator pFacet = facets_begin();
 		pFacet != facets_end(); pFacet++){
 			glBegin(GL_POLYGON);
@@ -106,4 +107,61 @@ void MeshCore::compute_bounding_box()
   bounding_box_ = Iso_cuboid_3(xmin,ymin,zmin,
 			       xmax,ymax,zmax);
 }
+
+
+unsigned int MeshCore::degree(Facet_handle pFacet)
+{
+}
+
+unsigned int MeshCore::valence(Vertex_handle pVertex)
+{
+  
+}
+
+void MeshCore::compute_normals_per_facet()
+{
+  
+}
+
+void MeshCore::compute_normals_per_vertex()
+{
+
+  
+}
+
+
+void MeshCore::test_print_vertex_handles()
+{
+  Vertex_handle pVertex;
+  for (pVertex = vertices_begin(); pVertex != vertices_end(); pVertex++)
+  {
+    //    std::cerr<<"id: "<<pVertex->id()<<"handle: "<<pVertex<<std::endl;
+    std::cerr<<"id: "<<pVertex->id()<<std::endl;
+  }
+}
+
+void MeshCore::test_print_halfedge_handles()
+{
+  Halfedge_handle pHalfedge;
+  for (pHalfedge = halfedges_begin(); pHalfedge != halfedges_end(); pHalfedge++)
+  {
+    std::cerr<<"id: "<<pHalfedge->id()<<std::endl;    
+  }
+}
+
+void MeshCore::test_print_facet_handles()
+{
+  Facet_handle pFacet;
+  for (pFacet = facets_begin() ; pFacet != facets_end(); pFacet++)
+  {
+    std::cerr<<"id: "<<pFacet->id()<<std::endl;    
+  }  
+}
+
+
+
+
+
+
+
 

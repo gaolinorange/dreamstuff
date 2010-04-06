@@ -52,6 +52,11 @@ class MeshCore : public Polyhedron
   void set_halfedge_indices();
  public:
   void set_indices();
+  void compute_normals_per_facet();
+  void compute_normals_per_vertex();
+  unsigned int degree(Facet_handle pFacet);
+  unsigned int valence(Vertex_handle pVertex);
+  
   void render();
  public:
   Iso_cuboid_3& get_bounding_box(){ return bounding_box_;}
@@ -59,6 +64,15 @@ class MeshCore : public Polyhedron
   void compute_bounding_box();
  private:
   Iso_cuboid_3 bounding_box_;
+
+  //Test methods
+public:
+  void test_print_vertex_handles();
+  void test_print_halfedge_handles();
+  void test_print_facet_handles();
+      
+private:
+  
 };
   
   
