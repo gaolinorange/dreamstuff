@@ -1,3 +1,18 @@
+// MeshCore.cpp --- The fundamental class for establish the Polyhedron
+// copyright (c) 2010 dreamway
+// 
+//  This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by the Free Software Foundation;
+//  Free free to contact dreamway(jingwenlai@163.com)
+// 
+// website: cg.xplore.cn
+// 
+// 
+
+// Commentary: 
+// 
+// 
+
 
 #include "glheaders.hpp"
 #include "MeshCore.h"
@@ -158,6 +173,20 @@ void MeshCore::test_print_facet_handles()
   }  
 }
 
+Vertex_handle MeshCore::get_vertex_handle(int idx)
+{
+  if(idx < size_of_vertices())
+    return index_to_vertex_map[idx];
+  return Vertex_handle();
+}
+
+void MeshCore::init_index_to_vertex_map()
+{
+  for(Vertex_iterator pVertex = vertices_begin();
+      pVertex != vertices_end(); pVertex++){
+    index_to_vertex_map.push_back(pVertex);
+  }
+}
 
 
 
@@ -165,3 +194,5 @@ void MeshCore::test_print_facet_handles()
 
 
 
+// 
+// MeshCore.cpp ends here

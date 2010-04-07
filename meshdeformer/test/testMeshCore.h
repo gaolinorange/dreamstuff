@@ -11,6 +11,7 @@ class MeshCoreTest : public ::testing::Test
     Halfedge_handle h = pMesh->make_tetrahedron(Point_3(0,0,0),Point_3(0,0,1),Point_3(0,1,0),Point_3(1,0,0));
 
     pMesh->set_indices();
+    pMesh->init_index_to_vertex_map();
   }
   virtual void TearDown()
   {
@@ -68,7 +69,47 @@ TEST_F(MeshCoreTest,testFacetHandlePrint)
   pMesh->test_print_facet_handles();
 }
 
-  
+TEST_F(MeshCoreTest,testInitIndexToVertexMap)
+{
+  pMesh->init_index_to_vertex_map();
+
+  //Verify it by comparing the position of index_to_vertex_map
+  //print by using builder
+  for(Vertex_iterator pVertex = pMesh->vertices_begin();
+      pVertex != pMesh->vertices_end(); pVertex++)
+  {
+    printf("id: %ld, pos: (%.2f,%.2f,%.2f)\n",pVertex->id(),
+           pVertex->point().x(),
+           pVertex->point().y(),
+           pVertex->point().z());
+  }
+  //print by using index_to_vertex_map
+  std::size_t num_vertices = pMesh->size_of_vertices();
+  for (std::size_t i = 0; i < num_vertices; ++i)
+  {
+    printf("id : %ld, pos: (%.2f,%.2f,%.2f)\n",i,
+           pMesh->get_vertex_handle(i)->point().x(),
+           pMesh->get_vertex_handle(i)->point().y(),
+           pMesh->get_vertex_handle(i)->point().z()
+           );    
+  }
+
+  //Verify for furthing testing
+  std::size_t i = 0;
+  for (Vertex_iterator pVertex = pMesh->vertices_begin(); pVertex != pMesh->vertices_end(); pVertex++)
+  {
+    EXPECT_EQ(i,pVertex->id());
+    Point_3 vertex_pos = pVertex->point();
+    Point_3 vertex_pos_by_idx = pMesh->get_vertex_handle(i)->point();
+    EXPECT_FLOAT_EQ(vertex_pos.x(),vertex_pos_by_idx.x());
+    EXPECT_FLOAT_EQ(vertex_pos.y(),vertex_pos_by_idx.y());
+    EXPECT_FLOAT_EQ(vertex_pos.z(),vertex_pos_by_idx.z());
+
+    i++;
+  }  
+}
+      
+      
   
 
 			   
