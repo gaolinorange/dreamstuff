@@ -1,0 +1,204 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;Common settings;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; close the startup message
+(setq inhibit-startup-message t)
+;;hide toolbar
+(setq tool-bar-mode nil)
+
+;; display line number
+(column-number-mode t)
+(line-number-mode t)
+;; display the file name in the window
+(setq frame-title-format "%b - emacs")
+;; do not generate backup files
+(setq-default make-back-files nil)
+;;Just answer y or n
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;;global-font-lock-mode
+(global-font-lock-mode t)
+
+;; set default frame size
+;;(setq default-frame-alist
+;;      '((height . 25)
+;;	(width . 80)
+;;	(menu-bar-lines . 80)
+;;	(tool-bar-lines . 80)))
+
+
+;;don't use auto-save-mode
+(setq-default auto-save-mode nil)
+
+
+
+
+
+
+
+
+
+;;;;;Color Theme
+(add-to-list 'load-path
+	     "~/dreamstuff/emacsSettings")
+(require 'color-theme)
+;;(color-theme-standard)   ;; the standard theme works well in terminal
+;;(color-theme-dark-laptop) ;; maybe this is also a good theme
+(color-theme-tty-dark)  ;; another cool theme
+;;(color-theme-arjen) ;; yet another cool theme
+;;(color-theme-taylor)
+
+;;;;;;;;;Tabs Instead of Spaces
+(setq-default c-basic-offset 4
+	      tab-width 4
+	      indent-tabs-mode t)
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Programming Support;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;; add Yasnippet support(code.google.com/p/yasnippet)
+(add-to-list 'load-path
+	     "~/dreamstuff/emacsSettings/programming")
+(require 'yasnippet-bundle)
+
+;;;;;;;;;;;;;add header2.el support
+;;add fit-frame
+(require 'fit-frame)
+;;(add-hook 'after-make-frame-functions 'fit-frame)
+(require 'header2)
+(setq header-date-format nil
+      make-header-hook
+      '(header-title
+	;;header-brank
+	;;header-file-name
+	;; header-end-line
+	header-copyright
+	header-free-software
+	;; header-rcs-id
+	;; header-rcs-log
+	;; header-end-line
+	header-commentary
+	header-blank
+	;; header-prefix-string
+	;; header-prefix-string
+	;; header-blank
+	header-end-line
+	;; header-end-line
+	header-eof)
+      header-copyright-notice
+      "copyright (c) 2010 dreamway\n"
+      header-free-software
+      " This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by the Free Software Foundation;\n Free free to contact dreamway(jingwenlai@163.com)\n
+website: cg.xplore.cn")
+(add-hook 'write-file-hooks 'auto-update-file-header)
+(add-hook 'c-mode-common-hook 'auto-make-header)
+
+;;;add Displaying Line Number support
+(require 'display-line-number)
+(setq display-line-number-format "%4d")
+;;usage: M-x display-line-number-mode
+;; auto displaying line number when in c-mode
+(add-hook 'c-mode-hook 'display-line-number-mode)
+
+
+;;;;;cscope support
+(require 'xcscope)
+
+
+;;;;; google-c-style support
+(require 'google-c-style)
+(add-hook 'c-mode-common-hook 'google-set-c-style)
+(add-hook 'c-mode-common-hook 'google-make-newline-indent)
+
+
+;;;;;;;;;;;;;CEDET settings;;;;;;;;;;;;;;;;;;;;;;;;;
+(load-file "~/dreamstuff/emacsSettings/cedet/common/cedet.el")
+
+;;enable EDE(Project management) features
+(global-ede-mode 1)
+
+;;;;;semantic setting
+;;this enables the database and idle reparse engines
+(semantic-load-enable-minimum-features)
+;; this enables some tools useful for coding, such as sumary mode
+(semantic-load-enable-code-helpers)
+
+
+(require 'semantic-ia)
+;;work with C++
+(setq qt4-base-dir "/usr/local/Trolltech/Qt-4.6.0/include")
+(semantic-add-system-include qt4-base-dir 'c++-mode)
+(add-to-list 'auto-mode-alist (cons qt4-base-dir 'c++-mode))
+(add-to-list 'semantic-lex-c-preprocessor-symbol-file (concat qt4-base-dir "/Qt/qconfig.h"))
+(add-to-list 'semantic-lex-c-preprocessor-symbol-file (concat qt4-base-dir "/Qt/qconfig-dist.h"))
+(add-to-list 'semantic-lex-c-preprocessor-symbol-file (concat qt4-base-dir "/Qt/qglobal.h"))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;auto-complete
+(require 'auto-complete)
+(add-to-list 'ac-dictionary-directories "~/dreamstuff/emacsSettings/ac-dict")
+(require 'auto-complete-config)
+(ac-config-default)
+(define-key ac-completing-map "\M-n" 'ac-next)
+(define-key ac-completing-map "\M-p" 'ac-previous)
+(global-auto-complete-mode t)
+
+
+;;my common hook
+(defun my-c-mode-common-hook()
+  (setq tab-width 4
+		indent-tabs-mode nil)
+  )
+(add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
+
+
+;;CMake support
+;; add cmake listfile names to the mode list
+(setq auto-mode-alist
+      (append
+       '(("CMakeLists\\.txt\\'" . cmake-mode))
+       '(("\\.cmake\\'" . cmake-mode))
+       auto-mode-alist))
+(autoload 'cmake-mode "~/dreamstuff/emacsSettings/cmake-mode.el" t)
+;;add support for uniquify, which can solve multiple CMakeList.txt<*> problem
+(require 'uniquify)
+
+;;doc-mode : 
+;; http://nschum.de/src/emacs/doc-mode/
+;; allows easy creation and editing of Doxygen comment blocks in your code
+(require 'doc-mode)
+(add-hook 'c-mode-common-hook 'doc-mode)
+
+;;tempo-snippets
+
+
+
+
+
+
+
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Tools;;;;;;;;;;;;;;;;;;;
+;; ibuffer support
+(require 'ibuffer)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+
+
+
+
+
+
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Settings for Python;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;Python mode
+(autoload 'python-mode "python-mode" "python mode." t)
+(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
+(add-to-list 'interpreter-mode-alist '("pyhton" . python-mode))
