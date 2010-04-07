@@ -9,6 +9,7 @@
 #include <CGAL/Polyhedron_incremental_builder_3.h>
 #include <CGAL/Polyhedron_items_with_id_3.h>
 
+#include <CGAL/iterator.h>
 
 #define KernelType float
 
@@ -72,7 +73,12 @@ public:
   void test_print_facet_handles();
       
 private:
-  
+  //Initialize in MeshBuilder
+  typedef CGAL::Random_access_adaptor<Vertex_iterator> Random_access_index;
+  Random_access_index index_to_vertex_map;  //store the id to Vertex_handle mapping
+public:
+  Vertex_handle get_vertex_handle(int idx);
+  void init_index_to_vertex_map();
 };
   
   
