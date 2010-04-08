@@ -1,4 +1,5 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;Common settings;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setq default-major-mode 'text-mode)
 ;; close the startup message
 (setq inhibit-startup-message t)
 ;;hide toolbar
@@ -14,8 +15,38 @@
 ;;Just answer y or n
 (fset 'yes-or-no-p 'y-or-n-p)
 
+
+;;set fill column
+(setq-default fill-column 80)
+;;enable auto fill mode, is useful when editing text files.
+;; lines are automatically wrapped when the cursor goes beyond the column limit
+(setq auto-fill-mode 1)
+
+
 ;;global-font-lock-mode
 (global-font-lock-mode t)
+;;How to have a menu of recently opened files
+;;http://xahlee.org/emacs/emacs_make_modern.html
+(recentf-mode 1)
+
+;;Have spell-checker turned on
+;; http://xahlee.org/emacs/emacs_adv_tips.html
+(add-hook 'text-mode-hook (lambda() (flyspell-mode 1)))
+
+
+;;Disable emacs's automatic backup
+;;http://xahlee.org/emacs/emacs_adv_tips.html
+(setq make-back-files nil)  ; stop creating those backup~ files
+(setq auto-save-default nil) ; stop creating those #auto-save# files
+
+;;customization of UI
+;;http://xahlee.org/emacs/emacs_make_modern.html
+(transient-mark-mode 1) ;highlight text selection
+(delete-selection-mode 1) ; delete selected text when typing
+
+;;highlight current-line
+(add-hook 'text-mode-hook (lambda() (hl-line-mode 1)))
+
 
 ;; set default frame size
 ;;(setq default-frame-alist
@@ -38,13 +69,14 @@
 
 ;;;;;Color Theme
 (add-to-list 'load-path
-	     "~/dreamstuff/emacsSettings")
+	     "~/.emacs.d")
 (require 'color-theme)
 ;;(color-theme-standard)   ;; the standard theme works well in terminal
-;;(color-theme-dark-laptop) ;; maybe this is also a good theme
-(color-theme-tty-dark)  ;; another cool theme
+(color-theme-dark-laptop) ;; maybe this is also a good theme
+;;(color-theme-tty-dark)  ;; another cool theme
 ;;(color-theme-arjen) ;; yet another cool theme
 ;;(color-theme-taylor)
+
 
 ;;;;;;;;;Tabs Instead of Spaces
 (setq-default c-basic-offset 4
@@ -57,7 +89,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Programming Support;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;; add Yasnippet support(code.google.com/p/yasnippet)
 (add-to-list 'load-path
-	     "~/dreamstuff/emacsSettings/programming")
+	     "~/.emacs.d/programming")
 (require 'yasnippet-bundle)
 
 ;;;;;;;;;;;;;add header2.el support
@@ -112,7 +144,7 @@ website: cg.xplore.cn")
 
 
 ;;;;;;;;;;;;;CEDET settings;;;;;;;;;;;;;;;;;;;;;;;;;
-(load-file "~/dreamstuff/emacsSettings/cedet/common/cedet.el")
+(load-file "~/.emacs.d/cedet/common/cedet.el")
 
 ;;enable EDE(Project management) features
 (global-ede-mode 1)
@@ -136,7 +168,7 @@ website: cg.xplore.cn")
 
 ;;;;;;;;;;;;;;;;;;;;;;;auto-complete
 (require 'auto-complete)
-(add-to-list 'ac-dictionary-directories "~/dreamstuff/emacsSettings/ac-dict")
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (require 'auto-complete-config)
 (ac-config-default)
 (define-key ac-completing-map "\M-n" 'ac-next)
@@ -159,7 +191,7 @@ website: cg.xplore.cn")
        '(("CMakeLists\\.txt\\'" . cmake-mode))
        '(("\\.cmake\\'" . cmake-mode))
        auto-mode-alist))
-(autoload 'cmake-mode "~/dreamstuff/emacsSettings/cmake-mode.el" t)
+(autoload 'cmake-mode "~/.emacs.d/cmake-mode.el" t)
 ;;add support for uniquify, which can solve multiple CMakeList.txt<*> problem
 (require 'uniquify)
 
@@ -202,3 +234,8 @@ website: cg.xplore.cn")
 (autoload 'python-mode "python-mode" "python mode." t)
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'interpreter-mode-alist '("pyhton" . python-mode))
+
+
+;; ipython settings
+(setq ipython-command "/usr/bin/ipython")
+(require 'ipython)
