@@ -31,7 +31,7 @@
 
 ;;Have spell-checker turned on
 ;; http://xahlee.org/emacs/emacs_adv_tips.html
-(add-hook 'text-mode-hook (lambda() (flyspell-mode 1)))
+;;(add-hook 'text-mode-hook (lambda() (flyspell-mode 1)))
 
 
 ;;Disable emacs's automatic backup
