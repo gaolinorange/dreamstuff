@@ -1,3 +1,6 @@
+;;set mac-command-modifer as meta key
+(setq mac-command-modifier 'meta)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;Common settings;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq default-major-mode 'text-mode)
 ;; close the startup message
