@@ -8,7 +8,7 @@
 
 
 #include "MeshCore/MeshCore.h"
-#include "BasePlugins/LoggingInterface.h"
+#include "BasePlugin/LoggingInterface.h"
 
 class Model : public QObject,public LoggingInterface
 {

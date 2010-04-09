@@ -1,3 +1,17 @@
+// MainWindow.cpp --- MainWindow of app and controls the workflow 
+// copyright (c) 2010 dreamway
+// 
+//  This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by the Free Software Foundation;
+//  Free free to contact dreamway(jingwenlai@163.com)
+// 
+// website: cg.xplore.cn
+// 
+// 
+
+// Commentary: 
+// Be seen as the Controller of MVC Design Pattern
+// 
 
 #include "MainWindow.h"
 #include <QToolBar>
@@ -6,6 +20,7 @@
 #include "widgets/consoleWidgets/ConsoleWidgetManager.h"
 #include "globals.hpp"
 #include "widgets/aboutDialog/AboutDialog.hpp"
+#include "widgets/statusBar/StatusBar.h"
 
 #include "../TestPlugin.h"
 
@@ -186,3 +201,18 @@ void MainWindow::slotLog(const QString& message)
 {
   consoleWidgetManager->logMessage(message);
 }
+
+
+void MainWindow::setupStatusBar( )
+{
+  statusBar_ = new StatusBar( this );
+  setStatusBar( statusBar_ );  
+}
+
+
+//StatusBar slot messages
+void MainWindow::slotUpdateStatusBarMessage( const QString& message ) {
+  statusBar_->showMessage( message);  
+}
+// 
+// MainWindow.cpp ends here

@@ -1,11 +1,57 @@
-((("set_indices" .
+((("MainWindow" .
+   [0 0 0 0 1 0 0 0 0 0])
+  ("StatusBar" .
+   [1 0 0 0 0 0 0 0 0])
+  ("from" .
+   [1 0 0 0])
+  ("emit" .
+   [1 0 0 0])
+  ("slotUpdateStatusBarMessage" .
+   [0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("SLOT" .
+   [1 0 0 0])
+  ("updateStatusBarMessage" .
+   [0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("SIGNAL" .
+   [0 0 0 0 1 0])
+  ("testPlugin" .
+   [0 0 0 0 0 0 0 1 0 0])
+  ("connect" .
+   [1 0 0 0 0 0 0])
+  ("statusBar_" .
+   [1 0 0 1 0 0 0 0 0 0])
+  ("S" .
+   [1])
+  ("message" .
+   [3 0 0 0 0 0 0])
+  ("void" .
+   [1 0 0 0])
+  ("const" .
+   [4 0 0 0 0])
+  ("QString" .
+   [4 0 1 0 0 0 0])
+  ("StatusBarInterface" .
+   [0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("virtual" .
+   [2 0 0 1 0 0 0])
+  ("public" .
+   [1 0 0 0 0 0])
+  ("BASEPLUGIN_STATUSBARINTERFACE_H" .
+   [0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("main" .
+   [1 0 0 0])
+  ("dreamway" .
+   [1 0 0 0 0 0 0 0])
+  ("BasePlugin" .
+   [1 0 0 0 0 0 0 0 0 0])
+  ("set_indices" .
    [1 0 0 0 0 0 0 0 0 0 0])
   ("my-c-mode-common-hook" .
    [0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
   ("c-mode-common-hook" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1])
+   [0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 2])
   ("add-hook" .
-   [1 0 0 0 0 0 0 0])
+   [2 0 0 0 0 1 0 0])
   ("nil" .
    [1 0 0])
   ("indent-tabs-mode" .
@@ -23,7 +69,7 @@
   ("mode" .
    [1 0 0 0])
   ("for" .
-   [1 0 0])
+   [2 0 0])
   ("useful" .
    [1 0 0 0 0 0])
   ("some" .
@@ -37,7 +83,7 @@
   ("the" .
    [1 0 0])
   ("this" .
-   [2 0 0 0])
+   [3 0 0 0])
   ("features" .
    [1 0 0 0 0 0 0 0])
   ("quit" .
@@ -73,4 +119,8 @@
   ("QWidget" .
    [1 0 0 0 0 0 0])
   ("widget" .
-   [3 0 0 0 0 0])))
+   [3 0 0 0 0 0])
+  ("google-set-c-style" .
+   [0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("google-make-newline-indent" .
+   [0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])))
