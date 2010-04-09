@@ -18,6 +18,7 @@
 
 
 class ConsoleWidgetManager;
+class StatusBar;
 
 #include "../TestPlugin.h"
 
@@ -36,7 +37,8 @@ class MainWindow : public QMainWindow
       setupMenu();
       setupToolBar();
       setupConsoleWidget();
-
+      setupStatusBar( );
+      
       mainModel_ = new Model();
       mainViewer_ = new Viewer(mainModel_,this,NULL,flags);
 
@@ -47,6 +49,7 @@ class MainWindow : public QMainWindow
       testPlugin = new TestPlugin();
 
       connect(testPlugin,SIGNAL(log(const QString&)),this,SLOT(slotLog(const QString&)));
+      connect( testPlugin,SIGNAL( updateStatusBarMessage( const QString& ) ), this, SLOT( slotUpdateStatusBarMessage( const QString& ) ) );
 
       testPlugin->callTest();
     }
@@ -76,7 +79,11 @@ private slots:
   void infoShowDebugInfo();
   void infoToggleRunningMode();
 
-
+private:
+  void setupStatusBar( );
+private slots:
+  void slotUpdateStatusBarMessage( const QString& message );
+  
   //LoggingInterface
 public slots:
   void slotLog(const QString& message);
@@ -111,7 +118,7 @@ public slots:
   QAction* actInfoToggleRunningMode;
   
   ConsoleWidgetManager* consoleWidgetManager;
-
+  StatusBar* statusBar_;
 
   TestPlugin* testPlugin;
 };

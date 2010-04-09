@@ -1,3 +1,4 @@
+;;-*-lisp-*-
 ;;set mac-command-modifer as meta key
 (setq mac-command-modifier 'meta)
 
@@ -48,7 +49,7 @@
 (delete-selection-mode 1) ; delete selected text when typing
 
 ;;highlight current-line
-(add-hook 'text-mode-hook (lambda() (hl-line-mode 1)))
+;;(add-hook 'text-mode-hook (lambda() (hl-line-mode 1)))
 
 
 ;; set default frame size
@@ -122,18 +123,18 @@
       header-copyright-notice
       "copyright (c) 2010 dreamway\n"
       header-free-software
-      " This program is free software; you can redistribute it and/or modify
+      "This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by the Free Software Foundation;\n Free free to contact dreamway(jingwenlai@163.com)\n
 website: cg.xplore.cn")
 (add-hook 'write-file-hooks 'auto-update-file-header)
-(add-hook 'c-mode-common-hook 'auto-make-header)
+(add-hook 'c++-mode-common-hook 'auto-make-header)
 
 ;;;add Displaying Line Number support
 (require 'display-line-number)
 (setq display-line-number-format "%4d")
 ;;usage: M-x display-line-number-mode
 ;; auto displaying line number when in c-mode
-(add-hook 'c-mode-hook 'display-line-number-mode)
+(add-hook 'c++-mode-hook 'display-line-number-mode)
 
 
 ;;;;;cscope support
@@ -144,6 +145,8 @@ website: cg.xplore.cn")
 (require 'google-c-style)
 (add-hook 'c-mode-common-hook 'google-set-c-style)
 (add-hook 'c-mode-common-hook 'google-make-newline-indent)
+(add-hook 'c++-mode-common-hook 'google-set-c-style)
+(add-hook 'c++-mode-common-hook 'google-make-newline-indent)
 
 
 ;;;;;;;;;;;;;CEDET settings;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -180,11 +183,28 @@ website: cg.xplore.cn")
 
 
 ;;my common hook
-(defun my-c-mode-common-hook()
+(defun my-c++-mode-common-hook()
   (setq tab-width 4
 		indent-tabs-mode nil)
   )
-(add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
+(add-hook 'c++-mode-common-hook 'my-c-mode-common-hook)
+
+;;;Auto add the right side's backet,eg. ;;()[]{}
+(defun my-c-mode-auto-pair ()
+  (interactive)
+  (make-local-variable 'skeleton-pair-alist)
+  (setq skeleton-pair-alist  '(
+    (?` ?` _ "''")
+    (?\( ?  _ " )")
+    (?\[ ?  _ " ]")
+    (?{ \n > _ \n ?} >)))
+  (setq skeleton-pair t)
+  (local-set-key (kbd "(") 'skeleton-pair-insert-maybe)
+  (local-set-key (kbd "{") 'skeleton-pair-insert-maybe)
+  (local-set-key (kbd "`") 'skeleton-pair-insert-maybe)
+  (local-set-key (kbd "[") 'skeleton-pair-insert-maybe))
+(add-hook 'c-mode-hook 'my-c-mode-auto-pair)
+(add-hook 'c++-mode-hook 'my-c-mode-auto-pair)
 
 
 ;;CMake support
@@ -204,7 +224,7 @@ website: cg.xplore.cn")
 (require 'doc-mode)
 (add-hook 'c-mode-common-hook 'doc-mode)
 
-;;tempo-snippets
+
 
 
 

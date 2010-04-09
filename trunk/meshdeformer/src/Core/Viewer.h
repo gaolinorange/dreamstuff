@@ -12,7 +12,7 @@
 #include <QtGui>
 #include "Model.h"
 #include <QGLViewer/qglviewer.h>
-#include "BasePlugins/LoggingInterface.h"
+#include "BasePlugin/LoggingInterface.h"
 
 enum PolygonMode{
 	PM_WIREFRAME=0x01,
