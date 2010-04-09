@@ -60,25 +60,15 @@
 ;;	(tool-bar-lines . 80)))
 
 
-;;don't use auto-save-mode
-(setq-default auto-save-mode nil)
-
-
-
-
-
-
-
-
 
 ;;;;;Color Theme
 (add-to-list 'load-path
 	     "~/.emacs.d")
 (require 'color-theme)
 ;;(color-theme-standard)   ;; the standard theme works well in terminal
-(color-theme-dark-laptop) ;; maybe this is also a good theme
+;;(color-theme-dark-laptop) ;; maybe this is also a good theme
 ;;(color-theme-tty-dark)  ;; another cool theme
-;;(color-theme-arjen) ;; yet another cool theme
+(color-theme-arjen) ;; yet another cool theme
 ;;(color-theme-taylor)
 
 
