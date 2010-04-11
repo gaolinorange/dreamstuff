@@ -34,8 +34,8 @@ TEST_F(MeshCoreTest,testMakeTetrahedron)
 
 TEST_F(MeshCoreTest,testWriteTetrahedron)
 {
-  pMesh->make_tetrahedron();
-  std::ofstream outFile("tetrahedron.off",std::ios::out);
+//  pMesh->make_tetrahedron();
+  std::ofstream outFile("test_tetrahedron.off",std::ios::out);
   outFile<<(*pMesh);
 }
 
