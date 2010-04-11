@@ -4,7 +4,7 @@
 
 #include "testGoogleTest.h"
 #include "testMeshCore.h"
-
+#include "testMeshBuilder.h"
 
 //#include "testRenderer.h"
 
