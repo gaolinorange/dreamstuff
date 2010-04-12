@@ -1,10 +1,8 @@
-
 #CMake file for project ROOT
 
 cmake_minimum_required(VERSION 2.6)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ../cmake)
 
-set(LIBS)
 
 find_package(Qt4 COMPONENTS QtGui QtCore QtOpenGL QtTest REQUIRED)
 set(QT_USE_QTOPENGL true)
@@ -24,8 +22,6 @@ endif()
 find_package(PythonLibs REQUIRED)
 if(PYTHONLIBS_FOUND)
   include_directories(${PYTHON_INCLUDE_PATH})
-#  include_directories(/usr/local/include/PythonQt) # for PythonQt
-#  link_directories(/usr/local/lib)
 else(PYTHONLIBS_FOUND)
   message("could not find PythonLibs")
 endif(PYTHONLIBS_FOUND)
@@ -39,12 +35,23 @@ else(PythonQt_FOUND)
 endif(PythonQt_FOUND)  
 
 
+#assimp importer module
+find_package(assimp REQUIRED)
+if(assimp_FOUND)
+  include_directories(${assimp_INCLUDE_DIR})
+endif(assimp_FOUND)
+
+#for libQGLViewer
+find_package(QGLViewer REQUIRED)
+if(QGLViewer_FOUND)
+  include_directories(${QGLViewer_INCLUDE_DIR})
+endif(QGLViewer_FOUND)
+
+
+
 include_directories(.)
 include_directories(Common)
 include_directories(MeshCore)
-
-
-
 
 
 SET(APP_SOURCES
@@ -79,18 +86,6 @@ add_subdirectory(MeshCore)#the MeshCore subcore
 #add_subdirectory(Math)	#the math subcore
 #add_subdirectory(Renderer)
 
-#assimp importer module
-#assimp importer module
-find_package(assimp REQUIRED)
-if(assimp_FOUND)
-  include_directories(${assimp_INCLUDE_DIR})
-endif(assimp_FOUND)
-
-#for libQGLViewer
-find_package(QGLViewer REQUIRED)
-if(QGLViewer_FOUND)
-  include_directories(${QGLViewer_INCLUDE_DIR})
-endif(QGLViewer_FOUND)
 
 add_executable(meshdeformer
   main.cpp 
