@@ -13,8 +13,8 @@ public:
   virtual void SetUp( ) {
     mesh_loader_ = new MeshLoader( );
     mesh_ = new MeshCore( );
-    QString filename = QString( "../test_data/test_tetrahedron.off" );
-    boot ret = mesh_loader_->load( filename.toAscii( ).data( ) );
+    QString filename = QString( "../test/test_data/test_tetrahedron.off" );
+    bool ret = mesh_loader_->load( filename.toAscii( ).data( ) );
     EXPECT_EQ( true, ret );
     if( ret == false )
       printf( "mesh_loader_ load file failed.\n");
@@ -35,7 +35,7 @@ public:
 
 TEST_F( MeshBuilderTest, testPrintVertex )
 {
-  for (Vertex_iterator pVertex = mesh_->verices_begin( );
+  for (Vertex_iterator pVertex = mesh_->vertices_begin( );
        pVertex != mesh_->vertices_end( ); pVertex++)
   {
     printf( "%ld: ( %.2f,%.2f,%.2f ) \n", pVertex->id( ),

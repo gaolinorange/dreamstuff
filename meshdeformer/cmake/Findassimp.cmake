@@ -1,13 +1,24 @@
-find_path(assimp_INCLUDE_DIR assimp.hpp 3rdparty/assimp/include )
+# Find Include Path
+find_path(assimp_INCLUDE_DIR
+  NAMES assimp.h assimp.hpp
+  PATHS ${CMAKE_SOURCE_DIR}/3rdparty/assimp/include /usr/include /usr/local/include ../3rdparty/assimp/include)
 
-find_library(assimp_LIBRARY NAMES assimp PATH 3rdparty/assimp/lib )
+#Find Library
+find_library(assimp_LIBRARY
+  NAMES assimp
+  PATHS 3rdparty/assimp/lib ${CMAKE_SOURCE_DIR}/3rdparty/assimp/lib /usr/lib /usr/local/lib)
+
 
 if(assimp_INCLUDE_DIR AND assimp_LIBRARY)
   set(assimp_FOUND TRUE)
+elseif(assimp_INCLUDE_DIR AND assimp_LIBRARY)
+  message(STATUS assimp_INCLUDE_DIR)
+  message(STATUS assimp_LIBRARY)
 endif(assimp_INCLUDE_DIR AND assimp_LIBRARY)
 
 if(assimp_FOUND)
-  message(STATUS "Found assimp: ${assimp_LIBRARY}")
+  message(STATUS "Found assimp include: ${assimp_INCLUDE_DIR}")
+  message(STATUS "Foud asismp library:  ${assimp_LIBRARY}")
 else(assimp_FOUND)
   message(FATAL_ERROR "Could not find assimp")
 endif(assimp_FOUND)
