@@ -125,11 +125,13 @@ void MeshCore::compute_bounding_box()
 
 unsigned int MeshCore::degree(Facet_handle pFacet)
 {
+  return pFacet->facet_degree( );
 }
 
 unsigned int MeshCore::valence(Vertex_handle pVertex)
 {
-  
+  int valence = 0 ;
+  return pVertex->vertex_degree( );  
 }
 
 void MeshCore::compute_normals_per_facet()
@@ -172,7 +174,7 @@ void MeshCore::test_print_facet_handles()
   }  
 }
 
-Vertex_handle MeshCore::get_vertex_handle(int idx)
+Vertex_handle MeshCore::get_vertex_handle(std::size_t idx)
 {
   if(idx < size_of_vertices())
     return index_to_vertex_map[idx];

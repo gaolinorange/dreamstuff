@@ -26,15 +26,15 @@ TEST_F(MeshCoreTest,testInit)
   //do not need to add code here
 }
 
-TEST_F(MeshCoreTest,testMakeTetrahedron)
+TEST_F(MeshCoreTest,testMeshCoreIsTetrahedron)
 {
-  Halfedge_handle h = pMesh->make_tetrahedron(Point_3(0,0,0),Point_3(0,0,1),Point_3(0,1,0),Point_3(1,0,0));
+  Halfedge_handle h = pMesh->halfedges_begin( );
   EXPECT_EQ(true,pMesh->is_tetrahedron(h));
 }
 
 TEST_F(MeshCoreTest,testWriteTetrahedron)
 {
-//  pMesh->make_tetrahedron();
+  //Important: the test_tetrahedron.off file is further used by MeshBuilder
   std::ofstream outFile("test_tetrahedron.off",std::ios::out);
   outFile<<(*pMesh);
 }
@@ -109,7 +109,22 @@ TEST_F(MeshCoreTest,testInitIndexToVertexMap)
   }  
 }
       
-      
+TEST_F( MeshCoreTest, testFacetDegree )
+{
+  for( Facet_iterator pFacet = pMesh->facets_begin( );
+       pFacet != pMesh->facets_end( ); pFacet++) {
+    EXPECT_EQ( 3 , pMesh->degree( pFacet ) );
+  }
+}
+
+TEST_F( MeshCoreTest, testVertexValence )
+{
+  for( Vertex_iterator pVertex = pMesh->vertices_begin( );
+       pVertex != pMesh->vertices_end(  ); pVertex++) {
+    EXPECT_EQ( 3, pMesh->valence( pVertex ) );
+  }
+  
+}
   
 
 			   
