@@ -17,7 +17,10 @@ public:
     bool ret = mesh_loader_->load( filename.toAscii( ).data( ) );
     EXPECT_EQ( true, ret );
     if( ret == false )
-      printf( "mesh_loader_ load file failed.\n");
+    {
+     printf( "Warning: mesh_loader_ load file failed.\n");
+     printf( "Message: maybe the path of the data is wrong?\n" );
+    }
     else{
       MeshBuilder<Polyhedron::HalfedgeDS> builder( mesh_loader_ );
       mesh_->delegate( builder );

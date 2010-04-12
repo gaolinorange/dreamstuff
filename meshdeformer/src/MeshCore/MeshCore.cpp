@@ -16,8 +16,7 @@
 
 #include "glheaders.hpp"
 #include "MeshCore.h"
-//#include <QtDebug>
-//#include <QtGlobal>
+
 
 MeshCore::MeshCore()
 {
