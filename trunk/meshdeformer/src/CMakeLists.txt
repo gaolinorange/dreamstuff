@@ -17,6 +17,18 @@ if(Boost_FOUND)
   link_directories(${Boost_LIBRARY_DIRS})
 endif()
 
+#assimp importer module
+find_package(assimp REQUIRED)
+if(assimp_FOUND)
+  include_directories(${assimp_INCLUDE_DIR})
+endif(assimp_FOUND)
+
+#for libQGLViewer
+find_package(QGLViewer REQUIRED)
+if(QGLViewer_FOUND)
+  include_directories(${QGLViewer_INCLUDE_DIR})
+endif(QGLViewer_FOUND)
+
 
 # for PythonConsoleWidget
 find_package(PythonLibs REQUIRED)
@@ -35,17 +47,6 @@ else(PythonQt_FOUND)
 endif(PythonQt_FOUND)  
 
 
-#assimp importer module
-find_package(assimp REQUIRED)
-if(assimp_FOUND)
-  include_directories(${assimp_INCLUDE_DIR})
-endif(assimp_FOUND)
-
-#for libQGLViewer
-find_package(QGLViewer REQUIRED)
-if(QGLViewer_FOUND)
-  include_directories(${QGLViewer_INCLUDE_DIR})
-endif(QGLViewer_FOUND)
 
 
 
@@ -96,10 +97,8 @@ add_executable(meshdeformer
 
 if(WIN32)
 target_link_libraries(meshdeformer MeshCore ${QT_LIBRARIES} gtest gtest_main assimp QGLViewer2)
-endif(WIN32)
-
-if(UNIX)
+else(WIN32)
   target_link_libraries(meshdeformer MeshCore ${QT_LIBRARIES} ${assimp_LIBRARY} ${QGLViewer_LIBRARY} PythonQt)
-endif(UNIX)
+endif(WIN32)
 
 

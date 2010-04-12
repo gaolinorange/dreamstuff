@@ -77,7 +77,7 @@ private:
   typedef CGAL::Random_access_adaptor<Vertex_iterator> Random_access_index;
   Random_access_index index_to_vertex_map;  //store the id to Vertex_handle mapping
 public:
-  Vertex_handle get_vertex_handle(int idx);
+  Vertex_handle get_vertex_handle(std::size_t idx);
   void init_index_to_vertex_map();
 };
   
