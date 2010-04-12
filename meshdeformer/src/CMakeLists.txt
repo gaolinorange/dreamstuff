@@ -2,6 +2,7 @@
 #CMake file for project ROOT
 
 cmake_minimum_required(VERSION 2.6)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ../cmake)
 
 set(LIBS)
 
@@ -79,25 +80,17 @@ add_subdirectory(MeshCore)#the MeshCore subcore
 #add_subdirectory(Renderer)
 
 #assimp importer module
-include_directories(../3rdparty/assimp/include)
-link_directories(../../3rdparty/assimp/lib)
+#assimp importer module
+find_package(assimp REQUIRED)
+if(assimp_FOUND)
+  include_directories(${assimp_INCLUDE_DIR})
+endif(assimp_FOUND)
 
 #for libQGLViewer
-if(APPLE)
-include_directories(/usr/local/include)
-link_directories(/usr/local/lib)
-endif(APPLE)
-
-if(LINUX)
-  include_directories(/usr/include)
-  link_directories(/usr/lib)
-endif(LINUX)
-
-if(WIN32)
-include_directories("D:/DevTools")
-link_directories("D:/DevTools/QGLViewer/release")
-endif(WIN32)
-
+find_package(QGLViewer REQUIRED)
+if(QGLViewer_FOUND)
+  include_directories(${QGLViewer_INCLUDE_DIR})
+endif(QGLViewer_FOUND)
 
 add_executable(meshdeformer
   main.cpp 
@@ -111,7 +104,7 @@ target_link_libraries(meshdeformer MeshCore ${QT_LIBRARIES} gtest gtest_main ass
 endif(WIN32)
 
 if(UNIX)
-  target_link_libraries(meshdeformer MeshCore ${QT_LIBRARIES} gtest gtest_main assimp QGLViewer PythonQt)
+  target_link_libraries(meshdeformer MeshCore ${QT_LIBRARIES} ${assimp_LIBRARY} ${QGLViewer_LIBRARY} PythonQt)
 endif(UNIX)
 
 
