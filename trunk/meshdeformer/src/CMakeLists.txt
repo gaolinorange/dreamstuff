@@ -3,6 +3,7 @@
 
 cmake_minimum_required(VERSION 2.6)
 
+set(LIBS)
 
 find_package(Qt4 COMPONENTS QtGui QtCore QtOpenGL QtTest REQUIRED)
 set(QT_USE_QTOPENGL true)

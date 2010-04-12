@@ -35,12 +35,9 @@ if(WIN32)
 endif(WIN32)
 
 #assimp support
-#include_directories(../3rdparty/assimp/include)
-#link_libraries(../../3rdparty/assimp/lib)
 find_package(assimp)
 if(assimp_FOUND)
   include_directories(${assimp_INCLUDE_DIR})
-  link_directories(${assimp_LIBRARY})
 endif(assimp_FOUND)
 
 
@@ -57,4 +54,4 @@ add_executable(test
   ${TEST_HEADERS}
   ${TEST_SOURCES}
   )
-target_link_libraries(test ${QT_LIBRARIES} gtest gtest_main MeshCore assimp)
+target_link_libraries(test ${QT_LIBRARIES} gtest gtest_main MeshCore ${assimp_LIBRARY})
