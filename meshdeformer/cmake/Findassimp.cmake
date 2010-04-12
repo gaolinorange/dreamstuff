@@ -11,14 +11,15 @@ find_library(assimp_LIBRARY
 
 if(assimp_INCLUDE_DIR AND assimp_LIBRARY)
   set(assimp_FOUND TRUE)
+  message(STATUS "Found assimp include: ${assimp_INCLUDE_DIR}")
+  message(STATUS "Foud asismp library:  ${assimp_LIBRARY}")
 elseif(assimp_INCLUDE_DIR AND assimp_LIBRARY)
   message(STATUS assimp_INCLUDE_DIR)
   message(STATUS assimp_LIBRARY)
+  message(FATAL_ERROR "Could not find assimp")
+  set(assimp_FOUND FALSE)
 endif(assimp_INCLUDE_DIR AND assimp_LIBRARY)
 
-if(assimp_FOUND)
-  message(STATUS "Found assimp include: ${assimp_INCLUDE_DIR}")
-  message(STATUS "Foud asismp library:  ${assimp_LIBRARY}")
-else(assimp_FOUND)
-  message(FATAL_ERROR "Could not find assimp")
-endif(assimp_FOUND)
+
+
+
