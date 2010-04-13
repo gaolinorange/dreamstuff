@@ -11,6 +11,8 @@ class MeshBuilderTest : public ::testing::Test
 {
 public:
   virtual void SetUp( ) {
+    printf( "Setting Up MeshBuilderTest...\n" );
+    
     mesh_loader_ = new MeshLoader( );
     mesh_ = new MeshCore( );
     QString filename = QString( "../test/test_data/test_tetrahedron.off" );
@@ -28,6 +30,7 @@ public:
     }
   }
   virtual void TearDown(  ) {
+    printf( "Tearing Down MeshBuilderTest...\n" );
     delete mesh_loader_;
     delete mesh_;
   }
@@ -35,6 +38,10 @@ public:
   MeshLoader* mesh_loader_;
   MeshCore* mesh_;
 };
+
+TEST_F( MeshBuilderTest, testInit ) {
+  /*do nothing*/  
+}
 
 TEST_F( MeshBuilderTest, testPrintVertex )
 {
