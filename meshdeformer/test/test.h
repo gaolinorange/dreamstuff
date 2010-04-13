@@ -5,6 +5,7 @@
 #include "testGoogleTest.h"
 #include "testMeshCore.h"
 #include "testMeshBuilder.h"
+#include "testMeshBuilderDerived.h"
 
 //#include "testRenderer.h"
 
