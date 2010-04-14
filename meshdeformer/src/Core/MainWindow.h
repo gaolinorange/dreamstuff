@@ -79,6 +79,8 @@ private slots:
   void infoShowDebugInfo();
   void infoToggleRunningMode();
 
+  void slotChangeViewerBackgroundColor(  );
+
 private:
   void setupStatusBar( );
 private slots:
@@ -108,6 +110,12 @@ public slots:
   QAction* actViewWireframe;
   QAction* actViewSolidFlat;
   QAction* actViewSolidSmooth;
+
+  //QGLViewer menu for options settings
+  QMenu* qglViewerMenu_;
+  QAction* actQGLViewerSetBackgroundColor_;
+  
+  
   //Help Menu
   QMenu * helpMenu;  
   QAction * aboutAction;
