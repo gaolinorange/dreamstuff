@@ -11,7 +11,7 @@
 ##----------------------------------------------------------------------
 
 # Name of your emacs binary
-EMACS=emacs
+EMACS=e
 
 # Where local software is found
 prefix=/usr/local
