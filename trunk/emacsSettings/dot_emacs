@@ -251,6 +251,8 @@ website: cg.xplore.cn")
 (add-hook 'org-mode-hook 'turn-on-font-lock)
 
 
+;;;;;;;;;;;;;;;;;;;;wiki-mode;;;;;;;;;;[===========Wiki-Mode===========]
+;;http://www.emacswiki.org/emacs/EmacsWiKiMode
 
 
 
