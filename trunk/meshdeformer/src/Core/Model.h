@@ -1,8 +1,9 @@
 /**
    the main appdata class
 */
-#ifndef APPDATA_H
-#define APPDATA_H
+#ifndef _MODEL_H_
+#define _MODEL_H_
+
 
 #include <QtGui>
 
@@ -19,7 +20,6 @@ class Model : public QObject,public LoggingInterface
   Model();
   ~Model();
  public:
-  void initATetrahedron();
   bool loadMesh(const QString& filename);
   void update();
   void render();
@@ -40,4 +40,5 @@ class Model : public QObject,public LoggingInterface
   MeshCore * pMesh;
 };
 
-#endif
+#endif /* _MODEL_H_ */
+

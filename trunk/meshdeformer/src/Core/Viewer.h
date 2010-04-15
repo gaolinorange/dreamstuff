@@ -81,13 +81,12 @@ public:
 		updateGL();
 	}
 public:
-	/**
-	   AppData is the model part of MVC design pattern
-	 */
-	Model* getModel()
+    /*
+      Model* getModel()
 	{
 		return pModel;
-	}
+        }
+    */
  public:
 	void printDebugInfo();
  private:
