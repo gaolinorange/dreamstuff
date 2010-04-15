@@ -17,8 +17,6 @@ void Viewer::initializeGL()
   
   glDisable(GL_LIGHTING);
 
-  //setup render related class
-  pModel->initATetrahedron();
 
   pCamera->setPosition(qglviewer::Vec(0,0,-2));
   pCamera->setViewDirection(qglviewer::Vec(0,0,1));

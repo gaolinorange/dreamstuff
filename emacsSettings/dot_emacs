@@ -253,7 +253,21 @@ website: cg.xplore.cn")
 
 ;;;;;;;;;;;;;;;;;;;;wiki-mode;;;;;;;;;;[===========Wiki-Mode===========]
 ;;http://www.emacswiki.org/emacs/EmacsWiKiMode
-
+;; add the directory to your load path
+(autoload 'wikipedia-mode
+  "~/.emacs.d/wiki-mode/wikipedia-mode.el"
+  "Major mode for editing documents in Wikipedia markup." t)
+;;associate files
+(setq auto-mode-alist
+      (cons '("\\.wiki\\'" . wikipedia-mode) auto-mode-alist))
+;;auxilary longline minor mode
+(autoload 'longlines-mode
+  "longlines.el"
+  "Minor mode for automatically wrapping long lines." t)
+;;auxilary pabbrev mode
+(add-to-list 'load-path
+	     "~/.emacs.d/wiki-mode")
+(require 'pabbrev)
 
 
 

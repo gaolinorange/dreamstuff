@@ -23,15 +23,6 @@ Model::~Model()
     }
 }
 
-void Model::initATetrahedron()
-{
-  if(pMesh == 0)
-    pMesh = new MeshCore();
-
-  pMesh->make_tetrahedron(Point_3(0,0,0),Point_3(1,0,0),Point_3(0,1,0),Point_3(0,0,1));
-  pMesh->set_indices();
-}
-
 bool Model::loadMesh(const QString& filename)
 {
   // converte aiMesh to MeshCore format
