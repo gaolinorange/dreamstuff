@@ -10,7 +10,12 @@ class TestPlugin : public QObject,public TestInterface{
     Q_INTERFACES(TestInterface)
 public:
   TestPlugin(){}
-  virtual ~TestPlugin(){}  
+  virtual ~TestPlugin(){}
+
+public:
+  void test_method( ) {
+    printf( "Test method of Test Plugin\n" );
+  }
 public:
   QString name() const
   {

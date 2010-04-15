@@ -19,11 +19,14 @@ int main(int argc,char** argv)
     QObject* plugin = pluginLoader.instance();
     if(plugin){
       interface = qobject_cast<TestInterface*>(plugin);
+     
       if(interface){
-	printf("plugin load ok\n");
+        printf("plugin load ok\n");
+        TestPlugin* plugin = static_cast<TestPlugin*>( interface );
+        interface->test_method( );
       }
-      else{
-	printf("plugin not load.\n");
+      else {
+        printf("plugin not load.\n");
       }
     }    
   }
