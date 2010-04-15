@@ -245,6 +245,7 @@ website: cg.xplore.cn")
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
+(setq org-log-done t)
 ;; turn on font-lock-mode when it org mode
 ;;either use bottom two methods
 ;; (global-font-lock-mode 1)
@@ -274,12 +275,35 @@ website: cg.xplore.cn")
 
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Settings for Python;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;Python mode
-(autoload 'python-mode "python-mode" "python mode." t)
-(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-(add-to-list 'interpreter-mode-alist '("pyhton" . python-mode))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Settings for Python;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ref: www.cnblogs.com/coderzh/archive/2009/12/26/emacspythonide.html
+(add-to-list 'load-path
+	     "~/.emacs.d/python")
+(require 'python-mode)
+;; 1. yassnipet is already installed
+;; 2. autocomplete is already installed
+;; 3. Rope and Ropemacs
+;; 3.1 Rope&pymacs ( install rope and then configure)
+(add-to-list 'load-path
+	     "~/.emacs.d/python/Pymacs")
+(require 'pymacs)
+(autoload 'pymacs-apply "pymacs")
+(autoload 'pymacs-call "pymacs")
+(autoload 'pymacs-eval "pymacs" nil t)
+(autoload 'pymacs-exec "pymacs" nil t)
+(autoload 'pymacs-load "pymacs" nil t)
+;; 3.2 install ropmacs ( and then configure as follows)
+(pymacs-load "ropemacs" "rope-")
+(setq ropemacs-enable-autoimport t)
 
+;;4 pycomplete
+;;4.1 install Python mode
+(require 'pycomplete)
+(setq auto-mode-alist (cons '("\\.py$" . python-mode) auto-mode-alist))
+(autoload 'python-mode "python-mode" "Python editing mode." t)
+(setq interpreter-mode-alist (cons '("python" . python-mode)
+                                   interpreter-mode-alist))
+;;4.2 note: copy pycomplete.py to PYTHONPATH (external operation)
+;; ( note: the above operation is not in emacs enviornment)
 
 ;; ipython settings
 (setq ipython-command "/usr/bin/ipython")
