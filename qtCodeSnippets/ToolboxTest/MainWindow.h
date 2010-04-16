@@ -15,6 +15,7 @@
 
 
 class MainWindow : public QMainWindow {
+  Q_OBJECT
  public:
   MainWindow(QWidget* parent = 0, Qt::WindowFlags flag = 0)
     : QMainWindow(parent,flag)
@@ -27,9 +28,13 @@ class MainWindow : public QMainWindow {
      }
   ~MainWindow()
     {}
-
- public slots:
+ signals:
+  void pluginsInitialized(  );
+public slots:
   void slotAddToolBox( QString _name, QWidget* _widget );
+  void slotTestSignal(  );
+private:
+  void testSlot(  );
  private:
   void loadPlugins(  );
  protected:

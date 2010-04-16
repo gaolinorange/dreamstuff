@@ -16,6 +16,7 @@ add_subdirectory(Plugin-ToolBoxTest)
 include_directories(.)
 include_directories(Interfaces)
 
+qt4_wrap_cpp(MainWindow_MOC MainWindow.h)
 
-add_executable(${proj} main.cpp MainWindow.cpp MainWindow.h)
+add_executable(${proj} main.cpp MainWindow.cpp MainWindow.h ${MainWindow_MOC})
 target_link_libraries(${proj} ${QT_LIBRARIES})
