@@ -70,13 +70,14 @@ void MainWindow::setupMenu()
    viewMenu->addAction(actViewSolidSmooth);
    mainMenuBar->addMenu(viewMenu);
 
+   /*
    qglViewerMenu_ = new QMenu( tr( "Viewer Settings" ), mainMenuBar );
    actQGLViewerSetBackgroundColor_ = new QAction( tr( "Set Background Color" ), qglViewerMenu_ );
    connect( actQGLViewerSetBackgroundColor_, SIGNAL( triggered(  ) ), this, SLOT( slotChangeViewerBackgroundColor(  ) ) );
    qglViewerMenu_->addAction( actQGLViewerSetBackgroundColor_ );
 
    mainMenuBar->addMenu( qglViewerMenu_ );
-   
+   */
 
    helpMenu = new QMenu(tr("&Help"),mainMenuBar);
    aboutAction = new QAction(tr("&About"),helpMenu);
@@ -223,12 +224,4 @@ void MainWindow::slotUpdateStatusBarMessage( const QString& message ) {
 }
 
 
-/**
-   just a test slot for chaning colors
-*/
-void MainWindow::slotChangeViewerBackgroundColor(  ) {
-  QColor color = Qt::white;
-  
-  mainViewer_->setBackgroundColor( color );
-}
     
