@@ -1,14 +1,22 @@
-#include <QCoreApplication>
+#include <QApplication>
 #include <QDir>
 #include <QPluginLoader>
+#include <QPushButton>
+#include <QObject>
+#include <QtDebug>
+
 #include "TestPlugin.h"
+#include "TestClass.h"
 
 
 int main(int argc,char** argv)
 {
-  QCoreApplication* app = new QCoreApplication(argc,argv);
+  QApplication* app = new QApplication(argc,argv);
 
   TestInterface* interface = 0;
+
+  TestClass* testClass = new TestClass(  );
+  
   
   //Load plugins
   QDir pluginsDir(qApp->applicationDirPath());
@@ -22,8 +30,11 @@ int main(int argc,char** argv)
      
       if(interface){
         printf("plugin load ok\n");
-        TestPlugin* plugin = static_cast<TestPlugin*>( interface );
-        interface->test_method( );
+        bool connected = QObject::connect( plugin, SIGNAL( test_signal( const QString& ) ), testClass, SLOT( test_slot( const QString& ) ) );
+
+        printf( "connected? %d\n",connected );
+
+        interface->initializePlugin(  );
       }
       else {
         printf("plugin not load.\n");
@@ -31,6 +42,7 @@ int main(int argc,char** argv)
     }    
   }
 
+ 
 
   return app->exec();
 }

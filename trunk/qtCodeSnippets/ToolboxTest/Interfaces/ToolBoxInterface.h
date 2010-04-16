@@ -27,7 +27,7 @@ class ToolBoxInterface {
  public:
   virtual QString name(  ) const = 0;
  signals:
-  virtual void addToolBox( QString _name, QWidget* _widget ) = 0;
+  virtual void addToolBox( QString , QWidget*  ) = 0;
 };
 
 Q_DECLARE_INTERFACE( ToolBoxInterface, "ToolBoxInterface/0.1" )
