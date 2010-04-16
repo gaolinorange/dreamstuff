@@ -79,7 +79,7 @@ private slots:
   void infoShowDebugInfo();
   void infoToggleRunningMode();
 
-  void slotChangeViewerBackgroundColor(  );
+
 
 private:
   void setupStatusBar( );
