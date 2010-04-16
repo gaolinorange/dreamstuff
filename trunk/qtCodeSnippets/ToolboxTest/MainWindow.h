@@ -6,8 +6,15 @@
 #include <QToolBar>
 #include <QMenu>
 
+#include <QDir>
+#include <QPluginLoader>
+#include <stdio.h>
+#include <QtDebug>
 
-class MainWindow : public QMainWindow{
+#include "ToolBoxInterface.h"
+
+
+class MainWindow : public QMainWindow {
  public:
   MainWindow(QWidget* parent = 0, Qt::WindowFlags flag = 0)
     : QMainWindow(parent,flag)
@@ -15,9 +22,16 @@ class MainWindow : public QMainWindow{
       setupMenu();
       setupToolbar();
       setupToolbox();
-    }
+      
+      loadPlugins(  );
+     }
   ~MainWindow()
     {}
+
+ public slots:
+  void slotAddToolBox( QString _name, QWidget* _widget );
+ private:
+  void loadPlugins(  );
  protected:
   void setupMenu();
   void setupToolbar();
