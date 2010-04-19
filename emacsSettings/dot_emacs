@@ -7,7 +7,7 @@
 ;; close the startup message
 (setq inhibit-startup-message t)
 ;;hide toolbar
-(setq tool-bar-mode nil)
+(setq-default tool-bar-mode nil)
 
 ;; display line number
 (column-number-mode t)
@@ -266,9 +266,9 @@ website: cg.xplore.cn")
   "longlines.el"
   "Minor mode for automatically wrapping long lines." t)
 ;;auxilary pabbrev mode
-(add-to-list 'load-path
-	     "~/.emacs.d/wiki-mode")
-(require 'pabbrev)
+;;(add-to-list 'load-path
+;;	     "~/.emacs.d/wiki-mode")
+;;(require 'pabbrev)
 
 
 
