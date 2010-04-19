@@ -23,12 +23,19 @@ if(assimp_FOUND)
   include_directories(${assimp_INCLUDE_DIR})
 endif(assimp_FOUND)
 
-# #for libQGLViewer
-# find_package(QGLViewer REQUIRED)
-# if(QGLViewer_FOUND)
-#   include_directories(${QGLViewer_INCLUDE_DIR})
-# endif(QGLViewer_FOUND)
-
+#searching for QGLViewer library
+if(UNIX)
+  #for apple only, explicitly linking directory
+  if(APPLE)
+    include_directories(/usr/local/include)
+    link_directories(/usr/local/lib)
+  else(APPLE)
+    find_package(QGLViewer REQUIRED)
+    if(QGLViewer_FOUND)
+      include_directories(${QGLViewer_INCLUDE_DIR})
+    endif(QGLViewer_FOUND)
+  endif(APPLE)
+endif(UNIX)
 
 # for PythonConsoleWidget
 find_package(PythonLibs REQUIRED)
@@ -46,11 +53,6 @@ else(PythonQt_FOUND)
   message(FATAL_ERROR,"Cound not find the PythonQt library")
 endif(PythonQt_FOUND)  
 
-#for libQGLViewer(test)
-if(APPLE)
-  include_directories(/usr/local/include)
-  link_directories(/usr/local/lib)
-endif(APPLE)
 
 
 
@@ -101,13 +103,16 @@ add_executable(meshdeformer
 
 if(WIN32)
 target_link_libraries(meshdeformer MeshCore ${QT_LIBRARIES} gtest gtest_main assimp QGLViewer2)
-else(WIN32)
-  if(LINUX)
-  target_link_libraries(meshdeformer MeshCore ${QT_LIBRARIES} ${assimp_LIBRARY} ${QGLViewer_LIBRARY} PythonQt)
-  endif(LINUX)
+endif(WIN32)
+
+if(UNIX)
   if(APPLE)
     target_link_libraries(meshdeformer MeshCore ${QT_LIBRARIES} ${assimp_LIBRARY} QGLViewer PythonQt)
+  else(APPLE) #Linux
+    target_link_libraries(meshdeformer MeshCore ${QT_LIBRARIES} ${assimp_LIBRARY} ${QGLViewer_LIBRARY} PythonQt)
   endif(APPLE)
-endif(WIN32)
+endif(UNIX)
+
+
 
 
