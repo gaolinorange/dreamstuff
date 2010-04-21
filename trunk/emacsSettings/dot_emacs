@@ -220,6 +220,13 @@ website: cg.xplore.cn")
 (require 'doc-mode)
 (add-hook 'c-mode-common-hook 'doc-mode)
 
+;;source pair: ;
+;; auto load the related header file of cpp files
+(load-file "~/.emacs.d/cpp/sourcepair.el")
+(setq sourcepair-source-path '( "." "../*" ))
+(setq sourcepair-header-path '( "." "include" "../include" "../*"))
+(setq sourcepair-recurse-ignore '( ".svn" "Obj" "Debug" "Release" ))
+(define-key global-map "\C-xz" 'sourcepair-load)
 
 
 
