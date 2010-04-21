@@ -200,6 +200,9 @@ website: cg.xplore.cn")
 (add-hook 'c++-mode-hook 'my-c-mode-auto-pair)
 
 
+;;smart tabs
+(require 'smarttabs)
+
 ;;CMake support
 ;; add cmake listfile names to the mode list
 (setq auto-mode-alist
