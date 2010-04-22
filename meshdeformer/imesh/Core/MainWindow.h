@@ -40,7 +40,9 @@ class MainWindow : public QMainWindow
 
       setupMainLayout(  );
       
-      setCentralWidget(mainLayout_);
+      QWidget* main_widget = new QWidget( this );
+      main_widget->setLayout( mainLayout_ );
+      setCentralWidget(main_widget);
 
       loadPlugins(  );
     }

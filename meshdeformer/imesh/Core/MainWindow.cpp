@@ -26,6 +26,7 @@
 #include "BasePlugin/BaseInterface.h"
 #include "BasePlugin/LoggingInterface.h"
 #include "BasePlugin/StatusBarInterface.h"
+#include "BasePlugin/ToolBoxInterface.h"
 
 
 void MainWindow::setupMenu()

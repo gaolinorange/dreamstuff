@@ -219,6 +219,7 @@ website: cg.xplore.cn")
 ;; allows easy creation and editing of Doxygen comment blocks in your code
 (require 'doc-mode)
 (add-hook 'c-mode-common-hook 'doc-mode)
+(add-hook 'c++-mode-common-hook 'doc-mode)
 
 ;;source pair: ;
 ;; auto load the related header file of cpp files
@@ -226,7 +227,7 @@ website: cg.xplore.cn")
 (setq sourcepair-source-path '( "." "../*" ))
 (setq sourcepair-header-path '( "." "include" "../include" "../*"))
 (setq sourcepair-recurse-ignore '( ".svn" "Obj" "Debug" "Release" ))
-(define-key global-map "\C-xz" 'sourcepair-load)
+(define-key global-map "\C-x\C-s\C-p" 'sourcepair-load)
 
 ;;;;Bind [F7] to compiling mode
 (define-key global-map [f7] 'compile)
