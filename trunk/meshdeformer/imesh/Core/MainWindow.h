@@ -80,7 +80,7 @@ private slots:
   void infoToggleRunningMode();
 
   //Plugin Management
-private:
+public:
   void loadPlugins(  );
 signals:
   void pluginsInitialized(  );

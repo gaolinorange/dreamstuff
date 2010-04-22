@@ -23,6 +23,10 @@
 #include "widgets/aboutDialog/AboutDialog.hpp"
 #include "widgets/statusBar/StatusBar.h"
 
+#include "BasePlugin/BaseInterface.h"
+#include "BasePlugin/LoggingInterface.h"
+#include "BasePlugin/StatusBarInterface.h"
+
 
 void MainWindow::setupMenu()
 {

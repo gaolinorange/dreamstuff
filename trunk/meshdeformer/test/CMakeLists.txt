@@ -3,6 +3,8 @@ cmake_minimum_required(VERSION 2.6)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ../cmake)
 
 include_directories(../imesh)
+include_directories(..)
+
 
 find_package(Boost)
 if(Boost_FOUND)
@@ -12,8 +14,12 @@ endif()
 
 
 find_package(Qt4 REQUIRED)
+set(QT_USE_QTCORE true)
+set(QT_USE_QTGUI true)
+set(QT_USE_QTXML true)
 set(QT_USE_QTTEST true)
 set(QT_USE_QTOPENGL true)
+
 include(${QT_USE_FILE})
 
 if(UNIX)
@@ -24,20 +30,7 @@ if(CGAL_FOUND)
 include(${CGAL_USE_FILE})
 endif()
 
-
-
-# #Add google test support
-# if(APPLE)
-#   include_directories(/usr/local/include)
-#   link_directories(/usr/local/lib)
-# endif(APPLE)
-# if(LINUX)
-#   include_directories(/usr/include)
-#   link_directories(/usr/lib)
-# endif(LINUX)
-# if(WIN32)
-#   include_directories("D:/DevTools")
-# endif(WIN32)
+#google test support
 find_package(gtest REQUIRED)
 if(gtest_FOUND)
   include_directories(${gtest_INCLUDE_DIR})
@@ -49,6 +42,19 @@ if(assimp_FOUND)
   include_directories(${assimp_INCLUDE_DIR})
 endif(assimp_FOUND)
 
+#searching for QGLViewer library
+if(UNIX)
+  #for apple only, explicitly linking directory
+  if(APPLE)
+    include_directories(/usr/local/include)
+    link_directories(/usr/local/lib)
+  else(APPLE)
+    find_package(QGLViewer REQUIRED)
+    if(QGLViewer_FOUND)
+      include_directories(${QGLViewer_INCLUDE_DIR})
+    endif(QGLViewer_FOUND)
+  endif(APPLE)
+endif(UNIX)
 
 
 set(TEST_HEADERS
