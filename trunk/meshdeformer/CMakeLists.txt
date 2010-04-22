@@ -1,4 +1,4 @@
-project(MeshDeformer)
+project(meshplatform)
 
 
 cmake_minimum_required(VERSION 2.6)
@@ -27,6 +27,9 @@ else(UNIX)
 endif(UNIX)
 message("Platform is ${Platform}")
 
+#plugins should place before main program
+add_subdirectory(Plugin-TestPlugin)
 
-add_subdirectory(src)
+add_subdirectory(imesh)
+
 add_subdirectory(test)

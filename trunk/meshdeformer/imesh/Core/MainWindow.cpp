@@ -17,12 +17,12 @@
 #include <QToolBar>
 #include <QtGui>
 #include <QApplication>
+#include <QtCore>
 #include "widgets/consoleWidgets/ConsoleWidgetManager.h"
 #include "globals.hpp"
 #include "widgets/aboutDialog/AboutDialog.hpp"
 #include "widgets/statusBar/StatusBar.h"
 
-#include "../TestPlugin.h"
 
 void MainWindow::setupMenu()
 {
@@ -225,3 +225,35 @@ void MainWindow::slotUpdateStatusBarMessage( const QString& message ) {
 
 
     
+//Plugin Management
+void MainWindow::loadPlugins(  ) {
+  //load the dynamic plugins
+  QDir pluginsDir( qApp->applicationDirPath(  ) );
+  pluginsDir.cd( "plugins" );
+
+  foreach( QString fileName, pluginsDir.entryList( QDir::Files ) ) {
+    QPluginLoader pluginLoader( pluginsDir.absoluteFilePath( fileName ) );
+    qDebug(  )<< QString( "plugin filename: ")<<fileName ;
+
+    //load the plugin
+    QObject* plugin = pluginLoader.instance(  );
+    connect( this, SIGNAL( pluginsInitialized(  ) ),plugin, SLOT( pluginInitialized(  ) ) );
+
+    if( plugin ) {
+      //Plugin's baseInterface
+      //TODO
+      
+      //Plugin's LoggingInterface
+      LoggingInterface* loggingInterface = qobject_cast<LoggingInterface*>( plugin );
+      if( loggingInterface ) {
+        qDebug(  )<<"plugin metaObject class name: "<<plugin->metaObject(  )->className(  );
+        
+      }
+      //Plugin's StatusbarInterface
+
+
+     
+      
+    }
+  }
+}
