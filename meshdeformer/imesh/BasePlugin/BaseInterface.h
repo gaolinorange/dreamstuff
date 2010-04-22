@@ -23,6 +23,9 @@ class BaseInterface {
     
   }
 
+public slots:
+  virtual void pluginInitialized(  ) = 0;
+
  public:
   /** plugin descripton */
   virtual QString descripton(  ) const = 0;

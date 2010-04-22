@@ -20,9 +20,6 @@
 class ConsoleWidgetManager;
 class StatusBar;
 
-//#include "../TestPlugin.h"
-
-
 /**
    MainWindow:
    @brief: The MainWindow of the application
@@ -85,7 +82,9 @@ private slots:
   //Plugin Management
 private:
   void loadPlugins(  );
-
+signals:
+  void pluginsInitialized(  );
+  
 private:
   void setupStatusBar( );
 private slots:
@@ -132,8 +131,6 @@ public slots:
   
   ConsoleWidgetManager* consoleWidgetManager;
   StatusBar* statusBar_;
-
-  //  TestPlugin* testPlugin;
 };
 
 
