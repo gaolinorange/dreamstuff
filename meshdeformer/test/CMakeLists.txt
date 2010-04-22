@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.6)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ../cmake)
 
-include_directories(../src)
+include_directories(../imesh)
 
 find_package(Boost)
 if(Boost_FOUND)
