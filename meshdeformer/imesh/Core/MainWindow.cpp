@@ -113,6 +113,17 @@ void MainWindow::setupToolBar()
   addToolBar(toolbar);
 }
 
+void MainWindow::setupToolBox(  ) {
+  toolbox_ = new QToolBox(  );  
+}
+
+void MainWindow::setupMainLayout(  ) {
+  mainLayout_ = new QHBoxLayout(  );
+  mainLayout_->addWidget( mainViewer_ );
+  mainLayout_->addWidget( toolbox_ );
+}
+    
+
 void MainWindow::setupConsoleWidget()
 {
 	consoleWidgetManager = new ConsoleWidgetManager(this);
@@ -227,6 +238,10 @@ void MainWindow::slotUpdateStatusBarMessage( const QString& message ) {
   statusBar_->showMessage( message);  
 }
 
+void MainWindow::slotAddToolBox( QString title , QWidget* widget) {
+  toolbox_->addItem( widget, title );
+}
+
 
     
 //Plugin Management
@@ -261,6 +276,12 @@ void MainWindow::loadPlugins(  ) {
       StatusBarInterface* statusBarInterface = qobject_cast<StatusBarInterface*>( plugin );
       if( statusBarInterface ) {
         connect( plugin, SIGNAL( updateStatusBarMessage( const QString& ) ), this, SLOT( slotUpdateStatusBarMessage( const QString& ) ) );
+      }
+
+      //Plugins's ToolBoxInterface
+      ToolBoxInterface* toolBoxInterface = qobject_cast<ToolBoxInterface*>( plugin );
+      if( toolBoxInterface ) {
+        connect( plugin, SIGNAL( addToolBox( QString, QWidget* ) ), this, SLOT( slotAddToolBox( QString, QWidget* ) ) );
       }
     }
   }

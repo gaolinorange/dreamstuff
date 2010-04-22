@@ -8,10 +8,7 @@
 #ifndef MESHDEFORMER_MAINWINDOW_H
 #define MESHDEFORMER_MAINWINDOW_H
 
-#include <QMainWindow>
-#include <QAction>
-#include <QMenu>
-#include <QMenuBar>
+#include <QtGui>
 
 #include "Viewer.h"
 #include "Model.h"
@@ -36,34 +33,32 @@ class MainWindow : public QMainWindow
       setupToolBar();
       setupConsoleWidget();
       setupStatusBar( );
+      setupToolBox(  );
       
       mainModel_ = new Model();
       mainViewer_ = new Viewer(mainModel_,this,NULL,flags);
 
-      //TODO: add Layout and splitter support to suppport multiviewer
-      setCentralWidget(mainViewer_);
+      setupMainLayout(  );
+      
+      setCentralWidget(mainLayout_);
 
-      /*
-      testPlugin = new TestPlugin();
-
-      connect(testPlugin,SIGNAL(log(const QString&)),this,SLOT(slotLog(const QString&)));
-      connect( testPlugin,SIGNAL( updateStatusBarMessage( const QString& ) ), this, SLOT( slotUpdateStatusBarMessage( const QString& ) ) );
-
-      testPlugin->callTest();
-      */
       loadPlugins(  );
     }
   ~MainWindow()
     {
       delete mainModel_;
       delete mainViewer_;
+      delete mainLayout_;
+      delete toolbox_;
     }
   
  private:
+  void setupMainLayout(  );
   void setupMenu();
   void setupToolBar();
+  void setupStatusBar( );
   void setupConsoleWidget();
- protected:
+  void setupToolBox(  );
 
 private slots:
   void fileOpen();
@@ -82,17 +77,20 @@ private slots:
   //Plugin Management
 public:
   void loadPlugins(  );
+
+  //For BaseInterface
 signals:
   void pluginsInitialized(  );
   
-private:
-  void setupStatusBar( );
 private slots:
+  //StatusBarInterface
   void slotUpdateStatusBarMessage( const QString& message );
-  
   //LoggingInterface
-public slots:
   void slotLog(const QString& message);
+  //ToolBoxInterface
+  void slotAddToolBox( QString, QWidget* );
+
+  
  private:
   //The main displaying widget
   Viewer * mainViewer_;
@@ -101,6 +99,7 @@ public slots:
 
 
  private://UI related
+  QHBoxLayout* mainLayout_;
   QMenuBar * mainMenuBar;
   //File Menu
   QMenu * fileMenu;
@@ -118,8 +117,7 @@ public slots:
   //QGLViewer menu for options settings
   QMenu* qglViewerMenu_;
   QAction* actQGLViewerSetBackgroundColor_;
-  
-  
+    
   //Help Menu
   QMenu * helpMenu;  
   QAction * aboutAction;
@@ -131,6 +129,8 @@ public slots:
   
   ConsoleWidgetManager* consoleWidgetManager;
   StatusBar* statusBar_;
+
+  QToolBox* toolbox_;
 };
 
 
