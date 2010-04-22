@@ -227,7 +227,7 @@ website: cg.xplore.cn")
 (setq sourcepair-source-path '( "." "../*" ))
 (setq sourcepair-header-path '( "." "include" "../include" "../*"))
 (setq sourcepair-recurse-ignore '( ".svn" "Obj" "Debug" "Release" ))
-(define-key global-map "\C-x\C-s\C-p" 'sourcepair-load)
+(define-key global-map "\C-x\C-g" 'sourcepair-load)
 
 ;;;;Bind [F7] to compiling mode
 (define-key global-map [f7] 'compile)

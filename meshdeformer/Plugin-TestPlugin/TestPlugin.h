@@ -61,6 +61,7 @@ class TestPlugin : public QObject,
   void callTest(  ) {
     emit log( "call_test from plugin: "+name(  ) );
     emit updateStatusBarMessage( QString( "message from testplugin" ) );
+    emit addToolBox( QString( tr( "Testplugin toolbox" ) ), test_widget_ );
   }
 
 public slots:
