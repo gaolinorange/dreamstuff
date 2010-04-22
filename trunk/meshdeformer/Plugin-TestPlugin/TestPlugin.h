@@ -16,6 +16,7 @@
 #define _TESTPLUGIN_H_
 
 #include <QObject>
+#include <stdio.h>
 
 #include "BasePlugin/BaseInterface.h"
 #include "BasePlugin/LoggingInterface.h"
@@ -43,6 +44,14 @@ class TestPlugin : public QObject,
     emit updateStatusBarMessage( QString( "message from testplugin" ) );
   }
 
+public slots:
+  //BaseInterface
+  void pluginInitialized(  ) {
+    printf( "TestPlugin initialized.\n" );
+    emit log( QString( "test string from TestPlugin log signal" ) );
+    emit updateStatusBarMessage( QString( "test string from TestPlugin updateStatusBarMessage" ) );    
+  }
+  
  signals:
   //LoggingInterface
   void log( const QString& logMessage );

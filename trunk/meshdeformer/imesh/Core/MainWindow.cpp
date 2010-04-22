@@ -226,7 +226,7 @@ void MainWindow::slotUpdateStatusBarMessage( const QString& message ) {
 
     
 //Plugin Management
-void MainWindow::loadPlugins(  ) {
+void MainWindow::loadPlugins(  ) {  
   //load the dynamic plugins
   QDir pluginsDir( qApp->applicationDirPath(  ) );
   pluginsDir.cd( "plugins" );
@@ -237,23 +237,31 @@ void MainWindow::loadPlugins(  ) {
 
     //load the plugin
     QObject* plugin = pluginLoader.instance(  );
-    connect( this, SIGNAL( pluginsInitialized(  ) ),plugin, SLOT( pluginInitialized(  ) ) );
 
     if( plugin ) {
       //Plugin's baseInterface
-      //TODO
+      BaseInterface* baseInterface = qobject_cast<BaseInterface*>( plugin );
+      if( baseInterface ) {
+        //BaseInterface connection for pluginsInitialized
+        connect( this, SIGNAL( pluginsInitialized(  ) ),plugin, SLOT( pluginInitialized(  ) ) );        
+      }
       
       //Plugin's LoggingInterface
       LoggingInterface* loggingInterface = qobject_cast<LoggingInterface*>( plugin );
       if( loggingInterface ) {
         qDebug(  )<<"plugin metaObject class name: "<<plugin->metaObject(  )->className(  );
-        
+        connect( plugin, SIGNAL( log( const QString& ) ), this, SLOT( slotLog( const QString& ) ) );        
       }
+
       //Plugin's StatusbarInterface
-
-
-     
-      
+      StatusBarInterface* statusBarInterface = qobject_cast<StatusBarInterface*>( plugin );
+      if( statusBarInterface ) {
+        connect( plugin, SIGNAL( updateStatusBarMessage( const QString& ) ), this, SLOT( slotUpdateStatusBarMessage( const QString& ) ) );
+      }
     }
   }
+
+
+  //Emit a signal to setup all plugins
+  emit pluginsInitialized(  );
 }
