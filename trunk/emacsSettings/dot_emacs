@@ -26,6 +26,9 @@
 ;; lines are automatically wrapped when the cursor goes beyond the column limit
 (setq auto-fill-mode 1)
 
+;;;ido-mode for buffer switching
+(require 'ido)
+(ido-mode t)
 
 ;;global-font-lock-mode
 (global-font-lock-mode t)
@@ -233,6 +236,8 @@ website: cg.xplore.cn")
              (define-key c++-mode-map [f7] 'compile)
              ))
 
+;;Svn support
+(require 'psvn)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Tools;;;;;;;;;;;;;;;;;;;
 ;; ibuffer support
@@ -324,9 +329,13 @@ website: cg.xplore.cn")
 ;;5. add some common hooks for python
 (add-hook 'python-mode-hook '(lambda()
                                (load "py-mode-ext")
+                               (load "pyp")
                                (require 'pycomplete)
                                (setq indent-tabs-mode nil)
                                ;; ipython settings
                                (setq ipython-command "/usr/bin/ipython")
                                (require 'ipython)
+                               (define-key py-mode-map [f12] 'pyp)
+                               (define-key py-mode-map "\C-c\C-g" 'py-call-pdb)
+                               (define-key py-mode-map "\C-c\C-w" 'pychecker)
                                ))
