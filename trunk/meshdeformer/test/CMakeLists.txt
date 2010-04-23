@@ -36,6 +36,10 @@ if(gtest_FOUND)
   include_directories(${gtest_INCLUDE_DIR})
 endif(gtest_FOUND)
 
+#google glog support
+find_package(glog REQUIRED)
+include_directories(${glog_INCLUDE_DIR})
+  
 #assimp support
 find_package(assimp REQUIRED)
 if(assimp_FOUND)
@@ -69,4 +73,10 @@ add_executable(test
   ${TEST_HEADERS}
   ${TEST_SOURCES}
   )
-target_link_libraries(test ${QT_LIBRARIES}  MeshCore ${assimp_LIBRARY} ${gtest_LIBRARY})
+target_link_libraries(test
+  ${QT_LIBRARIES}
+  MeshCore
+  ${assimp_LIBRARY}
+  ${gtest_LIBRARY}
+  ${glog_LIBRARY}
+  )

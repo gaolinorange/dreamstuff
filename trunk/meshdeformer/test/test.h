@@ -6,6 +6,9 @@
 #include "testMeshCore.h"
 #include "testMeshBuilder.h"
 #include "testMeshBuilderDerived.h"
+
+#include "testGoogleLog.h"
+
 //#include "testPluginLoading.h"//TODO
 
 
