@@ -227,20 +227,11 @@ website: cg.xplore.cn")
 (setq sourcepair-source-path '( "." "../*" ))
 (setq sourcepair-header-path '( "." "include" "../include" "../*"))
 (setq sourcepair-recurse-ignore '( ".svn" "Obj" "Debug" "Release" ))
-(define-key global-map "\C-x\C-g" 'sourcepair-load)
-
-;;;;Bind [F7] to compiling mode
-(define-key global-map [f7] 'compile)
-
-
-
-
-
-
-
-
-
-
+(add-hook 'c++-mode-hook
+          '(lambda()
+             (define-key c++-mode-map "\C-x\C-g" 'sourcepair-load)
+             (define-key c++-mode-map [f7] 'compile)
+             ))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Tools;;;;;;;;;;;;;;;;;;;
@@ -291,33 +282,51 @@ website: cg.xplore.cn")
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Settings for Python;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ref: www.cnblogs.com/coderzh/archive/2009/12/26/emacspythonide.html
 (add-to-list 'load-path
 	     "~/.emacs.d/python")
-(require 'python-mode)
+
+;;(require 'python-mode)
 ;; 1. yassnipet is already installed
 ;; 2. autocomplete is already installed
 ;; 3. Rope and Ropemacs
 ;; 3.1 Rope&pymacs ( install rope and then configure)
 (add-to-list 'load-path
 	     "~/.emacs.d/python/Pymacs")
+
+
+;;<<Pymacs>>
+(setenv "PYMACS_PYTHON" "python2.6")
 (require 'pymacs)
+(defvar pymacs-load-path "/usr/local/lib/python2.6/dist-packages/Pymacs/")
+
 (autoload 'pymacs-apply "pymacs")
 (autoload 'pymacs-call "pymacs")
 (autoload 'pymacs-eval "pymacs" nil t)
 (autoload 'pymacs-exec "pymacs" nil t)
 (autoload 'pymacs-load "pymacs" nil t)
+(eval-after-load "pymacs"
+  '(add-to-list 'pymacs-load-path "~/.emacs.d/python"))
+
+;;(pymacs-load "pycomplete")
+
 ;; 3.2 install ropmacs ( and then configure as follows)
 (pymacs-load "ropemacs" "rope-")
 (setq ropemacs-enable-autoimport t)
 
 ;;4 pycomplete
 ;;4.1 install Python mode
-(require 'pycomplete)
 (setq auto-mode-alist (cons '("\\.py$" . python-mode) auto-mode-alist))
-(autoload 'python-mode "python-mode" "Python editing mode." t)
 (setq interpreter-mode-alist (cons '("python" . python-mode)
                                    interpreter-mode-alist))
+(autoload 'python-mode "python-mode" "Python editing mode." t)
+
 ;;4.2 note: copy pycomplete.py to PYTHONPATH (external operation)
 ;; ( note: the above operation is not in emacs enviornment)
 
-;; ipython settings
-(setq ipython-command "/usr/bin/ipython")
-(require 'ipython)
+;;5. add some common hooks for python
+(add-hook 'python-mode-hook '(lambda()
+                               (load "py-mode-ext")
+                               (require 'pycomplete)
+                               (setq indent-tabs-mode nil)
+                               ;; ipython settings
+                               (setq ipython-command "/usr/bin/ipython")
+                               (require 'ipython)
+                               ))
