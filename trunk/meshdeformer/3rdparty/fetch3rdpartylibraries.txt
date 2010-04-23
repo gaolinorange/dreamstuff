@@ -1,2 +1,15 @@
+1. assimp
 svn co http://assimp.svn.sourceforge.net/svnroot/assimp/trunk assimp
 you should add 'include_directories(../include/BoostWorkaround) ' when you working on MacOSX; also, install the libboost-math is necessary
+2. google-glog
+code.google.com/p/google-glog/download/list
+3. CGAL
+www.cgal.org
+4. google-test
+
+5. QGLViewer
+www.qglviewer.org
+6. google-gflags
+http://code.google.com/p/google-gflags/
+
+
