@@ -1,12 +1,14 @@
 # Find Include Path
 find_path(glog_INCLUDE_DIR
-  NAMES logging.h
-  PATHS /usr/include /usr/local/include)
+  NAMES glog/logging.h
+  PATHS /usr/include /usr/local/include
+  )
 
 #Find Library
 find_library(glog_LIBRARY
   NAMES glog
-  PATHS /usr/lib /usr/local/lib)
+  PATHS /usr/lib /usr/local/lib
+  )
 
 
 if(glog_INCLUDE_DIR AND glog_LIBRARY)

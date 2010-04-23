@@ -1,6 +1,8 @@
 ;;-*-Emacs-Lisp-*-
 ;;set mac-command-modifer as meta key
 (setq mac-command-modifier 'meta)
+;;to avoid max-specpdl-size error in mac aquamacs
+;;(setq max-specpdl-size 32000)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;Common settings;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq default-major-mode 'text-mode)
