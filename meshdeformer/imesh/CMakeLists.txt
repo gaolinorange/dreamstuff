@@ -1,4 +1,5 @@
 #CMake file for project ROOT
+set(target_name imesh)
 
 cmake_minimum_required(VERSION 2.6)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ../cmake)
@@ -45,6 +46,7 @@ else(PYTHONLIBS_FOUND)
   message("could not find PythonLibs")
 endif(PYTHONLIBS_FOUND)
 
+#find package PythonQt
 find_package(PythonQt)
 if(PythonQt_FOUND)
   include_directories(${PYTHONQT_INCLUDE_DIR})
@@ -53,6 +55,14 @@ else(PythonQt_FOUND)
   message(FATAL_ERROR,"Cound not find the PythonQt library")
 endif(PythonQt_FOUND)  
 
+#find package google-glog
+find_package(glog)
+if(glog_FOUND)
+  include_directories(${glog_INCLUDE_DIR})
+  link_directories(${glog_LIBRARY})
+else(glog_FOUND)
+  message(ERROR,"Could not found glog library")
+endif(glog_FOUND)
 
 
 
@@ -93,7 +103,7 @@ add_subdirectory(MeshCore)#the MeshCore subcore
 #add_subdirectory(Renderer)
 
 
-add_executable(meshdeformer
+add_executable(${target_name}
   main.cpp 
   ${APP_HEADERS} 
   ${APP_SOURCES} 
@@ -101,14 +111,14 @@ add_executable(meshdeformer
   )
 
 if(WIN32)
-target_link_libraries(meshdeformer MeshCore ${QT_LIBRARIES} gtest gtest_main assimp QGLViewer2)
+  target_link_libraries(${target_name} MeshCore ${QT_LIBRARIES} gtest gtest_main assimp QGLViewer2 ${glog_LIBRARY})
 endif(WIN32)
 
 if(UNIX)
   if(APPLE)
-    target_link_libraries(meshdeformer MeshCore ${QT_LIBRARIES} ${assimp_LIBRARY} QGLViewer PythonQt)
+    target_link_libraries(${target_name} MeshCore ${QT_LIBRARIES} ${assimp_LIBRARY} QGLViewer PythonQt ${glog_LIBRARY})
   else(APPLE) #Linux
-    target_link_libraries(meshdeformer MeshCore ${QT_LIBRARIES} ${assimp_LIBRARY} ${QGLViewer_LIBRARY} PythonQt)
+    target_link_libraries(${target_name} MeshCore ${QT_LIBRARIES} ${assimp_LIBRARY} ${QGLViewer_LIBRARY} PythonQt ${glog_LIBRARY})
   endif(APPLE)
 endif(UNIX)
 
