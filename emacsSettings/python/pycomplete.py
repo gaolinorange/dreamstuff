@@ -1,25 +1,27 @@
+#! /usr/bin/env python
 """
 Python dot expression completion using Pymacs.
 
-When you hit TAB it will try to complete the dot expression
-before point.
-For example, given this import at the top of the file:
+This almost certainly needs work, but if you add
+
+    (require 'pycomplete)
+
+to your .xemacs/init.el file (.emacs for GNU Emacs) and have Pymacs
+installed, when you hit TAB it will try to complete the dot expression
+before point.  For example, given this import at the top of the file:
 
     import time
 
-typing 'time.cl' then hitting TAB should complete 'time.clock'.
+typing "time.cl" then hitting TAB should complete "time.clock".
 
 See pycomplete.el for the Emacs Lisp side of things.
 """
-
 import sys
-import types
-import inspect
-import StringIO
 import os.path
+import string 
+from Pymacs import lisp
 
-_HELPOUT = StringIO.StringIO
-_STDOUT = sys.stdout
+sys.path.append(".")
 
 try:
     x = set
@@ -28,155 +30,24 @@ except NameError:
 else:
     del x
 
-from Pymacs import lisp
+def get_all_completions(s, imports=None):
+    """Return contextual completion of s (string of >= zero chars).
 
-COLWIDTH = 20
-
-
-def pycomplete(s, fname=None, imports=None, debug=False):
-    '''Display completion in Emacs window'''
-    completions = _get_all_completions(s, fname, imports)
-    dots = s.split('.')
-    result = os.path.commonprefix([k[len(dots[-1]):] for k in completions])
-
-    if result == '' or result not in completions:
-        if completions:
-            if debug:
-                width = 80
-            else:
-                width = lisp.window_width() - 2
-
-            column = width / COLWIDTH
-            white = ' ' * COLWIDTH
-            msg = ''
-
-            counter = 0
-            for completion in completions :
-                if len(completion) < COLWIDTH:
-                    msg += completion + white[len(completion):]
-                    counter += 1
-                else :
-                    msg += completion + white[len(completion) - COLWIDTH:]
-                    counter += 2
-
-                if counter >= column:
-                    counter = 0
-                    msg += '\n'
-        else:
-            msg = 'no completions!'
-        if debug:
-            print msg
-        else:
-            lisp.message(msg)
-    return result       
-
-
-def pyhelp(s, imports=None, debug=False):
-    '''Return object description'''
-    doc = ''
-    try:
-        doc = _gethelp(s, imports)
-    except Exception, ex:
-        return '%s' % ex
-    return doc
-        
-
-def pysignature(s):
-    '''Return info about function parameters'''
-
-    obj = None
-    sig = ""
-    try:
-        obj = _load_symbol(s, globals(), locals())
-    except Exception, ex:
-        return '%s' % ex
-
-    if type(obj) in (types.ClassType, types.TypeType):
-        # Look for the highest __init__ in the class chain.
-        obj = _find_constructor(obj)
-    elif type(obj) == types.MethodType:
-        # bit of a hack for methods - turn it into a function
-        # but we drop the "self" param.
-        obj = obj.im_func
-   
-    if type(obj) in [types.FunctionType, types.LambdaType]:
-        (args, varargs, varkw, defaults) = inspect.getargspec(obj)
-        sig = ('%s: %s' % (obj.__name__,
-                           inspect.formatargspec(args, varargs, varkw,
-                                                 defaults)))
-    doc = getattr(obj, '__doc__', '')
-    if doc and not sig:
-        doc = doc.lstrip()
-        pos = doc.find('\n')
-        if pos < 0 or pos > 70:
-            pos = 70
-        sig = doc[:pos]
-    return sig
-
-
-def _load_symbol(s, dglobals, dlocals):
-    sym = None
-    dots = s.split('.')
-    if not s or len(dots) == 1:
-        try:
-            sym = eval(s, dglobals, dlocals)
-        except Exception:
-            pass
-    else:
-        for i in range(1, len(dots)+1):
-            s = '.'.join(dots[:i])
-            if not s:
-                continue
-            try:
-                sym = eval(s, dglobals, dlocals)
-            except NameError:
-                try:
-                    sym = __import__(s, dglobals, dlocals, [])
-                    dglobals[s] = sym
-                except ImportError:
-                    pass
-            except Exception:
-                pass
-    return sym
-
-
-def _gethelp(s, imports=None):
-    '''Return string printed by `help` function'''
-    _import_modules(imports, globals())
-    obj = _load_symbol(s, globals(), locals())
-    if not obj:
-        obj = s
-    out = _HELPOUT()
-    try:
-        sys.stdout = out
-        help(obj)
-    finally:
-        sys.stdout = _STDOUT
-    return out.getvalue()
-
-
-def _import_modules(imports, dglobals):
-    '''If given, execute import statements'''
+    If given, imports is a list of import statements to be executed first.
+    """
+    locald = {}
     if imports is not None:
         for stmt in imports:
             try:
-                exec stmt in dglobals
+                exec stmt in globals(), locald
             except TypeError:
-                raise TypeError, 'invalid type: %s' % stmt
-            except Exception, ex:
+                raise TypeError, "invalid type: %s" % stmt
+            except:
                 continue
-
-
-def _get_all_completions(s, fname=None, imports=None):
-    '''Return contextual completion of s (string of >= zero chars)'''
-
-    dlocals = {}
-    _import_modules(imports, globals())
-
-    dots = s.split('.') 
+    dots = s.split(".") 
     if not s or len(dots) == 1:
         keys = set()
-        keys.update(dlocals.keys())
+        keys.update(locald.keys())
         keys.update(globals().keys())
         import __builtin__
         keys.update(dir(__builtin__))
@@ -189,83 +60,64 @@ def _get_all_completions(s, fname=None, imports=None):
 
     sym = None
     for i in range(1, len(dots)):
-        s = '.'.join(dots[:i])
-        if not s:
-            continue
+        s = ".".join(dots[:i])   
         try:
-            sym = eval(s, globals(), dlocals)
+            sym = eval(s, globals(), locald)
         except NameError:
             try:
-                sym = __import__(s, globals(), dlocals, [])
+                sym = __import__(s, globals(), locald, [])
             except ImportError:
                 return []
     if sym is not None:  
         s = dots[-1]     
         return [k for k in dir(sym) if k.startswith(s)]
 
+def pycomplete(s, imports=None):
+    completions = get_all_completions(s, imports)
+    dots = s.split(".")
+    result = os.path.commonprefix([k[len(dots[-1]):] for k in completions])
 
-def _find_constructor(class_ob):
-    # Given a class object, return a function object used for the
-    # constructor (ie, __init__() ) or None if we can't find one.
-    try:
-        return class_ob.__init__.im_func
-    except AttributeError:
-        for base in class_ob.__bases__:
-            rc = _find_constructor(base)
-            if rc is not None: return rc
-    return None
+    if result == "":
+        if completions:
+            width = lisp.window_width() - 2
+            colum = width / 20
+            white = "                    "
 
+            msg = ""
 
-def _test_signature():
-    print pysignature('os.path.join')
-    print pysignature('urllib.urlopen')
-    print pysignature('httplib.HTTPConnection.request')
-    print pysignature('httplib.HTTPConnection')
-    print pysignature('csv.reader')
-    # no signature
-    #print pysignature('open')
+            counter = 0
+            for completion in completions :
+                if completion.__len__() < 20 :
+                    msg += completion + white[completion.__len__():]
+                    counter += 1
+                else :
+                    msg += completion + white[completion.__len__() - 20:]
+                    counter += 2
 
+                if counter >= colum :
+                    counter = 0
+                    msg += '\n'
 
-def _test_help():
-    print 'MODULE: os START'
-    print pyhelp('os', debug=True)
-    print 'MODULE: os END'
-
-    # bug in pydoc
-    print 'MODULE: logging START'
-    print pyhelp('logging', ('import logging',), debug=True)
-    print 'MODULE: logging END'
-
-    print 'MODULE: csv START'
-    print pyhelp('csv', ('import csv',), debug=True)
-    print 'MODULE: csv END'
-
-    print 'KEYWORD: import START'
-    print pyhelp('import', debug=True)
-    print 'KEYWORD: import END'
-
-    print 'METHOD: os.path.join START'
-    print pyhelp('os.path.join', debug=True)
-    print 'METHOD: os.path.join END'
-
-
-def _test_complete():
-    print ' ->', pycomplete('', debug=True)
-    print 'sys.get ->', pycomplete('sys.get', debug=True)
-    print 'settr ->', pycomplete('settr', debug=True)
-    print 'settr (plat in context) ->',
-    print pycomplete('settr', imports=['from sys import settrace'], debug=True)
-    print 'foo. ->', pycomplete('foo.', debug=True)
-    print 'Enc (email * imported) ->', 
-    print pycomplete('Enc', imports=['from email import *'], debug=True)
-    print 'E (email * imported) ->',
-    print pycomplete('E', imports=['from email import *'], debug=True)
-    print 'Enc ->', pycomplete('Enc', debug=True)
-    print 'E ->', pycomplete('E', debug=True)
-
+        else:
+            msg = "no completions!"
+        lisp.message(msg)
+    return  result       
 
 if __name__ == "__main__":
-    _test_complete()
-    _test_help()
-    _test_signature()
-    
+    print " ->", pycomplete("")
+    print "sys.get ->", pycomplete("sys.get")
+    print "sy ->", pycomplete("sy")
+    print "sy (sys in context) ->", pycomplete("sy", imports=["import sys"])
+    print "foo. ->", pycomplete("foo.")
+    print "Enc (email * imported) ->", 
+    print pycomplete("Enc", imports=["from email import *"])
+    print "E (email * imported) ->",
+    print pycomplete("E", imports=["from email import *"])
+
+    print "Enc ->", pycomplete("Enc")
+    print "E ->", pycomplete("E")
+
+# Local Variables :
+# pymacs-auto-reload : t
+# End :
+
