@@ -339,10 +339,10 @@ website: cg.xplore.cn")
                                (define-key py-mode-map "\C-c\C-g" 'py-call-pdb)
                                (define-key py-mode-map "\C-c\C-w" 'pychecker)
                                ;;PEP8&Pylint for syntax real-time checking
-                               ;;(autoload 'python-pep8 "python-pep8")
-                               ;;(autoload 'pep8 "python-pep8")
-                               ;;(autoload 'python-pylint "python-pylint")
-                               ;;(autoload 'pylint "python-pylint")
+                               (autoload 'python-pep8 "python-pep8")
+                               (autoload 'pep8 "python-pep8")
+                               (autoload 'python-pylint "python-pylint")
+                               (autoload 'pylint "python-pylint")
                                ;;[Flymake Mode for Emacs/Python: readl-time syntax checking
                                ;;www.plope.org/Members/chrism/flymake-mode/view?searchterm=ide
 
