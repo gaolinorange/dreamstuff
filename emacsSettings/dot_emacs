@@ -30,6 +30,9 @@
 (require 'ido)
 (ido-mode t)
 
+;;uniquify support
+(require 'uniquify)
+
 ;;global-font-lock-mode
 (global-font-lock-mode t)
 ;;How to have a menu of recently opened files
