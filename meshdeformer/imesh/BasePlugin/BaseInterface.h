@@ -28,7 +28,7 @@ public slots:
 
  public:
   /** plugin descripton */
-  virtual QString descripton(  ) const = 0;
+  virtual QString description(  ) const = 0;
   /** plugin name*/
   virtual QString name(  ) const = 0;  
 };

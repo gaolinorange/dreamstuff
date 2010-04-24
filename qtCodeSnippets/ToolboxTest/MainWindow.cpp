@@ -5,6 +5,7 @@
 #include <QPushButton>
 
 #include <stdio.h>
+#include "ToolBoxInterface.h"
 
 void MainWindow::setupMenu()
 {
