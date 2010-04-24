@@ -1,8 +1,6 @@
 ;;-*-Emacs-Lisp-*-
 ;;set mac-command-modifer as meta key
 (setq mac-command-modifier 'meta)
-;;to avoid max-specpdl-size error in mac aquamacs
-;;(setq max-specpdl-size 32000)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;Common settings;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq default-major-mode 'text-mode)
@@ -340,4 +338,37 @@ website: cg.xplore.cn")
                                (define-key py-mode-map [f12] 'pyp)
                                (define-key py-mode-map "\C-c\C-g" 'py-call-pdb)
                                (define-key py-mode-map "\C-c\C-w" 'pychecker)
+                               ;;PEP8&Pylint for syntax real-time checking
+                               ;;(autoload 'python-pep8 "python-pep8")
+                               ;;(autoload 'pep8 "python-pep8")
+                               ;;(autoload 'python-pylint "python-pylint")
+                               ;;(autoload 'pylint "python-pylint")
+                               ;;[Flymake Mode for Emacs/Python: readl-time syntax checking
+                               ;;www.plope.org/Members/chrism/flymake-mode/view?searchterm=ide
+
+                               ;;code checking via flymake
+                               ;;set code checker here from "epylint", "pyflakes"
+                               ;;neuroimaging.scipy.org/site/doc/manual/html/devel/tools/tricked_out_emacs.html
+                               (setq pycodechecker "pyflakes")
+                               (when (load "flymake" t)
+                                 (defun flymake-pycodecheck-init ()
+                                   (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                                                      'flymake-create-temp-inplace))
+                                          (local-file (file-relative-name
+                                                       temp-file
+                                                       (file-name-directory buffer-file-name))))
+                                     (list pycodechecker (list local-file))))
+                                 (add-to-list 'flymake-allowed-file-name-masks
+                                              '("\\.py\\'" flymake-pycodecheck-init)))
+                               ;;add some keymaps for quickly switching between major-mode for python
+                               (local-set-key [f8] 'flymake-mode)
+                               (local-set-key [f9] 'python-mode)
                                ))
+
+
+
+
+
+
+
+
