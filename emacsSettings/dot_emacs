@@ -81,11 +81,6 @@
 ;;(color-theme-taylor)
 
 
-;;;;;;;;;Tabs Instead of Spaces
-(setq-default c-basic-offset 4
-	      tab-width 4)
-(setq-default indent-tabs-mode nil)
-
 
 
 
@@ -127,25 +122,31 @@ it under the terms of the GNU General Public License as published by the Free So
 website: cg.xplore.cn")
 (add-hook 'write-file-hooks 'auto-update-file-header)
 (add-hook 'c++-mode-common-hook 'auto-make-header)
+(add-hook 'c-mode-common-hook 'auto-make-header)
+
 
 ;;;add Displaying Line Number support
 (require 'display-line-number)
 (setq display-line-number-format "%4d")
 ;;usage: M-x display-line-number-mode
 ;; auto displaying line number when in c-mode
+(add-hook 'c-mode-hook 'display-line-number-mode)
 (add-hook 'c++-mode-hook 'display-line-number-mode)
 
 
 ;;;;;cscope support
 (require 'xcscope)
 
-
-;;;;; google-c-style support
+;;;;;;;;;;;;;;;;[======== C Programming Support =============];;;;;;;;;;;;
+;;;;;  Only load extra packages when using enter specific mode
 (require 'google-c-style)
 (add-hook 'c-mode-common-hook 'google-set-c-style)
 (add-hook 'c-mode-common-hook 'google-make-newline-indent)
 (add-hook 'c++-mode-common-hook 'google-set-c-style)
 (add-hook 'c++-mode-common-hook 'google-make-newline-indent)
+
+
+
 
 
 ;;;;;;;;;;;;;CEDET settings;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -180,13 +181,6 @@ website: cg.xplore.cn")
 (define-key ac-completing-map "\M-p" 'ac-previous)
 (global-auto-complete-mode t)
 
-
-;;my common hook
-(defun my-c++-mode-common-hook()
-  (setq tab-width 4
-		indent-tabs-mode nil)
-  )
-(add-hook 'c++-mode-common-hook 'my-c-mode-common-hook)
 
 ;;;Auto add the right side's backet,eg. ;;()[]{}
 (defun my-c-mode-auto-pair ()
@@ -298,7 +292,6 @@ website: cg.xplore.cn")
 ;; 3.1 Rope&pymacs ( install rope and then configure)
 (add-to-list 'load-path
 	     "~/.emacs.d/python/Pymacs")
-
 
 ;;<<Pymacs>>
 (setenv "PYMACS_PYTHON" "python2.6")
