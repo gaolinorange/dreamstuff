@@ -43,31 +43,40 @@ class TestPlugin : public QObject,
 
  public:
   TestPlugin(  ) {
-    test_widget_ = new QWidget(  );
-    QVBoxLayout* layout = new QVBoxLayout( test_widget_ );
-    QPushButton* button = new QPushButton( tr( "TestButton One") );
-    QLabel* label = new QLabel( tr( "Test Label" ) );
-    QCheckBox* checkbox = new QCheckBox( tr( "Test Checkbox" ) );
-    layout->addWidget( button );
-    layout->addWidget( label );
-    layout->addWidget( checkbox );
-    test_widget_->setLayout( layout );
+    /*    test_widget_ = new QWidget(  );
+    layout_ = new QVBoxLayout( test_widget_ );
+    button_ = new QPushButton( tr( "TestButton One") );
+    label_ = new QLabel( tr( "Test Label" ) );
+    checkbox_ = new QCheckBox( tr( "Test Checkbox" ) );
+    layout_->addWidget( button_ );
+    layout_->addWidget( label_ );
+    layout_->addWidget( checkbox_ );
+    test_widget_->setLayout( layout_ );
+    */
+    test_widget_ = new QPushButton();
+    test_widget_->setText(QString("TestPlugin widget"));
+  
   }
   ~TestPlugin(  ) {
-    delete test_widget_;    
+    /*    delete test_widget_;
+    delete button_;
+    delete label_;
+    delete checkbox_;
+    delete layout_;
+    */
+    //    delete test_widget_;
   }
-  
- public:
-  void callTest(  ) {
-    emit log( "call_test from plugin: "+name(  ) );
-    emit updateStatusBarMessage( QString( "message from testplugin" ) );
-    emit addToolBox( QString( tr( "Testplugin toolbox" ) ), test_widget_ );
-  }
+ private:
+  QPushButton* button_;
+  QLabel* label_;
+  QCheckBox* checkbox_;
+  QVBoxLayout* layout_;
+
+  QPushButton* test_widget_;
 
 public slots:
   //BaseInterface
   void pluginInitialized(  ) {
-    printf( "TestPlugin initialized.\n" );
     emit log( QString( "test string from TestPlugin log signal" ) );
     emit updateStatusBarMessage( QString( "test string from TestPlugin updateStatusBarMessage" ) );
     emit addToolBox( QString( tr( "TestPlugin Toolbox" ) ),test_widget_ );
@@ -89,8 +98,7 @@ public slots:
     return QString( "Test Plugin" );
   }
 
- private:
-  QWidget* test_widget_;
+
 };
 
 #endif /* _TESTPLUGIN_H_ */

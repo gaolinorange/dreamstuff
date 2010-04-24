@@ -115,7 +115,13 @@ void MainWindow::setupToolBar()
 }
 
 void MainWindow::setupToolBox(  ) {
-  toolbox_ = new QToolBox(  );  
+  toolbox_ = new QToolBox(  );
+  QPushButton* button = new QPushButton(QString("Button"),toolbox_);
+  toolbox_->addItem(button,QString("TestButton"));
+
+  QLabel* label = new QLabel(QString("label"),toolbox_);
+  toolbox_->addItem(label,QString("TestLabel"));
+		    
 }
 
 void MainWindow::setupMainLayout(  ) {
@@ -240,6 +246,7 @@ void MainWindow::slotUpdateStatusBarMessage( const QString& message ) {
 }
 
 void MainWindow::slotAddToolBox( QString title , QWidget* widget) {
+  widget->setParent(toolbox_);
   toolbox_->addItem( widget, title );
 }
 
@@ -255,20 +262,26 @@ void MainWindow::loadPlugins(  ) {
     QPluginLoader pluginLoader( pluginsDir.absoluteFilePath( fileName ) );
     qDebug(  )<< QString( "plugin filename: ")<<fileName ;
 
+    qDebug( )<<"The pluginLoader's fileName: "<<pluginLoader.fileName(  );
+    qDebug(  )<<"is loaded? "<<pluginLoader.load(  );
+    
     //load the plugin
     QObject* plugin = pluginLoader.instance(  );
-
+    connect( this, SIGNAL( pluginsInitialized(  ) ),plugin, SLOT( pluginInitialized(  ) ) );
+    
     if( plugin ) {
       //Plugin's baseInterface
       BaseInterface* baseInterface = qobject_cast<BaseInterface*>( plugin );
       if( baseInterface ) {
         //BaseInterface connection for pluginsInitialized
+        qDebug( )<<"it's a BaseInterface, setup the connection";
         connect( this, SIGNAL( pluginsInitialized(  ) ),plugin, SLOT( pluginInitialized(  ) ) );        
       }
       
       //Plugin's LoggingInterface
       LoggingInterface* loggingInterface = qobject_cast<LoggingInterface*>( plugin );
       if( loggingInterface ) {
+        qDebug( )<<"it's a LoggingInterface";
         qDebug(  )<<"plugin metaObject class name: "<<plugin->metaObject(  )->className(  );
         connect( plugin, SIGNAL( log( const QString& ) ), this, SLOT( slotLog( const QString& ) ) );        
       }
@@ -276,18 +289,23 @@ void MainWindow::loadPlugins(  ) {
       //Plugin's StatusbarInterface
       StatusBarInterface* statusBarInterface = qobject_cast<StatusBarInterface*>( plugin );
       if( statusBarInterface ) {
+        qDebug(  )<<"it's a StatusBarInterface";
         connect( plugin, SIGNAL( updateStatusBarMessage( const QString& ) ), this, SLOT( slotUpdateStatusBarMessage( const QString& ) ) );
       }
 
       //Plugins's ToolBoxInterface
       ToolBoxInterface* toolBoxInterface = qobject_cast<ToolBoxInterface*>( plugin );
       if( toolBoxInterface ) {
+        qDebug(  )<<"it's a ToolBoxInterface, setup the connection";
         connect( plugin, SIGNAL( addToolBox( QString, QWidget* ) ), this, SLOT( slotAddToolBox( QString, QWidget* ) ) );
       }
+    } else {
+      qDebug(  )<<"could not instance this plugin: "<<fileName;
     }
   }
 
 
   //Emit a signal to setup all plugins
+
   emit pluginsInitialized(  );
 }
