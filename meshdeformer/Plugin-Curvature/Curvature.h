@@ -75,7 +75,15 @@ class Curvature : public QObject,
     emit addToolBox( QString( tr( "Curvatures" ) ), widget_ );
     emit log( QString( "Curvature Plugin" ) );
   }
- signals:
+public:
+  //BaseInterface
+  QString description(  ) const {
+    return QString( tr( "Curvature Plugin description" ) );
+  }
+  QString name(  ) const {
+    return QString( "CurvaturePlugin" );
+  }
+signals:
   //LoggingInterface
   void log( const QString& logMessage );
   //ToolBoxInterface
