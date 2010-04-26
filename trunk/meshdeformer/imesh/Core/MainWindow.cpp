@@ -44,10 +44,7 @@ void MainWindow::setupMenu()
 
    
    actSaveImage = new QAction(tr("&Save Image"),fileMenu);
-
    actSaveImage->setShortcut(QKeySequence(tr("Ctrl+S")));
-
-
    connect(actSaveImage,SIGNAL(triggered()),this,SLOT(fileSaveImage()));
    fileMenu->addAction(actSaveImage);
 
@@ -246,6 +243,8 @@ void MainWindow::slotUpdateStatusBarMessage( const QString& message ) {
 }
 
 void MainWindow::slotAddToolBox( QString title , QWidget* widget) {
+  printf( "MainWindow::slotAddToolBox...\n" );
+  
   widget->setParent(toolbox_);
   toolbox_->addItem( widget, title );
 }
@@ -267,8 +266,6 @@ void MainWindow::loadPlugins(  ) {
     
     //load the plugin
     QObject* plugin = pluginLoader.instance(  );
-    connect( this, SIGNAL( pluginsInitialized(  ) ),plugin, SLOT( pluginInitialized(  ) ) );
-    
     if( plugin ) {
       //Plugin's baseInterface
       BaseInterface* baseInterface = qobject_cast<BaseInterface*>( plugin );
