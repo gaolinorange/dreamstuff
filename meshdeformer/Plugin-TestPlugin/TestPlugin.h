@@ -42,7 +42,7 @@ class TestPlugin : public QObject,
 
  public:
   TestPlugin(  ) {
-    /*    test_widget_ = new QWidget(  );
+    test_widget_ = new QWidget(  );
     layout_ = new QVBoxLayout( test_widget_ );
     button_ = new QPushButton( tr( "TestButton One") );
     label_ = new QLabel( tr( "Test Label" ) );
@@ -50,19 +50,14 @@ class TestPlugin : public QObject,
     layout_->addWidget( button_ );
     layout_->addWidget( label_ );
     layout_->addWidget( checkbox_ );
-    test_widget_->setLayout( layout_ );
-    */
-    test_widget_ = new QPushButton();
-    test_widget_->setText(QString("TestPlugin widget"));  
+    test_widget_->setLayout( layout_ );    
   }
   ~TestPlugin(  ) {
-    /*    delete test_widget_;
+    delete test_widget_;
     delete button_;
     delete label_;
     delete checkbox_;
-    delete layout_;
-    */
-    delete test_widget_;
+    delete layout_;    
   }
   
  private:
@@ -71,7 +66,7 @@ class TestPlugin : public QObject,
   QCheckBox* checkbox_;
   QVBoxLayout* layout_;
 
-  QPushButton* test_widget_;
+  QWidget* test_widget_;
 
 public slots:
   //BaseInterface
