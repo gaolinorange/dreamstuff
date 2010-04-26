@@ -34,7 +34,7 @@ public:
 		for(unsigned int j = 0; j < meshloader->numFacets; j++){
 			builder.begin_facet();
 			aiFace face = meshloader->aimesh->mFaces[j];
-			for(int k = 0; k < face.mNumIndices; k++){
+			for(std::size_t k = 0; k < face.mNumIndices; k++){
 				builder.add_vertex_to_facet(face.mIndices[k]);
 			}
 			builder.end_facet();

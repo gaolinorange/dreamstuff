@@ -1,13 +1,22 @@
-/**
-   the main appdata class
-*/
+// Model.h --- Model calss for core data
+// copyright (c) 2010 dreamway
+// 
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by the Free Software Foundation;
+//  Free free to contact dreamway(jingwenlai@163.com)
+// 
+// website: cg.xplore.cn
+// 
+// 
+
+// Commentary: 
+// 
+// 
+
 #ifndef _MODEL_H_
 #define _MODEL_H_
 
-
 #include <QtGui>
-
-
 #include "MeshCore/MeshCore.h"
 #include "BasePlugin/LoggingInterface.h"
 
@@ -31,14 +40,12 @@ class Model : public QObject,public LoggingInterface
     
  signals:
   void log(const QString& message);
- public:
-  QString description() const
-  {
-    return QString("Model");
-  }  
  private:
   MeshCore * pMesh;
 };
 
 #endif /* _MODEL_H_ */
 
+
+// 
+// Model.h ends here

@@ -1,10 +1,12 @@
-#include "Viewer.h"
-//#include "widgets/consoleWidgets/ConsoleWidgetManager.h"
+#include <glog/logging.h> //google log
 
-#include "Common/globals.hpp"
 #include <QtDebug>
 #include <QtGui>
 #include <iostream>
+
+#include "Common/globals.hpp"
+#include "Viewer.h"
+
 
 void Viewer::initializeGL()
 {
@@ -93,8 +95,8 @@ void Viewer::reloadMesh(QString& filename)
 {
 	pModel->loadMesh(filename);
 	Iso_cuboid_3 box = pModel->get_bounding_box();
-	QString message;
-	QTextStream(&message)<<"retrived bounding box: ("
+
+	LOG(INFO)<<"retrived bounding box: ("
 			     <<box.xmin()<<","
 			     <<box.ymin()<<","
 			     <<box.zmin()<<")"
@@ -102,7 +104,6 @@ void Viewer::reloadMesh(QString& filename)
 			     <<box.xmax()<<","
 			     <<box.ymax()<<","
 			     <<box.zmax()<<")";
-	emit log(message);
 
 	pCamera->setSceneBoundingBox(qglviewer::Vec(box.xmin(),box.ymin(),box.zmin()),
 				     qglviewer::Vec(box.xmax(),box.ymax(),box.zmax()));
