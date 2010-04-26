@@ -14,6 +14,7 @@
 //
 #include "Curvature.h"
 
+//Render the extra data of the original mesh
 void Curvature::render(  ) {
   
   
