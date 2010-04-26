@@ -10,7 +10,7 @@
 
 #include <QGLWidget>
 #include <QtGui>
-#include "Model.h"
+#include "MeshModel.h"
 #include <QGLViewer/qglviewer.h>
 
 
@@ -33,10 +33,10 @@ class Viewer : public QGLViewer
   Q_OBJECT
     
 public:
-  Viewer(Model* model,QWidget * parent = 0,const QGLWidget * shareWidget = 0,Qt::WindowFlags flags = 0)
+  Viewer(MeshModel* model,QWidget * parent = 0,const QGLWidget * shareWidget = 0,Qt::WindowFlags flags = 0)
     : QGLViewer(parent,shareWidget,flags)
   {
-    pModel = model;
+    pMeshModel = model;
     polygonMode = PM_WIREFRAME;
     pCamera = new qglviewer::Camera();
   }
@@ -73,14 +73,14 @@ public:
 		updateGL();
 	}
 public:
-    Model* model()
+    MeshModel* model()
     {
-      return pModel;
+      return pMeshModel;
     }
 public:
 	void printDebugInfo();
 private:
-  Model * pModel;
+  MeshModel * pMeshModel;
   qglviewer::Camera* pCamera;
   PolygonMode polygonMode;
 };

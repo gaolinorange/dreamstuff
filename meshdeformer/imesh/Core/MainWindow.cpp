@@ -306,6 +306,5 @@ void MainWindow::loadPlugins(  ) {
 
 
   //Emit a signal to setup all plugins
-
   emit pluginsInitialized(  );
 }

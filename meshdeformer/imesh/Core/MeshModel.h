@@ -1,4 +1,4 @@
-// Model.h --- Model calss for core data
+// MeshModel.h --- MeshModel calss for core data
 // copyright (c) 2010 dreamway
 // 
 // This program is free software; you can redistribute it and/or modify
@@ -13,24 +13,25 @@
 // 
 // 
 
-#ifndef _MODEL_H_
-#define _MODEL_H_
+#ifndef _MESHMODEL_H_
+#define _MESHMODEL_H_
+
 
 #include <QtGui>
 #include "MeshCore/MeshCore.h"
 #include "BasePlugin/LoggingInterface.h"
 
-class Model : public QObject,public LoggingInterface
+class MeshModel : public QObject,public LoggingInterface
 {
   Q_OBJECT
     Q_INTERFACES(LoggingInterface);
   
  public:
-  Model();
-  ~Model();
+  MeshModel();
+  ~MeshModel();
  public:
   bool loadMesh(const QString& filename);
-  void update();
+
   void render();
   Iso_cuboid_3& get_bounding_box(){
     if(pMesh){
@@ -44,8 +45,10 @@ class Model : public QObject,public LoggingInterface
   MeshCore * pMesh;
 };
 
-#endif /* _MODEL_H_ */
+
+#endif /* _MESHMODEL_H_ */
+
 
 
 // 
-// Model.h ends here
+// MeshModel.h ends here

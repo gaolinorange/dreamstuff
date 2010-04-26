@@ -1,4 +1,4 @@
-#include "Model.h"
+#include "MeshModel.h"
 #include "MeshCore/MeshCore.h"
 #include "MeshCore/MeshBuilder.h"
 #include "MeshCore/MeshLoader.h"
@@ -10,12 +10,12 @@
 #include <QtCore>
 
 
-Model::Model()
+MeshModel::MeshModel()
 {
   pMesh = 0;
 }
 
-Model::~Model()
+MeshModel::~MeshModel()
 {
   if(pMesh)
     {
@@ -23,7 +23,7 @@ Model::~Model()
     }
 }
 
-bool Model::loadMesh(const QString& filename)
+bool MeshModel::loadMesh(const QString& filename)
 {
   // converte aiMesh to MeshCore format
   if(pMesh)
@@ -56,7 +56,7 @@ bool Model::loadMesh(const QString& filename)
   return true;						  
 }
 
-void Model::render()
+void MeshModel::render()
 {
   if(pMesh)
     {

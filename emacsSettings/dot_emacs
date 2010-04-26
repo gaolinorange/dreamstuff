@@ -230,9 +230,9 @@ website: cg.xplore.cn")
 (add-hook 'c++-mode-hook
           '(lambda()
              (define-key c++-mode-map "\C-x\C-g" 'sourcepair-load)
-             (define-key c++-mode-map [f7] 'compile)
              ))
 
+(define-key [f7] 'compile)
 ;;Svn support
 (require 'psvn)
 

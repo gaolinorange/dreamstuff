@@ -11,7 +11,7 @@
 #include <QtGui>
 
 #include "Viewer.h"
-#include "Model.h"
+#include "MeshModel.h"
 
 
 class ConsoleWidgetManager;
@@ -35,7 +35,7 @@ class MainWindow : public QMainWindow
       setupStatusBar( );
       setupToolBox(  );
       
-      mainModel_ = new Model();
+      mainModel_ = new MeshModel();
       mainViewer_ = new Viewer(mainModel_,this,NULL,flags);
 
       setupMainLayout(  );
@@ -96,7 +96,7 @@ private slots:
  private:
   //The main displaying widget
   Viewer * mainViewer_;
-  Model* mainModel_;
+  MeshModel* mainModel_;
 
 
 
