@@ -12,7 +12,7 @@
 // Commentary: 
 // 
 //
-#include "MeanCurvature.h"
+#include "Curvature.h"
 
 void Curvature::render(  ) {
   
@@ -22,3 +22,4 @@ void Curvature::render(  ) {
 //  
 // 
 // MeanCurvature.cpp ends here
+
