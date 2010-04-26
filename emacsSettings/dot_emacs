@@ -232,7 +232,7 @@ website: cg.xplore.cn")
              (define-key c++-mode-map "\C-x\C-g" 'sourcepair-load)
              ))
 
-(define-key [f7] 'compile)
+(define-key c++-mode-map [f7] 'compile)
 ;;Svn support
 (require 'psvn)
 

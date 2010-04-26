@@ -28,7 +28,6 @@
 /**
    @brief: testing plugin architecture, a simple test plugin
 */
-
 class TestPlugin : public QObject,
                    public BaseInterface,
                    public LoggingInterface,

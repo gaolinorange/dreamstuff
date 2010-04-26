@@ -1,6 +1,0 @@
-class Name
-{
-public:
-  Name();
-  virtual ~Name();
-};
