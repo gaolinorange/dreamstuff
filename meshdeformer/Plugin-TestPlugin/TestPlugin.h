@@ -53,8 +53,7 @@ class TestPlugin : public QObject,
     test_widget_->setLayout( layout_ );
     */
     test_widget_ = new QPushButton();
-    test_widget_->setText(QString("TestPlugin widget"));
-  
+    test_widget_->setText(QString("TestPlugin widget"));  
   }
   ~TestPlugin(  ) {
     /*    delete test_widget_;
@@ -63,8 +62,9 @@ class TestPlugin : public QObject,
     delete checkbox_;
     delete layout_;
     */
-    //    delete test_widget_;
+    delete test_widget_;
   }
+  
  private:
   QPushButton* button_;
   QLabel* label_;
@@ -78,6 +78,8 @@ public slots:
   void pluginInitialized(  ) {
     emit log( QString( "test string from TestPlugin log signal" ) );
     emit updateStatusBarMessage( QString( "test string from TestPlugin updateStatusBarMessage" ) );
+    printf( "emit a signal : addToolBox   from TestPlugin\n");
+    qDebug( )<<"meta info of test_widget_: "<<test_widget_->metaObject(  )->className(  );
     emit addToolBox( QString( tr( "TestPlugin Toolbox" ) ),test_widget_ );
   }
   
