@@ -23,8 +23,8 @@
 class MeshRenderInterface
 {
  public:
-  MeshRenderInterface();
-  virtual ~MeshRenderInterface();
+  virtual ~MeshRenderInterface() {
+  }
  public:
   virtual void render(  ) = 0;
 };
