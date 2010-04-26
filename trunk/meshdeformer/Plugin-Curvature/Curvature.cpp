@@ -20,6 +20,10 @@ void Curvature::render(  ) {
   
 }
 
+
+
+Q_EXPORT_PLUGIN2(curvature, Curvature)
+  
 //  
 // 
 // MeanCurvature.cpp ends here

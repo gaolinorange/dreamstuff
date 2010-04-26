@@ -6,7 +6,7 @@ include_directories(../imesh)
 include_directories(..)
 
 
-find_package(Boost)
+find_package(Boost REQUIRED)
 if(Boost_FOUND)
 include_directories(${Boost_INCLUDE_DIRS})
 link_directories(${Boost_LIBRARY_DIRS})

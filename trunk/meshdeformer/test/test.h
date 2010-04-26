@@ -8,9 +8,9 @@
 #include "testMeshBuilderDerived.h"
 
 #include "testGoogleLog.h"
-#include "testCurvature.h"
+//#include "testCurvature.h"
 
-#include "testPluginLoading.h"//TODO
+//#include "testPluginLoading.h"//TODO
 
 
 
