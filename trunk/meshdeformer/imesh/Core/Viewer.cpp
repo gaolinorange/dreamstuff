@@ -85,16 +85,16 @@ void Viewer::draw()
 		testDrawCube();
 	}
 	else{
-		if(pModel){
-			pModel->render();
+		if(pMeshModel){
+			pMeshModel->render();
 		}  
 	}
 }
 
 void Viewer::reloadMesh(QString& filename)
 {
-	pModel->loadMesh(filename);
-	Iso_cuboid_3 box = pModel->get_bounding_box();
+	pMeshModel->loadMesh(filename);
+	Iso_cuboid_3 box = pMeshModel->get_bounding_box();
 
 	LOG(INFO)<<"retrived bounding box: ("
 			     <<box.xmin()<<","

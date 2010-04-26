@@ -74,7 +74,7 @@ include_directories(MeshCore)
 SET(APP_SOURCES
 	Core/MainWindow.cpp 
 	Core/Viewer.cpp 
-	Core/Model.cpp
+	Core/MeshModel.cpp
 	widgets/consoleWidgets/ConsoleWidgetManager.cpp
 	widgets/consoleWidgets/pythonConsoleWidget/PythonConsoleWidget.cpp
 	widgets/consoleWidgets/loggerWidget/LoggerWidget.cpp
@@ -82,7 +82,7 @@ SET(APP_SOURCES
 SET(APP_HEADERS
 	Core/MainWindow.h 
 	Core/Viewer.h 
-	Core/Model.h
+	Core/MeshModel.h
 	widgets/consoleWidgets/ConsoleWidgetManager.h
 	widgets/consoleWidgets/pythonConsoleWidget/PythonConsoleWidget.h
 	widgets/consoleWidgets/loggerWidget/LoggerWidget.h
