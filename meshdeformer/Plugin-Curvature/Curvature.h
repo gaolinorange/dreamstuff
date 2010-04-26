@@ -1,4 +1,4 @@
-// MeanCurvature.h --- calculate mesh curvatures
+//Curvature.h --- calculate mesh curvatures
 // copyright (c) 2010 dreamway
 // 
 // This program is free software; you can redistribute it and/or modify
@@ -19,10 +19,23 @@
 #include <QObject>
 #include <QtGui>
 
+#include <map>
+#include <boost/property_map.hpp>
+
 #include "BasePlugin/BaseInterface.h"
 #include "BasePlugin/MeshRenderInterface.h"
 #include "BasePlugin/LoggingInterface.h"
 #include "BasePlugin/ToolBoxInterface.h"
+
+#include "MeshCore/MeshCore.h"
+
+struct HalfedgeHandleCmp {
+  bool operator()( Halfedge_handle e1, Halfedge_handle e2 ) {
+    if( e1->id( ) < e2->id(  ) )
+      return true;
+    return false;
+  }  
+};
 
 /**
    @brief: for calculate mesh curvatures
@@ -64,12 +77,43 @@ class Curvature : public QObject,
   }
  signals:
   //LoggingInterface
-  void LoggingInterface( const QString& logMessage );
+  void log( const QString& logMessage );
   //ToolBoxInterface
   void addToolBox( QString, QWidget* );
   //MeshRenderInterface
  public:
   void render(  );
+
+  //The extra data for computing curvatures
+private:
+  MeshCore* pMesh;
+private:
+  typedef std::map<Halfedge_handle,float,HalfedgeHandleCmp> HalfedgeCotMap;
+  HalfedgeCotMap cotValueMap;
+  
+  boost::associative_property_map<HalfedgeCotMap> edgeCotValues;
+  
+public:
+  void setMesh( MeshCore* _mesh ) {
+    pMesh = _mesh;
+  }
+  void calculateEdgeCotValues(  ) {
+    
+  }
+
+  void calculateVoronoiAreas(  ) {
+    
+  }
+
+public slots:
+  void slotCalculateMeanCurvatures(  ) {
+    
+  }
+
+  void slotCalculateGaussianCurvatures(  ) {
+    
+  }
+      
   
  private:
   QPushButton* calGaussCurvatureButton_;
@@ -80,4 +124,4 @@ class Curvature : public QObject,
 
 #endif /* _MEANCURVATURE_H_ */
 // 
-// MeanCurvature.h ends here
+// Curvature.h ends here
