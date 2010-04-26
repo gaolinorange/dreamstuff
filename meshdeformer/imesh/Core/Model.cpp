@@ -56,10 +56,6 @@ bool Model::loadMesh(const QString& filename)
   return true;						  
 }
 
-void Model::update()
-{
-}
-
 void Model::render()
 {
   if(pMesh)
@@ -68,22 +64,3 @@ void Model::render()
     }
 }
 
-/*
-void Model::printBoundingBox()
-{
-	if(pMesh){
-		BoundingBox box = pMesh->getBoundingBox();
-		QString message;
-		QTextStream(&message)<<"min(x,y,z): "<<box.d_min_x<<","<<box.d_min_y<<","<<box.d_min_z
-			<<" max(x,y,z): "<<box.d_max_x<<","<<box.d_max_y<<","<<box.d_max_z;
-		ConsoleWidget::getInstance()->logMessage(message);
-	}
-}
-
-BoundingBox& Model::getBoundingBox()
-{
-	if(pMesh){
-		return pMesh->getBoundingBox();
-	}
-}
-*/

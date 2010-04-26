@@ -118,7 +118,7 @@
       "copyright (c) 2010 dreamway\n "
       header-free-software
       "This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by the Free Software Foundation;\n Free free to contact dreamway(jingwenlai@163.com)\n
+it under the terms of the GNU General Public License as published by the Free Software Foundation;\n Feel free to contact dreamway(jingwenlai@163.com)\n
 website: cg.xplore.cn")
 (add-hook 'write-file-hooks 'auto-update-file-header)
 (add-hook 'c++-mode-common-hook 'auto-make-header)

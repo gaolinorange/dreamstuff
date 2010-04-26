@@ -12,7 +12,7 @@
 #include <QtGui>
 #include "Model.h"
 #include <QGLViewer/qglviewer.h>
-#include "BasePlugin/LoggingInterface.h"
+
 
 enum PolygonMode{
 	PM_WIREFRAME=0x01,
@@ -23,50 +23,42 @@ enum PolygonMode{
 };
 
 /**
-   MainWidget
+   Viewer: MainWidget for displaying
    @brief: The Main displaying widget for displaying OpenGL Views
    @details: inherite the QGLViewer, a part of libQGLViewer library,
    to make the creation of Rendering more easy
- */
-class Viewer : public QGLViewer, public LoggingInterface
+*/
+class Viewer : public QGLViewer
 {
   Q_OBJECT
-    Q_INTERFACES(LoggingInterface)
     
 public:
   Viewer(Model* model,QWidget * parent = 0,const QGLWidget * shareWidget = 0,Qt::WindowFlags flags = 0)
     : QGLViewer(parent,shareWidget,flags)
-   {
-     pModel = model;
-      polygonMode = PM_WIREFRAME;
-      pCamera = new qglviewer::Camera();
+  {
+    pModel = model;
+    polygonMode = PM_WIREFRAME;
+    pCamera = new qglviewer::Camera();
   }
   ~Viewer()
-    {
-      if(pCamera){
-	delete pCamera; pCamera = 0;
-      }
+  {
+    if(pCamera){
+      delete pCamera; pCamera = 0;
+    }
   }
 public:
   /**
      save the rendered view to an Image
-   */
+  */
 	void saveImage(const QString& filename);
 	/**
 	   load a mesh
 	   @param: filename, the filename of the mesh
 	   @detailed: currently, I use assimp library to load the mesh.
-	 */
+  */
 	void reloadMesh(QString& filename);
- signals:
-	void log(const QString& );
- public:
-	/*virtual*/
-	QString description() const
-	{
-	  return QString("Viewer");
-	}
- protected:
+
+protected:
   void initializeGL();
   void resizeGL(int w,int h);
   void updateGL();
@@ -81,15 +73,13 @@ public:
 		updateGL();
 	}
 public:
-    /*
-      Model* getModel()
-	{
-		return pModel;
-        }
-    */
- public:
+    Model* model()
+    {
+      return pModel;
+    }
+public:
 	void printDebugInfo();
- private:
+private:
   Model * pModel;
   qglviewer::Camera* pCamera;
   PolygonMode polygonMode;
