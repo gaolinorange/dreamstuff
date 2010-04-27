@@ -1,0 +1,82 @@
+ Using Google App Engine  === Learning Note
+* General
+
+  In a sense, the HTTP request/response cycle determines the overall layout of
+  the book: to build a web application, you need to have a general understanding
+  of all aspects of the request/reponse cycle and what is happening at both ends
+  (browser and server) of the request/response cycle.
+
+  <figure>
+  Client Side                   <=== Internet ===>            Server Side
+  HTML, AJAX, JavaScript, CSS                          Python,Datastore,Templates,memcache
+
+  You need to learn about how the browser operates using HTML and CSS  so that
+  you know how to property format web pages for display in the browser. You also
+  need to learn about how to add interactivity to web pages using JavaScript and AJAX.
+
+  You need to understand the mechanics of how the browser makes its requests using
+  the HTTP protocol--in particular, the different types of requests(GET or POST) and
+  how to handle incoming data entered by hte user on forms or files to be uploaded
+  as part of the request.
+
+  Inside the server, you need to learn the Python programming language, the Google
+  Datastore facility, how to generate Dynamic HTML easily using templates, and how to
+  use the Google memory cache to make sure that your applications continue to be
+  fast when being used by many users at the same time.
+
+  以上所述为整本书基本上所要描述的所有内容的指导。
+
+* HTML&CSS
+  HTML 即是一些标记，在Emacs中你只需要记住一些关键字，然后利用yasnippet可补全。
+  只是现在我的Emacs的菜单显示有点问题。
+  ** Validating Your HTML
+  you can copy your page or upload your page to http://validator.w3.org to check
+  your pages validation.
+  ** Specifying Style using CSS
+  CSS gives us a lot of control over the look and feel of the document with little
+  or no changes to the HTML.
+  Each CSS rules starts with a *selector*. The selector determines which part of
+  the document this particular rule affects.eg.
+  body {
+     font-family: arial, sans-serif;
+  }
+  这表示与其相应的在HTML中的<body>标签下的内容都会使用这个style
+  The browser see the <style> tag and reads the CSS rules and applies them to the
+  document.
+
+  Validating CSS: http://jigsaw.w3.org/css-validator/
+
+  Tools to Help You work with CSS: Firefox Web Developer plugin-in: http://addons.mozilla.org
+
+* Sending Data to Your Application
+  The interaction between the browser and server across the Internet is called the
+  request/response cycle.
+  ** The HTTP Protocol standards
+  The Internet Engineering Task Force(IETF; http:://www.ietf.org) is the standards
+  organization responsible for the creation nad maintenance of these internet standards
+  The main RFC that provides the groundwork for the HTTP protocol is RFC-1945.
+  ( http://tools.ietf.org/rfc/rfc1945.txt)
+  ** Debugging
+  use the Firebug plugin-in for Firefox.
+
+  ** Advanced: Multipart POST Data with File Upload
+  在这之前再多了解一些，然后就把这些工作交给GAE吧。
+  We won't bother writing Python code to parse this multipart data format-- it has
+  already been done for us in the AppEngine framework. Just remember that you could
+  write that code if you wanted to, by spending some quality time with *RFC-2046*.
+  But for now, we will focus on writing our applicatino instead of writing a bunch
+  of HTTP parsing code.
+    
+* The App Engine webapp Framework
+  you can use "  import logging  "
+  and then use logging.info or other methods to add extra logs to gae.
+
+  ** Templates
+  The default template syntax used by GAE is borrowed from Django
+
+  ** Model View Controller
+  
+
+  
+
+  
