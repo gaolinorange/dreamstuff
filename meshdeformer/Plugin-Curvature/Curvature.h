@@ -17,7 +17,9 @@
 #define _MEANCURVATURE_H_
 
 #include <QObject>
-#include <QtGui>
+#include <QPushButton>
+#include <QVBoxLayout>
+#include <QWidget>
 
 #include <map>
 #include <boost/property_map.hpp>

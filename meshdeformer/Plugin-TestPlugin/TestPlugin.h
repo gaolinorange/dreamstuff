@@ -16,7 +16,12 @@
 #define _TESTPLUGIN_H_
 
 #include <QObject>
-#include <QtGui>
+#include <QPushButton>
+#include <QWidget>
+#include <QVBoxLayout>
+#include <QCheckBox>
+#include <QLabel>
+#include <QtDebug>
 
 #include <stdio.h>
 

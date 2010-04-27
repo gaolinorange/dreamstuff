@@ -6,11 +6,12 @@
 #include "testMeshCore.h"
 #include "testMeshBuilder.h"
 #include "testMeshBuilderDerived.h"
-
 #include "testGoogleLog.h"
-//#include "testCurvature.h"
 
-//#include "testPluginLoading.h"//TODO
+//#include "testTestPlugin.h"
+
+#include "testCurvature.h"       //TODO: learn how to 
+//#include "testPluginLoading.h"   //TODO
 
 
 

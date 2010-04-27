@@ -17,7 +17,8 @@
 #define _MESHMODEL_H_
 
 
-#include <QtGui>
+#include <QObject>
+
 #include "MeshCore/MeshCore.h"
 #include "BasePlugin/LoggingInterface.h"
 
