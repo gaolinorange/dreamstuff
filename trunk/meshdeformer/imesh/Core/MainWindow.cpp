@@ -15,9 +15,15 @@
 
 #include "MainWindow.h"
 #include <QToolBar>
-#include <QtGui>
 #include <QApplication>
-#include <QtCore>
+#include <QObject>
+#include <QPluginLoader>
+#include <QPushButton>
+#include <QString>
+#include <QFileDialog>
+#include <QDir>
+
+
 #include "widgets/consoleWidgets/ConsoleWidgetManager.h"
 #include "globals.hpp"
 #include "widgets/aboutDialog/AboutDialog.hpp"

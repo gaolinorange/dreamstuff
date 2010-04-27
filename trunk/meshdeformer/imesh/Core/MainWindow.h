@@ -8,7 +8,16 @@
 #ifndef MESHDEFORMER_MAINWINDOW_H
 #define MESHDEFORMER_MAINWINDOW_H
 
-#include <QtGui>
+#include <QAction>
+#include <QHBoxLayout>
+#include <QMainWindow>
+#include <QMenu>
+#include <QMenuBar>
+#include <QObject>
+#include <QToolBar>
+#include <QToolBox>
+#include <QWidget>
+
 
 #include "Viewer.h"
 #include "MeshModel.h"

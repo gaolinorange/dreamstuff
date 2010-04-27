@@ -6,8 +6,6 @@
 #include "widgets/consoleWidgets/ConsoleWidgetManager.h"
 #include <QtDebug>
 
-#include <QtGui>
-#include <QtCore>
 
 
 MeshModel::MeshModel()

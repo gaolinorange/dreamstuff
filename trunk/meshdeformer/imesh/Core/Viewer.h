@@ -9,7 +9,8 @@
 #define MESHDEFORMER_MAINWIDGET_H
 
 #include <QGLWidget>
-#include <QtGui>
+#include <QObject>
+
 #include "MeshModel.h"
 #include <QGLViewer/qglviewer.h>
 

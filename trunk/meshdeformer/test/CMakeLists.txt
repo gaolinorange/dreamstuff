@@ -6,6 +6,7 @@ include_directories(../imesh)
 include_directories(..)
 
 
+
 find_package(Boost REQUIRED)
 if(Boost_FOUND)
 include_directories(${Boost_INCLUDE_DIRS})
@@ -61,11 +62,17 @@ if(UNIX)
 endif(UNIX)
 
 
+
+#add some more moc generated files of test objects
+qt4_wrap_cpp(TestPlugin_MOC ../Plugin-TestPlugin/TestPlugin.h)
+
+
 set(TEST_HEADERS
   test.h)
 
 set(TEST_SOURCES
   testMain.cpp
+  ${TestPlugin_MOC}
   )
 
 
@@ -79,4 +86,5 @@ target_link_libraries(test
   ${assimp_LIBRARY}
   ${gtest_LIBRARY}
   ${glog_LIBRARY}
+  curvature  #the curvature plugin
   )
