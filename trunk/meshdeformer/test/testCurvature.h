@@ -78,7 +78,17 @@ TEST_F( CurvatureTest, printPrecalculateCotValues ) {
   printf( "Cot45Value: %.5f", cot45Value );
   printf( "Cot60Value: %.5f", cot60Value );
   printf( "Cot90Value: %.5f", cot90Value );
-  
+}
+
+TEST_F( CurvatureTest, testHalfedgeCotValues ) {
+  curvature_->calculateEdgeCotValues(  )  ;
+
+  float value;
+  for (Halfedge_iterator pHalfedge = mesh_->halfedges_begin(  );
+       pHalfedge != mesh_->halfedges_end(  ); ++pHalfedge)
+  {
+    //    value = curvature_->getHalfedgeCotValue( pHalfedge );
+  }
 }
 
 TEST_F( CurvatureTest, testEdgeCotValues ) {
