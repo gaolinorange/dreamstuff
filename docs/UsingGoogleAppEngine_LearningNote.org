@@ -79,4 +79,46 @@
 
   
 
+
+  Using templates to separating you View(HTML) from your Controller(Python)
+  allows you to write increasingly larger programs without going crazy keeping
+  track of details.
+
+  *Cookies and Sessions
+  ** Cookies and Sessions
+  *session* is just a place to put data that persists across multiple
+  request/response cycles.
+  The cookie mechanism provides a limited amount of storage space, which the server
+  can make use of, in each user's browser. Servers use cookies to mark each user's
+  browser so that the server can identify which requests are coming from which browser.
+  The browser is very careful not to mix cookies from different servers. Each cookie is
+  marked with the domain name of the server that set the cookie, and cookies are only
+  sent back on requests destined for the server that initially set the cookie.
+
+  GAE does not provide session capability, so we must add some utility code to our
+  application.
+
+  ** App Engine Datastore
+  The Google Datastore is based on Google' Bigtable technology (http://labs.google.com/papers/bigtable.html)
+
+  *Checking* Once you get the apply.htm screen working, and you think that you have added
+  a user to the Datastore, you can varify this by looking directly at the Datastore
+  through the Google App Engine Development Console.(http://localhost:8080/_ah/admin/)
+
+  Building models in GAE is actually quite simple and is pretty intuitive. We define
+  a model  in Python and list the fields that we would like in the model and the types
+  of our fields-- App Engine takes care of teh rest. There are no schemas or table structures
+  that are need to describe data, as are necessary when using a relational database for
+  long-term storage.
+
+  You learned how to build and populate a single model and then how to build multiple
+  models and make connections between multiple models using reference properties.
+
+
+  ** JavaScript, jQuery, and AJAX
+  
+
+  
+  
+  
   
