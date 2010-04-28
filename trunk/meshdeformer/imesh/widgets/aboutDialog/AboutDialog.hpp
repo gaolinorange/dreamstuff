@@ -4,7 +4,8 @@
 #include "ui_AboutDialog.hpp"
 #include "../Common/globals.hpp"
 #include <QString>
-
+#include <QTextStream>
+#include <QDateTime>
 
 class AboutDialog : public QDialog,public Ui_Dialog
 {
@@ -21,9 +22,9 @@ public:
   void setVersion(int main,int major,int minor)
   {
     QString aboutString;
-    QTextStream(&aboutString)<<"\t MeshDeformer: version: "<<main<<"."<<major<<"."<<minor<<"\n";
-    QDate date = QDate::currentDate();
-    QTextStream(&aboutString)<<"\t\t Build Date: "<<date.year()<<":"<<date.month()<<":"<<date.day()<<"\n";
+    QTextStream(&aboutString)<<"MeshDeformer: version: "<<main<<"."<<major<<"."<<minor<<"\n";
+    QDateTime date_time = QDateTime::currentDateTime(  );
+    QTextStream( &aboutString )<<date_time.toString( );
 
     labelAbout->setText(aboutString);
   }
