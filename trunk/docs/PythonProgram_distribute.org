@@ -1,0 +1,11 @@
+The process for turning your .py pyton scripts into .exe binary executable programs
+for windows is simple:
+1. Download and install py2exe
+2. Create a setup.py file looks like this:
+   from distutils.core import setup
+   import py2exe
+   setup(console=['hello.py'])
+
+3. run: python setup.py py2exe
+4. package up the dist folder into a zip file.
+
