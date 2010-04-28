@@ -73,7 +73,9 @@ class Curvature : public QObject,
     widget_->setLayout( layout_ );
 
     halfedge_cot_value_properties_ = boost::make_assoc_property_map<HalfedgeCotMap>( halfedge_cotvalue_map_);
-    vertex_voronoiarea_properties_ = boost::make_assoc_property_map<VertexVoroniAreaMap>( vertex_voronoiarea_map_ );        
+    vertex_voronoiarea_properties_ = boost::make_assoc_property_map<VertexVoroniAreaMap>( vertex_voronoiarea_map_ );
+
+    vertex_meancurvature_properties_ = boost::make_assoc_property_map<Vertex_MeanCurvature_Map>( vertex_meancurvature_map_ );
   }
   virtual ~Curvature() {
     delete calMeanCurvatureButton_;
@@ -107,7 +109,7 @@ signals:
 
   //The extra data for computing curvatures
 private:
-  MeshCore* pMesh;
+  MeshCore* mesh_;
 private:
   typedef std::map<Halfedge_handle,float,HalfedgeHandleCmp> HalfedgeCotMap;
   HalfedgeCotMap halfedge_cotvalue_map_;
@@ -116,6 +118,10 @@ private:
   typedef std::map<Vertex_handle, float, VertexHandleCmp> VertexVoroniAreaMap;
   VertexVoroniAreaMap vertex_voronoiarea_map_;
   boost::associative_property_map<VertexVoroniAreaMap> vertex_voronoiarea_properties_;
+
+  typedef std::map<Vertex_handle,Vector_3,VertexHandleCmp> Vertex_MeanCurvature_Map;
+  Vertex_MeanCurvature_Map vertex_meancurvature_map_;
+  boost::associative_property_map<Vertex_MeanCurvature_Map> vertex_meancurvature_properties_;
   
 public:
   float getHalfedgeCotValue( Halfedge_handle pHalfedge ) {
@@ -148,7 +154,7 @@ public: //should be private
 
   float _calculateVecLength( Vertex_handle v0, Vertex_handle v1 ) {
      Vector_3 v0v1 = v1->point(  )-v0->point(  );
-     flaot length_v0v1 = ( v0v1.x(  )*v0v1.x(  ) +
+     float length_v0v1 = ( v0v1.x(  )*v0v1.x(  ) +
                         v0v1.y(  )*v0v1.y(  ) +
                         v0v1.z(  )*v0v1.z(  ));
 
@@ -157,15 +163,16 @@ public: //should be private
   
 public:
   void setMesh( MeshCore* _mesh ) {
-    pMesh = _mesh;
+    mesh_ = _mesh;
+    prebuild_coefficients_flag_ = false;
   }
   
   void calculateEdgeCotValues(  ) {
     Vertex_handle v0,v1,v2;    
     float alpha,beta;
     
-    for (Halfedge_iterator pHalfedge = pMesh->halfedges_begin(  );
-         pHalfedge != pMesh->halfedges_end(  ); pHalfedge++)
+    for (Halfedge_iterator pHalfedge = mesh_->halfedges_begin(  );
+         pHalfedge != mesh_->halfedges_end(  ); pHalfedge++)
     {
       v0 = pHalfedge->vertex(  );
       v1 = pHalfedge->next(  )->vertex(  );
@@ -184,8 +191,8 @@ public:
 
   float calculateVertexVoronoiArea( Vertex_handle pVertex ) {
     //Three different type of triangles
-    Halfedge_around_vertex_const_iterator pHalfedge = pVertex->halfedges_begin(  );
-    Halfedge_around_vertex_const_iterator pHalfedgeEnd = pHalfedge;
+    Halfedge_around_vertex_circulator pHalfedge = pVertex->vertex_begin(  );
+    Halfedge_around_vertex_circulator pHalfedgeEnd = pHalfedge;
 
     //see the related 2005 PPT for these notation
     Vertex_handle P = pVertex;
@@ -205,14 +212,14 @@ public:
       length_QR = _calculateVecLength( Q,R );
       if( angleP <= CGAL_PI*0.5 && angleQ <= CGAL_PI*0.5 && angleR <= CGAL_PI*0.5 ) {
         area = 1.0/8.0*( length_PR*length_PR*1.0/tan( angleQ ) +
-                         lenght_PQ*length_PQ*1.0/tan( angleR ));
+                         length_PQ*length_PQ*1.0/tan( angleR ));
         Amixed += area;
       } else {
         //Hellon method
         area = 0.25 * sqrt( ( length_PR+length_QR+length_PQ ) *
                             ( length_PR+length_QR-length_PQ ) *
                             ( length_PR+length_PQ-length_QR ) *
-                            ( length_PQ+lenght_QR-length_PR ));        
+                            ( length_PQ+length_QR-length_PR ));        
         if( angleP > CGAL_PI*0.5 ) {
           area *= 0.5;
         } else {
@@ -235,16 +242,55 @@ public:
     }    
   }
 
+  void prebuild_coefficients(  ) {
+    assert( mesh_ != NULL );
+
+    calculateVoronoiAreas(  );
+    calculateEdgeCotValues(  );
+
+    prebuild_coefficients_flag_ = true;
+  }
+
 public slots:
   void slotCalculateMeanCurvatures(  ) {
+    if( prebuild_coefficients_flag_ == false )
+      prebuild_coefficients(  );
+
+    //do the actual work
+    Vertex_handle v0,v1;
+    Halfedge_around_vertex_circulator pHalfedge,pHalfedgeEnd;
+    Vector_3 mean_curvature( 0.0,0.0,0.0 );
+    float voronoi_area,cot_sum_value;
     
+    for( Vertex_iterator pVertex = mesh_->vertices_begin(  );
+         pVertex != mesh_->vertices_end(  ); pVertex++) {
+      pHalfedge = pVertex->vertex_begin(  );
+      pHalfedgeEnd = pHalfedge;
+      do{
+        v0 = pHalfedge->vertex(  );
+        cot_sum_value = get( halfedge_cot_value_properties_, pHalfedge );
+        voronoi_area = get( vertex_voronoiarea_properties_, v0 );
+
+        v1 = pHalfedge->opposite(  )->vertex(  );
+        
+        mean_curvature = mean_curvature +
+            1.0/( 2*voronoi_area ) * cot_sum_value * ( Vector_3(v1->point(),v0->point(  )) );
+      }while( ++pHalfedge != pHalfedgeEnd );
+
+      vertex_meancurvature_map_.insert( make_pair( pVertex, mean_curvature ) );
+    }    
   }
 
   void slotCalculateGaussianCurvatures(  ) {
+    if( prebuild_coefficients_flag_ == false )
+      prebuild_coefficients(  );
+
+    //do the actual work
     
   }
   
  private:
+  bool prebuild_coefficients_flag_;
   QPushButton* calGaussCurvatureButton_;
   QPushButton* calMeanCurvatureButton_;
   QVBoxLayout* layout_;
