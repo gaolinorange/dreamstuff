@@ -39,6 +39,14 @@ struct HalfedgeHandleCmp {
   }  
 };
 
+struct VertexHandleCmp{
+  bool operator(  )( Vertex_handle lhs, Vertex_handle rhs  ) {
+    if( lhs->id(  ) < rhs->id(  ) )
+      return true;
+    return false;
+  }
+};
+
 /**
    @brief: for calculate mesh curvatures
 */
@@ -63,6 +71,9 @@ class Curvature : public QObject,
     layout_->addWidget( calGaussCurvatureButton_ );
     widget_ = new QWidget(  );
     widget_->setLayout( layout_ );
+
+    halfedge_cot_value_properties_ = boost::make_assoc_property_map<HalfedgeCotMap>( halfedge_cotvalue_map_);
+    vertex_voronoiarea_properties_ = boost::make_assoc_property_map<VertexVoroniAreaMap>( vertex_voronoiarea_map_ );        
   }
   virtual ~Curvature() {
     delete calMeanCurvatureButton_;
@@ -99,14 +110,21 @@ private:
   MeshCore* pMesh;
 private:
   typedef std::map<Halfedge_handle,float,HalfedgeHandleCmp> HalfedgeCotMap;
-  HalfedgeCotMap cotValueMap;
+  HalfedgeCotMap halfedge_cotvalue_map_;
+  boost::associative_property_map<HalfedgeCotMap> halfedge_cot_value_properties_;
+
+  typedef std::map<Vertex_handle, float, VertexHandleCmp> VertexVoroniAreaMap;
+  VertexVoroniAreaMap vertex_voronoiarea_map_;
+  boost::associative_property_map<VertexVoroniAreaMap> vertex_voronoiarea_properties_;
   
-  boost::associative_property_map<HalfedgeCotMap> edgeCotValues;
 public:
   float getHalfedgeCotValue( Halfedge_handle pHalfedge ) {
-    return get( edgeCotValues,pHalfedge );
+    return get( halfedge_cot_value_properties_,pHalfedge );
   }
-private:
+  float getVertexVoronoiArea( Vertex_handle pVertex ) {
+    return get( vertex_voronoiarea_properties_, pVertex );
+  }
+public: //should be private
   /**\brief: calculate the angle between between two vector
      v1v0,v2v1
      @param: v0, the first point
@@ -114,43 +132,37 @@ private:
      @param: v2, the third point
   */
   float _calculateAngle( Vertex_handle v0, Vertex_handle v1, Vertex_handle v2 ) {
-    Vector_3 v0v1, v1v2, v2v0;
     float length_v0v1, length_v1v2, length_v2v0;
     //calculate <v0v1v2
     //a^2 = b^2+c^2-2*b*c*cos( alpha )
     //so: v2v0^2 = v0v1^2+v1v2^2-2*v0v1*v1v2*cos( alpha )
-    v0v1 = v1->point(  )-v0->point(  );
-    v1v2 = v2->point(  )-v1->point(  );
-    v2v0 = v0->point(  )-v2->point(  );
-    // b^2
-    length_v0v1 = ( v0v1.x(  )*v0v1.x(  ) +
-                        v0v1.y(  )*v0v1.y(  ) +
-                        v0v1.z(  )*v0v1.z(  ));
-    //c^2
-    length_v1v2 = ( v1v2.x(  )*v1v2.x(  ) +
-                        v1v2.y(  )*v1v2.y(  ) +
-                        v1v2.z(  )*v1v2.z(  ));
-    //a^2
-    length_v2v0 = ( v2v0.x(  )*v2v0.x(  ) +
-                        v2v0.y(  )*v2v0.y(  ) +
-                        v2v0.z(  )*v2v0.z(  ));
-    //b
-    float length_v0v1_sqrt = sqrt( length_v0v1 );
-    //c
-    float length_v1v2_sqrt = sqrt( length_v1v2 );
-    
-    float cosAlpha = (length_v0v1+length_v1v2-length_v2v0)/( 2*length_v0v1_sqrt*length_v1v2_sqrt );
+    length_v0v1 = _calculateVecLength( v0,v1 );    // b
+    length_v1v2 = _calculateVecLength(v1,v2);    //c
+    length_v2v0 = _calculateVecLength( v2,v0 );    //a
+    float cosAlpha = (length_v0v1*length_v0v1+
+                      length_v1v2*length_v1v2-
+                      length_v2v0*length_v2v0)/( 2*length_v0v1*length_v1v2);
 
     return acos( cosAlpha );
+  }
+
+  float _calculateVecLength( Vertex_handle v0, Vertex_handle v1 ) {
+     Vector_3 v0v1 = v1->point(  )-v0->point(  );
+     flaot length_v0v1 = ( v0v1.x(  )*v0v1.x(  ) +
+                        v0v1.y(  )*v0v1.y(  ) +
+                        v0v1.z(  )*v0v1.z(  ));
+
+     return sqrt( length_v0v1 );     
   }
   
 public:
   void setMesh( MeshCore* _mesh ) {
     pMesh = _mesh;
   }
+  
   void calculateEdgeCotValues(  ) {
     Vertex_handle v0,v1,v2;    
-    float alpha;
+    float alpha,beta;
     
     for (Halfedge_iterator pHalfedge = pMesh->halfedges_begin(  );
          pHalfedge != pMesh->halfedges_end(  ); pHalfedge++)
@@ -158,16 +170,69 @@ public:
       v0 = pHalfedge->vertex(  );
       v1 = pHalfedge->next(  )->vertex(  );
       v2 = pHalfedge->next(  )->next(  )->vertex(  );
-
       alpha = _calculateAngle( v0, v1, v2 );
 
-      float value = 1/tan( alpha );
-      put( edgeCotValues, pHalfedge, value );
+      v0 = pHalfedge->opposite(  )->vertex(  );
+      v1 = pHalfedge->opposite(  )->next(  )->vertex(  );
+      v2 = pHalfedge->opposite(  )->next(  )->next(  )->vertex(  );
+      beta = _calculateAngle( v0,v1,v2 );
+
+      float value = 1.0/tan( alpha )+1.0/tan( beta );
+      halfedge_cotvalue_map_.insert(make_pair( pHalfedge, value )  );//
     }    
   }
 
+  float calculateVertexVoronoiArea( Vertex_handle pVertex ) {
+    //Three different type of triangles
+    Halfedge_around_vertex_const_iterator pHalfedge = pVertex->halfedges_begin(  );
+    Halfedge_around_vertex_const_iterator pHalfedgeEnd = pHalfedge;
+
+    //see the related 2005 PPT for these notation
+    Vertex_handle P = pVertex;
+    Vertex_handle Q,R;    
+    float angleP, angleQ, angleR;
+    float length_PQ,length_PR,length_QR;
+    float Amixed = 0;
+    float area;
+    do {
+      Q = pHalfedge->next()->vertex(  );
+      R = pHalfedge->next(  )->next(  )->vertex(  );
+      angleP = _calculateAngle( Q,P,R );
+      angleQ = _calculateAngle( P,Q,R );
+      angleR = _calculateAngle( P,R,Q );
+      length_PQ = _calculateVecLength( P,Q );
+      length_PR = _calculateVecLength( P,R );
+      length_QR = _calculateVecLength( Q,R );
+      if( angleP <= CGAL_PI*0.5 && angleQ <= CGAL_PI*0.5 && angleR <= CGAL_PI*0.5 ) {
+        area = 1.0/8.0*( length_PR*length_PR*1.0/tan( angleQ ) +
+                         lenght_PQ*length_PQ*1.0/tan( angleR ));
+        Amixed += area;
+      } else {
+        //Hellon method
+        area = 0.25 * sqrt( ( length_PR+length_QR+length_PQ ) *
+                            ( length_PR+length_QR-length_PQ ) *
+                            ( length_PR+length_PQ-length_QR ) *
+                            ( length_PQ+lenght_QR-length_PR ));        
+        if( angleP > CGAL_PI*0.5 ) {
+          area *= 0.5;
+        } else {
+          area *= 0.25;
+        }
+        Amixed += area;
+      }      
+    } while (++pHalfedge != pHalfedgeEnd);
+
+    return Amixed;
+  }
+  
   void calculateVoronoiAreas(  ) {
-    
+    float area;
+    for (Vertex_iterator pVertex = mesh_->vertices_begin(  );
+         pVertex != mesh_->vertices_end(  ) ; ++pVertex)
+    {
+      area = calculateVertexVoronoiArea( pVertex );
+      vertex_voronoiarea_map_.insert( make_pair( pVertex, area ) );
+    }    
   }
 
 public slots:
@@ -178,7 +243,6 @@ public slots:
   void slotCalculateGaussianCurvatures(  ) {
     
   }
-      
   
  private:
   QPushButton* calGaussCurvatureButton_;
