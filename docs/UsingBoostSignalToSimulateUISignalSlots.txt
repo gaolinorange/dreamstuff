@@ -1,0 +1,146 @@
+using boost.signal and boost.bind to simulate Qt signal-slot for UI events
+
+jingwenlai 2009-10-23
+
+
+	   Qt's signal-slot mechanism is an amazing feature. it makes the implementation of callback mechanism. Is there something that similar with Qt ? The answer is yes. Currently, there exists two famous signal-slot implementations: libsigc++ and boost.signals[2], libsigc++ is been used by gtk+, the fundation of GNOME,one of the famous GNU/Linux Destop Environment. And, Boost, it is been seen as the next generation C++ Standard library. After searching the web and learn how to use it. I code a small project to test my thoughts of a compact UI framework.
+	   Actually, the signal-slot mechanism is an Observer Design pattern,we can memorize it as the relationship between the publisher and subscriber: if the subscriber has registered, then once the publisher is updated, it can notify the subscriber, and the subscriber can receive the messages.
+	   In Boost.Signal library, it use signal to notify, and use connection to establish the relationship of publisher and subscribers.
+	   Here, I want to create a button, and simulate the clicked() event to invoke a specific function.
+	   Here is the code, I will explained as the code goes:
+	   	 
+=========Code: Button.h=====Define a virtual button===
+#ifndef UI_BUTTON_H
+#define UI_BUTTON_H
+
+#include "ui_signal.h"
+
+class Button
+{
+ public:
+  Button()
+    {
+    }
+  ~Button()
+    {
+    }
+ public:
+  void clicked();//signal
+ public:
+  connection_t connect(signal_t::slot_function_type subscriber);
+  void disconnect(connection_t subscriber_connection);
+ private:
+  signal_t m_sig;
+};
+
+#endif
+======end button.h=========
+	  class Button defines a virtual button to simulate my click event
+	  
+	  This is the SignalWrapper code
+================= Code : ui_signal.h === wrap the signal and connection ====	  
+#ifndef UI_SIGNAL_H
+#define UI_SIGNAL_H
+
+#include <boost/bind.hpp>
+
+#include <boost/signal.hpp>
+
+typedef boost::signal<void ()> signal_t;
+typedef boost::signals::connection connection_t;
+
+#endif
+===== end ui_signal.h=======
+      Display Class is use the display the debug message to see whether the invoke is correct.
+========display.h = this display class is use to interacte with the button object===
+#ifndef DISPLAY_H
+#define DISPLAY_H
+
+class Display
+{
+public:
+  Display()
+  {
+  }
+  ~Display(){}
+public:
+  void display();
+    
+};
+
+#endif
+======== end display.h===========
+
+== the button class implementation - button.cpp ==
+#include "button.h"
+#include <iostream>
+
+void Button::clicked()
+{
+  //emit a signal
+  m_sig();
+}
+
+//Connection managemen
+connection_t Button::connect(signal_t::slot_function_type subscriber)
+{
+  return m_sig.connect(subscriber);
+}
+
+void Button::disconnect(connection_t subscriber_connection)
+{
+  subscriber_connection.disconnect();
+}
+ == end button.cpp ==
+
+ === display class implementation === 
+#include "display.h"
+#include <iostream>
+
+void Display::display()
+{
+  std::cout<<"Display::display..."<<std::endl;  
+}
+ === end  display class implementation == 
+     After setting up the base testing code, now , we can test how it works, here is the main.cpp file,
+     
+     ==== code: main.cpp - test the code =========
+#include <iostream>
+
+#include "button.h"
+#include "display.h"
+#include <gtest/gtest.h>
+
+int main(int argc, char ** argv)
+{
+  ::testing::InitGoogleTest(&argc,argv);
+  
+  Button * button = new Button();
+  Display display;
+
+  //  boost::function<void ()> f = boost::bind(&Display::display,&display);//
+  //  button->connect(f);  
+
+  button->connect(boost::bind(&Display::display,&display));//set up the connection
+
+  button->clicked();//simulate click button action, and it will signal the display to display Message
+  
+  return  RUN_ALL_TESTS();
+}    
+==== end main.cpp file ====
+     Here is the cmake file to compile this project, however, you can use Makefile or use another project management tools(eg. vs2005).
+     I like the cmake because it can make your source directories more clean.
+     After compiling and running the project, it will display the message "Display::display...". This imply that the display method is invoked.
+     
+==== the CMakeLists.txt use to compile this project === 
+set(app_SOURCES button.cpp main.cpp display.cpp)
+
+include_directories(../include /usr/local/include)
+link_directories(/usr/local/lib)
+
+#add_library(UILib STATIC ${app_SOURCES})
+add_executable(test ${app_SOURCES})
+target_link_libraries(test boost_signals-mt gtest gtest_main)
+
+
+

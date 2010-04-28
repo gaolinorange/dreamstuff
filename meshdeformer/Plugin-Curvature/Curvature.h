@@ -102,12 +102,27 @@ private:
   HalfedgeCotMap cotValueMap;
   
   boost::associative_property_map<HalfedgeCotMap> edgeCotValues;
-  
+public:
+  float getHalfedgeCotValue( Halfedge_handle pHalfedge ) {
+    return get( edgeCotValues,pHalfedge );
+  }
 public:
   void setMesh( MeshCore* _mesh ) {
     pMesh = _mesh;
   }
   void calculateEdgeCotValues(  ) {
+    Vertex_handle v0,v1,v2;
+    for (Halfedge_iterator pHalfedge = pMesh->halfedges_begin(  );
+         pHalfedge != pMesh->halfedges_end(  ); pHalfedge++)
+    {
+      v0 = pHalfedge->vertex(  );
+      v1 = pHalfedge->next(  )->vertex(  );
+      v2 = pHalfedge->next(  )->next(  )->vertex(  );
+      //calculate <v0v1v2
+      
+      
+      
+    }
     
   }
 
