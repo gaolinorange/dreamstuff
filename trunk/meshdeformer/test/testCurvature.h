@@ -80,6 +80,16 @@ TEST_F( CurvatureTest, printPrecalculateCotValues ) {
   printf( "Cot90Value: %.5f", cot90Value );
 }
 
+TEST_F( CurvatureTest, testAngle ) {
+  Halfedge_handle h = mesh_->halfedges_begin(  );
+  Vertex_handle v0 = h->vertex(  );
+  Vertex_handle v1 = h->next(  )->vertex(  );
+  Vertex_handle v2 = h->next(  )->next(  )->vertex(  );
+  
+  float value = curvature_->_calculateAngle( v0, v1, v2 )  ;
+  printf( "the angle value is : %.2f",value );
+}
+
 TEST_F( CurvatureTest, testHalfedgeCotValues ) {
   curvature_->calculateEdgeCotValues(  )  ;
 
@@ -87,7 +97,8 @@ TEST_F( CurvatureTest, testHalfedgeCotValues ) {
   for (Halfedge_iterator pHalfedge = mesh_->halfedges_begin(  );
        pHalfedge != mesh_->halfedges_end(  ); ++pHalfedge)
   {
-    //    value = curvature_->getHalfedgeCotValue( pHalfedge );
+    value = curvature_->getHalfedgeCotValue( pHalfedge );
+    printf( "Halfedge %d's cotvalue: %.2f\n", pHalfedge->id(  ), value );
   }
 }
 
@@ -126,6 +137,7 @@ TEST_F( CurvatureTest, testEdgeCotValues ) {
 TEST_F( CurvatureTest, testVoronoiAreas ) {
   curvature_->calculateVoronoiAreas(  );
   //TODO: add some assertions
+  
   
 }
 
