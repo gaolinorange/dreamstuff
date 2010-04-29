@@ -33,4 +33,5 @@ add_subdirectory(Plugin-TestPlugin)
 add_subdirectory(imesh)
 
 add_subdirectory(Plugin-Curvature)
+add_subdirectory(Plugin-EDS)
 add_subdirectory(test)
