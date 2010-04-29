@@ -14,7 +14,13 @@
 //
 #include "EDS.h"
 
-
+void EDS::construct_deformation_graph(  ) {
+  if( mesh_ ) {
+    deformation_graph_->construct( mesh_ );
+  } else {
+    emit log( QString( tr( "You have not load a mesh for EDS plugin, please load it first" ) ) );
+  }  
+}
 
 /**The eds target_name should equal to CMake's target_name*/
 Q_EXPORT_PLUGIN2( eds, EDS )

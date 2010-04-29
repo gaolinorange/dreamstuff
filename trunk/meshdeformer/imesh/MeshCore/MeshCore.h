@@ -81,6 +81,23 @@ public:
   void init_index_to_vertex_map();
 };
   
-  
+
+
+struct VertexHandleCmp{
+  bool operator(  )( Vertex_handle lhs, Vertex_handle rhs  ) {
+    if( lhs->id(  ) < rhs->id(  ) )
+      return true;
+    return false;
+  }
+};
+
+struct HalfedgeHandleCmp {
+  bool operator()( Halfedge_handle e1, Halfedge_handle e2 ) {
+    if( e1->id( ) < e2->id(  ) )
+      return true;
+    return false;
+  }  
+};
+
   
 #endif
