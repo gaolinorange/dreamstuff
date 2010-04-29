@@ -175,15 +175,30 @@ TEST_F( CurvatureTest, testVoronoiAreas ) {
 TEST_F( CurvatureTest, testMeanCurvature ) {
   curvature_->slotCalculateMeanCurvatures(  );
   //TODO: add some assertions
-  
+  for (Vertex_iterator pVertex = mesh_->vertices_begin(  );
+       pVertex != mesh_->vertices_end(  ); ++pVertex)
+  {
+    Vector_3 curvature = curvature_->get_vertex_mean_curvature( pVertex );
+    printf( "MeanCurvature: ( %.2f,%.2f,%.2f )\n",curvature.x(  ),curvature.y(  ),curvature.z(  ) );
+  }
 }
 
 TEST_F( CurvatureTest, testGaussianCurvature ) {
   curvature_->slotCalculateGaussianCurvatures(  );
   //TODO: add some assertions
-  
+  float gaussian_curvature;
+  for (Vertex_iterator pVertex = mesh_->vertices_begin(  );
+       pVertex != mesh_->vertices_end(); ++pVertex)
+  {
+    gaussian_curvature = curvature_->get_vertex_gaussian_curvature( pVertex );
+    printf( "Gaussian Curvature of Vertex: %d is : %.3f\n", pVertex->id(  ),gaussian_curvature );    
+  }  
 }
 
 
 #endif /* _TESTCURVATURE_H_ */
 /* testCurvature.h ends here */
+
+
+
+
