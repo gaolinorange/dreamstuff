@@ -18,6 +18,7 @@
 #include <QObject>
 #include <QWidget>
 #include <QPushButton>
+#include <QVBoxLayout>
 
 #include <boost/property_map.hpp>
 
@@ -26,7 +27,6 @@
 #include "BasePlugin/LoggingInterface.h"
 
 #include "MeshCore/MeshCore.h"
-
 #include "DeformationGraph.h"
 
 /**
@@ -45,6 +45,11 @@ class EDS : public QObject,
  public:
   EDS() {
     toolbox_widget_ = new QWidget(  );
+    construct_dg_button_ = new QPushButton( QString( tr( "Construct DeformationGraph" ) ) );
+    connect( construct_dg_button_, SIGNAL( clicked(  ) ), this, SLOT( construct_deformation_graph(  ) ) );
+    QVBoxLayout* layout = new QVBoxLayout(  );
+    layout->addWidget( construct_dg_button_ );
+    toolbox_widget_->setLayout( layout );
 
     deformation_graph_ = new DeformationGraph(  );
     vertex_deformationgraphnodes_properties_ = boost::make_assoc_property_map<Vertex_DeformationGraphNodes_Map>( vertex_deformationgraphnodes_map_ );
@@ -88,17 +93,17 @@ class EDS : public QObject,
   Vertex_DeformationGraphNodes_Map vertex_deformationgraphnodes_map_;
   boost::associative_property_map<Vertex_DeformationGraphNodes_Map> vertex_deformationgraphnodes_properties_;
   
-  
-  
-
- public:
+ public slots:
   void construct_deformation_graph(  );
+
+
   //Internal data and widgets  
  private:
   MeshCore* mesh_;
   DeformationGraph* deformation_graph_;
  private:
   QWidget* toolbox_widget_;
+  QPushButton* construct_dg_button_;
 };
 
 

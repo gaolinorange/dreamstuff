@@ -1,4 +1,4 @@
-/* DeformationGraph.h --- 
+/* -*- c++-mode -*- DeformationGraph.h --- 
  * copyright (c) 2010 dreamway
  */
 
@@ -26,6 +26,9 @@ class DeformationGraphNode
   DeformationGraphNode();
   virtual ~DeformationGraphNode();
 
+  void renderNode(  );
+  void renderConnection(  );
+  
   float R[ 9 ];
   float t[ 3 ];
 
@@ -40,10 +43,11 @@ class DeformationGraph
   DeformationGraph();
   virtual ~DeformationGraph();
  public:
-  void construct( MeshCore* _mesh );
+  void construct( MeshCore* _mesh, int _target_number );
   void render(  );
  private:
   vector<DeformationGraphNode> nodes_;
+  int num_nodes;
   MeshCore* mesh_;
 };
 

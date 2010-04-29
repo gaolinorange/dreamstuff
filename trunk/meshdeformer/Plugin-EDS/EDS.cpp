@@ -12,11 +12,15 @@
 // Commentary: 
 // 
 //
+#include <QInputDialog>
+
 #include "EDS.h"
 
 void EDS::construct_deformation_graph(  ) {
   if( mesh_ ) {
-    deformation_graph_->construct( mesh_ );
+    int target_number = QInputDialog::getInt( NULL, QString( tr( "Please input the target_number of deformation nodes" ) ),QString( tr( "target number nodes:" ) ),50,1,mesh_->size_of_vertices(  ) );
+    emit log( QString( tr( "Constructing DeformationGraph..." ) ) );
+    deformation_graph_->construct( mesh_, target_number );
   } else {
     emit log( QString( tr( "You have not load a mesh for EDS plugin, please load it first" ) ) );
   }  
