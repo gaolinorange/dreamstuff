@@ -137,14 +137,14 @@ public: //should be private
      @param: v1, the second point( related with the angle )
      @param: v2, the third point
   */
-  float _calculateAngle( Vertex_handle v0, Vertex_handle v1, Vertex_handle v2 ) {
+  float calculateAngle( Vertex_handle v0, Vertex_handle v1, Vertex_handle v2 ) {
     float length_v0v1, length_v1v2, length_v2v0;
     //calculate <v0v1v2
     //a^2 = b^2+c^2-2*b*c*cos( alpha )
     //so: v2v0^2 = v0v1^2+v1v2^2-2*v0v1*v1v2*cos( alpha )
-    length_v0v1 = _calculateVecLength( v0,v1 );    // b
-    length_v1v2 = _calculateVecLength(v1,v2);    //c
-    length_v2v0 = _calculateVecLength( v2,v0 );    //a
+    length_v0v1 = calculateVecLength( v0,v1 );    // b
+    length_v1v2 = calculateVecLength(v1,v2);    //c
+    length_v2v0 = calculateVecLength( v2,v0 );    //a
     float cosAlpha = (length_v0v1*length_v0v1+
                       length_v1v2*length_v1v2-
                       length_v2v0*length_v2v0)/( 2*length_v0v1*length_v1v2);
@@ -152,7 +152,7 @@ public: //should be private
     return acos( cosAlpha );
   }
 
-  float _calculateVecLength( Vertex_handle v0, Vertex_handle v1 ) {
+  float calculateVecLength( Vertex_handle v0, Vertex_handle v1 ) {
      Vector_3 v0v1 = v1->point(  )-v0->point(  );
      float length_v0v1 = ( v0v1.x(  )*v0v1.x(  ) +
                         v0v1.y(  )*v0v1.y(  ) +
@@ -177,12 +177,12 @@ public:
       v0 = pHalfedge->vertex(  );
       v1 = pHalfedge->next(  )->vertex(  );
       v2 = pHalfedge->next(  )->next(  )->vertex(  );
-      alpha = _calculateAngle( v0, v1, v2 );
+      alpha = calculateAngle( v0, v1, v2 );
 
       v0 = pHalfedge->opposite(  )->vertex(  );
       v1 = pHalfedge->opposite(  )->next(  )->vertex(  );
       v2 = pHalfedge->opposite(  )->next(  )->next(  )->vertex(  );
-      beta = _calculateAngle( v0,v1,v2 );
+      beta = calculateAngle( v0,v1,v2 );
 
       float value = 1.0/tan( alpha )+1.0/tan( beta );
       halfedge_cotvalue_map_.insert(make_pair( pHalfedge, value )  );//
@@ -204,12 +204,12 @@ public:
     do {
       Q = pHalfedge->next()->vertex(  );
       R = pHalfedge->next(  )->next(  )->vertex(  );
-      angleP = _calculateAngle( Q,P,R );
-      angleQ = _calculateAngle( P,Q,R );
-      angleR = _calculateAngle( P,R,Q );
-      length_PQ = _calculateVecLength( P,Q );
-      length_PR = _calculateVecLength( P,R );
-      length_QR = _calculateVecLength( Q,R );
+      angleP = calculateAngle( Q,P,R );
+      angleQ = calculateAngle( P,Q,R );
+      angleR = calculateAngle( P,R,Q );
+      length_PQ = calculateVecLength( P,Q );
+      length_PR = calculateVecLength( P,R );
+      length_QR = calculateVecLength( Q,R );
       if( angleP <= CGAL_PI*0.5 && angleQ <= CGAL_PI*0.5 && angleR <= CGAL_PI*0.5 ) {
         area = 1.0/8.0*( length_PR*length_PR*1.0/tan( angleQ ) +
                          length_PQ*length_PQ*1.0/tan( angleR ));
