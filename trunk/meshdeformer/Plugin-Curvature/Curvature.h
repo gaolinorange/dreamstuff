@@ -76,6 +76,8 @@ class Curvature : public QObject,
     vertex_voronoiarea_properties_ = boost::make_assoc_property_map<VertexVoroniAreaMap>( vertex_voronoiarea_map_ );
 
     vertex_meancurvature_properties_ = boost::make_assoc_property_map<Vertex_MeanCurvature_Map>( vertex_meancurvature_map_ );
+
+    vertex_gaussiancurvature_properties_ = boost::make_assoc_property_map<Vertex_GaussianCurvature_Map>( vertex_gaussiancurvature_map_ );
   }
   virtual ~Curvature() {
     delete calMeanCurvatureButton_;
@@ -122,6 +124,10 @@ private:
   typedef std::map<Vertex_handle,Vector_3,VertexHandleCmp> Vertex_MeanCurvature_Map;
   Vertex_MeanCurvature_Map vertex_meancurvature_map_;
   boost::associative_property_map<Vertex_MeanCurvature_Map> vertex_meancurvature_properties_;
+
+  typedef std::map<Vertex_handle,float,VertexHandleCmp> Vertex_GaussianCurvature_Map;
+  Vertex_GaussianCurvature_Map vertex_gaussiancurvature_map_;
+  boost::associative_property_map<Vertex_GaussianCurvature_Map> vertex_gaussiancurvature_properties_;
   
 public:
   float getHalfedgeCotValue( Halfedge_handle pHalfedge ) {
@@ -129,6 +135,12 @@ public:
   }
   float getVertexVoronoiArea( Vertex_handle pVertex ) {
     return get( vertex_voronoiarea_properties_, pVertex );
+  }
+  Vector_3 get_vertex_mean_curvature( Vertex_handle pVertex ) {
+    return get( vertex_meancurvature_properties_, pVertex );
+  }
+  float get_vertex_gaussian_curvature( Vertex_handle pVertex ) {
+    return get( vertex_gaussiancurvature_properties_, pVertex );
   }
 public: //should be private
   /**\brief: calculate the angle between between two vector
@@ -286,7 +298,29 @@ public slots:
       prebuild_coefficients(  );
 
     //do the actual work
-    
+    float gaussian_curvature;
+    float Amixed;
+    float theta, theta_sum;
+    Vertex_handle pre_vertex,next_vertex;
+    Halfedge_around_vertex_circulator pHalfedge,pHalfedgeEnd;
+    for (Vertex_iterator pVertex = mesh_->vertices_begin(  );
+         pVertex != mesh_->vertices_end(); ++pVertex)
+    {
+      theta_sum = 0.0;
+      pHalfedge = pHalfedgeEnd = pVertex->vertex_begin(  );
+      do{
+        pre_vertex = pHalfedge->opposite(  )->vertex(  );
+        next_vertex = pHalfedge->next(  )->vertex(  );
+        theta = calculateAngle( pre_vertex, pVertex, next_vertex );
+        theta_sum += theta;
+      }while( ++pHalfedge != pHalfedgeEnd );
+
+      Amixed = getVertexVoronoiArea( pVertex );
+
+      gaussian_curvature = 1.0/Amixed * ( 2*CGAL_PI-theta_sum );
+
+      vertex_gaussiancurvature_map_.insert( make_pair( pVertex,gaussian_curvature ) );
+    }    
   }
   
  private:
