@@ -22,5 +22,5 @@ add_definitions(-DQT_PLUGIN)
 add_definitions(-DQT_SHARED)
 add_definitions(-DQT_NO_DEBUG)
 
-add_library(${target_name} STATIC Curvature.cpp ${Curvature_MOC})
+add_library(${target_name} SHARED Curvature.cpp ${Curvature_MOC})
 target_link_libraries(${target_name} ${QT_LIBRARIES} MeshCore)
