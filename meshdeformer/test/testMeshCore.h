@@ -72,26 +72,26 @@ TEST_F(MeshCoreTest,testInitIndexToVertexMap)
   pMesh->init_index_to_vertex_map();
 
   //Verify it by comparing the position of index_to_vertex_map
-  printf("print by using builder\n");
-  for(Vertex_iterator pVertex = pMesh->vertices_begin();
-      pVertex != pMesh->vertices_end(); pVertex++)
-  {
-    printf("id: %ld  , pos: (%.2f,%.2f,%.2f)\n",pVertex->id(),
-           pVertex->point().x(),
-           pVertex->point().y(),
-           pVertex->point().z());
-  }
+  // printf("print by using builder\n");
+  // for(Vertex_iterator pVertex = pMesh->vertices_begin();
+  //     pVertex != pMesh->vertices_end(); pVertex++)
+  // {
+  //   printf("id: %ld  , pos: (%.2f,%.2f,%.2f)\n",pVertex->id(),
+  //          pVertex->point().x(),
+  //          pVertex->point().y(),
+  //          pVertex->point().z());
+  // }
   
-  printf("print by using index_to_vertex_map\n");
-  std::size_t num_vertices = pMesh->size_of_vertices();
-  for (std::size_t i = 0; i < num_vertices; ++i)
-  {
-    printf("id : %ld,  pos: (%.2f,%.2f,%.2f)\n",i,
-           pMesh->get_vertex_handle(i)->point().x(),
-           pMesh->get_vertex_handle(i)->point().y(),
-           pMesh->get_vertex_handle(i)->point().z()
-           );    
-  }
+  // printf("print by using index_to_vertex_map\n");
+  // std::size_t num_vertices = pMesh->size_of_vertices();
+  // for (std::size_t i = 0; i < num_vertices; ++i)
+  // {
+  //   printf("id : %ld,  pos: (%.2f,%.2f,%.2f)\n",i,
+  //          pMesh->get_vertex_handle(i)->point().x(),
+  //          pMesh->get_vertex_handle(i)->point().y(),
+  //          pMesh->get_vertex_handle(i)->point().z()
+  //          );    
+  // }
 
   //Verify for furthing testing
   std::size_t i = 0;

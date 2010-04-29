@@ -35,5 +35,5 @@ add_definitions(-DQT_PLUGIN)
 add_definitions(-DQT_SHARED)
 add_definitions(-DQT_NO_DEBUG)
 
-add_library(${target_name} STATIC ${sources} ${headers})
+add_library(${target_name} SHARED ${sources} ${headers})
 target_link_libraries(${target_name} ${QT_LIBRARIES} MeshCore)

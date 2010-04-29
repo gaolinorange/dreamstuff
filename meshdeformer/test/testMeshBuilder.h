@@ -1,3 +1,19 @@
+// -*-c++-mode-*-
+//testMeshBuilder.h --- Test MeshBuilder for mesh loading
+// copyright (c) 2010 dreamway
+// 
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by the Free Software Foundation;
+//  Feel free to contact dreamway(jingwenlai@163.com)
+// 
+// website: cg.xplore.cn
+// 
+// 
+
+// Commentary: 
+// 
+// 
+//  
 #ifndef TEST_MESHBUILDER_H
 #define TEST_MESHBUILDER_H
 
@@ -56,3 +72,6 @@ TEST_F( MeshBuilderTest, testPrintVertex )
 }
 
 #endif
+
+// 
+// testMeshBuilder.h ends here
