@@ -17,10 +17,23 @@ endif()
 
 qt4_wrap_cpp(EDS_MOC EDS.h)
 
+
+set(headers
+  EDS.h
+  DeformationGraph.h
+  )
+
+set(sources
+  EDS.cpp
+  DeformationGraph.cpp
+  ${EDS_MOC}
+  )
+
+
 add_definitions(${QT_DEFINITIONS})
 add_definitions(-DQT_PLUGIN)
 add_definitions(-DQT_SHARED)
 add_definitions(-DQT_NO_DEBUG)
 
-add_library(${target_name} STATIC EDS.cpp ${EDS_MOC})
+add_library(${target_name} STATIC ${sources} ${headers})
 target_link_libraries(${target_name} ${QT_LIBRARIES} MeshCore)

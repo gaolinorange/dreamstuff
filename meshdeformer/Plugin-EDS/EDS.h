@@ -19,12 +19,15 @@
 #include <QWidget>
 #include <QPushButton>
 
+#include <boost/property_map.hpp>
 
 #include "BasePlugin/BaseInterface.h"
 #include "BasePlugin/ToolBoxInterface.h"
 #include "BasePlugin/LoggingInterface.h"
 
 #include "MeshCore/MeshCore.h"
+
+#include "DeformationGraph.h"
 
 /**
    \brief: the main class implementing EDS algorithm( Sumner siggraph 2007 )
@@ -42,6 +45,9 @@ class EDS : public QObject,
  public:
   EDS() {
     toolbox_widget_ = new QWidget(  );
+
+    deformation_graph_ = new DeformationGraph(  );
+    vertex_deformationgraphnodes_properties_ = boost::make_assoc_property_map<Vertex_DeformationGraphNodes_Map>( vertex_deformationgraphnodes_map_ );
   }
   ~EDS() {
     delete toolbox_widget_;
@@ -75,11 +81,22 @@ class EDS : public QObject,
   }
 
   
+ private://algorithm related
+  typedef std::vector<DeformationGraphNode> Vertex_DeformationGraphNode_Vector;
+  //The Vertex's related K-nearest nodes
+  typedef std::map<Vertex_handle,Vertex_DeformationGraphNode_Vector,VertexHandleCmp> Vertex_DeformationGraphNodes_Map;
+  Vertex_DeformationGraphNodes_Map vertex_deformationgraphnodes_map_;
+  boost::associative_property_map<Vertex_DeformationGraphNodes_Map> vertex_deformationgraphnodes_properties_;
+  
+  
   
 
+ public:
+  void construct_deformation_graph(  );
   //Internal data and widgets  
  private:
-  MeshCore* mesh_;  
+  MeshCore* mesh_;
+  DeformationGraph* deformation_graph_;
  private:
   QWidget* toolbox_widget_;
 };
@@ -87,3 +104,6 @@ class EDS : public QObject,
 
 #endif /* _EDS_H_ */
 /* EDS.h ends here */
+
+
+
