@@ -5,8 +5,9 @@ cmake_minimum_required(VERSION 2.6)
 set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin/plugins)
 
 find_package(Qt4 REQUIRED)
-
+set(QT_USE_QTOPENGL TRUE)
 include(${QT_USE_FILE})
+
 include_directories(../imesh)
 
 find_package(Boost REQUIRED)

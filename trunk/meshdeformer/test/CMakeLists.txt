@@ -89,4 +89,5 @@ target_link_libraries(test
   ${gtest_LIBRARY}
   ${glog_LIBRARY}
   curvature  #the curvature plugin
+  eds
   )

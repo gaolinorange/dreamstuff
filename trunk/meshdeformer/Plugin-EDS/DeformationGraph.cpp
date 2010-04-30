@@ -12,6 +12,7 @@
 // Commentary: 
 // 
 //
+#include "Common/glheaders.hpp"
 #include "DeformationGraph.h"
 
 /////////////DeformationGraphNode///////////////
@@ -23,9 +24,23 @@ DeformationGraphNode::~DeformationGraphNode(  ) {
   
 }
 
-void DeformationGraphNode::renderNode(  ) {
-  printf( "todo: glrendering,currnet, just print it: node position: ( %.2f,%.2f,%.2f )\n",
-          position_[ 0 ],position_[ 1 ],position_[ 2 ]);
+float DeformationGraphNode::node_size(  ) {
+  return node_size_;
+}
+void DeformationGraphNode::set_node_size( float _size ) {
+  node_size_ = _size;
+}
+void DeformationGraphNode::set_node_color( float _color[ 3 ] ) {
+  node_color_[ 0 ] = _color[ 0 ];
+  node_color_[ 1 ] = _color[ 1 ];
+  node_color_[ 2 ] = _color[ 2 ];
+}
+
+
+void DeformationGraphNode::renderNode(  ) {  
+  glTranslatef( position_[ 0 ],position_[ 1 ],position_[ 2 ] );
+  glColor3f( node_color_[ 0 ],node_color_[ 1 ],node_color_[ 2 ] );
+  glutSolidSphere( node_size_, 10, 10 );
 }
 
 void DeformationGraphNode::renderConnection(  ) {

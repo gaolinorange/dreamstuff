@@ -36,6 +36,14 @@ class DeformationGraphNode
   float position_[ 3 ];
 
   vector<DeformationGraphNode> kNearestNodes_;
+
+ public:
+  void set_node_size( float _size );
+  float node_size(  );
+  void set_node_color( float _color[ 3 ] );
+ private://for rendering
+  float node_size_;
+  float node_color_[ 3 ];
 };
 
 class DeformationGraph

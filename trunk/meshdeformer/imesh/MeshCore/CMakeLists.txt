@@ -6,13 +6,18 @@ include_directories(${Boost_INCLUDE_DIRS})
 link_directories(${Boost_LIBRARY_DIRS})
 endif()
 
-
+#OpenGL and GLU support
 find_package(OpenGL REQUIRED)
 if(OPENGL_FOUND)
   include_directories(${OPENGL_INCLUDE_DIR} ${GLU_INCLUDE_PATH})
   link_libraries(${OPENGL_LIBRARIES})
 endif()
-
+#GLUT support
+find_package(GLUT REQUIRED)
+if(GLUT_FOUND)
+  include_directories(${GLUT_INCLUDE_DIR})
+  link_libraries(${GLUT_LIBRARIES})
+endif()
 
 #CGALsupport
 if(UNIX)
