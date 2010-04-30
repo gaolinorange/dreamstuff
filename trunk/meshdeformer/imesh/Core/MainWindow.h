@@ -21,7 +21,7 @@
 
 #include "Viewer.h"
 #include "MeshModel.h"
-
+#include "Common/common.h" //for PluginInfo datastructure
 
 class ConsoleWidgetManager;
 class StatusBar;
@@ -84,14 +84,16 @@ private slots:
   void infoPrintBoundingBox();
   void infoShowDebugInfo();
   void infoToggleRunningMode();
+  void infoPluginDialog(  );
 
   //Plugin Management
 public:
   void loadPlugins(  );
-
   //For BaseInterface
 signals:
   void pluginsInitialized(  );
+private://plugins management
+  QVector<PluginInfo> plugins_info_;
   
 private slots:
   //StatusBarInterface
@@ -137,6 +139,7 @@ private slots:
   QAction* actInfoBoundingBox;
   QAction* actInfoShowDebugInfo;
   QAction* actInfoToggleRunningMode;
+  QAction* actInfoPluginDialog;
   
   ConsoleWidgetManager* consoleWidgetManager;
   StatusBar* statusBar_;

@@ -1,14 +1,14 @@
 /********************************************************************************
-** Form generated from reading ui file 'plugin_dialog.ui'
+** Form generated from reading ui file 'tree_widget_window.ui'
 **
-** Created: Fri Apr 30 10:34:10 2010
+** Created: Fri Apr 30 10:25:46 2010
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
 ********************************************************************************/
 
-#ifndef UI_PLUGINDIALOG_H
-#define UI_PLUGINDIALOG_H
+#ifndef UI_TREE_WIDGET_WINDOW_H
+#define UI_TREE_WIDGET_WINDOW_H
 
 #include <QtCore/QVariant>
 #include <QtGui/QAction>
@@ -23,7 +23,7 @@
 
 QT_BEGIN_NAMESPACE
 
-class Ui_pluginDialog
+class Ui_Dialog
 {
 public:
     QWidget *verticalLayoutWidget;
@@ -31,14 +31,14 @@ public:
     QTreeWidget *treeWidget;
     QDialogButtonBox *buttonBox;
 
-    void setupUi(QDialog *pluginDialog)
+    void setupUi(QDialog *Dialog)
     {
-        if (pluginDialog->objectName().isEmpty())
-            pluginDialog->setObjectName(QString::fromUtf8("pluginDialog"));
-        pluginDialog->resize(402, 303);
-        verticalLayoutWidget = new QWidget(pluginDialog);
+        if (Dialog->objectName().isEmpty())
+            Dialog->setObjectName(QString::fromUtf8("Dialog"));
+        Dialog->resize(400, 300);
+        verticalLayoutWidget = new QWidget(Dialog);
         verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(0, 10, 401, 291));
+        verticalLayoutWidget->setGeometry(QRect(0, 10, 400, 280));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
@@ -58,25 +58,25 @@ public:
         verticalLayout->addWidget(buttonBox);
 
 
-        retranslateUi(pluginDialog);
-        QObject::connect(buttonBox, SIGNAL(accepted()), pluginDialog, SLOT(accept()));
-        QObject::connect(buttonBox, SIGNAL(rejected()), pluginDialog, SLOT(reject()));
+        retranslateUi(Dialog);
+        QObject::connect(buttonBox, SIGNAL(accepted()), Dialog, SLOT(accept()));
+        QObject::connect(buttonBox, SIGNAL(rejected()), Dialog, SLOT(reject()));
 
-        QMetaObject::connectSlotsByName(pluginDialog);
+        QMetaObject::connectSlotsByName(Dialog);
     } // setupUi
 
-    void retranslateUi(QDialog *pluginDialog)
+    void retranslateUi(QDialog *Dialog)
     {
-        pluginDialog->setWindowTitle(QApplication::translate("pluginDialog", "Show Plugins", 0, QApplication::UnicodeUTF8));
-        Q_UNUSED(pluginDialog);
+        Dialog->setWindowTitle(QApplication::translate("Dialog", "Dialog", 0, QApplication::UnicodeUTF8));
+        Q_UNUSED(Dialog);
     } // retranslateUi
 
 };
 
 namespace Ui {
-    class pluginDialog: public Ui_pluginDialog {};
+    class Dialog: public Ui_Dialog {};
 } // namespace Ui
 
 QT_END_NAMESPACE
 
-#endif // UI_PLUGINDIALOG_H
+#endif // UI_TREE_WIDGET_WINDOW_H

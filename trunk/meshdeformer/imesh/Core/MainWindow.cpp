@@ -28,6 +28,8 @@
 #include "globals.hpp"
 #include "widgets/aboutDialog/AboutDialog.hpp"
 #include "widgets/statusBar/StatusBar.h"
+#include "widgets/pluginDialog/PluginDialog.h"
+
 
 #include "BasePlugin/BaseInterface.h"
 #include "BasePlugin/LoggingInterface.h"
@@ -255,58 +257,64 @@ void MainWindow::slotAddToolBox( QString title , QWidget* widget) {
   toolbox_->addItem( widget, title );
 }
 
-
+void MainWindow::infoPluginDialog(  ) {
+  PluginDialog plugin_dialog;
+  plugin_dialog.setPluginsInfo( plugins_info_ );
+  plugin_dialog.exec(  );
+}
     
 //Plugin Management
-void MainWindow::loadPlugins(  ) {  
+void MainWindow::loadPlugins(  ) {
+  PluginInfo plugin_info;
+  
   //load the dynamic plugins
   QDir pluginsDir( qApp->applicationDirPath(  ) );
   pluginsDir.cd( "plugins" );
 
   foreach( QString fileName, pluginsDir.entryList( QDir::Files ) ) {
     QPluginLoader pluginLoader( pluginsDir.absoluteFilePath( fileName ) );
-    qDebug(  )<< QString( "plugin filename: ")<<fileName ;
-
-    qDebug( )<<"The pluginLoader's fileName: "<<pluginLoader.fileName(  );
-    qDebug(  )<<"is loaded? "<<pluginLoader.load(  );
-    
+      
     //load the plugin
     QObject* plugin = pluginLoader.instance(  );
     if( plugin ) {
+      
       //Plugin's baseInterface
       BaseInterface* baseInterface = qobject_cast<BaseInterface*>( plugin );
       if( baseInterface ) {
         //BaseInterface connection for pluginsInitialized
-        qDebug( )<<"it's a BaseInterface, setup the connection";
-        connect( this, SIGNAL( pluginsInitialized(  ) ),plugin, SLOT( pluginInitialized(  ) ) );        
+        connect( this, SIGNAL( pluginsInitialized(  ) ),plugin, SLOT( pluginInitialized(  ) ) );
+        plugin_info.name = baseInterface->name(  );
+        plugin_info.description = baseInterface->description(  );
+        plugin_info.interfaces_name.append( QString( "BaseInterface" ) );
       }
       
       //Plugin's LoggingInterface
       LoggingInterface* loggingInterface = qobject_cast<LoggingInterface*>( plugin );
       if( loggingInterface ) {
-        qDebug( )<<"it's a LoggingInterface";
-        qDebug(  )<<"plugin metaObject class name: "<<plugin->metaObject(  )->className(  );
-        connect( plugin, SIGNAL( log( const QString& ) ), this, SLOT( slotLog( const QString& ) ) );        
+        connect( plugin, SIGNAL( log( const QString& ) ), this, SLOT( slotLog( const QString& ) ) );
+        plugin_info.interfaces_name.append( QString( "LoggingInterface" ) );
       }
 
       //Plugin's StatusbarInterface
       StatusBarInterface* statusBarInterface = qobject_cast<StatusBarInterface*>( plugin );
       if( statusBarInterface ) {
-        qDebug(  )<<"it's a StatusBarInterface";
         connect( plugin, SIGNAL( updateStatusBarMessage( const QString& ) ), this, SLOT( slotUpdateStatusBarMessage( const QString& ) ) );
+
+        plugin_info.interfaces_name.append( QString( "StatusBarInterface" ) );
       }
 
       //Plugins's ToolBoxInterface
       ToolBoxInterface* toolBoxInterface = qobject_cast<ToolBoxInterface*>( plugin );
       if( toolBoxInterface ) {
-        qDebug(  )<<"it's a ToolBoxInterface, setup the connection";
         connect( plugin, SIGNAL( addToolBox( QString, QWidget* ) ), this, SLOT( slotAddToolBox( QString, QWidget* ) ) );
+        plugin_info.interfaces_name.append( QString( "ToolBoxInterface" ) );
       }
     } else {
       qDebug(  )<<"could not instance this plugin: "<<fileName;
     }
-  }
 
+    plugins_info_.append( plugin_info );
+  }
 
   //Emit a signal to setup all plugins
   emit pluginsInitialized(  );
