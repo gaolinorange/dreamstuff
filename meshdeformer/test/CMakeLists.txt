@@ -63,6 +63,7 @@ endif(UNIX)
 
 
 
+
 #add some more moc generated files of test objects
 qt4_wrap_cpp(TestPlugin_MOC ../Plugin-TestPlugin/TestPlugin.h)
 
@@ -73,6 +74,7 @@ set(TEST_HEADERS
 set(TEST_SOURCES
   testMain.cpp
   ${TestPlugin_MOC}
+  ../Plugin-EDS/DeformationGraph.cpp #for testing DeformationGraph
   )
 
 

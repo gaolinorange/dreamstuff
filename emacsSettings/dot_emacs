@@ -132,6 +132,8 @@ website: cg.xplore.cn")
 ;; auto displaying line number when in c-mode
 (add-hook 'c-mode-hook 'display-line-number-mode)
 (add-hook 'c++-mode-hook 'display-line-number-mode)
+(global-set-key [f7] 'compile)
+(global-set-key [f9] 'eshell)
 
 
 ;;;;;cscope support
@@ -159,7 +161,7 @@ website: cg.xplore.cn")
 ;;this enables the database and idle reparse engines
 (semantic-load-enable-minimum-features)
 ;; this enables some tools useful for coding, such as sumary mode
-(semantic-load-enable-code-helpers)
+;;(semantic-load-enable-code-helpers)
 
 
 (require 'semantic-ia)

@@ -52,10 +52,54 @@ DeformationGraph::~DeformationGraph(  ) {
 void DeformationGraph::construct( MeshCore* _mesh, int _target_number  ) {
   mesh_ = _mesh;
   num_nodes = _target_number;//note:it's just a temp number, actually, the algorithm could not just generate exteractly the number of nodes
-  
-  
-  
+
+  int num_vertices = mesh_->size_of_vertices(  );
+  float ratio = (float)num_vertices/_target_number;
+
+  float average_edge_length = mesh_->get_average_edge_length(  );
+  float expected_tuncate_squared_length = average_edge_length*average_edge_length * ratio; //for efficiency: use the squared_length
+    
+  std::list<Point_3> searching_lists;
+  searching_lists.clear(  );
+  //init with all vertices
+  for (Vertex_iterator pVertex = mesh_->vertices_begin(  );
+       pVertex != mesh_->vertices_end(); pVertex++) {
+    searching_lists.push_back( pVertex->point(  ) );
+  }
+
+
+  //loop this list and delete the points distance less than *expected_tuncate_length*
+  std::list<Point_3>::iterator pBeginIterator = searching_lists.begin(  ),pSearchIterator;
+  float distance;
+  for(   ; pBeginIterator != searching_lists.end(); pBeginIterator++ ) {    
+    pSearchIterator = pBeginIterator;
+    pSearchIterator++;
+    for(  ; pSearchIterator != searching_lists.end(  );  ) {
+      distance = Vector_3( (*pSearchIterator)-(*pBeginIterator) ).squared_length(  );
+      
+      if( distance < expected_tuncate_squared_length ) {
+         pSearchIterator = searching_lists.erase( pSearchIterator );
+      }
+      else
+         pSearchIterator++;
+    }
+  }
+
+  //now, all points stored in this list have ideal distances
+  //TODO: store it
+  nodes_.clear(  );
+  DeformationGraphNode node;
+  for (std::list<Point_3>::iterator pPoint = searching_lists.begin(  );
+       pPoint != searching_lists.end(); ++pPoint) {
+    node.position_[ 0 ] = pPoint->x(  );
+    node.position_[ 1 ] = pPoint->y(  );
+    node.position_[ 2 ] = pPoint->z(  );
+    nodes_.push_back( node );
+  }
+
+  num_nodes = nodes_.size(  ); //this is the final number of deformation graph nodes
 }
+
 /**
    \brief: render the deformation graph
 */
