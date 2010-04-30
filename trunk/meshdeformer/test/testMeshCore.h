@@ -1,3 +1,23 @@
+// testMeshCore.h --- Test the Core of Mesh Data structure
+// copyright (c) 2010 dreamway
+// 
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by the Free Software Foundation;
+//  Feel free to contact dreamway(jingwenlai@163.com)
+// 
+// website: cg.xplore.cn
+// 
+// 
+
+// Commentary: 
+// 
+// 
+//  
+#ifndef _TESTMESHCORE_H_
+#define _TESTMESHCORE_H_
+
+
+
 #include "MeshCore/MeshCore.h"
 #include <fstream>
 #include <gtest/gtest.h>
@@ -124,5 +144,17 @@ TEST_F( MeshCoreTest, testVertexValence )
   }  
 }
   
+TEST_F( MeshCoreTest, testAverageLength ) {
+  float expected_length = (float)(sqrt( 2.0 )*3+1*3)/6;
+  float actual = pMesh->get_average_edge_length(  ) ;
+  printf( "actual edge average length = %.3f\n",actual );
+  
+  EXPECT_FLOAT_EQ( expected_length, actual);
+}
 
 			   
+
+#endif /* _TESTMESHCORE_H_ */
+
+// 
+// testMeshCore.h ends here

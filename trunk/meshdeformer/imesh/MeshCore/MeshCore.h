@@ -1,3 +1,19 @@
+//-*-c++-mode-*-
+//MeshCore.h --- The Core Mesh Data structure storage
+// copyright (c) 2010 dreamway
+// 
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by the Free Software Foundation;
+//  Feel free to contact dreamway(jingwenlai@163.com)
+// 
+// website: cg.xplore.cn
+// 
+// 
+
+// Commentary: 
+// 
+// 
+//  
 #ifndef MESHCORE_H
 #define MESHCORE_H
 
@@ -57,6 +73,7 @@ class MeshCore : public Polyhedron
   void compute_normals_per_vertex();
   unsigned int degree(Facet_handle pFacet);
   unsigned int valence(Vertex_handle pVertex);
+  float get_average_edge_length(  )  ;
   
   void render();
  public:
@@ -101,3 +118,6 @@ struct HalfedgeHandleCmp {
 
   
 #endif
+
+// 
+// MeshCore.h ends here

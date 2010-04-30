@@ -189,7 +189,19 @@ void MeshCore::init_index_to_vertex_map()
   }
 }
 
+float MeshCore::get_average_edge_length(  ) {
+  float average_length = 0.0;
 
+  Point_3 p0,p1;
+  for( Edge_iterator pEdge = edges_begin(  );
+       pEdge != edges_end(  ); pEdge++) {
+    p0 = pEdge->vertex(  )->point(  );
+    p1 = pEdge->opposite(  )->vertex(  )->point(  );
+    average_length += sqrt(Vector_3( p1-p0 ).squared_length(  ));
+  }
+
+  return average_length*2/size_of_halfedges(  );
+}
 
 
 

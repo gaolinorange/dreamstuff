@@ -7,10 +7,11 @@
 #include "testMeshBuilder.h"
 #include "testMeshBuilderDerived.h"
 #include "testGoogleLog.h"
+#include "testCurvature.h"
+
+#include "testDeformationGraph.h"
 
 //#include "testTestPlugin.h"
-
-#include "testCurvature.h"       //TODO: learn how to 
 //#include "testPluginLoading.h"   //TODO
 
 

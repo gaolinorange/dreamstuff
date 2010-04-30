@@ -1,4 +1,5 @@
-/* -*- c++-mode -*- DeformationGraph.h --- 
+/*-*-c++-mode-*-
+ * DeformationGraph.h --- 
  * copyright (c) 2010 dreamway
  */
 
