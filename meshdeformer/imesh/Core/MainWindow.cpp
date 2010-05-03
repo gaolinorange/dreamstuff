@@ -102,9 +102,14 @@ void MainWindow::setupMenu()
    actInfoShowDebugInfo = new QAction(tr("Debug Info"),infoMenu);
    connect(actInfoShowDebugInfo,SIGNAL(triggered()),this,SLOT(infoShowDebugInfo()));
    infoMenu->addAction(actInfoShowDebugInfo);
+
    actInfoToggleRunningMode = new QAction(tr("ToggleRunningMode"),infoMenu);
    connect(actInfoToggleRunningMode,SIGNAL(triggered()),this,SLOT(infoToggleRunningMode()));
    infoMenu->addAction(actInfoToggleRunningMode);
+
+   actInfoPluginDialog = new QAction(tr("Plugin Dialog"),infoMenu);
+   connect(actInfoPluginDialog,SIGNAL(triggered()),this,SLOT(infoPluginDialog()));
+   infoMenu->addAction(actInfoPluginDialog);
 				      
    mainMenuBar->addMenu(infoMenu);
 
@@ -264,20 +269,18 @@ void MainWindow::infoPluginDialog(  ) {
 }
     
 //Plugin Management
-void MainWindow::loadPlugins(  ) {
-  PluginInfo plugin_info;
-  
+void MainWindow::loadPlugins(  ) {  
   //load the dynamic plugins
   QDir pluginsDir( qApp->applicationDirPath(  ) );
   pluginsDir.cd( "plugins" );
 
   foreach( QString fileName, pluginsDir.entryList( QDir::Files ) ) {
     QPluginLoader pluginLoader( pluginsDir.absoluteFilePath( fileName ) );
-      
+
+    PluginInfo plugin_info;
     //load the plugin
     QObject* plugin = pluginLoader.instance(  );
     if( plugin ) {
-      
       //Plugin's baseInterface
       BaseInterface* baseInterface = qobject_cast<BaseInterface*>( plugin );
       if( baseInterface ) {
