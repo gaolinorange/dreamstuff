@@ -1,0 +1,5 @@
+developing with google app engine
+* Prerequists
+The Python Web Server Gateway Interface(WSGI) is a standard mechanism that web servers and application servers will use for communicating with your application. App Engine supports WSGI and will work with any compatible application server. *You may want to read about WSGI for background*
+
+
