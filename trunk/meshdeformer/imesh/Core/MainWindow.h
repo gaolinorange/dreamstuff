@@ -20,7 +20,7 @@
 
 
 #include "Viewer.h"
-#include "MeshModel.h"
+//#include "MeshModel.h"
 #include "Common/common.h" //for PluginInfo datastructure
 
 class ConsoleWidgetManager;
@@ -44,8 +44,8 @@ class MainWindow : public QMainWindow
       setupStatusBar( );
       setupToolBox(  );
       
-      mainModel_ = new MeshModel();
-      mainViewer_ = new Viewer(mainModel_,this,NULL,flags);
+      //      mainModel_ = new MeshModel();
+      mainViewer_ = new Viewer(this,NULL,flags);
 
       setupMainLayout(  );
       
@@ -57,12 +57,15 @@ class MainWindow : public QMainWindow
     }
   ~MainWindow()
     {
-      delete mainModel_;
       delete mainViewer_;
       delete mainLayout_;
       delete toolbox_;
     }
-  
+  //for MeshCoreInterface
+signals:
+  void updatePluginMesh( const MeshCore* );
+
+  //UI related
  private:
   void setupMainLayout(  );
   void setupMenu();
@@ -107,7 +110,7 @@ private slots:
  private:
   //The main displaying widget
   Viewer * mainViewer_;
-  MeshModel* mainModel_;
+  //MeshModel* mainModel_;
 
 
 

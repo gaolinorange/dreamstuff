@@ -1,4 +1,4 @@
-//Curvature.h --- calculate mesh curvatures
+//-*-c++-mode-*- Curvature.h --- calculate mesh curvatures
 // copyright (c) 2010 dreamway
 // 
 // This program is free software; you can redistribute it and/or modify
@@ -28,6 +28,7 @@
 #include "BasePlugin/MeshRenderInterface.h"
 #include "BasePlugin/LoggingInterface.h"
 #include "BasePlugin/ToolBoxInterface.h"
+#include "BasePlugin/MeshCoreInterface.h"
 
 #include "MeshCore/MeshCore.h"
 
@@ -38,13 +39,15 @@ class Curvature : public QObject,
                   public BaseInterface,
                   public MeshRenderInterface,
                   public LoggingInterface,
-                  public ToolBoxInterface                      
+                  public ToolBoxInterface,
+                  public MeshCoreInterface    
 {
   Q_OBJECT
   Q_INTERFACES( BaseInterface );
   Q_INTERFACES( LoggingInterface );
   Q_INTERFACES( MeshRenderInterface );
   Q_INTERFACES( ToolBoxInterface );
+  Q_INTERFACES( MeshCoreInterface );
       
  public:
   Curvature() {
@@ -159,12 +162,12 @@ public: //should be private
      return sqrt( length_v0v1 );     
   }
   
-public:
+public slots: 
   void setMesh( MeshCore* _mesh ) {
     mesh_ = _mesh;
     prebuild_coefficients_flag_ = false;
   }
-  
+
   void calculateEdgeCotValues(  ) {
     Vertex_handle v0,v1,v2;    
     float alpha,beta;

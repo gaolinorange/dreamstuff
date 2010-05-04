@@ -11,7 +11,14 @@
 #include <QGLWidget>
 #include <QObject>
 
-#include "MeshModel.h"
+
+#include "MeshCore/MeshCore.h"
+#include "MeshCore/MeshBuilder.h"
+#include "MeshCore/MeshLoader.h"
+#include "BasePlugin/LoggingInterface.h"
+
+//#include "widgets/consoleWidgets/ConsoleWidgetManager.h"
+
 #include <QGLViewer/qglviewer.h>
 
 
@@ -29,15 +36,17 @@ enum PolygonMode{
    @details: inherite the QGLViewer, a part of libQGLViewer library,
    to make the creation of Rendering more easy
 */
-class Viewer : public QGLViewer
+class Viewer : public QGLViewer,
+               public LoggingInterface
 {
   Q_OBJECT
+  Q_INTERFACES( LoggingInterface )
     
 public:
-  Viewer(MeshModel* model,QWidget * parent = 0,const QGLWidget * shareWidget = 0,Qt::WindowFlags flags = 0)
+  Viewer(QWidget * parent = 0,const QGLWidget * shareWidget = 0,Qt::WindowFlags flags = 0)
     : QGLViewer(parent,shareWidget,flags)
   {
-    pMeshModel = model;
+    mesh_ = 0;
     polygonMode = PM_WIREFRAME;
     pCamera = new qglviewer::Camera();
   }
@@ -46,7 +55,15 @@ public:
     if(pCamera){
       delete pCamera; pCamera = 0;
     }
+    if( mesh_ ) {
+      delete mesh_; mesh_ = 0;
+    }
   }
+
+
+  //LoggingInterface
+ signals:
+  void log( const QString&  );
 public:
   /**
      save the rendered view to an Image
@@ -74,14 +91,15 @@ public:
 		updateGL();
 	}
 public:
-    MeshModel* model()
-    {
-      return pMeshModel;
-    }
+  MeshCore* mesh(  ) {
+    return mesh_;
+  }  
 public:
 	void printDebugInfo();
 private:
-  MeshModel * pMeshModel;
+  //  MeshModel * pMeshModel;
+  MeshCore* mesh_;
+  
   qglviewer::Camera* pCamera;
   PolygonMode polygonMode;
 };
