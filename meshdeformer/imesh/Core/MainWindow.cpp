@@ -289,6 +289,9 @@ void MainWindow::loadPlugins(  ) {
         plugin_info.name = baseInterface->name(  );
         plugin_info.description = baseInterface->description(  );
         plugin_info.interfaces_name.append( QString( "BaseInterface" ) );
+
+        //Invoke Plugin initialize method
+        QMetaObject::invokeMethod( plugin,"initializePlugin",Qt::DirectConnection );
       }
       
       //Plugin's LoggingInterface

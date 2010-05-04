@@ -71,6 +71,9 @@ class Curvature : public QObject,
 
   //BaseInterface
  public slots:
+  void initializePlugin(  ) {
+    emit log( QString( "initializing Curvature Plugin..." ) );
+  }
   void pluginInitialized(  ) {
     emit addToolBox( QString( tr( "Curvatures" ) ), widget_ );
     emit log( QString( "Curvature Plugin" ) );

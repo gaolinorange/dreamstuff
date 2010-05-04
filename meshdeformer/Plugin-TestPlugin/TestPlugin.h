@@ -75,6 +75,9 @@ class TestPlugin : public QObject,
 
 public slots:
   //BaseInterface
+  void initializePlugin(  ) {
+    emit log( "initializing TestPlugin..." );
+  }
   void pluginInitialized(  ) {
     emit log( QString( "test string from TestPlugin log signal" ) );
     emit updateStatusBarMessage( QString( "test string from TestPlugin updateStatusBarMessage" ) );

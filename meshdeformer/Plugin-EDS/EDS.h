@@ -60,6 +60,9 @@ class EDS : public QObject,
   void setupWidgets(  );
   //BaseInterface
  public slots:
+  void initializePlugin(  ) {
+    emit log( QString( "initializing EDS Plugin..." ) );
+  }
   void pluginInitialized(  ) {
     emit log( QString( tr( "EDS Plugin initialized") ) );
     emit addToolBox( QString( tr( "EDS" ) ), toolbox_widget_ );
