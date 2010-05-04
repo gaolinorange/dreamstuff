@@ -5,7 +5,7 @@
 #include <QObject>
 #include <QtDebug>
 
-#include "TestPlugin.h"
+#include "TestInterface.h"
 #include "TestClass.h"
 
 
