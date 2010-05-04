@@ -1,0 +1,4 @@
+The class *CGAL::HalfedgeDS_items_decorator<HDS>, CGAL::HalfedgeDS_decorator<HDS>, and CGAL::HalfedgeDS_const_decorator*
+provides additional functions for vertices, halfedges, and faces of a halfedge data structure
+without knowing the containing halfedge data structure.
+也许这可以作为扩展的一种办法， 不一定非得需要使用boost property map.
