@@ -39,7 +39,7 @@ class DeformationGraphNode
 
   float position_[ 3 ];
 
-  //  set<DeformationGraphNode,DeformationGraphNodeCmp> neighbor_nodes_;
+  friend ostream& operator<<( ostream& out, const DeformationGraphNode& node );
   set<int> neighbor_nodes_;
  public:
   void set_parent_deformation_graph( DeformationGraph* _graph );
@@ -55,11 +55,13 @@ class DeformationGraphNode
   void set_node_size( float _size );
   float node_size(  );
   void set_node_color( float _color[ 3 ] );
+  void set_connection_color( float _color[ 3 ] );
  private:
   int id_;
  private://for rendering
   float node_size_;
   float node_color_[ 3 ];
+  float connection_color_[ 3 ];
 };
 
 
@@ -73,6 +75,10 @@ class DeformationGraph
   void construct( MeshCore* _mesh, int _target_number );
   void render(  );
 
+  void set_connection_color( float _color[ 3 ] );
+  void set_node_size( float _size );
+  void set_node_color( float _color[ 3 ] );
+  
   //Shared internal data
   std::vector<DeformationGraphNode> nodes_;
   int num_nodes;

@@ -13,8 +13,43 @@
 // 
 //
 #include <QInputDialog>
+#include <QLabel>
+#include <QPushButton>
+#include <QVBoxLayout>
+#include <QString>
 
 #include "EDS.h"
+
+//for spatial searching
+#include <CGAL/Search_traits_3.h>
+#include <CGAL/Search_traits.h>
+#include <CGAL/Orthogonal_k_neighbor_search.h>
+
+
+//Set Toolbox Widgets
+void EDS::setupWidgets(  ) {
+    toolbox_widget_ = new QWidget(  );
+    QLabel* labelK = new QLabel( QString( tr( "Nearest Node Number:" ) ) );
+    QLineEdit* lineeditK = new QLineEdit( QString::number( K ) );
+    connect( lineeditK, SIGNAL( textEdited( const QString& ) ), this, SLOT( slotChangeK( const QString& ) ) );
+    QHBoxLayout* layoutK = new QHBoxLayout( );
+    layoutK->addWidget( labelK );
+    layoutK->addWidget( lineeditK );
+    
+    
+    construct_dg_button_ = new QPushButton( QString( tr( "Construct DeformationGraph" ) ) );
+    connect( construct_dg_button_, SIGNAL( clicked(  ) ), this, SLOT( construct_deformation_graph(  ) ) );
+
+    show_deformation_graph_button_ = new QPushButton( QString( tr( "Show Deformation Graph" ) ) );
+    connect( show_deformation_graph_button_, SIGNAL( clicked(  ) ), this, SLOT( show_deformation_graph(  ) ) );
+    QVBoxLayout* layout = new QVBoxLayout(  );
+    //layout->addChildLayout( layoutK );
+    layout->addLayout( layoutK );
+    layout->addWidget( construct_dg_button_ );
+    layout->addWidget( show_deformation_graph_button_ );
+    
+    toolbox_widget_->setLayout( layout );
+}
 
 void EDS::construct_deformation_graph(  ) {
   if( mesh_ ) {
@@ -24,6 +59,159 @@ void EDS::construct_deformation_graph(  ) {
   } else {
     emit log( QString( tr( "You have not load a mesh for EDS plugin, please load it first" ) ) );
   }  
+}
+
+void EDS::show_deformation_graph(  ) {
+  if( deformation_graph_ ) {
+    deformation_graph_->render(  );
+  }
+}
+
+/**
+   \brief: calcualte vertex's k+1 nearest nodes
+   \detail: use CGAL dD Spatial Search functionality,
+   see CGAL manual Chapter 57 for reference
+*/
+void EDS::calculate_k_nearest_nodes(  ) {
+  //  calculate_k_nearest_nodes_using_point(  )  ;
+  calculate_k_nearest_nodes_using_dgnode(  );
+}
+
+/**private test method*/
+void EDS::calculate_k_nearest_nodes_using_point(  ) {
+  typedef CGAL::Search_traits_3<Kernel> TreeTraits;
+  typedef CGAL::Orthogonal_k_neighbor_search<TreeTraits> K_neighbor_search;
+  typedef K_neighbor_search::Tree Tree;
+
+  //TODO:you should use DeformationGraphNode with id instend only the Point_3
+  std::list<Point_3> graph_node_points;
+  for( vector<DeformationGraphNode>::iterator pNode = deformation_graph_->nodes_.begin(  );
+       pNode != deformation_graph_->nodes_.end(  ); pNode++ ) {
+    graph_node_points.push_back( Point_3( pNode->position_[ 0 ],pNode->position_[ 1 ],pNode->position_[ 2 ] ) );
+  }
+
+  Tree tree( graph_node_points.begin(  ),graph_node_points.end(  ) );
+  Point_3 query;
+  
+  for( Vertex_iterator pVertex = mesh_->vertices_begin(  );
+       pVertex != mesh_->vertices_end(  ); pVertex++ ) {
+    query = pVertex->point(  );
+    K_neighbor_search search( tree,query,K+1 );
+    //debug: print the results
+    for (K_neighbor_search::iterator it = search.begin(  );
+         it != search.end(  ); ++it) {
+      std::cout<<it->first<<" "<<std::sqrt( it->second )<<std::endl;
+      //now , store the results
+      
+    }
+  }  
+  
+}
+
+
+//internal structs for k-Neighbor_search
+namespace CGAL {
+template <>
+struct Kernel_traits<DeformationGraphNode> {
+  struct Kernel {
+    typedef float FT;
+    typedef float RT;
+  };
+};
+}
+
+struct Construct_coord_iterator {
+  const float* operator(  )( const DeformationGraphNode& node ) const {
+    return static_cast<const float*>( node.position_ );
+  }
+  const float* operator(  )( const DeformationGraphNode& node, int ) const {
+    return static_cast<const float*>( node.position_+3 );
+  }
+};
+
+struct Distance {
+  typedef DeformationGraphNode Query_item;
+  double transformed_distance( const Query_item& n1, const Query_item& n2 ) const {
+    double distx = n1.position_[ 0 ]-n2.position_[ 0 ];
+    double disty = n1.position_[ 1 ]-n2.position_[ 1 ];
+    double distz = n1.position_[ 2 ]-n2.position_[ 2 ];
+    return distx*distx+disty*disty+distz*distz;    
+  }
+
+  double transformed_distance( double d ) const {
+    return d*d;
+  }
+  double new_distance( float& dist, float& old_off, float& new_off, int& ) const {
+    return dist+new_off*new_off-old_off*old_off;
+  }
+  
+
+  template <typename TreeTraits>
+  float min_distance_to_rectangle( const DeformationGraphNode& node,
+                                   const CGAL::Kd_tree_rectangle<TreeTraits>& b) const {
+    float distance( 0.0 ), h = node.position_[ 0 ];
+    if( h < b.min_coord( 0 ) ) distance += ( b.min_coord( 0 )-h )*( b.min_coord( 0 )-h );
+    if( h > b.max_coord( 0 ) ) distance += ( h-b.max_coord( 0 ) )*( h-b.max_coord( 0 ) );
+    
+    h = node.position_[ 1 ];
+    if( h < b.min_coord( 1 ) ) distance += ( b.min_coord( 1 )-h )*( b.min_coord( 1 )-h );
+    if( h > b.max_coord( 1 )) distance += ( h-b.max_coord( 1 ) )*( h-b.max_coord( 1 ) );
+
+    h = node.position_[ 2 ];
+    if( h<b.min_coord( 2 ) ) distance += ( b.min_coord( 2 )-h )*( b.min_coord( 2 )-h );
+    if( h>b.max_coord( 2 ) ) distance += ( h-b.max_coord( 2 ) )*( h-b.max_coord( 2 ) );
+
+    return distance;
+  }
+
+  template <typename TreeTraits>
+  float max_distance_to_rectangle( const DeformationGraphNode& node,
+                                   const CGAL::Kd_tree_rectangle<TreeTraits>& b) const {
+    float h = node.position_[ 0 ];
+    float d0 = ( h>=( b.min_coord( 0 )+b.max_coord( 0 ) )/2.0 ) ?
+        ( h-b.min_coord( 0 ) )*( h-b.min_coord( 0 ) ) :
+        ( b.max_coord( 0 )-h )*( b.max_coord( 0 )-h );
+
+    h = node.position_[ 1 ];
+    float d1 = ( h>=( b.min_coord( 1 )+b.max_coord( 1 ) )/2.0 ) ?
+        ( h-b.min_coord( 1 )*( h-b.min_coord( 1 ) ) ) :
+        ( b.max_coord( 1 )-h )*( b.max_coord( 1 )-h );
+
+    h = node.position_[ 2 ];
+    float d2 = ( h>= ( b.min_coord( 2 )+b.max_coord( 2 ) )/2.0 ) ?
+        ( h-b.min_coord( 2 ) )*( h-b.min_coord( 2 ) ) :
+        ( b.max_coord( 2 )-h )*( b.max_coord( 2 )-h );
+
+    return d0+d1+d2;    
+  }
+};
+
+/**private test method*/
+void EDS::calculate_k_nearest_nodes_using_dgnode(  ) {
+  typedef CGAL::Search_traits<float,DeformationGraphNode,const float*,Construct_coord_iterator> TreeTraits;
+  typedef CGAL::Orthogonal_k_neighbor_search<TreeTraits,Distance> K_neighbor_search;
+  typedef K_neighbor_search::Tree Tree;
+  
+  Tree tree( deformation_graph_->nodes_.begin(  ),deformation_graph_->nodes_.end(  ) );
+  DeformationGraphNode query;
+    
+  for( Vertex_iterator pVertex = mesh_->vertices_begin(  );
+       pVertex != mesh_->vertices_end(  ); pVertex++ ) {
+    query.position_[ 0 ] = pVertex->point(  ).x(  );
+    query.position_[ 1 ] = pVertex->point(  ).y(  );
+    query.position_[ 2 ] = pVertex->point(  ).z(  );
+    
+    K_neighbor_search search( tree,query,K+1 );
+    //debug: print the results
+    for (K_neighbor_search::iterator it = search.begin(  );
+         it != search.end(  ); ++it) {
+      std::cout<<it->first<<":  "<< it->second <<std::endl;
+      //now , store the results
+      
+      
+    }
+  }  
+  
 }
 
 /**The eds target_name should equal to CMake's target_name*/

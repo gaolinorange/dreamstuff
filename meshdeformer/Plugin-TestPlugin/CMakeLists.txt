@@ -15,6 +15,6 @@ add_definitions(-DQT_PLUGIN)
 add_definitions(-DQT_SHARED)
 add_definitions(-DQT_NO_DEBUG)
 
-add_library(test_plugin SHARED TestPlugin.cpp ${TestPlugin_MOC})
-#add_library(test_plugin STATIC TestPlugin.cpp ${TestPlugin_MOC})
+#add_library(test_plugin SHARED TestPlugin.cpp ${TestPlugin_MOC})
+add_library(test_plugin STATIC TestPlugin.cpp ${TestPlugin_MOC})
 target_link_libraries(test_plugin ${QT_LIBRARIES})
