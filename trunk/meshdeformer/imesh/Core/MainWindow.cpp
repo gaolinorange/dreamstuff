@@ -318,7 +318,7 @@ void MainWindow::loadPlugins(  ) {
 
       MeshCoreInterface* meshCoreInterface = qobject_cast<MeshCoreInterface*>( plugin );
       if( meshCoreInterface ) {
-        connect( this, SIGNAL( updatePluginMesh( const MeshCore* ) ), plugin, SLOT( setMesh( const MeshCore* ) ) );
+        connect( this, SIGNAL( updatePluginMesh( MeshCore* ) ), plugin, SLOT( setMesh( MeshCore* ) ) );
         plugin_info.interfaces_name.append( QString( "MeshCoreInterface" ) );
       }
 

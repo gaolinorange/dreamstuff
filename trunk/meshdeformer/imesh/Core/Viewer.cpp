@@ -116,6 +116,7 @@ void Viewer::reloadMesh(QString& filename)
   MeshBuilder<Polyhedron::HalfedgeDS> builder(loader);
   mesh_->delegate(builder);
   mesh_->set_indices();
+  mesh_->init_index_to_vertex_map();
 
   QString message;
   QTextStream(&message)<<"Mesh info: vertices num: "<<mesh_->size_of_vertices()<<" facet num: "<<mesh_->size_of_facets();

@@ -1,4 +1,4 @@
-//-*-c++-mode-*-
+//-*-c++-*-
 //MeshCore.h --- The Core Mesh Data structure storage
 // copyright (c) 2010 dreamway
 // 
