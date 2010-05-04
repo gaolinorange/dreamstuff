@@ -153,6 +153,9 @@ website: cg.xplore.cn")
 
 ;;;;;;;;;;;;;CEDET settings;;;;;;;;;;;;;;;;;;;;;;;;;
 (load-file "~/.emacs.d/cedet/common/cedet.el")
+(require 'semantic-ia)
+(require 'eldoc)
+(require 'semantic-gcc)
 
 ;;enable EDE(Project management) features
 (global-ede-mode 1)
@@ -164,7 +167,6 @@ website: cg.xplore.cn")
 ;;(semantic-load-enable-code-helpers)
 
 
-(require 'semantic-ia)
 ;;work with C++
 (setq qt4-base-dir "/usr/local/Trolltech/Qt-4.6.0/include")
 (semantic-add-system-include qt4-base-dir 'c++-mode)

@@ -17,16 +17,20 @@
 #define _DEFORMATIONGRAPH_H_
 
 #include <vector>
+#include <set>
 using namespace std;
 
 #include "MeshCore/MeshCore.h"
 
+class DeformationGraph;
+
 class DeformationGraphNode
 {
  public:
-  DeformationGraphNode();
+  DeformationGraphNode(  );
+  DeformationGraphNode(int id);
   virtual ~DeformationGraphNode();
-
+  
   void renderNode(  );
   void renderConnection(  );
   
@@ -35,16 +39,30 @@ class DeformationGraphNode
 
   float position_[ 3 ];
 
-  vector<DeformationGraphNode> kNearestNodes_;
-
+  //  set<DeformationGraphNode,DeformationGraphNodeCmp> neighbor_nodes_;
+  set<int> neighbor_nodes_;
+ public:
+  void set_parent_deformation_graph( DeformationGraph* _graph );
+ private:
+  DeformationGraph* parent_graph_;
+ public:
+  void insert_neighbor_node( const int _neighbor_id );
+  void set_id( int _id );
+  int id(  );
+  //debug helper
+  void print(  );
  public:
   void set_node_size( float _size );
   float node_size(  );
   void set_node_color( float _color[ 3 ] );
+ private:
+  int id_;
  private://for rendering
   float node_size_;
   float node_color_[ 3 ];
 };
+
+
 
 class DeformationGraph
 {
@@ -54,11 +72,16 @@ class DeformationGraph
  public:
   void construct( MeshCore* _mesh, int _target_number );
   void render(  );
- private:
-  vector<DeformationGraphNode> nodes_;
+
+  //Shared internal data
+  std::vector<DeformationGraphNode> nodes_;
   int num_nodes;
+ private:
   MeshCore* mesh_;
 };
+
+
+  
 
 
 #endif /* _DEFORMATIONGRAPH_H_ */
