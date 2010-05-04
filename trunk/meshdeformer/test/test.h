@@ -9,8 +9,11 @@
 #include "testGoogleLog.h"
 #include "testCurvature.h"
 
+//for EDS plugin
 #include "testDeformationGraph.h"
 
+//#include "testEDS.h"
+// why using this would occur segmentation fault
 //#include "testTestPlugin.h"
 //#include "testPluginLoading.h"   //TODO
 

@@ -48,7 +48,7 @@ class TestPlugin : public QObject,
  public:
   TestPlugin(  ) {
     test_widget_ = new QWidget(  );
-    layout_ = new QVBoxLayout( test_widget_ );
+    layout_ = new QVBoxLayout( );
     button_ = new QPushButton( tr( "TestButton One") );
     label_ = new QLabel( tr( "Test Label" ) );
     checkbox_ = new QCheckBox( tr( "Test Checkbox" ) );
@@ -98,8 +98,6 @@ public slots:
   QString name(  ) const {
     return QString( "Test Plugin" );
   }
-
-
 };
 
 #endif /* _TESTPLUGIN_H_ */

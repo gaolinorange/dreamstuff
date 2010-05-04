@@ -4,7 +4,8 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ../cmake)
 
 include_directories(../imesh)
 include_directories(..)
-
+link_directories(plugins)
+link_directories(../build/bin/plugins)
 
 
 find_package(Boost REQUIRED)
@@ -75,6 +76,7 @@ set(TEST_SOURCES
   testMain.cpp
   ${TestPlugin_MOC}
   ../Plugin-EDS/DeformationGraph.cpp #for testing DeformationGraph
+  ../Plugin-EDS/EDS.cpp
   )
 
 
@@ -90,4 +92,5 @@ target_link_libraries(test
   ${glog_LIBRARY}
   curvature  #the curvature plugin
   eds
+  test_plugin
   )

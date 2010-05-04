@@ -94,14 +94,9 @@ SET(APP_HEADERS
 #qt4_wrap_cpp(MainWindow_MOC MainWindow.h)
 qt4_wrap_cpp(SOURCE_MOCS ${APP_HEADERS})
 
-
-
 ADD_DEFINITIONS(${QT_DEFINITIONS})
 
 add_subdirectory(MeshCore)#the MeshCore subcore
-#add_subdirectory(Math)	#the math subcore
-#add_subdirectory(Renderer)
-
 
 add_executable(${target_name}
   main.cpp 

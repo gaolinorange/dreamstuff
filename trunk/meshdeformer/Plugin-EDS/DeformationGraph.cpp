@@ -40,6 +40,15 @@ DeformationGraphNode::~DeformationGraphNode(  ) {
   neighbor_nodes_.clear(  );
 }
 
+ostream& operator<<( ostream& out, const DeformationGraphNode& node ) {
+  out<<"id: "<<node.id_<<" : "<<
+      node.position_[ 0 ]<<","<<
+      node.position_[ 1 ]<<","<<
+      node.position_[ 2 ]<<std::endl;
+  return out;
+}
+
+
 void DeformationGraphNode::set_parent_deformation_graph( DeformationGraph* _graph ) {
   parent_graph_ = _graph;
 }
@@ -83,6 +92,11 @@ void DeformationGraphNode::set_node_color( float _color[ 3 ] ) {
   node_color_[ 1 ] = _color[ 1 ];
   node_color_[ 2 ] = _color[ 2 ];
 }
+void DeformationGraphNode::set_connection_color( float _color[ 3 ] ) {
+  connection_color_[ 0 ] = _color[ 0 ];
+  connection_color_[ 1 ] = _color[ 1 ];
+  connection_color_[ 2 ] = _color[ 2 ];
+}
 
 void DeformationGraphNode::insert_neighbor_node( const int _neighbor_id ) {
   neighbor_nodes_.insert( _neighbor_id );
@@ -96,18 +110,25 @@ void DeformationGraphNode::renderNode(  ) {
 }
 
 void DeformationGraphNode::renderConnection(  ) {
-  printf("todo: glrendering\n"  );
+  glColor3f( connection_color_[ 0 ],connection_color_[ 1 ],connection_color_[ 2 ] );
   //Print neighbor nodes
   set<int>::iterator pNode;
   for ( pNode = neighbor_nodes_.begin(  );
         pNode != neighbor_nodes_.end(); ++pNode) {
     int id = *pNode;
-    printf( "====selfId:%d<====>Node %d==========\n",id_,id );
+    glBegin( GL_LINE );
+    /*    printf( "====selfId:%d<====>Node %d==========\n",id_,id );
     printf( "connection: ( %.2f,%.2f,%.2f ) <=> ( %.2f,%.2f,%.2f )\n",
             position_[ 0 ],position_[ 1 ],position_[ 2 ],
             parent_graph_->nodes_[ id ].position_[ 0 ],
             parent_graph_->nodes_[ id ].position_[ 1 ],
             parent_graph_->nodes_[ id ].position_[ 2 ]);
+    */
+    glVertex3f( position_[ 0 ],position_[ 1 ],position_[ 2 ] );
+    glVertex3f( parent_graph_->nodes_[ id ].position_[ 0 ],
+                parent_graph_->nodes_[ id ].position_[ 1 ],
+                parent_graph_->nodes_[ id ].position_[ 2 ]);
+    glEnd(  );
   }
 }
 
@@ -150,9 +171,11 @@ void DeformationGraphNode::print(  ) {
 
 
 
+
 /////////////DeformationGraph////////////////
 DeformationGraph::DeformationGraph(  ) {
   nodes_.clear(  );
+  
 }
 
 DeformationGraph::~DeformationGraph(  ) {
@@ -224,7 +247,26 @@ void DeformationGraph::render(  ) {
   }
 }
 
+void DeformationGraph::set_connection_color( float _color[ 3 ] ) {
+  for( vector<DeformationGraphNode>::iterator pNode = nodes_.begin(  );
+       pNode != nodes_.end(  ); pNode++ ) {
+    pNode->set_connection_color( _color );
+  }
+}
 
+void DeformationGraph::set_node_size( float _size ) {
+  for( vector<DeformationGraphNode>::iterator pNode = nodes_.begin(  );
+       pNode != nodes_.end(  ); pNode++ ) {
+    pNode->set_node_size( _size );
+  }
+}
+
+void DeformationGraph::set_node_color( float _color[ 3 ] ) {
+  for( vector<DeformationGraphNode>::iterator pNode = nodes_.begin(  );
+       pNode != nodes_.end(  ); pNode++ ) {
+    pNode->set_node_color( _color );
+  }
+}
 
 //  
 // 

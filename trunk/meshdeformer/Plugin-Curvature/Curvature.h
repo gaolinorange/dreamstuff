@@ -60,7 +60,6 @@ class Curvature : public QObject,
     vertex_voronoiarea_properties_ = boost::make_assoc_property_map<VertexVoroniAreaMap>( vertex_voronoiarea_map_ );
 
     vertex_meancurvature_properties_ = boost::make_assoc_property_map<Vertex_MeanCurvature_Map>( vertex_meancurvature_map_ );
-
     vertex_gaussiancurvature_properties_ = boost::make_assoc_property_map<Vertex_GaussianCurvature_Map>( vertex_gaussiancurvature_map_ );
   }
   virtual ~Curvature() {
