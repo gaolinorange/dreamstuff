@@ -3,6 +3,7 @@
 #include <QtDebug>
 #include <QtGui>
 #include <iostream>
+#include <QString>
 
 #include "Common/globals.hpp"
 #include "Viewer.h"
@@ -85,16 +86,44 @@ void Viewer::draw()
 		testDrawCube();
 	}
 	else{
-		if(pMeshModel){
-			pMeshModel->render();
+		if(mesh_){
+			mesh_->render();
 		}  
 	}
 }
 
 void Viewer::reloadMesh(QString& filename)
 {
-	pMeshModel->loadMesh(filename);
-	Iso_cuboid_3 box = pMeshModel->get_bounding_box();
+  // converte aiMesh to MeshCore format
+  if(mesh_)
+  {
+    delete mesh_; mesh_ = 0;
+  }
+  if(mesh_ == 0)
+    mesh_ = new MeshCore();
+
+  //TODO: copy the data in aiMesh to MeshCore style pMesh
+  MeshLoader * loader = new MeshLoader();
+  bool ret = loader->load(filename.toAscii().data());
+  if(ret == false)
+  {
+    emit log(QString(tr( "MeshLoader failed to load the mesh")));
+  }
+  else{
+    emit log(QString(QObject::tr("MeshLoader load the mesh ok")));
+  }
+  
+  MeshBuilder<Polyhedron::HalfedgeDS> builder(loader);
+  mesh_->delegate(builder);
+  mesh_->set_indices();
+
+  QString message;
+  QTextStream(&message)<<"Mesh info: vertices num: "<<mesh_->size_of_vertices()<<" facet num: "<<mesh_->size_of_facets();
+  emit log(message);
+
+  delete loader;//delete local meshloader to save memory
+    
+	Iso_cuboid_3 box = mesh_->get_bounding_box();
 
 	LOG(INFO)<<"retrived bounding box: ("
 			     <<box.xmin()<<","

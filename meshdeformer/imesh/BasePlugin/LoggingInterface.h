@@ -7,7 +7,7 @@ class LoggingInterface{
  public:
   virtual ~LoggingInterface(){}
  signals:
-  virtual void log(const QString& logMessage) = 0;
+  virtual void log(const QString& ) = 0;
 };
 
 Q_DECLARE_INTERFACE(LoggingInterface,"imesh.baseplugin.logginginterface");

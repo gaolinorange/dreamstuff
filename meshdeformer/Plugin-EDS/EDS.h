@@ -26,6 +26,8 @@
 #include "BasePlugin/BaseInterface.h"
 #include "BasePlugin/ToolBoxInterface.h"
 #include "BasePlugin/LoggingInterface.h"
+#include "BasePlugin/MeshCoreInterface.h"
+
 
 #include "MeshCore/MeshCore.h"
 #include "DeformationGraph.h"

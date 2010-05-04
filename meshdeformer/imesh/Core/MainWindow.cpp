@@ -35,6 +35,7 @@
 #include "BasePlugin/LoggingInterface.h"
 #include "BasePlugin/StatusBarInterface.h"
 #include "BasePlugin/ToolBoxInterface.h"
+#include "BasePlugin/MeshCoreInterface.h"
 
 
 void MainWindow::setupMenu()
@@ -162,6 +163,8 @@ void MainWindow::fileOpen()
 		QString(tr("Mesh files(*.off *.obj *.ply *)"))
 		);
 	mainViewer_->reloadMesh(filename);
+
+  emit updatePluginMesh( mainViewer_->mesh(  ) );
 }
 
 void MainWindow::fileSaveImage()
@@ -313,7 +316,11 @@ void MainWindow::loadPlugins(  ) {
         plugin_info.interfaces_name.append( QString( "ToolBoxInterface" ) );
       }
 
-
+      MeshCoreInterface* meshCoreInterface = qobject_cast<MeshCoreInterface*>( plugin );
+      if( meshCoreInterface ) {
+        connect( this, SIGNAL( updatePluginMesh( const MeshCore* ) ), plugin, SLOT( setMesh( const MeshCore* ) ) );
+        plugin_info.interfaces_name.append( QString( "MeshCoreInterface" ) );
+      }
 
 
       //InitializePlugin
