@@ -1,0 +1,26 @@
+* k nearest neighbor searching
+
+Spatial searching typically consists of a preprocessing phase and a searching phase.
+In the preprocessing phase one builds a search structure and in the searching phase
+one makes the queries. In the preprocesing phase the user builds a tree data structure
+storing the spatial data. In the searching phase the user invokes a searching method
+to browse the spatial data.
+
+** Neighbor searching is implemented by the following four classes:
+*** CGAL::Orthogonal_k_neighbor_search
+*** CGAL::K_neighbor_search<Traits, GeneralDistance, Splitter, SpatialTree>
+
+** Splitting Rules
+   
+
+
+
+
+
+
+
+Ref:
+CGALmanual: chapter 57 dD Spatial Searching
+
+
+
