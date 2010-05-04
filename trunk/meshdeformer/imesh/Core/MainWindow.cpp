@@ -289,9 +289,6 @@ void MainWindow::loadPlugins(  ) {
         plugin_info.name = baseInterface->name(  );
         plugin_info.description = baseInterface->description(  );
         plugin_info.interfaces_name.append( QString( "BaseInterface" ) );
-
-        //Invoke Plugin initialize method
-        QMetaObject::invokeMethod( plugin,"initializePlugin",Qt::DirectConnection );
       }
       
       //Plugin's LoggingInterface
@@ -314,6 +311,15 @@ void MainWindow::loadPlugins(  ) {
       if( toolBoxInterface ) {
         connect( plugin, SIGNAL( addToolBox( QString, QWidget* ) ), this, SLOT( slotAddToolBox( QString, QWidget* ) ) );
         plugin_info.interfaces_name.append( QString( "ToolBoxInterface" ) );
+      }
+
+
+
+
+      //InitializePlugin
+      if( baseInterface ) {
+        //Invoke Plugin initialize method
+        QMetaObject::invokeMethod( plugin,"initializePlugin",Qt::DirectConnection );
       }
     } else {
       qDebug(  )<<"could not instance this plugin: "<<fileName;
