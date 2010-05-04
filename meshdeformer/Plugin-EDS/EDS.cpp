@@ -42,11 +42,16 @@ void EDS::setupWidgets(  ) {
 
     show_deformation_graph_button_ = new QPushButton( QString( tr( "Show Deformation Graph" ) ) );
     connect( show_deformation_graph_button_, SIGNAL( clicked(  ) ), this, SLOT( show_deformation_graph(  ) ) );
+
+    calculate_k_nearest_nodes_button_ = new QPushButton( QString( tr( "Calculate K nearest nodes" ) ) );
+    connect( calculate_k_nearest_nodes_button_, SIGNAL( clicked(  ) ), this, SLOT( calculate_k_nearest_nodes(  ) ) );
+
     QVBoxLayout* layout = new QVBoxLayout(  );
     //layout->addChildLayout( layoutK );
     layout->addLayout( layoutK );
     layout->addWidget( construct_dg_button_ );
     layout->addWidget( show_deformation_graph_button_ );
+    layout->addWidget( calculate_k_nearest_nodes_button_ );
     
     toolbox_widget_->setLayout( layout );
 }
@@ -73,7 +78,7 @@ void EDS::show_deformation_graph(  ) {
    see CGAL manual Chapter 57 for reference
 */
 void EDS::calculate_k_nearest_nodes(  ) {
-  //  calculate_k_nearest_nodes_using_point(  )  ;
+  //calculate_k_nearest_nodes_using_point(  )  ;
   calculate_k_nearest_nodes_using_dgnode(  );
 }
 
@@ -200,6 +205,11 @@ void EDS::calculate_k_nearest_nodes_using_dgnode(  ) {
     query.position_[ 0 ] = pVertex->point(  ).x(  );
     query.position_[ 1 ] = pVertex->point(  ).y(  );
     query.position_[ 2 ] = pVertex->point(  ).z(  );
+
+    printf("Vertex %d : (%.2f, %.2f, %.2f) \n", pVertex->id(),
+	   pVertex->point().x(),
+	   pVertex->point().y(),
+	   pVertex->point().z());
     
     K_neighbor_search search( tree,query,K+1 );
     //debug: print the results
@@ -207,6 +217,7 @@ void EDS::calculate_k_nearest_nodes_using_dgnode(  ) {
          it != search.end(  ); ++it) {
       std::cout<<it->first<<":  "<< it->second <<std::endl;
       //now , store the results
+      
       
       
     }

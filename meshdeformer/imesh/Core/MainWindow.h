@@ -63,7 +63,7 @@ class MainWindow : public QMainWindow
     }
   //for MeshCoreInterface
 signals:
-  void updatePluginMesh( const MeshCore* );
+  void updatePluginMesh( MeshCore* );
 
   //UI related
  private:

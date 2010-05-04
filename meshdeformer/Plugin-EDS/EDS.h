@@ -1,4 +1,4 @@
-/* -*-c++-mode-*-
+/* -*-c++-*-
   EDS.h --- The Main class for implemneting Embedded Deformation for Shape Manipulation algorithm
  * copyright (c) 2010 dreamway
  */
@@ -38,12 +38,15 @@
 class EDS : public QObject,
             public BaseInterface,
             public ToolBoxInterface,
-            public LoggingInterface            
+            public LoggingInterface,
+            public MeshCoreInterface
 {
  Q_OBJECT
   Q_INTERFACES( BaseInterface );
   Q_INTERFACES( ToolBoxInterface );
-  Q_INTERFACES( LoggingInterface )
+  Q_INTERFACES( LoggingInterface );
+  Q_INTERFACES( MeshCoreInterface)
+    
       
  public:
   EDS() {
@@ -84,7 +87,7 @@ class EDS : public QObject,
   //ToolBoxInterface
   void addToolBox( QString, QWidget* );
 
- public:
+ public slots:
   void setMesh( MeshCore* _mesh ) {
     mesh_ = _mesh;
   }
@@ -130,6 +133,7 @@ class EDS : public QObject,
   QWidget* toolbox_widget_;
   QPushButton* construct_dg_button_;
   QPushButton* show_deformation_graph_button_;
+  QPushButton* calculate_k_nearest_nodes_button_;
 };
 
 
