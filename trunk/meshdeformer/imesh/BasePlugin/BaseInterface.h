@@ -24,6 +24,7 @@ class BaseInterface {
   }
 
 public slots:
+  virtual void initializePlugin(  ) = 0;
   virtual void pluginInitialized(  ) = 0;
 
  public:
