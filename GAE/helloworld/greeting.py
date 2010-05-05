@@ -12,6 +12,10 @@ class MainPage(webapp.RequestHandler):
         else:
             self.redirect(users.create_login_url(self.request.uri))
 
+        astring = "This is a test strign"
+
+
+
 application = webapp.WSGIApplication(
     [('/',MainPage)],
     debug=True)
