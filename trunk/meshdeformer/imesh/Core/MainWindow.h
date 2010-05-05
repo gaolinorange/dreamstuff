@@ -1,4 +1,4 @@
-/**
+/** -*-c++-*-
    Mesh Deformer
    An experimental environment for mesh deformation
    @authro: jingwenlai@163.com
@@ -44,7 +44,7 @@ class MainWindow : public QMainWindow
       setupStatusBar( );
       setupToolBox(  );
       
-      //      mainModel_ = new MeshModel();
+      renderers_info_.clear(  );
       mainViewer_ = new Viewer(this,NULL,flags);
 
       setupMainLayout(  );
@@ -53,6 +53,7 @@ class MainWindow : public QMainWindow
       main_widget->setLayout( mainLayout_ );
       setCentralWidget(main_widget);
 
+      plugins_info_.clear(  );
       loadPlugins(  );
     }
   ~MainWindow()
@@ -60,6 +61,8 @@ class MainWindow : public QMainWindow
       delete mainViewer_;
       delete mainLayout_;
       delete toolbox_;
+      plugins_info_.clear(  );
+      renderers_info_.clear(  );
     }
   //for MeshCoreInterface
 signals:
@@ -106,7 +109,8 @@ private slots:
   //ToolBoxInterface
   void slotAddToolBox( QString, QWidget* );
 
-  
+ private:
+  QVector<RendererInfo> renderers_info_;
  private:
   //The main displaying widget
   Viewer * mainViewer_;

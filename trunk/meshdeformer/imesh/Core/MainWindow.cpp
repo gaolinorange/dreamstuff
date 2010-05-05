@@ -22,7 +22,8 @@
 #include <QString>
 #include <QFileDialog>
 #include <QDir>
-
+#include <QDebug>
+#include <glog/logging.h>
 
 #include "widgets/consoleWidgets/ConsoleWidgetManager.h"
 #include "globals.hpp"
@@ -36,53 +37,55 @@
 #include "BasePlugin/StatusBarInterface.h"
 #include "BasePlugin/ToolBoxInterface.h"
 #include "BasePlugin/MeshCoreInterface.h"
+#include "BasePlugin/RenderInterface.h"
+
 
 
 void MainWindow::setupMenu()
 {
-   mainMenuBar = new QMenuBar(this);
-   fileMenu = new QMenu(tr("&File"),mainMenuBar);
+   mainMenuBar                     = new QMenuBar(this);
+   fileMenu                        = new QMenu(tr("&File"),mainMenuBar);
    
-   openAction = new QAction(tr("&Open"),fileMenu);
+   openAction                      = new QAction(tr("&Open"),fileMenu);
    connect(openAction,SIGNAL(triggered()),this,SLOT(fileOpen()));
    fileMenu->addAction(openAction);
 
-   actSave = new QAction(tr("&Save"),fileMenu);
+   actSave                         = new QAction(tr("&Save"),fileMenu);
    connect(actSave,SIGNAL(triggered()),this,SLOT(fileSave()));
    fileMenu->addAction(actSave);
 
    
-   actSaveImage = new QAction(tr("&Save Image"),fileMenu);
+   actSaveImage                    = new QAction(tr("&Save Image"),fileMenu);
    actSaveImage->setShortcut(QKeySequence(tr("Ctrl+S")));
    connect(actSaveImage,SIGNAL(triggered()),this,SLOT(fileSaveImage()));
    fileMenu->addAction(actSaveImage);
 
    fileMenu->addSeparator();
 
-   exitAction = new QAction(tr("E&xit"),fileMenu);
+   exitAction                      = new QAction(tr("E&xit"),fileMenu);
    connect(exitAction,SIGNAL(triggered()),this,SLOT(fileExit()));
    fileMenu->addAction(exitAction);
    mainMenuBar->addMenu(fileMenu);
 
-   viewMenu = new QMenu(tr("&View"),mainMenuBar);
-   actViewLog = new QAction(tr("&Log"),viewMenu);
+   viewMenu                        = new QMenu(tr("&View"),mainMenuBar);
+   actViewLog                      = new QAction(tr("&Log"),viewMenu);
    connect(actViewLog,SIGNAL(triggered()),this,SLOT(viewLog()));
    viewMenu->addAction(actViewLog);
-   actViewWireframe = new QAction(tr("&WireFrame"),viewMenu);
+   actViewWireframe                = new QAction(tr("&WireFrame"),viewMenu);
    connect(actViewWireframe,SIGNAL(triggered()),this,SLOT(viewWireFrame()));
    viewMenu->addAction(actViewWireframe);
 
-   actViewSolidFlat = new QAction(tr("&Solid Flat"),viewMenu);
+   actViewSolidFlat                = new QAction(tr("&Solid Flat"),viewMenu);
    connect(actViewSolidFlat,SIGNAL(triggered()),this,SLOT(viewSolidFlat()));
    viewMenu->addAction(actViewSolidFlat);
    
-   actViewSolidSmooth = new QAction(tr("&Solid Smooth"),viewMenu);
+   actViewSolidSmooth              = new QAction(tr("&Solid Smooth"),viewMenu);
    connect(actViewSolidSmooth,SIGNAL(triggered()),this,SLOT(viewSolidSmooth()));
    viewMenu->addAction(actViewSolidSmooth);
    mainMenuBar->addMenu(viewMenu);
 
    /*
-   qglViewerMenu_ = new QMenu( tr( "Viewer Settings" ), mainMenuBar );
+   qglViewerMenu_                  = new QMenu( tr( "Viewer Settings" ), mainMenuBar );
    actQGLViewerSetBackgroundColor_ = new QAction( tr( "Set Background Color" ), qglViewerMenu_ );
    connect( actQGLViewerSetBackgroundColor_, SIGNAL( triggered(  ) ), this, SLOT( slotChangeViewerBackgroundColor(  ) ) );
    qglViewerMenu_->addAction( actQGLViewerSetBackgroundColor_ );
@@ -90,25 +93,25 @@ void MainWindow::setupMenu()
    mainMenuBar->addMenu( qglViewerMenu_ );
    */
 
-   helpMenu = new QMenu(tr("&Help"),mainMenuBar);
-   aboutAction = new QAction(tr("&About"),helpMenu);
+   helpMenu                        = new QMenu(tr("&Help"),mainMenuBar);
+   aboutAction                     = new QAction(tr("&About"),helpMenu);
    connect(aboutAction,SIGNAL(triggered()),this,SLOT(helpAbout()));
    helpMenu->addAction(aboutAction);
    mainMenuBar->addMenu(helpMenu);
 
-   infoMenu = new QMenu(tr("Info"),mainMenuBar);
-   actInfoBoundingBox = new QAction(tr("BoundingBox"),infoMenu);
+   infoMenu                        = new QMenu(tr("Info"),mainMenuBar);
+   actInfoBoundingBox              = new QAction(tr("BoundingBox"),infoMenu);
    connect(actInfoBoundingBox,SIGNAL(triggered()),this,SLOT(infoPrintBoundingBox()));
    infoMenu->addAction(actInfoBoundingBox);
-   actInfoShowDebugInfo = new QAction(tr("Debug Info"),infoMenu);
+   actInfoShowDebugInfo            = new QAction(tr("Debug Info"),infoMenu);
    connect(actInfoShowDebugInfo,SIGNAL(triggered()),this,SLOT(infoShowDebugInfo()));
    infoMenu->addAction(actInfoShowDebugInfo);
 
-   actInfoToggleRunningMode = new QAction(tr("ToggleRunningMode"),infoMenu);
+   actInfoToggleRunningMode        = new QAction(tr("ToggleRunningMode"),infoMenu);
    connect(actInfoToggleRunningMode,SIGNAL(triggered()),this,SLOT(infoToggleRunningMode()));
    infoMenu->addAction(actInfoToggleRunningMode);
 
-   actInfoPluginDialog = new QAction(tr("Plugin Dialog"),infoMenu);
+   actInfoPluginDialog             = new QAction(tr("Plugin Dialog"),infoMenu);
    connect(actInfoPluginDialog,SIGNAL(triggered()),this,SLOT(infoPluginDialog()));
    infoMenu->addAction(actInfoPluginDialog);
 				      
@@ -127,12 +130,6 @@ void MainWindow::setupToolBar()
 
 void MainWindow::setupToolBox(  ) {
   toolbox_ = new QToolBox(  );
-  QPushButton* button = new QPushButton(QString("Button"),toolbox_);
-  toolbox_->addItem(button,QString("TestButton"));
-
-  QLabel* label = new QLabel(QString("label"),toolbox_);
-  toolbox_->addItem(label,QString("TestLabel"));
-		    
 }
 
 void MainWindow::setupMainLayout(  ) {
@@ -321,6 +318,17 @@ void MainWindow::loadPlugins(  ) {
         connect( this, SIGNAL( updatePluginMesh( MeshCore* ) ), plugin, SLOT( setMesh( MeshCore* ) ) );
         plugin_info.interfaces_name.append( QString( "MeshCoreInterface" ) );
       }
+      //RenderInterface
+      RenderInterface* renderInterface = qobject_cast<RenderInterface*>( plugin );
+      if( renderInterface ) {
+        //TODO: howto use the RenderInterface? [ confused ]
+        RendererInfo renderer_info;
+        //        renderer_info.name = plugin->metaObject(  ).className(  );
+        renderer_info.name = plugin->objectName(  );
+        renderer_info.plugin = plugin;
+        renderers_info_.push_back( renderer_info );
+        plugin_info.interfaces_name.append( QString( "RenderIntrface" ) );
+      }
 
 
       //InitializePlugin
@@ -335,6 +343,12 @@ void MainWindow::loadPlugins(  ) {
     plugins_info_.append( plugin_info );
   }
 
+  LOG( WARNING )<<"Renderers_Info size is: "<<renderers_info_.size(  );
+  for (QVector<RendererInfo>::iterator renderer = renderers_info_.begin(  );
+       renderer  != renderers_info_.end(  ); ++renderer) {
+    qDebug(  )<<"renderer_name: "<<renderer->name;
+  }
+  
   //Emit a signal to setup all plugins
   emit pluginsInitialized(  );
 }
