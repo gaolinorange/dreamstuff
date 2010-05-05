@@ -1,4 +1,4 @@
-/**
+/** -*-c++-*-
    Mesh Deformer
    An experimental environment for mesh deformation
    @author: jingwenlai@163.com
@@ -15,9 +15,9 @@
 #include "MeshCore/MeshCore.h"
 #include "MeshCore/MeshBuilder.h"
 #include "MeshCore/MeshLoader.h"
-#include "BasePlugin/LoggingInterface.h"
 
-//#include "widgets/consoleWidgets/ConsoleWidgetManager.h"
+#include "BasePlugin/LoggingInterface.h"
+#include "BasePlugin/RenderInterface.h"
 
 #include <QGLViewer/qglviewer.h>
 
@@ -37,10 +37,13 @@ enum PolygonMode{
    to make the creation of Rendering more easy
 */
 class Viewer : public QGLViewer,
-               public LoggingInterface
+               public LoggingInterface,
+               public RenderInterface               
 {
   Q_OBJECT
-  Q_INTERFACES( LoggingInterface )
+  Q_INTERFACES( LoggingInterface );
+  Q_INTERFACES( RenderInterface )
+      
     
 public:
   Viewer(QWidget * parent = 0,const QGLWidget * shareWidget = 0,Qt::WindowFlags flags = 0)
@@ -75,14 +78,16 @@ public:
 	   @detailed: currently, I use assimp library to load the mesh.
   */
 	void reloadMesh(QString& filename);
-
+  //RenderInterface
+ public:
+  void render(  );
 protected:
   void initializeGL();
   void resizeGL(int w,int h);
   void updateGL();
   void paintGL();
 protected:
-  void draw();
+  //  void draw();
   void testDrawCube();
 public:
 	void setPolygonMode(PolygonMode mode)

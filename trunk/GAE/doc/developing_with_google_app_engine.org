@@ -58,3 +58,16 @@ can do :
 
 
 
+
+* Datastore
+  Datastore is not a relational database or a facade for one; it is a public API
+  for accessing Google's Bigtable high-performance distributed database system.
+  Understanding Bigtable concept and how it's architected is helpful before coding
+  data manipulation services for the Datastore.
+
+  The *Query* class provides a Datastore API for preparing queries based on application-defined
+  entities. *GqlQuery* is the lowest-level querying API for the Datastore. It uses the App Engine
+  GQL language, and it's limited to data searches and retrieval operations(get(),fetch(),count(),etc.)
+
+  
+  

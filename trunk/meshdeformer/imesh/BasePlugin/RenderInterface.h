@@ -1,4 +1,4 @@
-/* MeshRenderInterface.h --- Some extra rendering for decorated mesh data
+/* RenderInterface.h --- Some extra rendering for decorated mesh data
  * copyright (c) 2010 dreamway
  */
 
@@ -10,26 +10,26 @@
  */
 
 /* Commentary: 
- * MeshRenderInterface will serve as an extra mesh data renderer,
+ * RenderInterface will serve as an extra mesh data renderer,
  * every plugin who need to render the extra mesh data should derived
  * this Interface
  */
-#ifndef _MESHRENDERINTERFACE_H_
-#define _MESHRENDERINTERFACE_H_
+#ifndef _RENDERINTERFACE_H_
+#define _RENDERINTERFACE_H_
 
 /**
    @brief: use for render extra mesh data
 */
-class MeshRenderInterface
+class RenderInterface
 {
  public:
-  virtual ~MeshRenderInterface() {
+  virtual ~RenderInterface() {
   }
  public:
   virtual void render(  ) = 0;
 };
 
-Q_DECLARE_INTERFACE( MeshRenderInterface, "imesh.meshrenderinterface" );
+Q_DECLARE_INTERFACE( RenderInterface, "imesh.renderinterface" );
 
-#endif /* _MESHRENDERINTERFACE_H_ */
-/* MeshRenderInterface.h ends here */
+#endif /* _RENDERINTERFACE_H_ */
+/* RenderInterface.h ends here */

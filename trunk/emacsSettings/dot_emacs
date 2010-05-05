@@ -285,9 +285,13 @@ website: cg.xplore.cn")
 
 
 
+
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Settings for Python;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ref: www.cnblogs.com/coderzh/archive/2009/12/26/emacspythonide.html
 (add-to-list 'load-path
 	     "~/.emacs.d/python")
+
 
 ;;(require 'python-mode)
 ;; 1. yassnipet is already installed
@@ -364,6 +368,11 @@ website: cg.xplore.cn")
                                (local-set-key [f8] 'flymake-mode)
                                (local-set-key [f9] 'python-mode)
                                ))
+
+;; additional python emacs setting from
+;; http://enigmacurry.com/category/emacs/
+(require 'pythondev)
+
 
 
 

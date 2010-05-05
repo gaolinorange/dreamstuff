@@ -72,7 +72,8 @@ void Viewer::paintGL()
 		  break;  
   }
 
-  draw();
+  //  draw();
+  render(  );
   glFlush();
   swapBuffers();
   
@@ -80,13 +81,13 @@ void Viewer::paintGL()
 }
 
 
-void Viewer::draw()
+void Viewer::render()
 {
-  if(true ==RUNNING_AT_TEST_MODE ){
+  if(true ==RUNNING_AT_TEST_MODE ) {
 		testDrawCube();
 	}
 	else{
-		if(mesh_){
+		if(mesh_) {
 			mesh_->render();
 		}  
 	}
@@ -95,8 +96,7 @@ void Viewer::draw()
 void Viewer::reloadMesh(QString& filename)
 {
   // converte aiMesh to MeshCore format
-  if(mesh_)
-  {
+  if(mesh_) {
     delete mesh_; mesh_ = 0;
   }
   if(mesh_ == 0)
@@ -105,11 +105,10 @@ void Viewer::reloadMesh(QString& filename)
   //TODO: copy the data in aiMesh to MeshCore style pMesh
   MeshLoader * loader = new MeshLoader();
   bool ret = loader->load(filename.toAscii().data());
-  if(ret == false)
-  {
+  if(ret == false) {
     emit log(QString(tr( "MeshLoader failed to load the mesh")));
   }
-  else{
+  else {
     emit log(QString(QObject::tr("MeshLoader load the mesh ok")));
   }
   
