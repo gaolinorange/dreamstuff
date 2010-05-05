@@ -25,7 +25,11 @@ typedef struct PluginInfo {
   QVector<QString> interfaces_name;
 }PluginInfo;
 
-
+typedef struct RendererInfo {
+  QString name;
+  QObject* plugin;  
+}RendererInfo;
+  
 #endif /* _COMMON_H_ */
 
 /* common.h ends here */

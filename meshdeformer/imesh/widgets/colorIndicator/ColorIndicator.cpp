@@ -1,4 +1,4 @@
-#include "Colorindicator.h"
+#include "ColorIndicator.h"
 #include <QPainter>
 #include <QtDebug>
 #include <QLinearGradient>

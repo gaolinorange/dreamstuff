@@ -1,3 +1,18 @@
+// -*-c++-*-
+// Colorindicator.h --- 
+// copyright (c) 2010 dreamway
+// 
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by the Free Software Foundation;
+//  Feel free to contact dreamway(jingwenlai@163.com)
+// 
+// website: cg.xplore.cn
+// 
+// 
+
+// Commentary: 
+// 
+// 
 #ifndef HCOLORINDICATOR_H
 #define HCOLORINDICATOR_H
 
@@ -12,27 +27,24 @@
 class QColorIndicator : public QWidget
 {
 public:
-  QColorIndicator(QWidget * parent = 0)
-    : QWidget(parent)
-    {
-      _minValue = _maxValue = INVALID_INDICATOR_VALUE;
+QColorIndicator(QWidget * parent = 0) : QWidget(parent) {
+    _minValue = _maxValue = INVALID_INDICATOR_VALUE;
 	  numSpan = 0;
-    }
-  ~QColorIndicator()
-    {
-    }
- public:
+  }
+  ~QColorIndicator() {
+  }
+public:
   void setMinMaxValue(qreal minValue,qreal maxValue);
   void setNumSpan(int num);
   void setSpanIdxValue(int idx,qreal value);
   void setSpanIdxColor(int idx,const QColor & color);
- protected:
+protected:
   bool _minMaxIsValid();
 protected:
 	virtual void paintEvent(QPaintEvent * event);
 protected:
 	void actualPaint();
-  protected:
+protected:
   qreal _minValue,_maxValue;
   int numSpan;
   QVector<qreal> spans;
@@ -43,14 +55,10 @@ protected:
 class QHColorIndicator : public QColorIndicator
 {
 public:
-	QHColorIndicator(QWidget * parent = 0)
-		: QColorIndicator(parent)
-	{
-
+QHColorIndicator(QWidget * parent = 0)
+		: QColorIndicator(parent) {
 	}
-	~QHColorIndicator()
-	{
-
+	~QHColorIndicator() {
 	}
 protected: 
 	virtual void paintEvent(QPaintEvent* event);
@@ -59,17 +67,15 @@ protected:
 class QVColorIndicator : public QColorIndicator
 {
 public:
-	QVColorIndicator(QWidget * parent = 0)
-		: QColorIndicator(parent)
-	{
-
+  QVColorIndicator(QWidget * parent = 0) : QColorIndicator(parent) {
 	}
-	~QVColorIndicator()
-	{
-
+	~QVColorIndicator() {
 	}
 protected:
 	virtual void paintEvent(QPaintEvent * event);
 };
 
 #endif
+
+// 
+// Colorindicator.h ends here

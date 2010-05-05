@@ -28,25 +28,25 @@
 
 //Set Toolbox Widgets
 void EDS::setupWidgets(  ) {
-    toolbox_widget_ = new QWidget(  );
-    QLabel* labelK = new QLabel( QString( tr( "Nearest Node Number:" ) ) );
-    QLineEdit* lineeditK = new QLineEdit( QString::number( K ) );
+    toolbox_widget_                   = new QWidget(  );
+    QLabel* labelK                    = new QLabel( QString( tr( "Nearest Node Number:" ) ) );
+    QLineEdit* lineeditK              = new QLineEdit( QString::number( K ) );
     connect( lineeditK, SIGNAL( textEdited( const QString& ) ), this, SLOT( slotChangeK( const QString& ) ) );
-    QHBoxLayout* layoutK = new QHBoxLayout( );
+    QHBoxLayout* layoutK              = new QHBoxLayout( );
     layoutK->addWidget( labelK );
     layoutK->addWidget( lineeditK );
     
     
-    construct_dg_button_ = new QPushButton( QString( tr( "Construct DeformationGraph" ) ) );
+    construct_dg_button_              = new QPushButton( QString( tr( "Construct DeformationGraph" ) ) );
     connect( construct_dg_button_, SIGNAL( clicked(  ) ), this, SLOT( construct_deformation_graph(  ) ) );
 
-    show_deformation_graph_button_ = new QPushButton( QString( tr( "Show Deformation Graph" ) ) );
+    show_deformation_graph_button_    = new QPushButton( QString( tr( "Show Deformation Graph" ) ) );
     connect( show_deformation_graph_button_, SIGNAL( clicked(  ) ), this, SLOT( show_deformation_graph(  ) ) );
 
     calculate_k_nearest_nodes_button_ = new QPushButton( QString( tr( "Calculate K nearest nodes" ) ) );
     connect( calculate_k_nearest_nodes_button_, SIGNAL( clicked(  ) ), this, SLOT( calculate_k_nearest_nodes(  ) ) );
 
-    QVBoxLayout* layout = new QVBoxLayout(  );
+    QVBoxLayout* layout               = new QVBoxLayout(  );
     //layout->addChildLayout( layoutK );
     layout->addLayout( layoutK );
     layout->addWidget( construct_dg_button_ );

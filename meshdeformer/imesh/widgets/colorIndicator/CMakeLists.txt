@@ -12,10 +12,12 @@ set(SOURCES
 
 set(HEADERS
 	ColorIndicator.h
+	ColorCodingWidget.h
 	)
 
 qt4_wrap_cpp(ColorIndicator_MOC ColorIndicator.h)
+qt4_wrap_cpp(ColorCodingWidget_MOC ColorCodingWidget.h)
 
-add_executable(colorindicator ${SOURCES} ${Colorindicator_MOC})
+add_executable(colorindicator ${SOURCES} ${Colorindicator_MOC} ${ColorCodingWidget_MOC})
 target_link_libraries(colorindicator ${QT_LIBRARIES})
 				
