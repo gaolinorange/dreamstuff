@@ -66,33 +66,33 @@ class Curvature : public QObject,
  public slots:
   void initializePlugin(  ) {
      emit log( QString( "initializing Curvature Plugin..." ) );
-     calMeanCurvatureButton_ = new QPushButton( QString( tr( "Mean Curvature" ) ) );
-     calGaussCurvatureButton_ = new QPushButton( QString( tr( "Gauss Curvature" ) ) );
+     calMeanCurvatureButton_                          = new QPushButton( QString( tr( "Mean Curvature" ) ) );
+     calGaussCurvatureButton_                         = new QPushButton( QString( tr( "Gauss Curvature" ) ) );
 
-     enable_render_mean_curvature_value_checkbox_ = new QCheckBox( QString( tr( "MeanCurvature Value" ) ) );
+     enable_render_mean_curvature_value_checkbox_     = new QCheckBox( QString( tr( "MeanCurvature Value" ) ) );
      connect( enable_render_mean_curvature_value_checkbox_, SIGNAL( stateChanged( int  ) ), this, SLOT( toggleMeanCurvatureValueFlag( int ) ) );
      
-     render_meancurvature_value_flag_ = false;
+     render_meancurvature_value_flag_                 = false;
      
-     enable_render_mean_curvature_normal_checkbox_ = new QCheckBox( QString( tr( "MeanCurvature Normal" ) ) );
+     enable_render_mean_curvature_normal_checkbox_    = new QCheckBox( QString( tr( "MeanCurvature Normal" ) ) );
      connect( enable_render_mean_curvature_normal_checkbox_, SIGNAL( stateChanged( int ) ), this, SLOT( toggleMeanCurvatureValueFlag( int ) ) );
-     render_meancurvature_normal_flag_ = false;
+     render_meancurvature_normal_flag_                = false;
      
      enable_render_gaussian_curvature_value_checkbox_ = new QCheckBox( QString( tr( "GaussianCurvature Value" ) ) );
      connect( enable_render_gaussian_curvature_value_checkbox_, SIGNAL( stateChanged( int ) ), this, SLOT( toggleGaussianCurvatureValueFlag( int ) ) );
-     render_gaussiancurvature_value_flag_ = false;
+     render_gaussiancurvature_value_flag_             = false;
      
-     layout_ = new QVBoxLayout(  );
+     layout_                                          = new QVBoxLayout(  );
      layout_->addWidget( calMeanCurvatureButton_ );
      layout_->addWidget( calGaussCurvatureButton_ );
-     toolbox_widget_ = new QWidget(  );
+     toolbox_widget_                                  = new QWidget(  );
      toolbox_widget_->setLayout( layout_ );
 
-     halfedge_cot_value_properties_ = boost::make_assoc_property_map<HalfedgeCotMap>( halfedge_cotvalue_map_);
-     vertex_voronoiarea_properties_ = boost::make_assoc_property_map<VertexVoroniAreaMap>( vertex_voronoiarea_map_ );
+     halfedge_cot_value_properties_                   = boost::make_assoc_property_map<HalfedgeCotMap>( halfedge_cotvalue_map_);
+     vertex_voronoiarea_properties_                   = boost::make_assoc_property_map<VertexVoroniAreaMap>( vertex_voronoiarea_map_ );
 
-     vertex_meancurvature_properties_ = boost::make_assoc_property_map<Vertex_MeanCurvature_Map>( vertex_meancurvature_map_ );
-     vertex_gaussiancurvature_properties_ = boost::make_assoc_property_map<Vertex_GaussianCurvature_Map>( vertex_gaussiancurvature_map_ );
+     vertex_meancurvature_properties_                 = boost::make_assoc_property_map<Vertex_MeanCurvature_Map>( vertex_meancurvature_map_ );
+     vertex_gaussiancurvature_properties_             = boost::make_assoc_property_map<Vertex_GaussianCurvature_Map>( vertex_gaussiancurvature_map_ );
   }
   
   void pluginInitialized(  ) {

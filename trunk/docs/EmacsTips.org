@@ -1,0 +1,15 @@
+* Emacs Tips
+
+** align declarations:
+   align-regexp and then '=' will cause these:
+   *before*
+   int a = 2;
+   int a_long_variable_name = 73;
+   int i = 0;
+   *after*
+   int a                    = 2;
+   int a_long_variable_name = 73;
+   int i                    = 0;
+
+** a little known command *C-x M-c M-butterfly*
+   
