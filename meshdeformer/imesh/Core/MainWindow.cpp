@@ -25,12 +25,12 @@
 #include <QDebug>
 #include <glog/logging.h>
 
-#include "widgets/consoleWidgets/ConsoleWidgetManager.h"
+
 #include "globals.hpp"
 #include "widgets/aboutDialog/AboutDialog.hpp"
 #include "widgets/statusBar/StatusBar.h"
 #include "widgets/pluginDialog/PluginDialog.h"
-
+#include "widgets/consoleWidgets/ConsoleWidgetManager.h"
 
 #include "BasePlugin/BaseInterface.h"
 #include "BasePlugin/LoggingInterface.h"

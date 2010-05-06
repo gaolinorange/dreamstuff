@@ -15,24 +15,16 @@
 #ifndef _COLORCODINGWIDGET_H_
 #define _COLORCODINGWIDGET_H_
 
-#include <QLabel>
-#include <QHBoxLayout>
-#include <QVBoxLayout>
-
+#include <QBoxLayout>
 #include "ColorIndicator.h"
 
-class ColorCodingWidget : public QWidget
-{
+class ColorCodingWidget : public QWidget {
   Q_OBJECT
   public:
   ColorCodingWidget(QWidget* parent = 0) : QWidget( parent ) {
-    min_value_label_ = new QLabel;
-    max_value_label_ = new QLabel;
-    layout_ = new QGridLayout( this );
+    layout_ = new QBoxLayout( this );
   }
   virtual ~ColorCodingWidget() {
-    delete min_value_label_;
-    delete max_value_label_;
     delete layout_;
   }
  public:
@@ -44,9 +36,7 @@ class ColorCodingWidget : public QWidget
   }
   
  protected:
-  QLabel* min_value_label_;
-  QLabel* max_value_label_;
-  QGridLayout* layout_;
+  QBoxLayout* layout_;
 };
 
 class HColorCodingWidget : public ColorCodingWidget {
