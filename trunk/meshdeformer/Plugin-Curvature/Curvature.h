@@ -32,6 +32,7 @@
 #include "BasePlugin/MeshCoreInterface.h"
 
 #include "MeshCore/MeshCore.h"
+#include "Common/ColorCoding.h"
 
 /**
    @brief: for calculate mesh curvatures
@@ -209,15 +210,24 @@ public slots:
   void render_mean_curvature_value(  );
   void render_mean_curvature_normal(  );
   void render_gaussian_curvature_value(  );
+ private:
+  void prebuild_mean_curvature_color_coding_value(  );
+  void prebuild_gaussian_curvature_color_coding_value(  );
+  ColorCoding<float>* mean_curvature_color_coding_;
+  ColorCoding<float>* gaussian_curvature_color_coding_;
  private slots:
   void toggleMeanCurvatureValueFlag( int state ) {
     render_meancurvature_value_flag_ = !render_meancurvature_value_flag_;
+    if( render_meancurvature_value_flag_ == true )
+      prebuild_mean_curvature_color_coding_value(  );
   }
   void toggleMeanCurvatureNormalFlag( int state ) {
     render_meancurvature_normal_flag_ = !render_meancurvature_normal_flag_;
   }
   void toggleGaussianCurvatureValueFlag( int state ) {
     render_gaussiancurvature_value_flag_ = !render_gaussiancurvature_value_flag_;
+    if( render_gaussiancurvature_value_flag_ )
+      prebuild_gaussian_curvature_color_coding_value(  );
   }
  private:
   //rendering flags
