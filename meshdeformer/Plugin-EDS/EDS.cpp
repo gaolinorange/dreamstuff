@@ -143,7 +143,7 @@ struct Distance {
     return distx*distx+disty*disty+distz*distz;    
   }
 
-  double transformed_distance( double d ) const {
+  double transformed_distance( float d ) const {
     return d*d;
   }
   double new_distance( float& dist, float& old_off, float& new_off, int& ) const {
@@ -213,10 +213,13 @@ void EDS::calculate_k_nearest_nodes_using_dgnode(  ) {
     
     K_neighbor_search search( tree,query,K+1 );
     //debug: print the results
+    int i = 0;
     for (K_neighbor_search::iterator it = search.begin(  );
          it != search.end(  ); ++it) {
-      std::cout<<it->first<<":  "<< it->second <<std::endl;
-      //now , store the results
+      //    std::cout<<it->first<<":  "<< it->second <<std::endl;
+      //now , store the results ( see CGAL3.5 Manual( p3196 ), the result is std::pair<Point_d,FT) Point_with_transformed_distance. so first is the reslut, second is the transformed_distance. )
+      
+      LOG( INFO )<<"Result "<<i<<": "<<it->first<<"   distance:  "<< it->second <<std::endl;
       
       
       
