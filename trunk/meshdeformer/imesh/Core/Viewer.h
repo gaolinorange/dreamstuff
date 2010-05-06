@@ -87,7 +87,7 @@ protected:
   void updateGL();
   void paintGL();
 protected:
-  //  void draw();
+  void draw();
   void testDrawCube();
 public:
 	void setPolygonMode(PolygonMode mode)
