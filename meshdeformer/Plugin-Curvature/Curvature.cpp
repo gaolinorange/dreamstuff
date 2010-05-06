@@ -171,17 +171,84 @@ void Curvature::render(  ) {
   glEnable( GL_LIGHTING );
 }
 
-//TODO: colorcoding 
-void Curvature::render_mean_curvature_value(  ) {
-  
+//private method
+void Curvature::prebuild_mean_curvature_color_coding_value(  ) {
+  float min_value = FLT_MAX;
+  float max_value = -FLT_MAX;
+  float value;
+  Vector_3 mean_curvature;
+  //Find the min & max values of vertices' meancurvature
+  for (Vertex_iterator pVertex = mesh_->vertices_begin(  );
+       pVertex != mesh_->vertices_end(); ++pVertex) {
+    mean_curvature = get( vertex_meancurvature_properties_, pVertex );
+    value = sqrt(mean_curvature.squared_length(  ));
+    if( value > max_value )
+      max_value = value;
+    if( value < min_value )
+      min_value = value;
+  }
+
+  if( mean_curvature_color_coding_ != NULL ) {
+    delete mean_curvature_color_coding_;
+    mean_curvature_color_coding_ = NULL;
+  }    
+  mean_curvature_color_coding_ = new ColorCoding<float>( min_value,max_value );
 }
 
+//
+void Curvature::render_mean_curvature_value(  ) {
+  Color return_color( 0,0,0 );
+  float value;
+  Vector_3 mean_curvature;
+  for (Vertex_iterator pVertex = mesh_->vertices_begin(  );
+       pVertex != mesh_->vertices_end( ); ++pVertex) {
+    if( mean_curvature_color_coding_ ) {
+      mean_curvature = get( vertex_meancurvature_properties_, pVertex );
+      value = sqrt( mean_curvature.squared_length(  ) );
+      return_color = mean_curvature_color_coding_->colorCoding( value );
+    }
+      
+    glColor3f( return_color.r,return_color.g,return_color.b );
+    glVertex3f( pVertex->point(  ).x(  ),pVertex->point(  ).y(  ),pVertex->point(  ).z(  ) );
+  }
+}
+
+//TODO: render the mean_curvature normal
 void Curvature::render_mean_curvature_normal(  ) {
   
 }
 
+void Curvature::prebuild_gaussian_curvature_color_coding_value(  ) {
+  if( gaussian_curvature_color_coding_ ) {
+    delete gaussian_curvature_color_coding_;
+    gaussian_curvature_color_coding_ = NULL;
+  }
+
+  float value;
+  float min_value = FLT_MAX, max_value = -FLT_MAX;
+  for (Vertex_iterator pVertex = mesh_->vertices_begin(  );
+       pVertex != mesh_->vertices_end( ); ++pVertex) {
+    value = get( vertex_gaussiancurvature_properties_,pVertex );
+    if( value > max_value )
+      max_value = value;
+    if( value < min_value )
+      min_value = value;
+  }
+  gaussian_curvature_color_coding_ = new ColorCoding<float>( min_value,max_value );
+}
+
 void Curvature::render_gaussian_curvature_value(  ) {
-  
+  float value;
+  Color return_color( 0,0,0 );
+  for (Vertex_iterator pVertex = mesh_->vertices_begin(  );
+       pVertex != mesh_->vertices_end( ); ++pVertex) {
+    value = get( vertex_gaussiancurvature_properties_,pVertex );
+    if( gaussian_curvature_color_coding_ ) {
+      return_color = gaussian_curvature_color_coding_->colorCoding( value );
+    }
+    glColor3f( return_color.r,return_color.g,return_color.b );
+    glVertex3f( pVertex->point(  ).x(  ),pVertex->point(  ).y(  ),pVertex->point(  ).z(  ) );
+  }
 }
 
 
