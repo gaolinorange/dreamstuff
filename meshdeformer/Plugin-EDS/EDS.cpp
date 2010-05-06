@@ -25,6 +25,7 @@
 #include <CGAL/Search_traits.h>
 #include <CGAL/Orthogonal_k_neighbor_search.h>
 
+#include "glog/logging.h"
 
 //Set Toolbox Widgets
 void EDS::setupWidgets(  ) {
