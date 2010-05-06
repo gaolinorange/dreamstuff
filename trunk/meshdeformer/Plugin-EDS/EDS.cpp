@@ -103,10 +103,14 @@ void EDS::calculate_k_nearest_nodes_using_point(  ) {
        pVertex != mesh_->vertices_end(  ); pVertex++ ) {
     query = pVertex->point(  );
     K_neighbor_search search( tree,query,K+1 );
+
+    std::cout<<"query is :"<<query.x( )<<","<<query.y(  )<<","<<query.z(  )<<std::endl;
     //debug: print the results
+    int i = 0;
     for (K_neighbor_search::iterator it = search.begin(  );
          it != search.end(  ); ++it) {
-      std::cout<<it->first<<" "<<std::sqrt( it->second )<<std::endl;
+      std::cout<<"neighbor:"<<it->first<<",distance: "<<std::sqrt( it->second )<<std::endl;
+      i++;
       //now , store the results
       
     }
@@ -207,7 +211,7 @@ void EDS::calculate_k_nearest_nodes_using_dgnode(  ) {
     query.position_[ 1 ] = pVertex->point(  ).y(  );
     query.position_[ 2 ] = pVertex->point(  ).z(  );
 
-    printf("Vertex %d : (%.2f, %.2f, %.2f) \n", pVertex->id(),
+    printf("Vertex %ld : (%.2f, %.2f, %.2f) \n", pVertex->id(),
 	   pVertex->point().x(),
 	   pVertex->point().y(),
 	   pVertex->point().z());
@@ -220,10 +224,8 @@ void EDS::calculate_k_nearest_nodes_using_dgnode(  ) {
       //    std::cout<<it->first<<":  "<< it->second <<std::endl;
       //now , store the results ( see CGAL3.5 Manual( p3196 ), the result is std::pair<Point_d,FT) Point_with_transformed_distance. so first is the reslut, second is the transformed_distance. )
       
-      LOG( INFO )<<"Result "<<i<<": "<<it->first<<"   distance:  "<< it->second <<std::endl;
-      
-      
-      
+      std::cout<<"Result "<<i<<": "<<it->first<<"   distance:  "<< it->second <<std::endl;
+      i++;      
     }
   }  
   

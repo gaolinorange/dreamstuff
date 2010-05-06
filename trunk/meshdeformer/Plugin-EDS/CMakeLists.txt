@@ -16,6 +16,13 @@ include_directories(${Boost_INCLUDE_DIRS})
 link_directories(${Boost_LIBRARY_DIRS})
 endif()
 
+find_package(glog REQUIRED)
+if(glog_FOUND)
+  include_directories(${glog_INCLUDE_DIR})
+  link_libraries(${glog_LIBRARY})
+endif(glog_FOUND)
+
+
 qt4_wrap_cpp(EDS_MOC EDS.h)
 
 

@@ -13,7 +13,7 @@
 // 
 //
 #include "Curvature.h"
-//#include "Common/glheaders.hpp"
+#include "Common/glheaders.hpp"
 
 
 void Curvature::calculateEdgeCotValues(  ) {
@@ -157,8 +157,7 @@ void Curvature::slotCalculateGaussianCurvatures(  ) {
 void Curvature::render(  ) {
   emit log( QString( tr( "Curvature::render..." ) ) );
   
-  /*
-    glDisable( GL_LIGHTING );
+  glDisable( GL_LIGHTING );
   if( render_meancurvature_value_flag_ ) {
     render_mean_curvature_value(  );
   }
@@ -170,7 +169,6 @@ void Curvature::render(  ) {
   }
   
   glEnable( GL_LIGHTING );
-  */
 }
 
 //private method
@@ -214,6 +212,7 @@ void Curvature::render_mean_curvature_value(  ) {
     glVertex3f( pVertex->point(  ).x(  ),pVertex->point(  ).y(  ),pVertex->point(  ).z(  ) );
   }
 }
+
 
 //TODO: render the mean_curvature normal
 void Curvature::render_mean_curvature_normal(  ) {
