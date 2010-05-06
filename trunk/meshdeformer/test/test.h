@@ -7,11 +7,12 @@
 #include "testMeshBuilder.h"
 #include "testMeshBuilderDerived.h"
 #include "testGoogleLog.h"
-#include "testCurvature.h"
+#include "testColorCoding.h"
 
 //for EDS plugin
 #include "testDeformationGraph.h"
 
+//#include "testCurvature.h"
 //#include "testEDS.h"
 // why using this would occur segmentation fault
 //#include "testTestPlugin.h"
