@@ -9,7 +9,7 @@ int main(int argc,char** argv)
   VColorCodingWidget indicator;
   indicator.setMinMaxValue(-10,10);
   indicator.setNumSpan(2);
-  /*indicator.setSpanIdxValue(0,-10);
+  indicator.setSpanIdxValue(0,-10);
   indicator.setSpanIdxColor(0,QColor(255,0,0));
 
   indicator.setSpanIdxValue(1,0);
@@ -17,8 +17,7 @@ int main(int argc,char** argv)
 
   indicator.setSpanIdxValue(2,10);
   indicator.setSpanIdxColor(2,QColor(0,0,255));
-  */
-  
+    
   indicator.resize(400,50);
   indicator.show();
 
