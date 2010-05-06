@@ -72,14 +72,17 @@ void Viewer::paintGL()
 		  break;  
   }
 
-  //  draw();
-  render(  );
+  draw();
+  
   glFlush();
   swapBuffers();
   
   QGLViewer::paintGL();
 }
 
+void Viewer::draw() {
+  render();
+}
 
 void Viewer::render()
 {

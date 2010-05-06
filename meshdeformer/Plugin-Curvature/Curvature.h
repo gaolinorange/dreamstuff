@@ -86,6 +86,10 @@ class Curvature : public QObject,
      layout_                                          = new QVBoxLayout(  );
      layout_->addWidget( calMeanCurvatureButton_ );
      layout_->addWidget( calGaussCurvatureButton_ );
+     layout_->addWidget( enable_render_mean_curvature_value_checkbox_);
+     layout_->addWidget( enable_render_mean_curvature_normal_checkbox_);
+     layout_->addWidget( enable_render_gaussian_curvature_value_checkbox_);
+     
      toolbox_widget_                                  = new QWidget(  );
      toolbox_widget_->setLayout( layout_ );
 
