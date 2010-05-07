@@ -75,6 +75,8 @@ class DeformationGraph
   void construct( MeshCore* _mesh, int _target_number );
   void render(  );
 
+  void print(  );//debug helper
+
   void set_connection_color( float _color[ 3 ] );
   void set_node_size( float _size );
   void set_node_color( float _color[ 3 ] );

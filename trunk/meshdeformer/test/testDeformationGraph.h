@@ -87,6 +87,10 @@ TEST_F( DeformationGraphTest, testRenderConnection ) {
   }
 }
 
+TEST_F( DeformationGraphTest, testPrint ) {
+  deformation_graph_->print(  );
+}
+
 
 #endif /* _TESTDEFORMATIONGRAPH_H_ */
 /* testDeformationGraph.h ends here */

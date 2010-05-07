@@ -66,8 +66,11 @@ TEST_F( EDSTest, testCalculateKNearestNodesUsingDGNode ) {
 TEST_F( EDSTest, testCalculate_K_Nearest_Nodes ) {
   assert( eds_ != NULL );
   eds_->construct_deformation_graph(  );
+  eds_->deformation_graph(  )->print(  );
   eds_->calculate_k_nearest_nodes(  );
 }
+
+
 
 
 #endif /* _TESTEDS_H_ */
