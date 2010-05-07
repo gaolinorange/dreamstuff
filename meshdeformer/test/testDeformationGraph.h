@@ -67,7 +67,7 @@ TEST_F( DeformationGraphTest, testInit ) {
 
 TEST_F( DeformationGraphTest, testConstruct ) {
   assert( deformation_graph_ != NULL );
-  deformation_graph_->construct( pMesh, 4 )  ;
+  deformation_graph_->construct( mesh_, 4 )  ;
 }
 
 TEST_F( DeformationGraphTest, printNodes ) {

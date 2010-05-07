@@ -20,6 +20,10 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QVBoxLayout>
+#include <QLabel>
+#include <QLineEdit>
+#include <QHBoxLayout>
+
 
 #include <boost/property_map.hpp>
 
@@ -53,24 +57,25 @@ class EDS : public QObject,
     deformation_graph_ = new DeformationGraph(  );
     K = 4;
     vertex_k_nearest_deformationgraphnodes_properties_ = boost::make_assoc_property_map<Vertex_DeformationGraphNodes_Map>( vertex_deformationgraphnodes_map_ );
-
-    setupWidgets(  );
+    
+    //    setupWidgets(  );
   }
   ~EDS() {
-    delete toolbox_widget_;
-    delete construct_dg_button_;
-    delete show_deformation_graph_button_;
+    delete deformation_graph_;
+    //    releaseWidgets(  );
   }
  private:
   void setupWidgets(  );
+  void releaseWidgets(  );
+
   //BaseInterface
  public slots:
   void initializePlugin(  ) {
     emit log( QString( "initializing EDS Plugin..." ) );
+    emit addToolBox( QString( tr( "EDS" ) ), toolbox_widget_ );
   }
   void pluginInitialized(  ) {
     emit log( QString( tr( "EDS Plugin initialized") ) );
-    emit addToolBox( QString( tr( "EDS" ) ), toolbox_widget_ );
   }
  public:
   //BaseInterface
@@ -111,6 +116,7 @@ class EDS : public QObject,
   //private methods
   void calculate_k_nearest_nodes_using_point(  );
   void calculate_k_nearest_nodes_using_dgnode(  );
+  void normalize_vertex_node_weights(  );
  public:
   void set_K( int _k ) {
     K = _k;
@@ -131,6 +137,9 @@ class EDS : public QObject,
   DeformationGraph* deformation_graph_;
  private:
   QWidget* toolbox_widget_;
+  QLabel* labelK;
+  QLineEdit* lineeditK;
+  QHBoxLayout* layoutK;
   QPushButton* construct_dg_button_;
   QPushButton* show_deformation_graph_button_;
   QPushButton* calculate_k_nearest_nodes_button_;

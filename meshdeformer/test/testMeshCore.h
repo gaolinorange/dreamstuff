@@ -27,18 +27,18 @@ class MeshCoreTest : public ::testing::Test
  protected:
   virtual void SetUp()
   {
-    pMesh = new MeshCore();
-    Halfedge_handle h = pMesh->make_tetrahedron(Point_3(0,0,0),Point_3(0,0,1),Point_3(0,1,0),Point_3(1,0,0));
+    mesh_ = new MeshCore();
+    Halfedge_handle h = mesh_->make_tetrahedron(Point_3(0,0,0),Point_3(0,0,1),Point_3(0,1,0),Point_3(1,0,0));
 
-    pMesh->set_indices();
-    pMesh->init_index_to_vertex_map();
+    mesh_->set_indices();
+    mesh_->init_index_to_vertex_map();
   }
   virtual void TearDown()
   {
-    delete pMesh;
+    delete mesh_;
   }
 
-  MeshCore * pMesh;
+  MeshCore * mesh_;
 };
 
 TEST_F(MeshCoreTest,testInit)
@@ -48,21 +48,21 @@ TEST_F(MeshCoreTest,testInit)
 
 TEST_F(MeshCoreTest,testMeshCoreIsTetrahedron)
 {
-  Halfedge_handle h = pMesh->halfedges_begin( );
-  EXPECT_EQ(true,pMesh->is_tetrahedron(h));
+  Halfedge_handle h = mesh_->halfedges_begin( );
+  EXPECT_EQ(true,mesh_->is_tetrahedron(h));
 }
 
 TEST_F(MeshCoreTest,testWriteTetrahedron)
 {
   //Important: the test_tetrahedron.off file is further used by MeshBuilder
   std::ofstream outFile("test_tetrahedron.off",std::ios::out);
-  outFile<<(*pMesh);
+  outFile<<(*mesh_);
 }
 
 TEST_F(MeshCoreTest,testBoundingBox)
 {
-  pMesh->compute_bounding_box();
-  Iso_cuboid_3 box = pMesh->get_bounding_box();
+  mesh_->compute_bounding_box();
+  Iso_cuboid_3 box = mesh_->get_bounding_box();
   EXPECT_FLOAT_EQ(0,box.xmin());
   EXPECT_FLOAT_EQ(0,box.ymin());
   EXPECT_FLOAT_EQ(0,box.zmin());
@@ -74,22 +74,22 @@ TEST_F(MeshCoreTest,testBoundingBox)
 
 TEST_F(MeshCoreTest,testVertexHandlePrint)
 {
-  pMesh->test_print_vertex_handles(); 
+  mesh_->test_print_vertex_handles(); 
 }
 
 TEST_F(MeshCoreTest,testHalfedgeHandlePrint)
 {
-  pMesh->test_print_halfedge_handles();
+  mesh_->test_print_halfedge_handles();
 }
 
 TEST_F(MeshCoreTest,testFacetHandlePrint)
 {
-  pMesh->test_print_facet_handles();
+  mesh_->test_print_facet_handles();
 }
 
 TEST_F(MeshCoreTest,testInitIndexToVertexMap)
 {
-  pMesh->init_index_to_vertex_map();
+  mesh_->init_index_to_vertex_map();
 
   //Verify it by comparing the position of index_to_vertex_map
   // printf("print by using builder\n");
@@ -115,11 +115,11 @@ TEST_F(MeshCoreTest,testInitIndexToVertexMap)
 
   //Verify for furthing testing
   std::size_t i = 0;
-  for (Vertex_iterator pVertex = pMesh->vertices_begin(); pVertex != pMesh->vertices_end(); pVertex++)
+  for (Vertex_iterator pVertex = mesh_->vertices_begin(); pVertex != mesh_->vertices_end(); pVertex++)
   {
     EXPECT_EQ(i,pVertex->id());
     Point_3 vertex_pos = pVertex->point();
-    Point_3 vertex_pos_by_idx = pMesh->get_vertex_handle(i)->point();
+    Point_3 vertex_pos_by_idx = mesh_->get_vertex_handle(i)->point();
     EXPECT_FLOAT_EQ(vertex_pos.x(),vertex_pos_by_idx.x());
     EXPECT_FLOAT_EQ(vertex_pos.y(),vertex_pos_by_idx.y());
     EXPECT_FLOAT_EQ(vertex_pos.z(),vertex_pos_by_idx.z());
@@ -130,23 +130,23 @@ TEST_F(MeshCoreTest,testInitIndexToVertexMap)
       
 TEST_F( MeshCoreTest, testFacetDegree )
 {
-  for( Facet_iterator pFacet = pMesh->facets_begin( );
-       pFacet != pMesh->facets_end( ); pFacet++) {
-    EXPECT_EQ( 3 , pMesh->degree( pFacet ) );
+  for( Facet_iterator pFacet = mesh_->facets_begin( );
+       pFacet != mesh_->facets_end( ); pFacet++) {
+    EXPECT_EQ( 3 , mesh_->degree( pFacet ) );
   }
 }
 
 TEST_F( MeshCoreTest, testVertexValence )
 {
-  for( Vertex_iterator pVertex = pMesh->vertices_begin( );
-       pVertex != pMesh->vertices_end(  ); pVertex++) {
-    EXPECT_EQ( 3, pMesh->valence( pVertex ) );
+  for( Vertex_iterator pVertex = mesh_->vertices_begin( );
+       pVertex != mesh_->vertices_end(  ); pVertex++) {
+    EXPECT_EQ( 3, mesh_->valence( pVertex ) );
   }  
 }
   
 TEST_F( MeshCoreTest, testAverageLength ) {
   float expected_length = (float)(sqrt( 2.0 )*3+1*3)/6;
-  float actual = pMesh->get_average_edge_length(  ) ;
+  float actual = mesh_->get_average_edge_length(  ) ;
   printf( "actual edge average length = %.3f\n",actual );
   
   EXPECT_FLOAT_EQ( expected_length, actual);

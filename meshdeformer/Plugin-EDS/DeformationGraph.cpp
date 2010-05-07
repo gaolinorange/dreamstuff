@@ -56,7 +56,7 @@ void DeformationGraphNode::set_parent_deformation_graph( DeformationGraph* _grap
 void DeformationGraphNode::set_id( int _id ) {
   id_ = _id;
 }
-int DeformationGraphNode::id(  ) {
+int DeformationGraphNode::get_id(  ) {
   return id_;
 }
 

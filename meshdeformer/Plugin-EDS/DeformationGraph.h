@@ -1,4 +1,4 @@
-/*-*-c++-mode-*-
+/*-*-c++-*-
  * DeformationGraph.h --- 
  * copyright (c) 2010 dreamway
  */
@@ -48,7 +48,7 @@ class DeformationGraphNode
  public:
   void insert_neighbor_node( const int _neighbor_id );
   void set_id( int _id );
-  int id(  );
+  int get_id(  );
   //debug helper
   void print(  );
  public:
