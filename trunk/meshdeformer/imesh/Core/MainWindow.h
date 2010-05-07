@@ -55,6 +55,8 @@ class MainWindow : public QMainWindow
 
       plugins_info_.clear(  );
       loadPlugins(  );
+
+      setViewerRendererInterfaces( mainViewer_,renderers_info_ );
     }
   ~MainWindow()
     {
@@ -114,7 +116,8 @@ private slots:
  private:
   //The main displaying widget
   Viewer * mainViewer_;
-  //MeshModel* mainModel_;
+  //Set Viewer and related RendererInterface
+  void setViewerRendererInterfaces( Viewer* , QVector<RendererInfo>& renderer_interfaces );
 
 
 

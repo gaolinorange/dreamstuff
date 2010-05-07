@@ -352,3 +352,10 @@ void MainWindow::loadPlugins(  ) {
   //Emit a signal to setup all plugins
   emit pluginsInitialized(  );
 }
+
+
+void MainWindow::setViewerRendererInterfaces( Viewer* _viewer,QVector<RendererInfo>& renderer_interfaces ) {
+  _viewer->setRendererInterface( renderer_interfaces );
+}
+
+

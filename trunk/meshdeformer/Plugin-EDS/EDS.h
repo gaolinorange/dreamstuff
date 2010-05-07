@@ -31,7 +31,7 @@
 #include "BasePlugin/ToolBoxInterface.h"
 #include "BasePlugin/LoggingInterface.h"
 #include "BasePlugin/MeshCoreInterface.h"
-
+#include "BasePlugin/RenderInterface.h"
 
 #include "MeshCore/MeshCore.h"
 #include "DeformationGraph.h"
@@ -43,13 +43,15 @@ class EDS : public QObject,
             public BaseInterface,
             public ToolBoxInterface,
             public LoggingInterface,
-            public MeshCoreInterface
+            public MeshCoreInterface,
+            public RenderInterface
 {
  Q_OBJECT
   Q_INTERFACES( BaseInterface );
   Q_INTERFACES( ToolBoxInterface );
   Q_INTERFACES( LoggingInterface );
-  Q_INTERFACES( MeshCoreInterface)
+  Q_INTERFACES( MeshCoreInterface);
+  Q_INTERFACES( RenderInterface );
     
       
  public:
@@ -58,7 +60,7 @@ class EDS : public QObject,
     K = 4;
     vertex_k_nearest_deformationgraphnodes_properties_ = boost::make_assoc_property_map<Vertex_DeformationGraphNodes_Map>( vertex_deformationgraphnodes_map_ );
     
-    //    setupWidgets(  );
+    //setupWidgets(  );
   }
   ~EDS() {
     delete deformation_graph_;
@@ -85,7 +87,9 @@ class EDS : public QObject,
   QString name(  ) const {
     return QString( "EDSPlugin " );
   }
-  
+
+  //RenderInterface
+  void render(  );
  signals:
   //LoggingInterface
   void log( const QString& logMessage );
@@ -109,7 +113,7 @@ class EDS : public QObject,
   boost::associative_property_map<Vertex_DeformationGraphNodes_Map> vertex_k_nearest_deformationgraphnodes_properties_;
   
  public slots:
-  void construct_deformation_graph(  );
+  void slot_construct_deformation_graph(  );
   void show_deformation_graph(  );
 
   void calculate_k_nearest_nodes(  );
@@ -117,6 +121,13 @@ class EDS : public QObject,
   void calculate_k_nearest_nodes_using_point(  );
   void calculate_k_nearest_nodes_using_dgnode(  );
   void normalize_vertex_node_weights(  );
+ public:
+    /**
+     \brief: construct related deformation graph
+     @param: target_number, target_number of deformation graph nodes
+  */
+  void construct_deformation_graph( int target_number );
+
  public:
   void set_K( int _k ) {
     K = _k;

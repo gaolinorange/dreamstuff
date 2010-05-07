@@ -20,13 +20,20 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QVBoxLayout>
+#include "TestInterface.h"
 
-class TestWidget : public QWidget
+class TestWidget : public QWidget,
+                   public TestInterface
 {
+  Q_OBJECT
+  Q_INTERFACES( TestInterface )
+      
  public:
   TestWidget(QWidget* parent = 0);
   virtual ~TestWidget();
-
+ public:
+  virtual void test(  );
+ private:
   QLabel* label_;
   QPushButton* button_;
   QVBoxLayout* layout_;

@@ -83,7 +83,10 @@ class DeformationGraph
   
   //Shared internal data
   std::vector<DeformationGraphNode> nodes_;
-  int num_nodes;
+  int num_nodes(  ) {
+    return nodes_.size(  );
+  }
+
  private:
   MeshCore* mesh_;
 };

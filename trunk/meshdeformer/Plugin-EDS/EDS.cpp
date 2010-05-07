@@ -39,7 +39,7 @@ void EDS::setupWidgets(  ) {
     
     
     construct_dg_button_              = new QPushButton( QString( tr( "Construct DeformationGraph" ) ) );
-    connect( construct_dg_button_, SIGNAL( clicked(  ) ), this, SLOT( construct_deformation_graph(  ) ) );
+    connect( construct_dg_button_, SIGNAL( clicked(  ) ), this, SLOT( slot_construct_deformation_graph(  ) ) );
 
     show_deformation_graph_button_    = new QPushButton( QString( tr( "Show Deformation Graph" ) ) );
     connect( show_deformation_graph_button_, SIGNAL( clicked(  ) ), this, SLOT( show_deformation_graph(  ) ) );
@@ -48,7 +48,6 @@ void EDS::setupWidgets(  ) {
     connect( calculate_k_nearest_nodes_button_, SIGNAL( clicked(  ) ), this, SLOT( calculate_k_nearest_nodes(  ) ) );
 
     QVBoxLayout* layout               = new QVBoxLayout(  );
-    //layout->addChildLayout( layoutK );
     layout->addLayout( layoutK );
     layout->addWidget( construct_dg_button_ );
     layout->addWidget( show_deformation_graph_button_ );
@@ -66,14 +65,28 @@ void EDS::releaseWidgets(  ) {
   delete calculate_k_nearest_nodes_button_;
 }
 
-void EDS::construct_deformation_graph(  ) {
+void EDS::slot_construct_deformation_graph(  ) {
+  int target_number = QInputDialog::getInt( NULL, QString( tr( "Please input the target_number of deformation nodes" ) ),QString( tr( "target number nodes:" ) ),50,1,mesh_->size_of_vertices(  ) );
+
+  construct_deformation_graph( target_number );
+}
+
+/**
+   \brief: private method, construct defomation graph according the given number
+   @param: the target number of defomation graph nodes
+*/
+void EDS::construct_deformation_graph( int target_number ) {
   if( mesh_ ) {
-    int target_number = QInputDialog::getInt( NULL, QString( tr( "Please input the target_number of deformation nodes" ) ),QString( tr( "target number nodes:" ) ),50,1,mesh_->size_of_vertices(  ) );
     emit log( QString( tr( "Constructing DeformationGraph..." ) ) );
     deformation_graph_->construct( mesh_, target_number );
   } else {
     emit log( QString( tr( "You have not load a mesh for EDS plugin, please load it first" ) ) );
   }  
+}
+
+void EDS::render(  ) {
+  LOG( INFO )<<"EDS::render...."<<std::endl;
+  show_deformation_graph(  );
 }
 
 void EDS::show_deformation_graph(  ) {

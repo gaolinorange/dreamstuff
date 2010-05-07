@@ -13,6 +13,8 @@
 // 
 //
 #include "TestWidget.h"
+#include <stdio.h>
+
 
 TestWidget::TestWidget( QWidget* parent ) : QWidget( parent ) {
   label_ = new QLabel( QString( tr( "Test label" ) ) );
@@ -30,6 +32,9 @@ TestWidget::~TestWidget(  ) {
   delete layout_;
 }
 
+void TestWidget::test(  ) {
+  printf( "test method from TestWidget\n" );
+}
 //  
 // 
 // TestWidget.cpp ends here

@@ -92,7 +92,12 @@ void Viewer::render()
 	else{
 		if(mesh_) {
 			mesh_->render();
-		}  
+		}
+    QObject* plugin;
+    foreach( RendererInfo render_info, renderer_interfaces_ ) {
+      plugin = render_info.plugin;
+      plugin->metaObject(  )->invokeMethod( plugin,"render" );
+    }
 	}
 }
 
@@ -203,3 +208,9 @@ void Viewer::printDebugInfo()
 {
 
 }
+
+void Viewer::setRendererInterface( QVector<RendererInfo>& renderer_interfaces ) {
+  renderer_interfaces_ = renderer_interfaces;  
+}
+
+

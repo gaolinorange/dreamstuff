@@ -1,4 +1,4 @@
-/* testDeformationGraph.h --- 
+/*-*-c++-*- testDeformationGraph.h --- 
  * copyright (c) 2010 dreamway
  */
 
@@ -26,7 +26,7 @@ class DeformationGraphTest : public MeshCoreTest
    virtual void SetUp(  ) {
      MeshCoreTest::SetUp(  );
      deformation_graph_ = new DeformationGraph(  );
-     setupTheTestData(  );
+     //     setupTheTestData(  );
    }
    virtual void TearDown(  ) {
      delete deformation_graph_;
@@ -65,9 +65,20 @@ TEST_F( DeformationGraphTest, testInit ) {
   //no need to do things  
 }
 
+TEST_F( DeformationGraphTest, testPrintVertex ) {
+  for (Vertex_iterator pVertex = mesh_->vertices_begin(  );
+       pVertex != mesh_->vertices_end( ); ++pVertex) {
+    printf( "%ld,%.2f,%.2f,%.2f\n",pVertex->id(  ),
+            pVertex->point(  ).x(  ),
+            pVertex->point(  ).y(  ),
+            pVertex->point(  ).z(  ));
+  }
+}
+
 TEST_F( DeformationGraphTest, testConstruct ) {
   assert( deformation_graph_ != NULL );
   deformation_graph_->construct( mesh_, 4 )  ;
+  EXPECT_EQ( 4,deformation_graph_->num_nodes(  ) );
 }
 
 TEST_F( DeformationGraphTest, printNodes ) {
@@ -79,6 +90,7 @@ TEST_F( DeformationGraphTest, printNodes ) {
   }
 }
 
+/*
 TEST_F( DeformationGraphTest, testRenderConnection ) {
   vector<DeformationGraphNode>::iterator pNode;
   for (pNode = deformation_graph_->nodes_.begin(  );
@@ -86,6 +98,7 @@ TEST_F( DeformationGraphTest, testRenderConnection ) {
     pNode->renderConnection(  );    
   }
 }
+*/
 
 TEST_F( DeformationGraphTest, testPrint ) {
   deformation_graph_->print(  );
