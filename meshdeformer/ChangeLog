@@ -1,5 +1,16 @@
-ChangeLog:
+2010-05-07  mac  <mac@macdepowerbook67.local>
+
+	*  (ChangeLog): Plugin-System, add RenderInterface,MeshCoreInterface etc.
+	Curvature Plugin added
+	TestPlugin added
+	Embedded Deformation Graph for Shape Manipulation (EDS) plugin
+	google test support
+	google glog support
 	
+	
+        
+
+ChangeLog:	
 	2009-12-20: use libQGLViewer to view the models
 	2009-11-26: change the total directory layout of mesh_deformer project
 	
