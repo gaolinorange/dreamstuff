@@ -164,16 +164,16 @@ website: cg.xplore.cn")
 ;;this enables the database and idle reparse engines
 ;;(semantic-load-enable-minimum-features)
 ;; this enables some tools useful for coding, such as sumary mode
-;;(semantic-load-enable-code-helpers)
-;;(global-set-key [(control tab)] 'semantic-ia-complete-symbol-menu)
+(semantic-load-enable-code-helpers)
+(global-set-key [(control tab)] 'semantic-ia-complete-symbol-menu)
 ;; extra commands: semantor-complete-symbol, senator-completion-menu-popup, semantic-ia-complete-symbol
 
-;;(setq semanticdb-default-save-directory "~/.emacs.d/sematicdb/")
+(setq semanticdb-default-save-directory "~/.emacs.d/sematicdb/")
 
 
 ;;work with C++
-;;(setq qt4-base-dir "/usr/local/Trolltech/Qt-4.6.0/include")
-;;(semantic-add-system-include qt4-base-dir 'c++-mode)
+(setq qt4-base-dir "/usr/local/Trolltech/Qt-4.6.0/include")
+(semantic-add-system-include qt4-base-dir 'c++-mode)
 
 ;; (add-to-list 'auto-mode-alist (cons qt4-base-dir 'c++-mode))
 ;; (add-to-list 'semantic-lex-c-preprocessor-symbol-file (concat qt4-base-dir "/Qt/qconfig.h"))
