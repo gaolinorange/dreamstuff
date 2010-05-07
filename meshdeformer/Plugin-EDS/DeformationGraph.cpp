@@ -268,6 +268,15 @@ void DeformationGraph::set_node_color( float _color[ 3 ] ) {
   }
 }
 
+void DeformationGraph::print(  ) {
+  printf( "=============Begin DeformationGraph ===============\n" );
+  for (vector<DeformationGraphNode>::iterator pNode = nodes_.begin(  );
+       pNode != nodes_.end(  ); ++pNode) {
+    pNode->print(  );
+  }
+
+  printf( "=============End DeformationGraph =================\n" );
+}
 //  
 // 
 // DeformationGraph.cpp ends here

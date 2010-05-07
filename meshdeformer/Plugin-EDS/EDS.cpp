@@ -30,10 +30,10 @@
 //Set Toolbox Widgets
 void EDS::setupWidgets(  ) {
     toolbox_widget_                   = new QWidget(  );
-    labelK                    = new QLabel( QString( tr( "Nearest Node Number:" ) ) );
-    lineeditK              = new QLineEdit( QString::number( K ) );
+    labelK                            = new QLabel( QString( tr( "Nearest Node Number:" ) ) );
+    lineeditK                         = new QLineEdit( QString::number( K ) );
     connect( lineeditK, SIGNAL( textEdited( const QString& ) ), this, SLOT( slotChangeK( const QString& ) ) );
-    layoutK              = new QHBoxLayout( );
+    layoutK                           = new QHBoxLayout( );
     layoutK->addWidget( labelK );
     layoutK->addWidget( lineeditK );
     

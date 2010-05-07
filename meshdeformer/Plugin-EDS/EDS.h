@@ -131,6 +131,10 @@ class EDS : public QObject,
  private:
   int K;
 
+ public:
+  DeformationGraph* deformation_graph(  ) {
+    return deformation_graph_;
+  }
   //Internal data and widgets  
  private:
   MeshCore* mesh_;
