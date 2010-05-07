@@ -68,7 +68,10 @@ TEST_F( MeshBuilderTest, testPrintVertex )
             pVertex->point( ).x( ),
             pVertex->point( ).y( ),
             pVertex->point( ).z( ));  
-  }  
+  }
+  EXPECT_EQ( 4, mesh_->size_of_vertices(  ) );
+  EXPECT_EQ( 4, mesh_->size_of_facets(  ) );
+  EXPECT_EQ( 12,mesh_->size_of_halfedges(  ) );
 }
 
 #endif

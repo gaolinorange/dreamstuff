@@ -1,10 +1,11 @@
 #ifndef MESHCORE_MESHLOADER_H
 #define MESHCORE_MESHLOADER_H
 
-#include "assimp.hpp"
+#include "assimp.hpp" //C++ importer interface
 #include "aiScene.h"
 #include "aiMesh.h"
 #include "aiTypes.h"
+#include "aiPostProcess.h" //Post processing flag
 
 #include <iostream>
 
@@ -26,11 +27,15 @@ public:
 	bool load(const char* filename)
 	{
 		Assimp::Importer * aiImporter = new Assimp::Importer();
-		const aiScene* scene = aiImporter->ReadFile(filename,0);
+    //Important: see assimp source code for references
+    //note: the flags are ( part, see assimp.sourceforge.net for more details )
+    // aiProcess_JoinIdenticalVertices
+		const aiScene* scene = aiImporter->ReadFile(filename,aiProcess_JoinIdenticalVertices);
 		if(NULL == scene)
 		{
 			//		QMessageBox::warning(this,QString(QObject::tr("warning")),QString(QObject::tr("could not load the mesh")));
 			std::cerr<<"could not load the mesh in MeshLoader";
+      std::cerr<<aiImporter->GetErrorString(  );
 			return false;
 		}
 		std::cout<<"num of meshes: "<<scene->mNumMeshes<<std::endl;
