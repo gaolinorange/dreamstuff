@@ -14,20 +14,23 @@ if(gtest_FOUND)
 endif(gtest_FOUND)
 
 
+qt4_wrap_cpp(TestWidget_MOC TestWidget.h)
+
 set(app_sources
   main.cpp
   TestWidget.cpp
   )
+
 
 set(test_sources
   test_main.cpp
   TestWidget.cpp
   )
 
-add_executable(app ${app_sources})
+add_executable(app ${app_sources} ${TestWidget_MOC})
 target_link_libraries(app ${QT_LIBRARIES})
 
-add_executable(test ${test_sources})
+add_executable(test ${test_sources} ${TestWidget_MOC})
 target_link_libraries(test ${QT_LIBRARIES} ${gtest_LIBRARY})
 
   

@@ -185,9 +185,25 @@ DeformationGraph::~DeformationGraph(  ) {
 
 void DeformationGraph::construct( MeshCore* _mesh, int _target_number  ) {
   mesh_ = _mesh;
-  num_nodes = _target_number;//note:it's just a temp number, actually, the algorithm could not just generate exteractly the number of nodes
 
   int num_vertices = mesh_->size_of_vertices(  );
+  if( num_vertices <= _target_number ) {
+    //if the size of vertices is too small,then all the vertices are dgnodes
+    nodes_.clear(  );
+    DeformationGraphNode node;
+    for (Vertex_iterator pVertex = mesh_->vertices_begin(  );
+         pVertex != mesh_->vertices_end( ); ++pVertex) {
+      node.position_[ 0 ] = pVertex->point(  ).x(  );
+      node.position_[ 1 ] = pVertex->point(  ).y(  );
+      node.position_[ 2 ] = pVertex->point(  ).z(  );
+      node.set_id( pVertex->id(  ) );
+      nodes_.push_back( node );
+    }
+    
+    return;
+  }
+
+  //TODO: add some extra code in testDeformationGraph.h to test below code
   float ratio = (float)num_vertices/_target_number;
 
   float average_edge_length = mesh_->get_average_edge_length(  );
@@ -232,8 +248,6 @@ void DeformationGraph::construct( MeshCore* _mesh, int _target_number  ) {
     nodes_.push_back( node );
     i++;
   }
-
-  num_nodes = nodes_.size(  ); //this is the final number of deformation graph nodes
 }
 
 /**

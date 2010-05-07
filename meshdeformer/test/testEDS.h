@@ -42,32 +42,49 @@ class EDSTest : public MeshCoreTest
  TEST_F( EDSTest, testPrintMesh ) {
    assert( mesh_ != NULL );
    mesh_->test_print_vertex_handles(  );
+   EXPECT_EQ( 4, mesh_->size_of_vertices(  ) );
+   EXPECT_EQ( 4, mesh_->size_of_facets(  ) );
+   EXPECT_EQ( 12, mesh_->size_of_halfedges(  ) );
  }
 
 TEST_F( EDSTest, testConstructDeformationGraph ) {
   assert( eds_ != NULL );
-  eds_->construct_deformation_graph(  )  ;
+  eds_->construct_deformation_graph( 4 );
+  
+  EXPECT_EQ( 4,eds_->deformation_graph(  )->num_nodes(  ) );
 }
 
 TEST_F( EDSTest, testCalculateKNearestNodesUsingPoint ) {
   assert( eds_ != NULL );
-  eds_->construct_deformation_graph(  );//important
+  eds_->construct_deformation_graph( 4 );//important
+  EXPECT_EQ( 4,eds_->deformation_graph(  )->num_nodes(  ) );
+  
   eds_->calculate_k_nearest_nodes_using_point(  );
+  //TODO: add some assertion
+  
 }
 
 
 TEST_F( EDSTest, testCalculateKNearestNodesUsingDGNode ) {
   assert( eds_ != NULL );
-  eds_->construct_deformation_graph(  );
+  eds_->construct_deformation_graph( 4 );
+  EXPECT_EQ( 4,eds_->deformation_graph(  )->num_nodes(  ) );
+  
   eds_->calculate_k_nearest_nodes_using_dgnode(  );
+  //todo: add some assertion
 }
 
-
+/**
+   This test is actually the same as above
+*/
 TEST_F( EDSTest, testCalculate_K_Nearest_Nodes ) {
   assert( eds_ != NULL );
-  eds_->construct_deformation_graph(  );
+  eds_->construct_deformation_graph( 4 );
+  EXPECT_EQ( 4, eds_->deformation_graph(  )->num_nodes(  ) );
+  
   eds_->deformation_graph(  )->print(  );
   eds_->calculate_k_nearest_nodes(  );
+  //TODO: add some assertion1
 }
 
 

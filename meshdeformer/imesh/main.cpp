@@ -1,5 +1,6 @@
 #include <QApplication>
 #include "Core/MainWindow.h"
+
 #include "Common/globals.hpp"
 
 //Google logging library, see 3rdparty/glog_doc for documentation

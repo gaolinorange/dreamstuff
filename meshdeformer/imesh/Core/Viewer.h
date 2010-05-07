@@ -20,7 +20,7 @@
 #include "BasePlugin/RenderInterface.h"
 
 #include <QGLViewer/qglviewer.h>
-
+#include "Common/common.h"
 
 enum PolygonMode{
 	PM_WIREFRAME=0x01,
@@ -101,8 +101,13 @@ public:
   }  
 public:
 	void printDebugInfo();
-private:
-  //  MeshModel * pMeshModel;
+
+  //RenderInterface Managemenet
+ public:
+  void setRendererInterface( QVector<RendererInfo>& renderer_interfaces );
+ private:
+  QVector<RendererInfo> renderer_interfaces_;
+private:  
   MeshCore* mesh_;
   
   qglviewer::Camera* pCamera;
