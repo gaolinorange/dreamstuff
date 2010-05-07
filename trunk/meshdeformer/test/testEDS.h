@@ -1,4 +1,5 @@
-/* testEDS.h --- 
+/* -*-c++-*-
+ * testEDS.h --- 
  * copyright (c) 2010 dreamway
  */
 
@@ -24,11 +25,11 @@ class EDSTest : public MeshCoreTest
   virtual void SetUp(  ) {
     MeshCoreTest::SetUp(  );
     eds_ = new EDS(  );
-    //    eds_->setMesh( pMesh );    
+    eds_->setMesh( mesh_ );    
   }
   virtual void TearDown(  ) {
-    MeshCoreTest::TearDown(  );
     delete eds_;
+    MeshCoreTest::TearDown(  );
   }
 
   EDS* eds_;
@@ -39,17 +40,35 @@ class EDSTest : public MeshCoreTest
  }
 
  TEST_F( EDSTest, testPrintMesh ) {
-   //mesh_->test_print_vertex_handles(  );
+   assert( mesh_ != NULL );
+   mesh_->test_print_vertex_handles(  );
  }
 
-// TEST_F( EDSTest, testConstructDeformationGraph ) {
-//   eds_->construct_deformation_graph(  )  ;
-// }
+TEST_F( EDSTest, testConstructDeformationGraph ) {
+  assert( eds_ != NULL );
+  eds_->construct_deformation_graph(  )  ;
+}
+
+TEST_F( EDSTest, testCalculateKNearestNodesUsingPoint ) {
+  assert( eds_ != NULL );
+  eds_->construct_deformation_graph(  );//important
+  eds_->calculate_k_nearest_nodes_using_point(  );
+}
 
 
-/* TEST_F( EDSTest, testCalculate_K_Nearest_Nodes ) { */
-/*   eds_->calculate_k_nearest_nodes(  ); */
-/* } */
+TEST_F( EDSTest, testCalculateKNearestNodesUsingDGNode ) {
+  assert( eds_ != NULL );
+  eds_->construct_deformation_graph(  );
+  eds_->calculate_k_nearest_nodes_using_dgnode(  );
+}
+
+
+TEST_F( EDSTest, testCalculate_K_Nearest_Nodes ) {
+  assert( eds_ != NULL );
+  eds_->construct_deformation_graph(  );
+  eds_->calculate_k_nearest_nodes(  );
+}
+
 
 #endif /* _TESTEDS_H_ */
 

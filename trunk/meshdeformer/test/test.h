@@ -11,6 +11,7 @@
 
 //for EDS plugin
 #include "testDeformationGraph.h"
+#include "testEDS.h"
 
 //#include "testCurvature.h"
 //#include "testEDS.h"

@@ -30,10 +30,10 @@
 //Set Toolbox Widgets
 void EDS::setupWidgets(  ) {
     toolbox_widget_                   = new QWidget(  );
-    QLabel* labelK                    = new QLabel( QString( tr( "Nearest Node Number:" ) ) );
-    QLineEdit* lineeditK              = new QLineEdit( QString::number( K ) );
+    labelK                    = new QLabel( QString( tr( "Nearest Node Number:" ) ) );
+    lineeditK              = new QLineEdit( QString::number( K ) );
     connect( lineeditK, SIGNAL( textEdited( const QString& ) ), this, SLOT( slotChangeK( const QString& ) ) );
-    QHBoxLayout* layoutK              = new QHBoxLayout( );
+    layoutK              = new QHBoxLayout( );
     layoutK->addWidget( labelK );
     layoutK->addWidget( lineeditK );
     
@@ -55,6 +55,15 @@ void EDS::setupWidgets(  ) {
     layout->addWidget( calculate_k_nearest_nodes_button_ );
     
     toolbox_widget_->setLayout( layout );
+}
+
+void EDS::releaseWidgets(  ) {
+  delete toolbox_widget_;
+  delete labelK; delete lineeditK;
+  delete layoutK;
+  delete construct_dg_button_;
+  delete show_deformation_graph_button_;
+  delete calculate_k_nearest_nodes_button_;
 }
 
 void EDS::construct_deformation_graph(  ) {
@@ -81,6 +90,8 @@ void EDS::show_deformation_graph(  ) {
 void EDS::calculate_k_nearest_nodes(  ) {
   //calculate_k_nearest_nodes_using_point(  )  ;
   calculate_k_nearest_nodes_using_dgnode(  );
+
+  normalize_vertex_node_weights(  );
 }
 
 /**private test method*/
@@ -112,7 +123,6 @@ void EDS::calculate_k_nearest_nodes_using_point(  ) {
       std::cout<<"neighbor:"<<it->first<<",distance: "<<std::sqrt( it->second )<<std::endl;
       i++;
       //now , store the results
-      
     }
   }  
   
@@ -217,19 +227,61 @@ void EDS::calculate_k_nearest_nodes_using_dgnode(  ) {
 	   pVertex->point().z());
     
     K_neighbor_search search( tree,query,K+1 );
-    //debug: print the results
+
+    //calculat the dmax
+    K_neighbor_search::iterator max_it = search.end(  );
+    float max_distance = sqrt( max_it->second );
+    
+    //set the vertex's k-nodes&weights
+    DGNodeWeight node_weight;
+    Vertex_DeformationGraphNode_Vector node_weight_vector;
+    float distance;
+    //Begin Searching
     int i = 0;
     for (K_neighbor_search::iterator it = search.begin(  );
          it != search.end(  ); ++it) {
-      //    std::cout<<it->first<<":  "<< it->second <<std::endl;
-      //now , store the results ( see CGAL3.5 Manual( p3196 ), the result is std::pair<Point_d,FT) Point_with_transformed_distance. so first is the reslut, second is the transformed_distance. )
+      LOG( INFO )<<"Result "<<i<<": "<<it->first<<"   distance:  "<< it->second <<std::endl;
+      i++;
+      //Store the results:
+      node_weight_vector.clear(  );
+      DeformationGraphNode node = it->first; //tmp convenience node
+      int node_id = node.get_id(  );
+      node_weight.node_id = node_id;
       
-      std::cout<<"Result "<<i<<": "<<it->first<<"   distance:  "<< it->second <<std::endl;
-      i++;      
-    }
-  }  
-  
+      distance = ( pVertex->point(  ).x(  )-deformation_graph_->nodes_[node_id].position_[ 0 ] )*( pVertex->point(  ).x(  )-deformation_graph_->nodes_[node_id].position_[ 0 ] ) +
+          ( pVertex->point(  ).y(  )-deformation_graph_->nodes_[ node_id ].position_[ 1 ] )*( pVertex->point(  ).y(  )-deformation_graph_->nodes_[ node_id ].position_[ 1 ] ) +
+          ( pVertex->point(  ).z(  )-deformation_graph_->nodes_[ node_id ].position_[ 2 ] )*( pVertex->point(  ).z(  )-deformation_graph_->nodes_[ node_id ].position_[ 2 ] );
+      distance = sqrt( distance );
+      node_weight.weight = ( 1-distance/max_distance )*( 1-distance/max_distance );
+      //now , store the results ( see CGAL3.5 Manual( p3196 ), the result is std::pair<Point_d,FT) Point_with_transformed_distance. so first is the reslut, second is the transformed_distance. )
+      node_weight_vector.push_back( node_weight );
+    }//K Search
+    //Store the results
+    vertex_deformationgraphnodes_map_.insert( make_pair(pVertex,node_weight_vector) );      
+  }  //Per Vertex
 }
+
+void EDS::normalize_vertex_node_weights(  ) {
+  float weight_sum;
+  Vertex_DeformationGraphNode_Vector v_k_nodes;
+  for (Vertex_iterator pVertex = mesh_->vertices_begin(  );
+       pVertex != mesh_->vertices_end( ); ++pVertex) {
+    v_k_nodes = get( vertex_k_nearest_deformationgraphnodes_properties_,pVertex );
+    weight_sum = 0.0;
+    for( std::vector<DGNodeWeight>::iterator pNode = v_k_nodes.begin(  );
+         pNode != v_k_nodes.end(  ); pNode++) {
+      weight_sum += pNode->weight;
+    }
+    //normalize
+    for( std::vector<DGNodeWeight>::iterator pNode = v_k_nodes.begin(  );
+         pNode != v_k_nodes.end(  ); pNode++ ) {
+      pNode->weight /= weight_sum;
+    }
+    //writeback the property
+    put( vertex_k_nearest_deformationgraphnodes_properties_,pVertex,v_k_nodes );    
+  }  
+}
+
 
 /**The eds target_name should equal to CMake's target_name*/
 Q_EXPORT_PLUGIN2( eds, EDS )
