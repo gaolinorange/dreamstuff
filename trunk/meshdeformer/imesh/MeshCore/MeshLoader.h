@@ -9,6 +9,12 @@
 
 #include <iostream>
 
+/**
+   \brief: Loading the mesh using assimp library
+   \detail: *important* when using load , the flag is set to ai_Process_Triangulate and JoinIdenticalVertices,
+   so when load the file, only triangulate meshes are generated. If you want to load the quadrial meshes, please
+   modify this class's load flag.( see assimp library for references )
+*/   
 class MeshLoader
 {
 public:
@@ -30,7 +36,14 @@ public:
     //Important: see assimp source code for references
     //note: the flags are ( part, see assimp.sourceforge.net for more details )
     // aiProcess_JoinIdenticalVertices
-		const aiScene* scene = aiImporter->ReadFile(filename,aiProcess_JoinIdenticalVertices);
+		const aiScene* scene = aiImporter->ReadFile(filename,
+                                                aiProcess_JoinIdenticalVertices |
+                                                aiProcess_Triangulate |
+                                                aiProcess_SortByPType |
+                                                aiProcess_ValidateDataStructure |
+                                                aiProcess_ImproveCacheLocality |
+                                                aiProcess_FindDegenerates
+                                                );
 		if(NULL == scene)
 		{
 			//		QMessageBox::warning(this,QString(QObject::tr("warning")),QString(QObject::tr("could not load the mesh")));

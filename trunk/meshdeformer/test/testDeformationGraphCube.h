@@ -36,14 +36,14 @@ protected:
   virtual void SetUp( ){
     mesh_loader_ = new MeshLoader( );
     mesh_ = new MeshCore( );
-    QString filename = QString( "../test/test_data/test_tetrahedron.off" );
+    QString filename = QString( "../test/test_data/test_cube.off" );
     bool ret = mesh_loader_->load( filename.toAscii( ).data( ) );
     EXPECT_EQ( true, ret );
     if( ret == false )
     {
       printf( "Warning: mesh_loader_ load file failed.\n");
       qDebug(  )<<"filename: "<<filename;
-     printf( "Message: maybe the path of the data is wrong?\n" );
+      printf( "Message: maybe the path of the data is wrong?\n" );
     }
     else{
       MeshBuilder<Polyhedron::HalfedgeDS> builder( mesh_loader_ );
@@ -80,14 +80,15 @@ TEST_F( DeformationGraphCubeTest, testPrintVertex )
             pVertex->point( ).x( ),
             pVertex->point( ).y( ),
             pVertex->point( ).z( ));  
-  }  
+  }
+  EXPECT_EQ( 8,mesh_->size_of_vertices(  ) );  
 }
 
 TEST_F( DeformationGraphCubeTest,testConstruct ) {
   assert( deformation_graph_ != NULL );
   deformation_graph_->construct( mesh_,4 );
-  //  EXPECT_EQ( 8,deformation_graph_->num_nodes(  ) );
-  EXPECT_EQ( 4,deformation_graph_->num_nodes(  ) );
+  //TODO: the above should 
+  EXPECT_EQ( 8,deformation_graph_->num_nodes(  ) );
 }
 
 #endif /* _TESTDEFORMATIONGRAPHCUBE_H_ */
