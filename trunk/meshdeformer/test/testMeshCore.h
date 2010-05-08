@@ -74,17 +74,17 @@ TEST_F(MeshCoreTest,testBoundingBox)
 
 TEST_F(MeshCoreTest,testVertexHandlePrint)
 {
-  mesh_->test_print_vertex_handles(); 
+  //  mesh_->test_print_vertex_handles(); 
 }
 
 TEST_F(MeshCoreTest,testHalfedgeHandlePrint)
 {
-  mesh_->test_print_halfedge_handles();
+  //  mesh_->test_print_halfedge_handles();
 }
 
 TEST_F(MeshCoreTest,testFacetHandlePrint)
 {
-  mesh_->test_print_facet_handles();
+  //  mesh_->test_print_facet_handles();
 }
 
 TEST_F(MeshCoreTest,testInitIndexToVertexMap)
@@ -147,7 +147,7 @@ TEST_F( MeshCoreTest, testVertexValence )
 TEST_F( MeshCoreTest, testAverageLength ) {
   float expected_length = (float)(sqrt( 2.0 )*3+1*3)/6;
   float actual = mesh_->get_average_edge_length(  ) ;
-  printf( "actual edge average length = %.3f\n",actual );
+  //  printf( "actual edge average length = %.3f\n",actual );
   
   EXPECT_FLOAT_EQ( expected_length, actual);
 }

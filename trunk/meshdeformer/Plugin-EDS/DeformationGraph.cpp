@@ -205,9 +205,11 @@ void DeformationGraph::construct( MeshCore* _mesh, int _target_number  ) {
 
   //TODO: add some extra code in testDeformationGraph.h to test below code
   float ratio = (float)num_vertices/_target_number;
-
+  printf( "ratio: %.2f\n",ratio );
   float average_edge_length = mesh_->get_average_edge_length(  );
-  float expected_tuncate_squared_length = average_edge_length*average_edge_length * ratio; //for efficiency: use the squared_length
+  printf( "average_edge_length: %.2f\n",average_edge_length );
+  float expected_tuncate_length = average_edge_length * ratio; //for efficiency: use the squared_length
+  printf( "expected_tuncate_length:%.2f\n",expected_tuncate_length );
     
   std::list<Point_3> searching_lists;
   searching_lists.clear(  );
@@ -226,8 +228,9 @@ void DeformationGraph::construct( MeshCore* _mesh, int _target_number  ) {
     pSearchIterator++;
     for(  ; pSearchIterator != searching_lists.end(  );  ) {
       distance = Vector_3( (*pSearchIterator)-(*pBeginIterator) ).squared_length(  );
+      distance = sqrt( distance );
       
-      if( distance < expected_tuncate_squared_length ) {
+      if( distance < expected_tuncate_length ) {
         pSearchIterator = searching_lists.erase( pSearchIterator );
       }
       else
@@ -288,7 +291,6 @@ void DeformationGraph::print(  ) {
        pNode != nodes_.end(  ); ++pNode) {
     pNode->print(  );
   }
-
   printf( "=============End DeformationGraph =================\n" );
 }
 //  

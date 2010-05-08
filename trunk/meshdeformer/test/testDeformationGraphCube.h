@@ -84,11 +84,19 @@ TEST_F( DeformationGraphCubeTest, testPrintVertex )
   EXPECT_EQ( 8,mesh_->size_of_vertices(  ) );  
 }
 
-TEST_F( DeformationGraphCubeTest,testConstruct ) {
+TEST_F( DeformationGraphCubeTest,testConstruct8Node ) {
+  assert( deformation_graph_ != NULL );
+  deformation_graph_->construct( mesh_,8 );
+  //TODO: the above should 
+  EXPECT_EQ( 8,deformation_graph_->num_nodes(  ) );
+}
+
+TEST_F( DeformationGraphCubeTest,testConstruct4Node ) {
   assert( deformation_graph_ != NULL );
   deformation_graph_->construct( mesh_,4 );
   //TODO: the above should 
   EXPECT_EQ( 8,deformation_graph_->num_nodes(  ) );
+  deformation_graph_->print(  );
 }
 
 #endif /* _TESTDEFORMATIONGRAPHCUBE_H_ */

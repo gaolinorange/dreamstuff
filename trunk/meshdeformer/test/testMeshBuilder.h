@@ -27,8 +27,6 @@ class MeshBuilderTest : public ::testing::Test
 {
 public:
   virtual void SetUp( ) {
-    printf( "Setting Up MeshBuilderTest...\n" );
-    
     mesh_loader_ = new MeshLoader( );
     mesh_ = new MeshCore( );
     QString filename = QString( "../test/test_data/test_tetrahedron.off" );
@@ -46,7 +44,6 @@ public:
     }
   }
   virtual void TearDown(  ) {
-    printf( "Tearing Down MeshBuilderTest...\n" );
     delete mesh_loader_;
     delete mesh_;
   }
@@ -61,18 +58,19 @@ TEST_F( MeshBuilderTest, testInit ) {
 
 TEST_F( MeshBuilderTest, testPrintVertex )
 {
-  for (Vertex_iterator pVertex = mesh_->vertices_begin( );
-       pVertex != mesh_->vertices_end( ); pVertex++)
-  {
-    printf( "%ld: ( %.2f,%.2f,%.2f ) \n", pVertex->id( ),
-            pVertex->point( ).x( ),
-            pVertex->point( ).y( ),
-            pVertex->point( ).z( ));  
-  }
+  // for (Vertex_iterator pVertex = mesh_->vertices_begin( );
+  //      pVertex != mesh_->vertices_end( ); pVertex++)
+  // {
+  //   printf( "%ld: ( %.2f,%.2f,%.2f ) \n", pVertex->id( ),
+  //           pVertex->point( ).x( ),
+  //           pVertex->point( ).y( ),
+  //           pVertex->point( ).z( ));  
+  // }
   EXPECT_EQ( 4, mesh_->size_of_vertices(  ) );
   EXPECT_EQ( 4, mesh_->size_of_facets(  ) );
   EXPECT_EQ( 12,mesh_->size_of_halfedges(  ) );
 }
+
 
 #endif
 

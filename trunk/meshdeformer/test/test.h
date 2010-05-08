@@ -6,13 +6,14 @@
 #include "testMeshCore.h"
 #include "testMeshBuilder.h"
 #include "testMeshBuilderDerived.h"
+#include "testLoadingDifferentMesh.h"
 #include "testGoogleLog.h"
 #include "testColorCoding.h"
 
 //for EDS plugin
 #include "testDeformationGraph.h"
 #include "testDeformationGraphCube.h"
-#include "testEDS.h"
+//#include "testEDS.h" //todo
 
 //#include "testCurvature.h"
 //#include "testEDS.h"
