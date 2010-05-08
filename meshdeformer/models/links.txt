@@ -1,0 +1,6 @@
+Model databases
+1. http://people.sc.fssu.edu/~burkardt/data/data.html
+   contains many different formats of mesh data, including 3ds,ply,obj,dxf,off,quad-mesh, etc.
+2. http://www.hongkiat.com/blog/60-excellent-free-3d-model-websites/
+   some links for searching models
+   

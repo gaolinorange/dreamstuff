@@ -66,6 +66,7 @@ TEST_F( DeformationGraphTest, testInit ) {
 }
 
 TEST_F( DeformationGraphTest, testPrintVertex ) {
+  /*
   for (Vertex_iterator pVertex = mesh_->vertices_begin(  );
        pVertex != mesh_->vertices_end( ); ++pVertex) {
     printf( "%ld,%.2f,%.2f,%.2f\n",pVertex->id(  ),
@@ -73,6 +74,8 @@ TEST_F( DeformationGraphTest, testPrintVertex ) {
             pVertex->point(  ).y(  ),
             pVertex->point(  ).z(  ));
   }
+  */
+  EXPECT_EQ( 4,mesh_->size_of_vertices(  ) );
 }
 
 TEST_F( DeformationGraphTest, testConstruct ) {
