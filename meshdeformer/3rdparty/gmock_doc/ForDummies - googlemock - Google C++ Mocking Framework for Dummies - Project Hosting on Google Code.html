@@ -1,0 +1,445 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0089)http://code.google.com/p/googlemock/wiki/ForDummies#What_Is_Google_C++_Mocking_Framework? -->
+<HTML><HEAD><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <LINK rel="icon" type="image/vnd.microsoft.icon" href="http://www.gstatic.com/codesite/ph/images/phosting.ico">
+ 
+ <SCRIPT type="text/javascript">
+ 
+ 
+ 
+ var codesite_token = null;
+ 
+ 
+ var logged_in_user_email = null;
+ 
+ 
+ var relative_base_url = "";
+ 
+ </SCRIPT>
+ 
+ 
+ <TITLE>ForDummies - 
+ googlemock -
+ 
+ Google C++ Mocking Framework for Dummies - Project Hosting on Google Code</TITLE>
+ 
+ 
+ <LINK type="text/css" rel="stylesheet" href="./ForDummies - googlemock - Google C++ Mocking Framework for Dummies - Project Hosting on Google Code_files/ph_core.css">
+ 
+ <LINK type="text/css" rel="stylesheet" href="./ForDummies - googlemock - Google C++ Mocking Framework for Dummies - Project Hosting on Google Code_files/ph_detail.css">
+ 
+ 
+ 
+ <LINK type="application/atom+xml" rel="alternate" href="http://code.google.com/feeds/p/googlemock/svnchanges/basic?path=/wiki/ForDummies.wiki">
+ 
+ 
+<!--[if IE]>
+ <link type="text/css" rel="stylesheet" href="http://www.gstatic.com/codesite/ph/6513215159156155175/css/d_ie.css" >
+<![endif]-->
+ <STYLE type="text/css">
+ .menuIcon.off { background: no-repeat url(http://www.gstatic.com/codesite/ph/images/dropdown_sprite.gif) 0 -42px }
+ .menuIcon.on { background: no-repeat url(http://www.gstatic.com/codesite/ph/images/dropdown_sprite.gif) 0 -28px }
+ .menuIcon.down { background: no-repeat url(http://www.gstatic.com/codesite/ph/images/dropdown_sprite.gif) 0 0; }
+ </STYLE>
+<SCRIPT type="text/javascript" src="./ForDummies - googlemock - Google C++ Mocking Framework for Dummies - Project Hosting on Google Code_files/ga.js"></SCRIPT></HEAD><BODY class="t6">
+ <SCRIPT type="text/javascript">
+ var _gaq = _gaq || [];
+ _gaq.push(
+ ['siteTracker._setAccount', 'UA-18071-1'],
+ ['siteTracker._trackPageview']);
+ 
+ _gaq.push(
+ ['projectTracker._setAccount', 'UA-4068653-1'],
+ ['projectTracker._trackPageview']);
+ 
+ (function() {
+ var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+ (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+ })();
+ </SCRIPT>
+ <DIV id="gaia">
+ 
+ <SPAN>
+ 
+ 
+ <A href="http://code.google.com/p/googlemock/wiki/ForDummies#" id="projects-dropdown" onclick="return false;"><U>My favorites</U> <SMALL>▼</SMALL></A>
+ 
+ | <A href="https://www.google.com/accounts/ServiceLogin?service=code&ltmpl=phosting&continue=http%3A%2F%2Fcode.google.com%2Fp%2Fgooglemock%2Fwiki%2FForDummies&followup=http%3A%2F%2Fcode.google.com%2Fp%2Fgooglemock%2Fwiki%2FForDummies" onclick="_CS_click(&#39;/gb/ph/signin&#39;);"><U>Sign in</U></A>
+ 
+ </SPAN>
+
+ </DIV>
+ <DIV class="gbh" style="left: 0pt;"></DIV>
+ <DIV class="gbh" style="right: 0pt;"></DIV>
+ 
+ 
+ <DIV style="height: 1px"></DIV>
+<!--[if IE 6]>
+<div style="text-align:center;">
+Support browsers that contribute to open source, try <a href="http://www.firefox.com">Firefox</a> or <a href="http://www.google.com/chrome">Google Chrome</a>.
+</div>
+<![endif]-->
+
+
+
+ <TABLE style="padding:0px; margin: 20px 0px 0px 0px; width:100%" cellpadding="0" cellspacing="0">
+ <TBODY><TR style="height: 58px;">
+ 
+ <TD style="width: 55px; text-align:center;">
+ <A href="http://code.google.com/p/googlemock/">
+ 
+ 
+ 
+ <IMG src="./ForDummies - googlemock - Google C++ Mocking Framework for Dummies - Project Hosting on Google Code_files/logo" alt="Logo">
+ 
+ 
+ </A>
+ </TD>
+ 
+ <TD style="padding-left: 0.5em">
+ 
+ <DIV id="pname" style="margin: 0px 0px -3px 0px">
+ <A href="http://code.google.com/p/googlemock/" style="text-decoration:none; color:#000">googlemock</A>
+ 
+ </DIV>
+ <DIV id="psum">
+ <I><A id="project_summary_link" href="http://code.google.com/p/googlemock/" style="text-decoration:none; color:#000">Google C++ Mocking Framework</A></I>
+ </DIV>
+ 
+ </TD>
+ <TD style="white-space:nowrap;text-align:right">
+ <FORM action="http://code.google.com/hosting/search">
+ <INPUT size="30" name="q" value="">
+ <INPUT type="submit" name="projectsearch" value="Search projects">
+ </FORM>
+ </TD></TR>
+ </TBODY></TABLE>
+
+
+ 
+<TABLE id="mt" cellspacing="0" cellpadding="0" width="100%" border="0">
+ <TBODY><TR>
+ <TH onclick="if (!cancelBubble) _go(&#39;/p/googlemock/&#39;);">
+ <DIV class="tab inactive">
+ <DIV class="round4"></DIV>
+ <DIV class="round2"></DIV>
+ <DIV class="round1"></DIV>
+ <DIV class="box-inner">
+ <A onclick="cancelBubble=true;" href="http://code.google.com/p/googlemock/">Project&nbsp;Home</A>
+ </DIV>
+ </DIV>
+ </TH><TD>&nbsp;&nbsp;</TD>
+ 
+ 
+ 
+ 
+ <TH onclick="if (!cancelBubble) _go(&#39;/p/googlemock/downloads/list&#39;);">
+ <DIV class="tab inactive">
+ <DIV class="round4"></DIV>
+ <DIV class="round2"></DIV>
+ <DIV class="round1"></DIV>
+ <DIV class="box-inner">
+ <A onclick="cancelBubble=true;" href="http://code.google.com/p/googlemock/downloads/list">Downloads</A>
+ </DIV>
+ </DIV>
+ </TH><TD>&nbsp;&nbsp;</TD>
+ 
+ 
+ 
+ 
+ 
+ <TH onclick="if (!cancelBubble) _go(&#39;/p/googlemock/w/list&#39;);">
+ <DIV class="tab active">
+ <DIV class="round4"></DIV>
+ <DIV class="round2"></DIV>
+ <DIV class="round1"></DIV>
+ <DIV class="box-inner">
+ <A onclick="cancelBubble=true;" href="http://code.google.com/p/googlemock/w/list">Wiki</A>
+ </DIV>
+ </DIV>
+ </TH><TD>&nbsp;&nbsp;</TD>
+ 
+ 
+ 
+ 
+ 
+ <TH onclick="if (!cancelBubble) _go(&#39;/p/googlemock/issues/list&#39;);">
+ <DIV class="tab inactive">
+ <DIV class="round4"></DIV>
+ <DIV class="round2"></DIV>
+ <DIV class="round1"></DIV>
+ <DIV class="box-inner">
+ <A onclick="cancelBubble=true;" href="http://code.google.com/p/googlemock/issues/list">Issues</A>
+ </DIV>
+ </DIV>
+ </TH><TD>&nbsp;&nbsp;</TD>
+ 
+ 
+ 
+ 
+ 
+ <TH onclick="if (!cancelBubble) _go(&#39;/p/googlemock/source/checkout&#39;);">
+ <DIV class="tab inactive">
+ <DIV class="round4"></DIV>
+ <DIV class="round2"></DIV>
+ <DIV class="round1"></DIV>
+ <DIV class="box-inner">
+ <A onclick="cancelBubble=true;" href="http://code.google.com/p/googlemock/source/checkout">Source</A>
+ </DIV>
+ </DIV>
+ </TH><TD>&nbsp;&nbsp;</TD>
+ 
+ 
+ <TD width="100%">&nbsp;</TD>
+ </TR>
+</TBODY></TABLE>
+<TABLE cellspacing="0" cellpadding="0" width="100%" align="center" border="0" class="st">
+ <TBODY><TR>
+ 
+ 
+ 
+ <TD>
+ <DIV class="issueDetail">
+<DIV class="isf">
+ 
+ <SPAN class="inIssueList"> 
+ <SPAN>Search</SPAN>
+ <FORM action="http://code.google.com/p/googlemock/w/list" method="GET" style="display:inline">
+ <SELECT id="can" name="can" style="font-size:92%">
+ <OPTION disabled="disabled">Search within:</OPTION>
+ 
+ <OPTION value="1">&nbsp;All wiki pages</OPTION>
+ <OPTION value="3">&nbsp;Featured pages</OPTION>
+ <OPTION value="2" selected="selected">&nbsp;Current pages</OPTION>
+ 
+ 
+ <OPTION value="4">&nbsp;Deprecated pages</OPTION>
+ 
+ </SELECT>
+ <SPAN>for</SPAN>
+ <SPAN id="qq"><INPUT type="text" size="38" id="q" name="q" value="" style="font-size:92%"></SPAN>
+ 
+ 
+ <INPUT type="submit" value="Search" style="font-size:92%">
+ </FORM>
+ </SPAN>
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</DIV>
+</DIV>
+
+ </TD>
+ 
+ 
+ 
+ 
+ 
+ 
+ <TD height="4" align="right" valign="top" class="bevel-right">
+ <DIV class="round4"></DIV>
+ <DIV class="round2"></DIV>
+ <DIV class="round1"></DIV>
+ </TD>
+ </TR>
+</TBODY></TABLE>
+<SCRIPT type="text/javascript">
+ var cancelBubble = false;
+ function _go(url) { document.location = url; }
+</SCRIPT>
+
+
+<DIV id="maincol">
+
+ 
+<!-- IE -->
+
+
+
+
+
+
+
+ <STYLE type="text/css">
+ .artifactcomment {
+ margin: .5em 0 0 0;
+ padding: .3em 0 .3em .3em;
+ border-top: 3px solid #c3d9ff;
+ }
+ #commentlist {
+ border-bottom: 3px solid #c3d9ff;
+ }
+ #commentform { padding-top: 1em; }
+ .delcom { background: #e8e8e8 }
+ .commentcontent { margin: 1em 0;}
+ </STYLE>
+
+
+ <DIV id="wikicontent">
+ <TABLE width="100%" border="0" cellspacing="0" cellpadding="0">
+ <TBODY><TR>
+ 
+ <TD class="vt" id="wikimaincol" width="100%">
+ 
+ <DIV style="float:right; width:18em" id="wikimeta">
+ <DIV class="pmeta_bubble_bg">
+ <DIV class="round4"></DIV>
+ <DIV class="round2"></DIV>
+ <DIV class="round1"></DIV>
+ <DIV class="box-inner">
+ <TABLE style="padding: 5px">
+ <TBODY><TR><TD colspan="2" style="padding-bottom:5px">Updated <SPAN title="Wed Feb 24 16:36:19 2010">Feb 24, 2010</SPAN>
+ 
+ by <A style="white-space: nowrap" href="http://code.google.com/u/@WBhXQFBWDhlDVgF4/">w...@google.com</A>
+ </TD></TR>
+ 
+ <TR><TH class="vt">Labels:</TH>
+ <TD>
+ 
+ <A href="http://code.google.com/p/googlemock/w/list?q=label:Featured" title="Listed on project home page">Featured</A>
+ 
+ </TD>
+ </TR>
+ 
+ 
+ 
+ </TBODY></TABLE>
+ </DIV>
+ <DIV class="round1"></DIV>
+ <DIV class="round2"></DIV>
+ <DIV class="round4"></DIV>
+ </DIV>
+ </DIV>
+ 
+ <DIV id="wikiheader" style="margin-bottom:1em">
+ 
+ <SPAN style="font-size:120%;font-weight:bold">ForDummies</SPAN>
+ &nbsp;
+ 
+ 
+ <DIV style="font-style:italic; margin-top: 3px">Google C++ Mocking Framework for Dummies</DIV>
+ 
+ </DIV>
+ <P></P><UL><LI><A href="./ForDummies - googlemock - Google C++ Mocking Framework for Dummies - Project Hosting on Google Code_files/ForDummies - googlemock - Google C++ Mocking Framework for Dummies - Project Hosting on Google Code.html">What Is Google C++ Mocking Framework?</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/ForDummies#Why_Google_Mock?">Why Google Mock?</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/ForDummies#Getting_Started">Getting Started</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/ForDummies#A_Case_for_Mock_Turtles">A Case for Mock Turtles</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/ForDummies#Writing_the_Mock_Class">Writing the Mock Class</A></LI><UL><LI><A href="http://code.google.com/p/googlemock/wiki/ForDummies#How_to_Define_It">How to Define It</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/ForDummies#Where_to_Put_It">Where to Put It</A></LI></UL><LI><A href="http://code.google.com/p/googlemock/wiki/ForDummies#Using_Mocks_in_Tests">Using Mocks in Tests</A></LI><UL><LI><A href="http://code.google.com/p/googlemock/wiki/ForDummies#Using_Google_Mock_with_Any_Testing_Framework">Using Google Mock with Any Testing Framework</A></LI></UL><LI><A href="http://code.google.com/p/googlemock/wiki/ForDummies#Setting_Expectations">Setting Expectations</A></LI><UL><LI><A href="http://code.google.com/p/googlemock/wiki/ForDummies#General_Syntax">General Syntax</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/ForDummies#Matchers:_What_Arguments_Do_We_Expect?">Matchers: What Arguments Do We Expect?</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/ForDummies#Cardinalities:_How_Many_Times_Will_It_Be_Called?">Cardinalities: How Many Times Will It Be Called?</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/ForDummies#Actions:_What_Should_It_Do?">Actions: What Should It Do?</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/ForDummies#Using_Multiple_Expectations">Using Multiple Expectations</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/ForDummies#Ordered_vs_Unordered_Calls">Ordered vs Unordered Calls</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/ForDummies#All_Expectations_Are_Sticky_(Unless_Said_Otherwise)">All Expectations Are Sticky (Unless Said Otherwise)</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/ForDummies#Uninteresting_Calls">Uninteresting Calls</A></LI></UL><LI><A href="http://code.google.com/p/googlemock/wiki/ForDummies#What_Now?">What Now?</A></LI></UL> <P></P><P>(<STRONG>Note:</STRONG> If you get compiler errors that you don't understand, be sure to consult <A href="http://code.google.com/p/googlemock/wiki/FrequentlyAskedQuestions#How_am_I_supposed_to_make_sense_of_these_horrible_template_error">Google Mock Doctor</A>.) </P><H1><A name="What_Is_Google_C++_Mocking_Framework?">What Is Google C++ Mocking Framework?</A></H1><A name="What_Is_Google_C++_Mocking_Framework?"><P>When you write a prototype or test, often it's not feasible or wise to rely on real objects entirely. A <STRONG>mock object</STRONG> implements the same interface as a real object (so it can be used as one), but lets you specify at run time how it will be used and what it should do (which methods will be called? in which order? how many times? with what arguments? what will they return? etc). </P><P><STRONG>Note:</STRONG> It is easy to confuse the term <I>fake objects</I> with mock objects. Fakes and mocks actually mean very different things in the Test-Driven Development (TDD) community: </P><UL><LI><STRONG>Fake</STRONG> objects have working implementations, but usually take some shortcut (perhaps to make the operations less expensive), which makes them not suitable for production. An in-memory file system would be an example of a fake.  </LI><LI><STRONG>Mocks</STRONG> are objects pre-programmed with <I>expectations</I>, which form a specification of the calls they are expected to receive.  </LI></UL><P>If all this seems too abstract for you, don't worry - the most important thing to remember is that a mock allows you to check the <I>interaction</I> between itself and code that uses it. The difference between fakes and mocks will become much clearer once you start to use mocks. </P></A><P><A name="What_Is_Google_C++_Mocking_Framework?"><STRONG>Google C++ Mocking Framework</STRONG> (or <STRONG>Google Mock</STRONG> for short) is a library (sometimes we also call it a "framework" to make it sound cool) for creating mock classes and using them. It does to C++ what </A><A href="http://www.jmock.org/" rel="nofollow">jMock</A> and <A href="http://www.easymock.org/" rel="nofollow">EasyMock</A> do to Java. </P><P>Using Google Mock involves three basic steps:   </P><OL><LI>Use some simple macros to describe the interface you want to mock, and they will expand to the implementation of your mock class;  </LI><LI>Create some mock objects and specify its expectations and behavior using an intuitive syntax;  </LI><LI>Exercise code that uses the mock objects. Google Mock will catch any violation of the expectations as soon as it arises.  </LI></OL><P></P><H1><A name="Why_Google_Mock?">Why Google Mock?</A></H1><A name="Why_Google_Mock?"><P>While mock objects help you remove unnecessary dependencies in tests and make them fast and reliable, using mocks manually in C++ is <I>hard</I>: </P><UL><LI>Someone has to implement the mocks. The job is usually tedious and error-prone. No wonder people go great distance to avoid it.  </LI><LI>The quality of those manually written mocks is a bit, uh, unpredictable. You may see some really polished ones, but you may also see some that were hacked up in a hurry and have all sorts of ad hoc restrictions.  </LI><LI>The knowledge you gained from using one mock doesn't transfer to the next.  </LI></UL><P>In contrast, Java and Python programmers have some fine mock frameworks, which automate the creation of mocks. As a result, mocking is a proven effective technique and widely adopted practice in those communities. Having the right tool absolutely makes the difference. </P></A><P><A name="Why_Google_Mock?">Google Mock was built to help C++ programmers. It was inspired by </A><A href="http://www.jmock.org/" rel="nofollow">jMock</A> and <A href="http://www.easymock.org/" rel="nofollow">EasyMock</A>, but designed with C++'s specifics in mind. It is your friend if any of the following problems is bothering you:   </P><UL><LI>You are stuck with a sub-optimal design and wish you had done more prototyping before it was too late, but prototyping in C++ is by no means "rapid".  </LI><LI>Your tests are slow as they depend on too many libraries or use expensive resources (e.g. a database).  </LI><LI>Your tests are brittle as some resources they use are unreliable (e.g. the network).  </LI><LI>You want to test how your code handles a failure (e.g. a file checksum error), but it's not easy to cause one.  </LI><LI>You need to make sure that your module interacts with other modules in the right way, but it's hard to observe the interaction; therefore you resort to observing the side effects at the end of the action, which is awkward at best.  </LI><LI>You want to "mock out" your dependencies, except that they don't have mock implementations yet; and, frankly, you aren't thrilled by some of those hand-written mocks.  </LI></UL><P></P><P>We encourage you to use Google Mock as: </P><UL><LI>a <I>design</I> tool, for it lets you experiment with your interface design early and often. More iterations lead to better designs!  </LI><LI>a <I>testing</I> tool to cut your tests' outbound dependencies and probe the interaction between your module and its collaborators.  </LI></UL><H1><A name="Getting_Started">Getting Started</A></H1><A name="Getting_Started"><P>Using Google Mock is easy! Inside your C++ source file, just #include <TT>&lt;gtest/gtest.h&gt;</TT> and <TT>&lt;gmock/gmock.h&gt;</TT>, and you are ready to go. </P></A><H1><A name="A_Case_for_Mock_Turtles">A Case for Mock Turtles</A></H1><A name="A_Case_for_Mock_Turtles"><P>Let's look at an example. Suppose you are developing a graphics program that relies on a LOGO-like API for drawing. How would you test that it does the right thing? Well, you can run it and compare the screen with a golden screen snapshot, but let's admit it: tests like this are expensive to run and fragile (What if you just upgraded to a shiny new graphics card that has better anti-aliasing? Suddenly you have to update all your golden images.). It would be too painful if all your tests are like this. Fortunately, you learned about Dependency Injection and know the right thing to do: instead of having your application talk to the drawing API directly, wrap the API in an interface (say, <TT>Turtle</TT>) and code to that interface: </P><PRE class="prettyprint"><SPAN class="kwd">class</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Turtle</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="kwd">virtual</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">~</SPAN><SPAN class="typ">Turtle</SPAN><SPAN class="pun">()</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{}</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="kwd">virtual</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">void</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">PenUp</SPAN><SPAN class="pun">()</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">=</SPAN><SPAN class="pln"> </SPAN><SPAN class="lit">0</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="kwd">virtual</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">void</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">PenDown</SPAN><SPAN class="pun">()</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">=</SPAN><SPAN class="pln"> </SPAN><SPAN class="lit">0</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="kwd">virtual</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">void</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Forward</SPAN><SPAN class="pun">(</SPAN><SPAN class="kwd">int</SPAN><SPAN class="pln"> distance</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">=</SPAN><SPAN class="pln"> </SPAN><SPAN class="lit">0</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="kwd">virtual</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">void</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Turn</SPAN><SPAN class="pun">(</SPAN><SPAN class="kwd">int</SPAN><SPAN class="pln"> degrees</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">=</SPAN><SPAN class="pln"> </SPAN><SPAN class="lit">0</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="kwd">virtual</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">void</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">GoTo</SPAN><SPAN class="pun">(</SPAN><SPAN class="kwd">int</SPAN><SPAN class="pln"> x</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">int</SPAN><SPAN class="pln"> y</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">=</SPAN><SPAN class="pln"> </SPAN><SPAN class="lit">0</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="kwd">virtual</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">int</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">GetX</SPAN><SPAN class="pun">()</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">const</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">=</SPAN><SPAN class="pln"> </SPAN><SPAN class="lit">0</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="kwd">virtual</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">int</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">GetY</SPAN><SPAN class="pun">()</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">const</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">=</SPAN><SPAN class="pln"> </SPAN><SPAN class="lit">0</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">};</SPAN></PRE><P>(Note that the destructor of <TT>Turtle</TT> <STRONG>must</STRONG> be virtual, as is the case for <STRONG>all</STRONG> classes you intend to inherit from - otherwise the destructor of the derived class will not be called when you delete an object through a base pointer, and you'll get corrupted program states like memory leaks.) </P><P>You can control whether the turtle's movement will leave a trace using <TT>PenUp()</TT> and <TT>PenDown()</TT>, and control its movement using <TT>Forward()</TT>, <TT>Turn()</TT>, and <TT>GoTo()</TT>. Finally, <TT>GetX()</TT> and <TT>GetY()</TT> tell you the current position of the turtle. </P><P>Your program will normally use a real implementation of this interface. In tests, you can use a mock implementation instead. This allows you to easily check what drawing primitives your program is calling, with what arguments, and in which order. Tests written this way are much more robust (they won't break because your new machine does anti-aliasing differently), easier to read and maintain (the intent of a test is expressed in the code, not in some binary images), and run <I>much, much faster</I>. </P></A><H1><A name="Writing_the_Mock_Class">Writing the Mock Class</A></H1><A name="Writing_the_Mock_Class"><P>If you are lucky, the mocks you need to use have already been implemented by some nice people. If, however, you find yourself in the position to write a mock class, relax - Google Mock turns this task into a fun game! (Well, almost.) </P></A><H2><A name="How_to_Define_It">How to Define It</A></H2><A name="How_to_Define_It"><P>Using the <TT>Turtle</TT> interface as example, here are the simple steps you need to follow:   </P><OL><LI>Derive a class <TT>MockTurtle</TT> from <TT>Turtle</TT>.  </LI><LI>Take a virtual function of <TT>Turtle</TT>. Count how many arguments it has.  </LI><LI>In the <TT>public:</TT> section of the child class, write <TT>MOCK_METHODn();</TT> (or <TT>MOCK_CONST_METHODn();</TT> if you are mocking a <TT>const</TT> method), where <TT>n</TT> is the number of the arguments; if you counted wrong, shame on you, and a compiler error will tell you so.  </LI><LI>Now comes the fun part: you take the function signature, cut-and-paste the <I>function name</I> as the <I>first</I> argument to the macro, and leave what's left as the <I>second</I> argument (in case you're curious, this is the <I>type of the function</I>).  </LI><LI>Repeat until all virtual functions you want to mock are done.  </LI></OL><P></P><P>After the process, you should have something like: </P><PRE class="prettyprint"><SPAN class="com">#include</SPAN><SPAN class="pln"> </SPAN><SPAN class="str">&lt;gmock/gmock.h&gt;</SPAN><SPAN class="pln"> &nbsp;</SPAN><SPAN class="com">// Brings in Google Mock.</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="kwd">class</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">MockTurtle</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">:</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">public</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Turtle</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp;</SPAN><SPAN class="kwd">public</SPAN><SPAN class="pun">:</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR>&nbsp; MOCK_METHOD0</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">PenUp</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">void</SPAN><SPAN class="pun">());</SPAN><SPAN class="pln"><BR>&nbsp; MOCK_METHOD0</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">PenDown</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">void</SPAN><SPAN class="pun">());</SPAN><SPAN class="pln"><BR>&nbsp; MOCK_METHOD1</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">Forward</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">void</SPAN><SPAN class="pun">(</SPAN><SPAN class="kwd">int</SPAN><SPAN class="pln"> distance</SPAN><SPAN class="pun">));</SPAN><SPAN class="pln"><BR>&nbsp; MOCK_METHOD1</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">Turn</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">void</SPAN><SPAN class="pun">(</SPAN><SPAN class="kwd">int</SPAN><SPAN class="pln"> degrees</SPAN><SPAN class="pun">));</SPAN><SPAN class="pln"><BR>&nbsp; MOCK_METHOD2</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">GoTo</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">void</SPAN><SPAN class="pun">(</SPAN><SPAN class="kwd">int</SPAN><SPAN class="pln"> x</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">int</SPAN><SPAN class="pln"> y</SPAN><SPAN class="pun">));</SPAN><SPAN class="pln"><BR>&nbsp; MOCK_CONST_METHOD0</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">GetX</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">int</SPAN><SPAN class="pun">());</SPAN><SPAN class="pln"><BR>&nbsp; MOCK_CONST_METHOD0</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">GetY</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">int</SPAN><SPAN class="pun">());</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">};</SPAN></PRE><P>You don't need to define these mock methods somewhere else - the <TT>MOCK_METHOD*</TT> macros will generate the definitions for you. It's that simple! Once you get the hang of it, you can pump out mock classes faster than your source-control system can handle your check-ins. </P></A><P><A name="How_to_Define_It"><STRONG>Tip:</STRONG> If even this is too much work for you, you'll find the <TT>gmock_gen.py</TT> tool in Google Mock's <TT>scripts/generator/</TT> directory (courtesy of the </A><A href="http://code.google.com/p/cppclean/" rel="nofollow">cppclean</A> project) useful.  This command-line tool requires that you have Python 2.4 installed.  You give it a C++ file and the name of an abstract class defined in it, and it will print the definition of the mock class for you.  Due to the complexity of the C++ language, this script may not always work, but it can be quite handy when it does.  For more details, read the <A href="http://code.google.com/p/googlemock/source/browse/trunk/scripts/generator/README" rel="nofollow">user documentation</A>. </P><H2><A name="Where_to_Put_It">Where to Put It</A></H2><A name="Where_to_Put_It"><P>When you define a mock class, you need to decide where to put its definition. Some people put it in a <TT>*_test.cc</TT>. This is fine when the interface being mocked (say, <TT>Foo</TT>) is owned by the same person or team. Otherwise, when the owner of <TT>Foo</TT> changes it, your test could break. (You can't really expect <TT>Foo</TT>'s maintainer to fix every test that uses <TT>Foo</TT>, can you?) </P><P>So, the rule of thumb is: if you need to mock <TT>Foo</TT> and it's owned by others, define the mock class in <TT>Foo</TT>'s package (better, in a <TT>testing</TT> sub-package such that you can clearly separate production code and testing utilities), and put it in a <TT>mock_foo.h</TT>. Then everyone can reference <TT>mock_foo.h</TT> from their tests. If <TT>Foo</TT> ever changes, there is only one copy of <TT>MockFoo</TT> to change, and only tests that depend on the changed methods need to be fixed. </P><P>Another way to do it: you can introduce a thin layer <TT>FooAdaptor</TT> on top of <TT>Foo</TT> and code to this new interface. Since you own <TT>FooAdaptor</TT>, you can absorb changes in <TT>Foo</TT> much more easily. While this is more work initially, carefully choosing the adaptor interface can make your code easier to write and more readable (a net win in the long run), as you can choose <TT>FooAdaptor</TT> to fit your specific domain much better than <TT>Foo</TT> does. </P></A><H1><A name="Using_Mocks_in_Tests">Using Mocks in Tests</A></H1><A name="Using_Mocks_in_Tests"><P>Once you have a mock class, using it is easy. The typical work flow is:   </P><OL><LI>Import the Google Mock names from the <TT>testing</TT> namespace such that you can use them unqualified (You only have to do it once per file. Remember that namespaces are a good idea and good for your health.).  </LI><LI>Create some mock objects.  </LI><LI>Specify your expectations on them (How many times will a method be called? With what arguments? What should it do? etc.).  </LI><LI>Exercise some code that uses the mocks; optionally, check the result using Google Test assertions. If a mock method is called more than expected or with wrong arguments, you'll get an error immediately.  </LI><LI>When a mock is destructed, Google Mock will automatically check whether all expectations on it have been satisfied.  </LI></OL><P></P><P>Here's an example: </P><PRE class="prettyprint"><SPAN class="com">#include</SPAN><SPAN class="pln"> </SPAN><SPAN class="str">"path/to/mock-turtle.h"</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="com">#include</SPAN><SPAN class="pln"> </SPAN><SPAN class="str">&lt;gmock/gmock.h&gt;</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="com">#include</SPAN><SPAN class="pln"> </SPAN><SPAN class="str">&lt;gtest/gtest.h&gt;</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="kwd">using</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">testing</SPAN><SPAN class="pun">::</SPAN><SPAN class="typ">AtLeast</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </SPAN><SPAN class="com">// #1</SPAN><SPAN class="pln"><BR><BR>TEST</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">PainterTest</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">CanDrawSomething</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="typ">MockTurtle</SPAN><SPAN class="pln"> turtle</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</SPAN><SPAN class="com">// #2</SPAN><SPAN class="pln"><BR>&nbsp; EXPECT_CALL</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">turtle</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">PenDown</SPAN><SPAN class="pun">())</SPAN><SPAN class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</SPAN><SPAN class="com">// #3</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; &nbsp; </SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">Times</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">AtLeast</SPAN><SPAN class="pun">(</SPAN><SPAN class="lit">1</SPAN><SPAN class="pun">));</SPAN><SPAN class="pln"><BR><BR>&nbsp; </SPAN><SPAN class="typ">Painter</SPAN><SPAN class="pln"> painter</SPAN><SPAN class="pun">(&amp;</SPAN><SPAN class="pln">turtle</SPAN><SPAN class="pun">);</SPAN><SPAN class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </SPAN><SPAN class="com">// #4</SPAN><SPAN class="pln"><BR><BR>&nbsp; EXPECT_TRUE</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">painter</SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">DrawCircle</SPAN><SPAN class="pun">(</SPAN><SPAN class="lit">0</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="lit">0</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="lit">10</SPAN><SPAN class="pun">));</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">}</SPAN><SPAN class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </SPAN><SPAN class="com">// #5</SPAN><SPAN class="pln"><BR><BR></SPAN><SPAN class="kwd">int</SPAN><SPAN class="pln"> main</SPAN><SPAN class="pun">(</SPAN><SPAN class="kwd">int</SPAN><SPAN class="pln"> argc</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">char</SPAN><SPAN class="pun">**</SPAN><SPAN class="pln"> argv</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="com">// The following line must be executed to initialize Google Mock</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="com">// (and Google Test) before running the tests.</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">testing</SPAN><SPAN class="pun">::</SPAN><SPAN class="typ">InitGoogleMock</SPAN><SPAN class="pun">(&amp;</SPAN><SPAN class="pln">argc</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> argv</SPAN><SPAN class="pun">);</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="kwd">return</SPAN><SPAN class="pln"> RUN_ALL_TESTS</SPAN><SPAN class="pun">();</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">}</SPAN></PRE><P>As you might have guessed, this test checks that <TT>PenDown()</TT> is called at least once. If the <TT>painter</TT> object didn't call this method, your test will fail with a message like this: </P><PRE class="prettyprint"><SPAN class="pln">path</SPAN><SPAN class="pun">/</SPAN><SPAN class="pln">to</SPAN><SPAN class="pun">/</SPAN><SPAN class="pln">my_test</SPAN><SPAN class="pun">.</SPAN><SPAN class="pln">cc</SPAN><SPAN class="pun">:</SPAN><SPAN class="lit">119</SPAN><SPAN class="pun">:</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Failure</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="typ">Actual</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">function</SPAN><SPAN class="pln"> call count doesn</SPAN><SPAN class="str">'t match this expectation:<BR>Actually: never called;<BR>Expected: called at least once.</SPAN></PRE><P><STRONG>Tip 1:</STRONG> If you run the test from an Emacs buffer, you can hit <TT>&lt;Enter&gt;</TT> on the line number displayed in the error message to jump right to the failed expectation. </P><P><STRONG>Tip 2:</STRONG> If your mock objects are never deleted, the final verification won't happen. Therefore it's a good idea to use a heap leak checker in your tests when you allocate mocks on the heap. </P><P><STRONG>Important note:</STRONG> Google Mock requires expectations to be set <STRONG>before</STRONG> the mock functions are called, otherwise the behavior is <STRONG>undefined</STRONG>. In particular, you mustn't interleave <TT>EXPECT_CALL()</TT>s and calls to the mock functions. </P><P>This means <TT>EXPECT_CALL()</TT> should be read as expecting that a call will occur <I>in the future</I>, not that a call has occurred. Why does Google Mock work like that? Well, specifying the expectation beforehand allows Google Mock to report a violation as soon as it arises, when the context (stack trace, etc) is still available. This makes debugging much easier. </P><P>Admittedly, this test is contrived and doesn't do much. You can easily achieve the same effect without using Google Mock. However, as we shall reveal soon, Google Mock allows you to do <I>much more</I> with the mocks. </P></A><H2><A name="Using_Google_Mock_with_Any_Testing_Framework">Using Google Mock with Any Testing Framework</A></H2><A name="Using_Google_Mock_with_Any_Testing_Framework"></A><P><A name="Using_Google_Mock_with_Any_Testing_Framework">If you want to use something other than Google Test (e.g. </A><A href="http://apps.sourceforge.net/mediawiki/cppunit/index.php?title=Main_Page" rel="nofollow">CppUnit</A> or <A href="http://cxxtest.tigris.org/" rel="nofollow">CxxTest</A>) as your testing framework, just change the <TT>main()</TT> function in the previous section to: </P><PRE class="prettyprint"><SPAN class="kwd">int</SPAN><SPAN class="pln"> main</SPAN><SPAN class="pun">(</SPAN><SPAN class="kwd">int</SPAN><SPAN class="pln"> argc</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">char</SPAN><SPAN class="pun">**</SPAN><SPAN class="pln"> argv</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="com">// The following line causes Google Mock to throw an exception on failure,</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="com">// which will be interpreted by your testing framework as a test failure.</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">testing</SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">GTEST_FLAG</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">throw_on_failure</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">=</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">true</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">testing</SPAN><SPAN class="pun">::</SPAN><SPAN class="typ">InitGoogleMock</SPAN><SPAN class="pun">(&amp;</SPAN><SPAN class="pln">argc</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> argv</SPAN><SPAN class="pun">);</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"> whatever your testing framework requires </SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">}</SPAN></PRE><P>This approach has a catch: it makes Google Mock throw an exception from a mock object's destructor sometimes.  With some compilers, this sometimes causes the test program to crash.  You'll still be able to notice that the test has failed, but it's not a graceful failure. </P><P>A better solution is to use Google Test's <A href="http://code.google.com/p/googletest/wiki/GoogleTestAdvancedGuide#Extending_Google_Test_by_Handling_Test_Events" rel="nofollow">event listener API</A> to report a test failure to your testing framework properly.  You'll need to implement the <TT>OnTestPartResult()</TT> method of the event listener interface, but it should be straightforward. </P><P>If this turns out to be too much work, we suggest that you stick with Google Test, which works with Google Mock seamlessly (in fact, it is technically part of Google Mock.).  If there is a reason that you cannot use Google Test, please let us know. </P><H1><A name="Setting_Expectations">Setting Expectations</A></H1><A name="Setting_Expectations"><P>The key to using a mock object successfully is to set the <I>right expectations</I> on it. If you set the expectations too strict, your test will fail as the result of unrelated changes. If you set them too loose, bugs can slip through. You want to do it just right such that your test can catch exactly the kind of bugs you intend it to catch. Google Mock provides the necessary means for you to do it "just right." </P></A><H2><A name="General_Syntax">General Syntax</A></H2><A name="General_Syntax"><P>In Google Mock we use the <TT>EXPECT_CALL()</TT> macro to set an expectation on a mock method. The general syntax is: </P><PRE class="prettyprint"><SPAN class="pln">EXPECT_CALL</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">mock_object</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> method</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">matchers</SPAN><SPAN class="pun">))</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">Times</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">cardinality</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">WillOnce</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">action</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">WillRepeatedly</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">action</SPAN><SPAN class="pun">);</SPAN></PRE><P>The macro has two arguments: first the mock object, and then the method and its arguments. Note that the two are separated by a comma (<TT>,</TT>), not a period (<TT>.</TT>). (Why using a comma? The answer is that it was necessary for technical reasons.) </P><P>The macro can be followed by some optional <I>clauses</I> that provide more information about the expectation. We'll discuss how each clause works in the coming sections. </P><P>This syntax is designed to make an expectation read like English. For example, you can probably guess that </P><PRE class="prettyprint"><SPAN class="kwd">using</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">testing</SPAN><SPAN class="pun">::</SPAN><SPAN class="typ">Return</SPAN><SPAN class="pun">;...</SPAN><SPAN class="pln"><BR>EXPECT_CALL</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">turtle</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">GetX</SPAN><SPAN class="pun">())</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">Times</SPAN><SPAN class="pun">(</SPAN><SPAN class="lit">5</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">WillOnce</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">Return</SPAN><SPAN class="pun">(</SPAN><SPAN class="lit">100</SPAN><SPAN class="pun">))</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">WillOnce</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">Return</SPAN><SPAN class="pun">(</SPAN><SPAN class="lit">150</SPAN><SPAN class="pun">))</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">WillRepeatedly</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">Return</SPAN><SPAN class="pun">(</SPAN><SPAN class="lit">200</SPAN><SPAN class="pun">));</SPAN></PRE><P>says that the <TT>turtle</TT> object's <TT>GetX()</TT> method will be called five times, it will return 100 the first time, 150 the second time, and then 200 every time. Some people like to call this style of syntax a Domain-Specific Language (DSL). </P><P><STRONG>Note:</STRONG> Why do we use a macro to do this? It serves two purposes: first it makes expectations easily identifiable (either by <TT>grep</TT> or by a human reader), and second it allows Google Mock to include the source file location of a failed expectation in messages, making debugging easier. </P></A><H2><A name="Matchers:_What_Arguments_Do_We_Expect?">Matchers: What Arguments Do We Expect?</A></H2><A name="Matchers:_What_Arguments_Do_We_Expect?"><P>When a mock function takes arguments, we must specify what arguments we are expecting; for example: </P><PRE class="prettyprint"><SPAN class="com">// Expects the turtle to move forward by 100 units.</SPAN><SPAN class="pln"><BR>EXPECT_CALL</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">turtle</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Forward</SPAN><SPAN class="pun">(</SPAN><SPAN class="lit">100</SPAN><SPAN class="pun">));</SPAN></PRE><P>Sometimes you may not want to be too specific (Remember that talk about tests being too rigid? Over specification leads to brittle tests and obscures the intent of tests. Therefore we encourage you to specify only what's necessary - no more, no less.). If you care to check that <TT>Forward()</TT> will be called but aren't interested in its actual argument, write <TT>_</TT> as the argument, which means "anything goes": </P><PRE class="prettyprint"><SPAN class="kwd">using</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">testing</SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">_</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="com">// Expects the turtle to move forward.</SPAN><SPAN class="pln"><BR>EXPECT_CALL</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">turtle</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Forward</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">_</SPAN><SPAN class="pun">));</SPAN></PRE><P><TT>_</TT> is an instance of what we call <STRONG>matchers</STRONG>. A matcher is like a predicate and can test whether an argument is what we'd expect. You can use a matcher inside <TT>EXPECT_CALL()</TT> wherever a function argument is expected. </P></A><P><A name="Matchers:_What_Arguments_Do_We_Expect?">A list of built-in matchers can be found in the </A><A href="http://code.google.com/p/googlemock/wiki/CheatSheet">CheatSheet</A>. For example, here's the <TT>Ge</TT> (greater than or equal) matcher: </P><PRE class="prettyprint"><SPAN class="kwd">using</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">testing</SPAN><SPAN class="pun">::</SPAN><SPAN class="typ">Ge</SPAN><SPAN class="pun">;...</SPAN><SPAN class="pln"><BR>EXPECT_CALL</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">turtle</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Forward</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">Ge</SPAN><SPAN class="pun">(</SPAN><SPAN class="lit">100</SPAN><SPAN class="pun">)));</SPAN></PRE><P>This checks that the turtle will be told to go forward by at least 100 units.  </P><H2><A name="Cardinalities:_How_Many_Times_Will_It_Be_Called?">Cardinalities: How Many Times Will It Be Called?</A></H2><A name="Cardinalities:_How_Many_Times_Will_It_Be_Called?"><P>The first clause we can specify following an <TT>EXPECT_CALL()</TT> is <TT>Times()</TT>. We call its argument a <STRONG>cardinality</STRONG> as it tells <I>how many times</I> the call should occur. It allows us to repeat an expectation many times without actually writing it as many times. More importantly, a cardinality can be "fuzzy", just like a matcher can be. This allows a user to express the intent of a test exactly. </P><P>An interesting special case is when we say <TT>Times(0)</TT>. You may have guessed - it means that the function shouldn't be called with the given arguments at all, and Google Mock will report a Google Test failure whenever the function is (wrongfully) called. </P></A><P><A name="Cardinalities:_How_Many_Times_Will_It_Be_Called?">We've seen <TT>AtLeast(n)</TT> as an example of fuzzy cardinalities earlier. For the list of built-in cardinalities you can use, see the </A><A href="http://code.google.com/p/googlemock/wiki/CheatSheet">CheatSheet</A>. </P><P>The <TT>Times()</TT> clause can be omitted. <STRONG>If you omit <TT>Times()</TT>, Google Mock will infer the cardinality for you.</STRONG> The rules are easy to remember: </P><UL><LI>If <STRONG>neither</STRONG> <TT>WillOnce()</TT> <STRONG>nor</STRONG> <TT>WillRepeatedly()</TT> is in the <TT>EXPECT_CALL()</TT>, the inferred cardinality is <TT>Times(1)</TT>.  </LI><LI>If there are <TT>n WillOnce()</TT>'s but <STRONG>no</STRONG> <TT>WillRepeatedly()</TT>, where <TT>n</TT> &gt;= 1, the cardinality is <TT>Times(n)</TT>.  </LI><LI>If there are <TT>n WillOnce()</TT>'s and <STRONG>one</STRONG> <TT>WillRepeatedly()</TT>, where <TT>n</TT> &gt;= 0, the cardinality is <TT>Times(AtLeast(n))</TT>.  </LI></UL><P><STRONG>Quick quiz:</STRONG> what do you think will happen if a function is expected to be called twice but actually called four times? </P><H2><A name="Actions:_What_Should_It_Do?">Actions: What Should It Do?</A></H2><A name="Actions:_What_Should_It_Do?"><P>Remember that a mock object doesn't really have a working implementation? We as users have to tell it what to do when a method is invoked. This is easy in Google Mock. </P><P>First, if the return type of a mock function is a built-in type or a pointer, the function has a <STRONG>default action</STRONG> (a <TT>void</TT> function will just return, a <TT>bool</TT> function will return <TT>false</TT>, and other functions will return 0). If you don't say anything, this behavior will be used. </P><P>Second, if a mock function doesn't have a default action, or the default action doesn't suit you, you can specify the action to be taken each time the expectation matches using a series of <TT>WillOnce()</TT> clauses followed by an optional <TT>WillRepeatedly()</TT>. For example, </P><PRE class="prettyprint"><SPAN class="kwd">using</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">testing</SPAN><SPAN class="pun">::</SPAN><SPAN class="typ">Return</SPAN><SPAN class="pun">;...</SPAN><SPAN class="pln"><BR>EXPECT_CALL</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">turtle</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">GetX</SPAN><SPAN class="pun">())</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">WillOnce</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">Return</SPAN><SPAN class="pun">(</SPAN><SPAN class="lit">100</SPAN><SPAN class="pun">))</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">WillOnce</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">Return</SPAN><SPAN class="pun">(</SPAN><SPAN class="lit">200</SPAN><SPAN class="pun">))</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">WillOnce</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">Return</SPAN><SPAN class="pun">(</SPAN><SPAN class="lit">300</SPAN><SPAN class="pun">));</SPAN></PRE><P>This says that <TT>turtle.GetX()</TT> will be called <I>exactly three times</I> (Google Mock inferred this from how many <TT>WillOnce()</TT> clauses we've written, since we didn't explicitly write <TT>Times()</TT>), and will return 100, 200, and 300 respectively. </P><PRE class="prettyprint"><SPAN class="kwd">using</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">testing</SPAN><SPAN class="pun">::</SPAN><SPAN class="typ">Return</SPAN><SPAN class="pun">;...</SPAN><SPAN class="pln"><BR>EXPECT_CALL</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">turtle</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">GetY</SPAN><SPAN class="pun">())</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">WillOnce</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">Return</SPAN><SPAN class="pun">(</SPAN><SPAN class="lit">100</SPAN><SPAN class="pun">))</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">WillOnce</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">Return</SPAN><SPAN class="pun">(</SPAN><SPAN class="lit">200</SPAN><SPAN class="pun">))</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">WillRepeatedly</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">Return</SPAN><SPAN class="pun">(</SPAN><SPAN class="lit">300</SPAN><SPAN class="pun">));</SPAN></PRE><P>says that <TT>turtle.GetY()</TT> will be called <I>at least twice</I> (Google Mock knows this as we've written two <TT>WillOnce()</TT> clauses and a <TT>WillRepeatedly()</TT> while having no explicit <TT>Times()</TT>), will return 100 the first time, 200 the second time, and 300 from the third time on. </P><P>Of course, if you explicitly write a <TT>Times()</TT>, Google Mock will not try to infer the cardinality itself. What if the number you specified is larger than there are <TT>WillOnce()</TT> clauses? Well, after all <TT>WillOnce()</TT>s are used up, Google Mock will do the <I>default</I> action for the function every time (unless, of course, you have a <TT>WillRepeatedly()</TT>.). </P></A><P><A name="Actions:_What_Should_It_Do?">What can we do inside <TT>WillOnce()</TT> besides <TT>Return()</TT>? You can return a reference using <TT>ReturnRef(variable)</TT>, or invoke a pre-defined function, among </A><A href="http://code.google.com/p/googlemock/wiki/CheatSheet#Actions">others</A>. </P><P><STRONG>Important note:</STRONG> The <TT>EXPECT_CALL()</TT> statement evaluates the action clause only once, even though the action may be performed many times. Therefore you must be careful about side effects. The following may not do what you want: </P><PRE class="prettyprint"><SPAN class="kwd">int</SPAN><SPAN class="pln"> n </SPAN><SPAN class="pun">=</SPAN><SPAN class="pln"> </SPAN><SPAN class="lit">100</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR>EXPECT_CALL</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">turtle</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">GetX</SPAN><SPAN class="pun">())</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">Times</SPAN><SPAN class="pun">(</SPAN><SPAN class="lit">4</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">WillOnce</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">Return</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">n</SPAN><SPAN class="pun">++));</SPAN></PRE><P>Instead of returning 100, 101, 102, ..., consecutively, this mock function will always return 100 as <TT>n++</TT> is only evaluated once. Similarly, <TT>Return(new Foo)</TT> will create a new <TT>Foo</TT> object when the <TT>EXPECT_CALL()</TT> is executed, and will return the same pointer every time. If you want the side effect to happen every time, you need to define a custom action, which we'll teach in the <A href="http://code.google.com/p/googlemock/wiki/CookBook">CookBook</A>. </P><P>Time for another quiz! What do you think the following means? </P><PRE class="prettyprint"><SPAN class="kwd">using</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">testing</SPAN><SPAN class="pun">::</SPAN><SPAN class="typ">Return</SPAN><SPAN class="pun">;...</SPAN><SPAN class="pln"><BR>EXPECT_CALL</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">turtle</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">GetY</SPAN><SPAN class="pun">())</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">Times</SPAN><SPAN class="pun">(</SPAN><SPAN class="lit">4</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">WillOnce</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">Return</SPAN><SPAN class="pun">(</SPAN><SPAN class="lit">100</SPAN><SPAN class="pun">));</SPAN></PRE><P>Obviously <TT>turtle.GetY()</TT> is expected to be called four times. But if you think it will return 100 every time, think twice! Remember that one <TT>WillOnce()</TT> clause will be consumed each time the function is invoked and the default action will be taken afterwards. So the right answer is that <TT>turtle.GetY()</TT> will return 100 the first time, but <STRONG>return 0 from the second time on</STRONG>, as returning 0 is the default action for <TT>int</TT> functions. </P><H2><A name="Using_Multiple_Expectations">Using Multiple Expectations</A></H2><A name="Using_Multiple_Expectations"><P>So far we've only shown examples where you have a single expectation. More realistically, you're going to specify expectations on multiple mock methods, which may be from multiple mock objects. </P><P>By default, when a mock method is invoked, Google Mock will search the expectations in the <STRONG>reverse order</STRONG> they are defined, and stop when an active expectation that matches the arguments is found (you can think of it as "newer rules override older ones."). If the matching expectation cannot take any more calls, you will get an upper-bound-violated failure. Here's an example: </P><PRE class="prettyprint"><SPAN class="kwd">using</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">testing</SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">_</SPAN><SPAN class="pun">;...</SPAN><SPAN class="pln"><BR>EXPECT_CALL</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">turtle</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Forward</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">_</SPAN><SPAN class="pun">));</SPAN><SPAN class="pln"> &nbsp;</SPAN><SPAN class="com">// #1</SPAN><SPAN class="pln"><BR>EXPECT_CALL</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">turtle</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Forward</SPAN><SPAN class="pun">(</SPAN><SPAN class="lit">10</SPAN><SPAN class="pun">))</SPAN><SPAN class="pln"> &nbsp;</SPAN><SPAN class="com">// #2</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">Times</SPAN><SPAN class="pun">(</SPAN><SPAN class="lit">2</SPAN><SPAN class="pun">);</SPAN></PRE><P>If <TT>Forward(10)</TT> is called three times in a row, the third time it will be an error, as the last matching expectation (#2) has been saturated. If, however, the third <TT>Forward(10)</TT> call is replaced by <TT>Forward(20)</TT>, then it would be OK, as now #1 will be the matching expectation. </P><P><STRONG>Side note:</STRONG> Why does Google Mock search for a match in the <I>reverse</I> order of the expectations? The reason is that this allows a user to set up the default expectations in a mock object's constructor or the test fixture's set-up phase and then customize the mock by writing more specific expectations in the test body. So, if you have two expectations on the same method, you want to put the one with more specific matchers <STRONG>after</STRONG> the other, or the more specific rule would be shadowed by the more general one that comes after it. </P></A><H2><A name="Ordered_vs_Unordered_Calls">Ordered vs Unordered Calls</A></H2><A name="Ordered_vs_Unordered_Calls"><P>By default, an expectation can match a call even though an earlier expectation hasn't been satisfied. In other words, the calls don't have to occur in the order the expectations are specified. </P><P>Sometimes, you may want all the expected calls to occur in a strict order. To say this in Google Mock is easy: </P><PRE class="prettyprint"><SPAN class="kwd">using</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">testing</SPAN><SPAN class="pun">::</SPAN><SPAN class="typ">InSequence</SPAN><SPAN class="pun">;...</SPAN><SPAN class="pln"><BR>TEST</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">FooTest</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">DrawsLineSegment</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="typ">InSequence</SPAN><SPAN class="pln"> dummy</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR><BR>&nbsp; &nbsp; EXPECT_CALL</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">turtle</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">PenDown</SPAN><SPAN class="pun">());</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; EXPECT_CALL</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">turtle</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Forward</SPAN><SPAN class="pun">(</SPAN><SPAN class="lit">100</SPAN><SPAN class="pun">));</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; EXPECT_CALL</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">turtle</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">PenUp</SPAN><SPAN class="pun">());</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">}</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="typ">Foo</SPAN><SPAN class="pun">();</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">}</SPAN></PRE><P>By creating an object of type <TT>InSequence</TT>, all expectations in its scope are put into a <I>sequence</I> and have to occur <I>sequentially</I>. Since we are just relying on the constructor and destructor of this object to do the actual work, its name is really irrelevant. </P><P>In this example, we test that <TT>Foo()</TT> calls the three expected functions in the order as written. If a call is made out-of-order, it will be an error. </P></A><P><A name="Ordered_vs_Unordered_Calls">(What if you care about the relative order of some of the calls, but not all of them? Can you specify an arbitrary partial order? The answer is ... yes! If you are impatient, the details can be found in the </A><A href="http://code.google.com/p/googlemock/wiki/CookBook">CookBook</A>.) </P><H2><A name="All_Expectations_Are_Sticky_(Unless_Said_Otherwise)">All Expectations Are Sticky (Unless Said Otherwise)</A></H2><A name="All_Expectations_Are_Sticky_(Unless_Said_Otherwise)"><P>Now let's do a quick quiz to see how well you can use this mock stuff already. How would you test that the turtle is asked to go to the origin <I>exactly twice</I> (you want to ignore any other instructions it receives)? </P><P>After you've come up with your answer, take a look at ours and compare notes (solve it yourself first - don't cheat!): </P><PRE class="prettyprint"><SPAN class="kwd">using</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">testing</SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">_</SPAN><SPAN class="pun">;...</SPAN><SPAN class="pln"><BR>EXPECT_CALL</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">turtle</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">GoTo</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">_</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> _</SPAN><SPAN class="pun">))</SPAN><SPAN class="pln"> &nbsp;</SPAN><SPAN class="com">// #1</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">Times</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">AnyNumber</SPAN><SPAN class="pun">());</SPAN><SPAN class="pln"><BR>EXPECT_CALL</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">turtle</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">GoTo</SPAN><SPAN class="pun">(</SPAN><SPAN class="lit">0</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="lit">0</SPAN><SPAN class="pun">))</SPAN><SPAN class="pln"> &nbsp;</SPAN><SPAN class="com">// #2</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">Times</SPAN><SPAN class="pun">(</SPAN><SPAN class="lit">2</SPAN><SPAN class="pun">);</SPAN></PRE><P>Suppose <TT>turtle.GoTo(0, 0)</TT> is called three times. In the third time, Google Mock will see that the arguments match expectation #2 (remember that we always pick the last matching expectation). Now, since we said that there should be only two such calls, Google Mock will report an error immediately. This is basically what we've told you in the "Using Multiple Expectations" section above. </P><P>This example shows that <STRONG>expectations in Google Mock are "sticky" by default</STRONG>, in the sense that they remain active even after we have reached their invocation upper bounds. This is an important rule to remember, as it affects the meaning of the spec, and is <STRONG>different</STRONG> to how it's done in many other mocking frameworks (Why'd we do that? Because we think our rule makes the common cases easier to express and understand.). </P><P>Simple? Let's see if you've really understood it: what does the following code say? </P><PRE class="prettyprint"><SPAN class="kwd">using</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">testing</SPAN><SPAN class="pun">::</SPAN><SPAN class="typ">Return</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="kwd">for</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">(</SPAN><SPAN class="kwd">int</SPAN><SPAN class="pln"> i </SPAN><SPAN class="pun">=</SPAN><SPAN class="pln"> n</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"> i </SPAN><SPAN class="pun">&gt;</SPAN><SPAN class="pln"> </SPAN><SPAN class="lit">0</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"> i</SPAN><SPAN class="pun">--)</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp; EXPECT_CALL</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">turtle</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">GetX</SPAN><SPAN class="pun">())</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; &nbsp; </SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">WillOnce</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">Return</SPAN><SPAN class="pun">(</SPAN><SPAN class="lit">10</SPAN><SPAN class="pun">*</SPAN><SPAN class="pln">i</SPAN><SPAN class="pun">));</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">}</SPAN></PRE><P>If you think it says that <TT>turtle.GetX()</TT> will be called <TT>n</TT> times and will return 10, 20, 30, ..., consecutively, think twice! The problem is that, as we said, expectations are sticky. So, the second time <TT>turtle.GetX()</TT> is called, the last (latest) <TT>EXPECT_CALL()</TT> statement will match, and will immediately lead to an "upper bound exceeded" error - this piece of code is not very useful! </P><P>One correct way of saying that <TT>turtle.GetX()</TT> will return 10, 20, 30, ..., is to explicitly say that the expectations are <I>not</I> sticky. In other words, they should <I>retire</I> as soon as they are saturated: </P><PRE class="prettyprint"><SPAN class="kwd">using</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">testing</SPAN><SPAN class="pun">::</SPAN><SPAN class="typ">Return</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="kwd">for</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">(</SPAN><SPAN class="kwd">int</SPAN><SPAN class="pln"> i </SPAN><SPAN class="pun">=</SPAN><SPAN class="pln"> n</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"> i </SPAN><SPAN class="pun">&gt;</SPAN><SPAN class="pln"> </SPAN><SPAN class="lit">0</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"> i</SPAN><SPAN class="pun">--)</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp; EXPECT_CALL</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">turtle</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">GetX</SPAN><SPAN class="pun">())</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">WillOnce</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">Return</SPAN><SPAN class="pun">(</SPAN><SPAN class="lit">10</SPAN><SPAN class="pun">*</SPAN><SPAN class="pln">i</SPAN><SPAN class="pun">))</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">RetiresOnSaturation</SPAN><SPAN class="pun">();</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">}</SPAN></PRE><P>And, there's a better way to do it: in this case, we expect the calls to occur in a specific order, and we line up the actions to match the order. Since the order is important here, we should make it explicit using a sequence: </P><PRE class="prettyprint"><SPAN class="kwd">using</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">testing</SPAN><SPAN class="pun">::</SPAN><SPAN class="typ">InSequence</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="kwd">using</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">testing</SPAN><SPAN class="pun">::</SPAN><SPAN class="typ">Return</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="typ">InSequence</SPAN><SPAN class="pln"> s</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR><BR>&nbsp; </SPAN><SPAN class="kwd">for</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">(</SPAN><SPAN class="kwd">int</SPAN><SPAN class="pln"> i </SPAN><SPAN class="pun">=</SPAN><SPAN class="pln"> </SPAN><SPAN class="lit">1</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"> i </SPAN><SPAN class="pun">&lt;=</SPAN><SPAN class="pln"> n</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"> i</SPAN><SPAN class="pun">++)</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; EXPECT_CALL</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">turtle</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">GetX</SPAN><SPAN class="pun">())</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; &nbsp; &nbsp; </SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">WillOnce</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">Return</SPAN><SPAN class="pun">(</SPAN><SPAN class="lit">10</SPAN><SPAN class="pun">*</SPAN><SPAN class="pln">i</SPAN><SPAN class="pun">))</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; &nbsp; &nbsp; </SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">RetiresOnSaturation</SPAN><SPAN class="pun">();</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">}</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">}</SPAN></PRE><P>By the way, the other situation where an expectation may <I>not</I> be sticky is when it's in a sequence - as soon as another expectation that comes after it in the sequence has been used, it automatically retires (and will never be used to match any call). </P></A><H2><A name="Uninteresting_Calls">Uninteresting Calls</A></H2><A name="Uninteresting_Calls"><P>A mock object may have many methods, and not all of them are that interesting. For example, in some tests we may not care about how many times <TT>GetX()</TT> and <TT>GetY()</TT> get called. </P><P>In Google Mock, if you are not interested in a method, just don't say anything about it. If a call to this method occurs, you'll see a warning in the test output, but it won't be a failure. </P></A><H1><A name="What_Now?">What Now?</A></H1><A name="What_Now?"></A><P><A name="What_Now?">Congratulations! You've learned enough about Google Mock to start using it. Now, you might want to join the </A><A href="http://groups.google.com/group/googlemock" rel="nofollow">googlemock</A> discussion group and actually write some tests using Google Mock - it will be fun. Hey, it may even be addictive - you've been warned. </P><P>Then, if you feel like increasing your mock quotient, you should move on to the <A href="http://code.google.com/p/googlemock/wiki/CookBook">CookBook</A>. You can learn many advanced features of Google Mock there -- and advance your level of enjoyment and testing bliss. </P>
+ </TD> 
+ </TR>
+ </TBODY></TABLE>
+ </DIV>
+
+
+ 
+ <BR>
+ 
+
+
+ 
+ 
+ 
+
+<DIV class="collapse">
+
+
+ 
+
+
+<DIV id="commentlist">
+
+ 
+ <DIV class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <SPAN class="author">Comment
+ 
+ by
+ 
+ <A style="white-space: nowrap" href="http://code.google.com/u/adrian.alexander.may/">adrian.alexander.may</A>,
+ 
+ </SPAN>
+ <SPAN class="date" title="Thu Mar  5 22:05:02 2009">Mar 05, 2009</SPAN>
+ <DIV>
+<DIV class="commentcontent">
+<P>What about mocking global functions like fopen?  What if a test requires user interaction, e.g. "Does that look like Times New Roman in red?" or "Please pull out the ethernet cable." </P>
+</DIV>
+ 
+ 
+ </DIV>
+ </DIV>
+ 
+
+</DIV>
+</DIV>
+
+ 
+
+
+ <SCRIPT type="text/javascript">
+ function delComment(sequence_num, delete_mode) {
+ var f = document.forms["delcom"];
+ f.sequence_num.value = sequence_num;
+ f.mode.value = delete_mode;
+ f.submit();
+ return false;
+ }
+ </SCRIPT>
+
+
+ 
+ 
+<FORM name="delcom" action="http://code.google.com/p/googlemock/w/delComment.do" method="POST">
+ <INPUT type="hidden" name="sequence_num" value="">
+ <INPUT type="hidden" name="mode" value="">
+ <INPUT type="hidden" name="pagename" value="ForDummies">
+ <INPUT type="hidden" name="token" value="">
+</FORM>
+
+
+
+<SCRIPT src="./ForDummies - googlemock - Google C++ Mocking Framework for Dummies - Project Hosting on Google Code_files/prettify.js"></SCRIPT>
+<SCRIPT type="text/javascript">
+ prettyPrint();
+</SCRIPT>
+<SCRIPT type="text/javascript" src="./ForDummies - googlemock - Google C++ Mocking Framework for Dummies - Project Hosting on Google Code_files/dit_scripts_20081013.js"></SCRIPT>
+
+
+
+  
+ 
+ <SCRIPT type="text/javascript" src="./ForDummies - googlemock - Google C++ Mocking Framework for Dummies - Project Hosting on Google Code_files/core_scripts_20081103.js"></SCRIPT>
+ <SCRIPT type="text/javascript" src="./ForDummies - googlemock - Google C++ Mocking Framework for Dummies - Project Hosting on Google Code_files/codesite_product_dictionary_ph.pack.04102009.js"></SCRIPT>
+ </DIV>
+<DIV id="footer" dir="ltr">
+ 
+ <DIV class="text">
+ 
+ ©2010 Google -
+ <A href="http://code.google.com/projecthosting/terms.html">Terms</A> -
+ <A href="http://www.google.com/privacy.html">Privacy</A> -
+ <A href="http://code.google.com/p/support/">Project Hosting Help</A>
+ 
+ </DIV>
+</DIV>
+
+ <DIV class="hostedBy" style="margin-top: -20px;">
+ <SPAN style="vertical-align: top;">Powered by <A href="http://code.google.com/projecthosting/">Google Project Hosting</A></SPAN>
+ </DIV>
+ 
+ 
+
+
+ 
+ 
+
+
+
+<DIV class="menuDiv instance0" id="menuDiv-projects-dropdown" style="position: absolute; top: 18px; left: 945px; display: none; "><DIV class="menuCategory controls first"><A class="menuItem" style="display: block; " href="http://www.google.com/accounts/ServiceLogin?service=code&ltmpl=phosting&continue=http%3A%2F%2Fcode.google.com%2Fp%2Fgooglemock%2Fwiki%2FForDummies&amp;followup=http%3A%2F%2Fcode.google.com%2Fp%2Fgooglemock%2Fwiki%2FForDummies">Sign in to see your favorites</A><HR class="menuSeparator"><A class="menuItem" style="display: block; " href="http://code.google.com/more/">Find developer products...</A><A class="menuItem" style="display: block; " href="http://code.google.com/hosting/">Find open source projects...</A></DIV></DIV></BODY></HTML>
