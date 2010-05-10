@@ -8,6 +8,7 @@
 (setq inhibit-startup-message t)
 ;;hide toolbar
 (setq-default tool-bar-mode nil)
+(tool-bar-mode 0)
 
 ;; display line number
 (column-number-mode t)
@@ -15,7 +16,21 @@
 ;; display the file name in the window
 (setq frame-title-format "%b - emacs")
 ;; do not generate backup files
-(setq-default make-back-files nil)
+;;(setq-default make-backup-files nil)
+;; set emacs so that all backups are directed into one folder
+(defun my-backup-file-name (fpath)
+  (let (backup-root bpath)
+    (setq backup-root "~/.emacs.d/emacs-backup")
+    (setq bpath (concat backup-root fpath "~"))
+    (make-directory (file-name-directory bpath) bpath)
+    bpath
+    )
+  )
+(setq make-backup-file-name-function 'my-backup-file-name)
+;;The above will mirror all directories at the given backup dir.
+;;for example, if you editing a file "/Users/mac/myfile.txt",and your
+;;backup file willl be "~/.emacs.d/emacs-backup/Users/mac/myfile.txt~"
+
 ;;Just answer y or n
 (fset 'yes-or-no-p 'y-or-n-p)
 
