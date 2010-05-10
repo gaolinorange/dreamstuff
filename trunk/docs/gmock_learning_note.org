@@ -1,0 +1,57 @@
+* google mock learning note
+
+** Initialize the mocking environment
+   ::testing::InitGoogleMock(&argc,argv);
+** The Layout of the mock source files
+   
+** Using Mocks in Tests:
+   The typical flow is:
+   1. import the Google Mock names you need to use.
+   2. Create the mock obejcts
+   3. Optionally, set the default actions of the mock objects.
+   4. Set ypu expectations on the mock obejcts(How will they be called? what will they do?)
+   5. Exercise code that uses the mock objects; if necessary ,check the result using Google Test assertions
+   6. When a mock obejcts is destructed, Google Mock automatically verifies that all expectations on it have been satistify.
+
+      example:
+      using ::testing::Return;  //#1
+
+      TEST(BarTest, DoesThis) {
+        MockFoo foo;
+
+        ON_CALL( foo,GetSize(  ) ).WillByDefault( Return( 1 ) );
+        //... other default actions...
+        EXPECT_CALL( foo,Describe( 5 ) )
+            .Times( 3 )
+            .WillRepeatedly( Return( "Category 5" ) );
+        //...other expectations...
+
+        EXPECT_EQ( "good",MyProductionFuction( &foo ) ); //#5        
+      }
+
+
+** CheatSheet
+   CheatSheet should be seen as a abstract reference
+
+** CookBook
+   C++ allows a subclass to change the access level of a virtual function in the base class
+
+   CookBook is a very good reference for gmock
+   
+   
+      
+      
+
+
+      
+
+
+
+      
+
+
+   
+
+
+   
+

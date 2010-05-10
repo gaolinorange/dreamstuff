@@ -1,7 +1,6 @@
 project(meshplatform)
 
-#set(CMAKE_BUILD_TYPE Debug)
-
+set(CMAKE_BUILD_TYPE Debug)
 
 cmake_minimum_required(VERSION 2.6)
 set(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g -ggdb -frounding-math -fPIC")
