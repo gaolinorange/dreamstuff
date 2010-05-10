@@ -1,0 +1,473 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0065)http://code.google.com/p/googlemock/wiki/FrequentlyAskedQuestions -->
+<HTML><HEAD><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <LINK rel="icon" type="image/vnd.microsoft.icon" href="http://www.gstatic.com/codesite/ph/images/phosting.ico">
+ 
+ <SCRIPT type="text/javascript">
+ 
+ 
+ 
+ var codesite_token = null;
+ 
+ 
+ var logged_in_user_email = null;
+ 
+ 
+ var relative_base_url = "";
+ 
+ </SCRIPT>
+ 
+ 
+ <TITLE>FrequentlyAskedQuestions - 
+ googlemock -
+ 
+ Google C++ Mocking Framework FAQ - Project Hosting on Google Code</TITLE>
+ 
+ 
+ <LINK type="text/css" rel="stylesheet" href="./FrequentlyAskedQuestions - googlemock - Google C++ Mocking Framework FAQ - Project Hosting on Google Code_files/ph_core.css">
+ 
+ <LINK type="text/css" rel="stylesheet" href="./FrequentlyAskedQuestions - googlemock - Google C++ Mocking Framework FAQ - Project Hosting on Google Code_files/ph_detail.css">
+ 
+ 
+ 
+ <LINK type="application/atom+xml" rel="alternate" href="http://code.google.com/feeds/p/googlemock/svnchanges/basic?path=/wiki/FrequentlyAskedQuestions.wiki">
+ 
+ 
+<!--[if IE]>
+ <link type="text/css" rel="stylesheet" href="http://www.gstatic.com/codesite/ph/6513215159156155175/css/d_ie.css" >
+<![endif]-->
+ <STYLE type="text/css">
+ .menuIcon.off { background: no-repeat url(http://www.gstatic.com/codesite/ph/images/dropdown_sprite.gif) 0 -42px }
+ .menuIcon.on { background: no-repeat url(http://www.gstatic.com/codesite/ph/images/dropdown_sprite.gif) 0 -28px }
+ .menuIcon.down { background: no-repeat url(http://www.gstatic.com/codesite/ph/images/dropdown_sprite.gif) 0 0; }
+ </STYLE>
+<SCRIPT type="text/javascript" src="./FrequentlyAskedQuestions - googlemock - Google C++ Mocking Framework FAQ - Project Hosting on Google Code_files/ga.js"></SCRIPT></HEAD><BODY class="t6">
+ <SCRIPT type="text/javascript">
+ var _gaq = _gaq || [];
+ _gaq.push(
+ ['siteTracker._setAccount', 'UA-18071-1'],
+ ['siteTracker._trackPageview']);
+ 
+ _gaq.push(
+ ['projectTracker._setAccount', 'UA-4068653-1'],
+ ['projectTracker._trackPageview']);
+ 
+ (function() {
+ var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+ (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+ })();
+ </SCRIPT>
+ <DIV id="gaia">
+ 
+ <SPAN>
+ 
+ 
+ <A href="http://code.google.com/p/googlemock/wiki/FrequentlyAskedQuestions#" id="projects-dropdown" onclick="return false;"><U>My favorites</U> <SMALL>▼</SMALL></A>
+ 
+ | <A href="https://www.google.com/accounts/ServiceLogin?service=code&ltmpl=phosting&continue=http%3A%2F%2Fcode.google.com%2Fp%2Fgooglemock%2Fwiki%2FFrequentlyAskedQuestions&followup=http%3A%2F%2Fcode.google.com%2Fp%2Fgooglemock%2Fwiki%2FFrequentlyAskedQuestions" onclick="_CS_click(&#39;/gb/ph/signin&#39;);"><U>Sign in</U></A>
+ 
+ </SPAN>
+
+ </DIV>
+ <DIV class="gbh" style="left: 0pt;"></DIV>
+ <DIV class="gbh" style="right: 0pt;"></DIV>
+ 
+ 
+ <DIV style="height: 1px"></DIV>
+<!--[if IE 6]>
+<div style="text-align:center;">
+Support browsers that contribute to open source, try <a href="http://www.firefox.com">Firefox</a> or <a href="http://www.google.com/chrome">Google Chrome</a>.
+</div>
+<![endif]-->
+
+
+
+ <TABLE style="padding:0px; margin: 20px 0px 0px 0px; width:100%" cellpadding="0" cellspacing="0">
+ <TBODY><TR style="height: 58px;">
+ 
+ <TD style="width: 55px; text-align:center;">
+ <A href="http://code.google.com/p/googlemock/">
+ 
+ 
+ 
+ <IMG src="./FrequentlyAskedQuestions - googlemock - Google C++ Mocking Framework FAQ - Project Hosting on Google Code_files/logo" alt="Logo">
+ 
+ 
+ </A>
+ </TD>
+ 
+ <TD style="padding-left: 0.5em">
+ 
+ <DIV id="pname" style="margin: 0px 0px -3px 0px">
+ <A href="http://code.google.com/p/googlemock/" style="text-decoration:none; color:#000">googlemock</A>
+ 
+ </DIV>
+ <DIV id="psum">
+ <I><A id="project_summary_link" href="http://code.google.com/p/googlemock/" style="text-decoration:none; color:#000">Google C++ Mocking Framework</A></I>
+ </DIV>
+ 
+ </TD>
+ <TD style="white-space:nowrap;text-align:right">
+ <FORM action="http://code.google.com/hosting/search">
+ <INPUT size="30" name="q" value="">
+ <INPUT type="submit" name="projectsearch" value="Search projects">
+ </FORM>
+ </TD></TR>
+ </TBODY></TABLE>
+
+
+ 
+<TABLE id="mt" cellspacing="0" cellpadding="0" width="100%" border="0">
+ <TBODY><TR>
+ <TH onclick="if (!cancelBubble) _go(&#39;/p/googlemock/&#39;);">
+ <DIV class="tab inactive">
+ <DIV class="round4"></DIV>
+ <DIV class="round2"></DIV>
+ <DIV class="round1"></DIV>
+ <DIV class="box-inner">
+ <A onclick="cancelBubble=true;" href="http://code.google.com/p/googlemock/">Project&nbsp;Home</A>
+ </DIV>
+ </DIV>
+ </TH><TD>&nbsp;&nbsp;</TD>
+ 
+ 
+ 
+ 
+ <TH onclick="if (!cancelBubble) _go(&#39;/p/googlemock/downloads/list&#39;);">
+ <DIV class="tab inactive">
+ <DIV class="round4"></DIV>
+ <DIV class="round2"></DIV>
+ <DIV class="round1"></DIV>
+ <DIV class="box-inner">
+ <A onclick="cancelBubble=true;" href="http://code.google.com/p/googlemock/downloads/list">Downloads</A>
+ </DIV>
+ </DIV>
+ </TH><TD>&nbsp;&nbsp;</TD>
+ 
+ 
+ 
+ 
+ 
+ <TH onclick="if (!cancelBubble) _go(&#39;/p/googlemock/w/list&#39;);">
+ <DIV class="tab active">
+ <DIV class="round4"></DIV>
+ <DIV class="round2"></DIV>
+ <DIV class="round1"></DIV>
+ <DIV class="box-inner">
+ <A onclick="cancelBubble=true;" href="http://code.google.com/p/googlemock/w/list">Wiki</A>
+ </DIV>
+ </DIV>
+ </TH><TD>&nbsp;&nbsp;</TD>
+ 
+ 
+ 
+ 
+ 
+ <TH onclick="if (!cancelBubble) _go(&#39;/p/googlemock/issues/list&#39;);">
+ <DIV class="tab inactive">
+ <DIV class="round4"></DIV>
+ <DIV class="round2"></DIV>
+ <DIV class="round1"></DIV>
+ <DIV class="box-inner">
+ <A onclick="cancelBubble=true;" href="http://code.google.com/p/googlemock/issues/list">Issues</A>
+ </DIV>
+ </DIV>
+ </TH><TD>&nbsp;&nbsp;</TD>
+ 
+ 
+ 
+ 
+ 
+ <TH onclick="if (!cancelBubble) _go(&#39;/p/googlemock/source/checkout&#39;);">
+ <DIV class="tab inactive">
+ <DIV class="round4"></DIV>
+ <DIV class="round2"></DIV>
+ <DIV class="round1"></DIV>
+ <DIV class="box-inner">
+ <A onclick="cancelBubble=true;" href="http://code.google.com/p/googlemock/source/checkout">Source</A>
+ </DIV>
+ </DIV>
+ </TH><TD>&nbsp;&nbsp;</TD>
+ 
+ 
+ <TD width="100%">&nbsp;</TD>
+ </TR>
+</TBODY></TABLE>
+<TABLE cellspacing="0" cellpadding="0" width="100%" align="center" border="0" class="st">
+ <TBODY><TR>
+ 
+ 
+ 
+ <TD>
+ <DIV class="issueDetail">
+<DIV class="isf">
+ 
+ <SPAN class="inIssueList"> 
+ <SPAN>Search</SPAN>
+ <FORM action="http://code.google.com/p/googlemock/w/list" method="GET" style="display:inline">
+ <SELECT id="can" name="can" style="font-size:92%">
+ <OPTION disabled="disabled">Search within:</OPTION>
+ 
+ <OPTION value="1">&nbsp;All wiki pages</OPTION>
+ <OPTION value="3">&nbsp;Featured pages</OPTION>
+ <OPTION value="2" selected="selected">&nbsp;Current pages</OPTION>
+ 
+ 
+ <OPTION value="4">&nbsp;Deprecated pages</OPTION>
+ 
+ </SELECT>
+ <SPAN>for</SPAN>
+ <SPAN id="qq"><INPUT type="text" size="38" id="q" name="q" value="" style="font-size:92%"></SPAN>
+ 
+ 
+ <INPUT type="submit" value="Search" style="font-size:92%">
+ </FORM>
+ </SPAN>
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</DIV>
+</DIV>
+
+ </TD>
+ 
+ 
+ 
+ 
+ 
+ 
+ <TD height="4" align="right" valign="top" class="bevel-right">
+ <DIV class="round4"></DIV>
+ <DIV class="round2"></DIV>
+ <DIV class="round1"></DIV>
+ </TD>
+ </TR>
+</TBODY></TABLE>
+<SCRIPT type="text/javascript">
+ var cancelBubble = false;
+ function _go(url) { document.location = url; }
+</SCRIPT>
+
+
+<DIV id="maincol">
+
+ 
+<!-- IE -->
+
+
+
+
+
+
+
+ <STYLE type="text/css">
+ .artifactcomment {
+ margin: .5em 0 0 0;
+ padding: .3em 0 .3em .3em;
+ border-top: 3px solid #c3d9ff;
+ }
+ #commentlist {
+ border-bottom: 3px solid #c3d9ff;
+ }
+ #commentform { padding-top: 1em; }
+ .delcom { background: #e8e8e8 }
+ .commentcontent { margin: 1em 0;}
+ </STYLE>
+
+
+ <DIV id="wikicontent">
+ <TABLE width="100%" border="0" cellspacing="0" cellpadding="0">
+ <TBODY><TR>
+ 
+ <TD class="vt" id="wikimaincol" width="100%">
+ 
+ <DIV style="float:right; width:18em" id="wikimeta">
+ <DIV class="pmeta_bubble_bg">
+ <DIV class="round4"></DIV>
+ <DIV class="round2"></DIV>
+ <DIV class="round1"></DIV>
+ <DIV class="box-inner">
+ <TABLE style="padding: 5px">
+ <TBODY><TR><TD colspan="2" style="padding-bottom:5px">Updated <SPAN title="Thu Jan 28 14:44:30 2010">Jan 28, 2010</SPAN>
+ 
+ by <A style="white-space: nowrap" href="http://code.google.com/u/@WBhXQFBWDhlDVgF4/">w...@google.com</A>
+ </TD></TR>
+ 
+ <TR><TH class="vt">Labels:</TH>
+ <TD>
+ 
+ <A href="http://code.google.com/p/googlemock/w/list?q=label:Featured" title="Listed on project home page">Featured</A>
+ 
+ </TD>
+ </TR>
+ 
+ 
+ 
+ </TBODY></TABLE>
+ </DIV>
+ <DIV class="round1"></DIV>
+ <DIV class="round2"></DIV>
+ <DIV class="round4"></DIV>
+ </DIV>
+ </DIV>
+ 
+ <DIV id="wikiheader" style="margin-bottom:1em">
+ 
+ <SPAN style="font-size:120%;font-weight:bold">FrequentlyAskedQuestions</SPAN>
+ &nbsp;
+ 
+ 
+ <DIV style="font-style:italic; margin-top: 3px">Google C++ Mocking Framework FAQ</DIV>
+ 
+ </DIV>
+ <P></P><UL><UL><LI><A href="http://code.google.com/p/googlemock/wiki/FrequentlyAskedQuestions#I_wrote_some_matchers.__After_I_upgraded_to_a_new_version_of_Goo">I wrote some matchers.  After I upgraded to a new version of Google Mock, they no longer compile.  What's going on?</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/FrequentlyAskedQuestions#When_using_Google_Mock,_do_I_have_to_use_Google_Test_as_the_test">When using Google Mock, do I have to use Google Test as the testing framework?  I have my favorite testing framework and don't want to switch.</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/FrequentlyAskedQuestions#How_am_I_supposed_to_make_sense_of_these_horrible_template_error">How am I supposed to make sense of these horrible template errors?</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/FrequentlyAskedQuestions#Can_I_mock_a_variadic_function?">Can I mock a variadic function?</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/FrequentlyAskedQuestions#MSVC_gives_me_warning_C4301_or_C4373_when_I_define_a_mock_method">MSVC gives me warning C4301 or C4373 when I define a mock method with a const parameter.  Why?</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/FrequentlyAskedQuestions#I_have_a_huge_mock_class,_and_Microsoft_Visual_C++_runs_out_of_m">I have a huge mock class, and Microsoft Visual C++ runs out of memory when compiling it.  What can I do?</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/FrequentlyAskedQuestions#I_can't_figure_out_why_Google_Mock_thinks_my_expectations_a">I can't figure out why Google Mock thinks my expectations are not satisfied.  What should I do?</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/FrequentlyAskedQuestions#How_can_I_assert_that_a_function_is_NEVER_called?">How can I assert that a function is NEVER called?</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/FrequentlyAskedQuestions#I_have_a_failed_test_where_Google_Mock_tells_me_TWICE_that_a_par">I have a failed test where Google Mock tells me TWICE that a particular expectation is not satisfied.  Isn't this redundant?</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/FrequentlyAskedQuestions#I_get_a_heap_check_failure_when_using_a_mock_object,_but_using_a">I get a heap check failure when using a mock object, but using a real object is fine.  What can be wrong?</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/FrequentlyAskedQuestions#The_"newer_expectations_override_older_ones"_rule_make">The "newer expectations override older ones" rule makes writing expectations awkward.  Why does Google Mock do that?</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/FrequentlyAskedQuestions#Google_Mock_prints_a_warning_when_a_function_without_EXPECT_CALL">Google Mock prints a warning when a function without EXPECT_CALL is called, even if I have set its behavior using ON_CALL.  Would it be reasonable not to show the warning in this case?</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/FrequentlyAskedQuestions#How_can_I_delete_the_mock_function's_argument_in_an_action?">How can I delete the mock function's argument in an action?</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/FrequentlyAskedQuestions#MOCK_METHODn()'s_second_argument_looks_funny.__Why_don'">MOCK_METHODn()'s second argument looks funny.  Why don't you use the MOCK_METHODn(Method, return_type, arg_1, ..., arg_n) syntax?</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/FrequentlyAskedQuestions#My_code_calls_a_static/global_function.__Can_I_mock_it?">My code calls a static/global function.  Can I mock it?</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/FrequentlyAskedQuestions#My_mock_object_needs_to_do_complex_stuff.__It's_a_lot_of_pa">My mock object needs to do complex stuff.  It's a lot of pain to specify the actions.  Google Mock sucks!</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/FrequentlyAskedQuestions#I_got_a_warning_"Uninteresting_function_call_encountered_-">I got a warning "Uninteresting function call encountered - default action taken.."  Should I panic?</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/FrequentlyAskedQuestions#I_want_to_define_a_custom_action.__Should_I_use_Invoke()_or_impl">I want to define a custom action.  Should I use Invoke() or implement the action interface?</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/FrequentlyAskedQuestions#I'm_using_the_set-argument-pointee_action,_and_the_compiler">I'm using the set-argument-pointee action, and the compiler complains about "conflicting return type specified".  What does it mean?</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/FrequentlyAskedQuestions#My_question_is_not_in_your_FAQ!">My question is not in your FAQ!</A></LI></UL></UL> <P></P><P>Please send your questions to the <A href="http://groups.google.com/group/googlemock" rel="nofollow">googlemock</A> discussion group. If you need help with compiler errors, make sure you have tried <A href="http://code.google.com/p/googlemock/wiki/FrequentlyAskedQuestions#How_am_I_supposed_to_make_sense_of_these_horrible_template_error">Google Mock Doctor</A> first. </P><H2><A name="I_wrote_some_matchers.__After_I_upgraded_to_a_new_version_of_Goo">I wrote some matchers.  After I upgraded to a new version of Google Mock, they no longer compile.  What's going on?</A></H2><A name="I_wrote_some_matchers.__After_I_upgraded_to_a_new_version_of_Goo"><P>After version 1.4.0 of Google Mock was released, we had an idea on how to make it easier to write matchers that can generate informative messages efficiently.  We experimented with this idea and liked what we saw.  Therefore we decided to implement it. </P><P>Unfortunately, this means that if you have defined your own matchers by implementing <TT>MatcherInterface</TT> or using <TT>MakePolymorphicMatcher()</TT>, your definitions will no longer compile.  Matchers defined using the <TT>MATCHER*</TT> family of macros are not affected. </P><P>Sorry for the hassle if your matchers are affected.  We believe it's in everyone's long-term interest to make this change sooner than later.  Fortunately, it's usually not hard to migrate an existing matcher to the new API.  Here's what you need to do: </P><P>If you wrote your matcher like this: </P><PRE class="prettyprint"><SPAN class="com">// Old matcher definition that doesn't work with the latest</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="com">// Google Mock.</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="kwd">using</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">testing</SPAN><SPAN class="pun">::</SPAN><SPAN class="typ">MatcherInterface</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="kwd">class</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">MyWonderfulMatcher</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">:</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">public</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">MatcherInterface</SPAN><SPAN class="pun">&lt;</SPAN><SPAN class="typ">MyType</SPAN><SPAN class="pun">&gt;</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp;</SPAN><SPAN class="kwd">public</SPAN><SPAN class="pun">:</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="kwd">virtual</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">bool</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Matches</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">MyType</SPAN><SPAN class="pln"> value</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">const</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="com">// Returns true if value matches.</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="kwd">return</SPAN><SPAN class="pln"> value</SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">GetFoo</SPAN><SPAN class="pun">()</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">&gt;</SPAN><SPAN class="pln"> </SPAN><SPAN class="lit">5</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">}</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">};</SPAN></PRE><P>you'll need to change it to: </P><PRE class="prettyprint"><SPAN class="com">// New matcher definition that works with the latest Google Mock.</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="kwd">using</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">testing</SPAN><SPAN class="pun">::</SPAN><SPAN class="typ">MatcherInterface</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="kwd">using</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">testing</SPAN><SPAN class="pun">::</SPAN><SPAN class="typ">MatchResultListener</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="kwd">class</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">MyWonderfulMatcher</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">:</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">public</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">MatcherInterface</SPAN><SPAN class="pun">&lt;</SPAN><SPAN class="typ">MyType</SPAN><SPAN class="pun">&gt;</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp;</SPAN><SPAN class="kwd">public</SPAN><SPAN class="pun">:</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="kwd">virtual</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">bool</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">MatchAndExplain</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">MyType</SPAN><SPAN class="pln"> value</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</SPAN><SPAN class="typ">MatchResultListener</SPAN><SPAN class="pun">*</SPAN><SPAN class="pln"> listener</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">const</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="com">// Returns true if value matches.</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="kwd">return</SPAN><SPAN class="pln"> value</SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">GetFoo</SPAN><SPAN class="pun">()</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">&gt;</SPAN><SPAN class="pln"> </SPAN><SPAN class="lit">5</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">}</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">};</SPAN></PRE><P>(i.e. rename <TT>Matches()</TT> to <TT>MatchAndExplain()</TT> and give it a second argument of type <TT>MatchResultListener*</TT>.) </P><P>If you were also using <TT>ExplainMatchResultTo()</TT> to improve the matcher message: </P><PRE class="prettyprint"><SPAN class="com">// Old matcher definition that doesn't work with the lastest</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="com">// Google Mock.</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="kwd">using</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">testing</SPAN><SPAN class="pun">::</SPAN><SPAN class="typ">MatcherInterface</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="kwd">class</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">MyWonderfulMatcher</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">:</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">public</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">MatcherInterface</SPAN><SPAN class="pun">&lt;</SPAN><SPAN class="typ">MyType</SPAN><SPAN class="pun">&gt;</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp;</SPAN><SPAN class="kwd">public</SPAN><SPAN class="pun">:</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="kwd">virtual</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">bool</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Matches</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">MyType</SPAN><SPAN class="pln"> value</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">const</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="com">// Returns true if value matches.</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="kwd">return</SPAN><SPAN class="pln"> value</SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">GetFoo</SPAN><SPAN class="pun">()</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">&gt;</SPAN><SPAN class="pln"> </SPAN><SPAN class="lit">5</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">}</SPAN><SPAN class="pln"><BR><BR>&nbsp; </SPAN><SPAN class="kwd">virtual</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">void</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">ExplainMatchResultTo</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">MyType</SPAN><SPAN class="pln"> value</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">std</SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">ostream</SPAN><SPAN class="pun">*</SPAN><SPAN class="pln"> os</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">const</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="com">// Prints some helpful information to os to help</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="com">// a user understand why value matches (or doesn't match).</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="pun">*</SPAN><SPAN class="pln">os </SPAN><SPAN class="pun">&lt;&lt;</SPAN><SPAN class="pln"> </SPAN><SPAN class="str">"the Foo property is "</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">&lt;&lt;</SPAN><SPAN class="pln"> value</SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">GetFoo</SPAN><SPAN class="pun">();</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">}</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">};</SPAN></PRE><P>you should move the logic of <TT>ExplainMatchResultTo()</TT> into <TT>MatchAndExplain()</TT>, using the <TT>MatchResultListener</TT> argument where the <TT>::std::ostream</TT> was used: </P><PRE class="prettyprint"><SPAN class="com">// New matcher definition that works with the latest Google Mock.</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="kwd">using</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">testing</SPAN><SPAN class="pun">::</SPAN><SPAN class="typ">MatcherInterface</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="kwd">using</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">testing</SPAN><SPAN class="pun">::</SPAN><SPAN class="typ">MatchResultListener</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="kwd">class</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">MyWonderfulMatcher</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">:</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">public</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">MatcherInterface</SPAN><SPAN class="pun">&lt;</SPAN><SPAN class="typ">MyType</SPAN><SPAN class="pun">&gt;</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp;</SPAN><SPAN class="kwd">public</SPAN><SPAN class="pun">:</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="kwd">virtual</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">bool</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">MatchAndExplain</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">MyType</SPAN><SPAN class="pln"> value</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</SPAN><SPAN class="typ">MatchResultListener</SPAN><SPAN class="pun">*</SPAN><SPAN class="pln"> listener</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">const</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="com">// Returns true if value matches.</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="pun">*</SPAN><SPAN class="pln">listener </SPAN><SPAN class="pun">&lt;&lt;</SPAN><SPAN class="pln"> </SPAN><SPAN class="str">"the Foo property is "</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">&lt;&lt;</SPAN><SPAN class="pln"> value</SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">GetFoo</SPAN><SPAN class="pun">();</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="kwd">return</SPAN><SPAN class="pln"> value</SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">GetFoo</SPAN><SPAN class="pun">()</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">&gt;</SPAN><SPAN class="pln"> </SPAN><SPAN class="lit">5</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">}</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">};</SPAN></PRE><P>If your matcher is defined using <TT>MakePolymorphicMatcher()</TT>: </P><PRE class="prettyprint"><SPAN class="com">// Old matcher definition that doesn't work with the latest</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="com">// Google Mock.</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="kwd">using</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">testing</SPAN><SPAN class="pun">::</SPAN><SPAN class="typ">MakePolymorphicMatcher</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="kwd">class</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">MyGreatMatcher</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp;</SPAN><SPAN class="kwd">public</SPAN><SPAN class="pun">:</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="kwd">bool</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Matches</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">MyType</SPAN><SPAN class="pln"> value</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">const</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="com">// Returns true if value matches.</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="kwd">return</SPAN><SPAN class="pln"> value</SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">GetBar</SPAN><SPAN class="pun">()</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">&lt;</SPAN><SPAN class="pln"> </SPAN><SPAN class="lit">42</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">}</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">};</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">MakePolymorphicMatcher</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">MyGreatMatcher</SPAN><SPAN class="pun">())</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">...</SPAN></PRE><P>you should rename the <TT>Matches()</TT> method to <TT>MatchAndExplain()</TT> and add a <TT>MatchResultListener*</TT> argument (the same as what you need to do for matchers defined by implementing <TT>MatcherInterface</TT>): </P><PRE class="prettyprint"><SPAN class="com">// New matcher definition that works with the latest Google Mock.</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="kwd">using</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">testing</SPAN><SPAN class="pun">::</SPAN><SPAN class="typ">MakePolymorphicMatcher</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="kwd">using</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">testing</SPAN><SPAN class="pun">::</SPAN><SPAN class="typ">MatchResultListener</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="kwd">class</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">MyGreatMatcher</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp;</SPAN><SPAN class="kwd">public</SPAN><SPAN class="pun">:</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="kwd">bool</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">MatchAndExplain</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">MyType</SPAN><SPAN class="pln"> value</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</SPAN><SPAN class="typ">MatchResultListener</SPAN><SPAN class="pun">*</SPAN><SPAN class="pln"> listener</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">const</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="com">// Returns true if value matches.</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="kwd">return</SPAN><SPAN class="pln"> value</SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">GetBar</SPAN><SPAN class="pun">()</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">&lt;</SPAN><SPAN class="pln"> </SPAN><SPAN class="lit">42</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">}</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">};</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">MakePolymorphicMatcher</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">MyGreatMatcher</SPAN><SPAN class="pun">())</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">...</SPAN></PRE><P>If your polymorphic matcher uses <TT>ExplainMatchResultTo()</TT> for better failure messages: </P><PRE class="prettyprint"><SPAN class="com">// Old matcher definition that doesn't work with the latest</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="com">// Google Mock.</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="kwd">using</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">testing</SPAN><SPAN class="pun">::</SPAN><SPAN class="typ">MakePolymorphicMatcher</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="kwd">class</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">MyGreatMatcher</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp;</SPAN><SPAN class="kwd">public</SPAN><SPAN class="pun">:</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="kwd">bool</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Matches</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">MyType</SPAN><SPAN class="pln"> value</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">const</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="com">// Returns true if value matches.</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="kwd">return</SPAN><SPAN class="pln"> value</SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">GetBar</SPAN><SPAN class="pun">()</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">&lt;</SPAN><SPAN class="pln"> </SPAN><SPAN class="lit">42</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">}</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">};</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="kwd">void</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">ExplainMatchResultTo</SPAN><SPAN class="pun">(</SPAN><SPAN class="kwd">const</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">MyGreatMatcher</SPAN><SPAN class="pun">&amp;</SPAN><SPAN class="pln"> matcher</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </SPAN><SPAN class="typ">MyType</SPAN><SPAN class="pln"> value</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">std</SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">ostream</SPAN><SPAN class="pun">*</SPAN><SPAN class="pln"> os</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="com">// Prints some helpful information to os to help</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="com">// a user understand why value matches (or doesn't match).</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">*</SPAN><SPAN class="pln">os </SPAN><SPAN class="pun">&lt;&lt;</SPAN><SPAN class="pln"> </SPAN><SPAN class="str">"the Bar property is "</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">&lt;&lt;</SPAN><SPAN class="pln"> value</SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">GetBar</SPAN><SPAN class="pun">();</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">}</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">MakePolymorphicMatcher</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">MyGreatMatcher</SPAN><SPAN class="pun">())</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">...</SPAN></PRE><P>you'll need to move the logic inside <TT>ExplainMatchResultTo()</TT> to <TT>MatchAndExplain()</TT>: </P><PRE class="prettyprint"><SPAN class="com">// New matcher definition that works with the latest Google Mock.</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="kwd">using</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">testing</SPAN><SPAN class="pun">::</SPAN><SPAN class="typ">MakePolymorphicMatcher</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="kwd">using</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">testing</SPAN><SPAN class="pun">::</SPAN><SPAN class="typ">MatchResultListener</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="kwd">class</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">MyGreatMatcher</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp;</SPAN><SPAN class="kwd">public</SPAN><SPAN class="pun">:</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="kwd">bool</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">MatchAndExplain</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">MyType</SPAN><SPAN class="pln"> value</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</SPAN><SPAN class="typ">MatchResultListener</SPAN><SPAN class="pun">*</SPAN><SPAN class="pln"> listener</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">const</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="com">// Returns true if value matches.</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="pun">*</SPAN><SPAN class="pln">listener </SPAN><SPAN class="pun">&lt;&lt;</SPAN><SPAN class="pln"> </SPAN><SPAN class="str">"the Bar property is "</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">&lt;&lt;</SPAN><SPAN class="pln"> value</SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">GetBar</SPAN><SPAN class="pun">();</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="kwd">return</SPAN><SPAN class="pln"> value</SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">GetBar</SPAN><SPAN class="pun">()</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">&lt;</SPAN><SPAN class="pln"> </SPAN><SPAN class="lit">42</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">}</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">};</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">MakePolymorphicMatcher</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">MyGreatMatcher</SPAN><SPAN class="pun">())</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">...</SPAN></PRE></A><P><A name="I_wrote_some_matchers.__After_I_upgraded_to_a_new_version_of_Goo">For more information, you can read these </A><A href="http://code.google.com/p/googlemock/wiki/CookBook#Writing_New_Monomorphic_Matchers" rel="nofollow">two</A> <A href="http://code.google.com/p/googlemock/wiki/CookBook#Writing_New_Polymorphic_Matchers" rel="nofollow">recipes</A> from the cookbook.  As always, you are welcome to post questions on <TT>googlemock@googlegroups.com</TT> if you need any help. </P><H2><A name="When_using_Google_Mock,_do_I_have_to_use_Google_Test_as_the_test">When using Google Mock, do I have to use Google Test as the testing framework?  I have my favorite testing framework and don't want to switch.</A></H2><A name="When_using_Google_Mock,_do_I_have_to_use_Google_Test_as_the_test"></A><P><A name="When_using_Google_Mock,_do_I_have_to_use_Google_Test_as_the_test">Google Mock works out of the box with Google Test.  However, it's easy to configure it to work with any testing framework of your choice. </A><A href="http://code.google.com/p/googlemock/wiki/ForDummies#Using_Google_Mock_with_Any_Testing_Framework">Here</A> is how. </P><H2><A name="How_am_I_supposed_to_make_sense_of_these_horrible_template_error">How am I supposed to make sense of these horrible template errors?</A></H2><A name="How_am_I_supposed_to_make_sense_of_these_horrible_template_error"><P>If you are confused by the compiler errors gcc threw at you, try consulting the <I>Google Mock Doctor</I> tool first.  What it does is to scan stdin for gcc error messages, and spit out diagnoses on the problems (we call them diseases) your code has. </P><P>To "install", run command: </P><PRE class="prettyprint"><SPAN class="kwd">alias</SPAN><SPAN class="pln"> gmd</SPAN><SPAN class="pun">=</SPAN><SPAN class="str">'&lt;path to googlemock&gt;/scripts/gmock_doctor.py'</SPAN></PRE><P>To use it, do: </P><PRE class="prettyprint"><SPAN class="tag">&lt;your-favorite-build-command&gt;</SPAN><SPAN class="pln"> </SPAN><SPAN class="tag">&lt;your-test&gt;</SPAN><SPAN class="pln"> 2&gt;&amp;1 | gmd</SPAN></PRE><P>For example: </P><PRE class="prettyprint"><SPAN class="pln">make my_test </SPAN><SPAN class="lit">2</SPAN><SPAN class="pun">&gt;&amp;</SPAN><SPAN class="lit">1</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">|</SPAN><SPAN class="pln"> gmd</SPAN></PRE><P>Or you can run <TT>gmd</TT> and copy-n-paste gcc's error messages to it. </P></A><H2><A name="Can_I_mock_a_variadic_function?">Can I mock a variadic function?</A></H2><A name="Can_I_mock_a_variadic_function?"><P>You cannot mock a variadic function (i.e. a function taking ellipsis (<TT>...</TT>) arguments) directly in Google Mock. </P><P>The problem is that in general, there is <I>no way</I> for a mock object to know how many arguments are passed to the variadic method, and what the arguments' types are.  Only the <I>author of the base class</I> knows the protocol, and we cannot look into his head. </P><P>Therefore, to mock such a function, the <I>user</I> must teach the mock object how to figure out the number of arguments and their types.  One way to do it is to provide overloaded versions of the function. </P><P>Ellipsis arguments are inherited from C and not really a C++ feature. They are unsafe to use and don't work with arguments that have constructors or destructors.  Therefore we recommend to avoid them in C++ as much as possible. </P></A><H2><A name="MSVC_gives_me_warning_C4301_or_C4373_when_I_define_a_mock_method">MSVC gives me warning C4301 or C4373 when I define a mock method with a const parameter.  Why?</A></H2><A name="MSVC_gives_me_warning_C4301_or_C4373_when_I_define_a_mock_method"><P>If you compile this using Microsoft Visual C++ 2005 SP1: </P><PRE class="prettyprint"><SPAN class="kwd">class</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Foo</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="kwd">virtual</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">void</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Bar</SPAN><SPAN class="pun">(</SPAN><SPAN class="kwd">const</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">int</SPAN><SPAN class="pln"> i</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">=</SPAN><SPAN class="pln"> </SPAN><SPAN class="lit">0</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">};</SPAN><SPAN class="pln"><BR><BR></SPAN><SPAN class="kwd">class</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">MockFoo</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">:</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">public</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Foo</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR>&nbsp; MOCK_METHOD1</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">Bar</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">void</SPAN><SPAN class="pun">(</SPAN><SPAN class="kwd">const</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">int</SPAN><SPAN class="pln"> i</SPAN><SPAN class="pun">));</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">};</SPAN></PRE><P>You may get the following warning: </P><PRE class="prettyprint"><SPAN class="pln">warning C4301</SPAN><SPAN class="pun">:</SPAN><SPAN class="pln"> </SPAN><SPAN class="str">'MockFoo::Bar'</SPAN><SPAN class="pun">:</SPAN><SPAN class="pln"> overriding </SPAN><SPAN class="kwd">virtual</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">function</SPAN><SPAN class="pln"> only differs </SPAN><SPAN class="kwd">from</SPAN><SPAN class="pln"> </SPAN><SPAN class="str">'Foo::Bar'</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">by</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">const</SPAN><SPAN class="pun">/</SPAN><SPAN class="kwd">volatile</SPAN><SPAN class="pln"> qualifier</SPAN></PRE><P>This is a MSVC bug.  The same code compiles fine with gcc ,for example.  If you use Visual C++ 2008 SP1, you would get the warning: </P><PRE class="prettyprint"><SPAN class="pln">warning C4373</SPAN><SPAN class="pun">:</SPAN><SPAN class="pln"> </SPAN><SPAN class="str">'MockFoo::Bar'</SPAN><SPAN class="pun">:</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">virtual</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">function</SPAN><SPAN class="pln"> overrides </SPAN><SPAN class="str">'Foo::Bar'</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> previous versions of the compiler did </SPAN><SPAN class="kwd">not</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">override</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">when</SPAN><SPAN class="pln"> parameters only differed </SPAN><SPAN class="kwd">by</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">const</SPAN><SPAN class="pun">/</SPAN><SPAN class="kwd">volatile</SPAN><SPAN class="pln"> qualifiers</SPAN></PRE><P>In C++, if you <I>declare</I> a function with a <TT>const</TT> parameter, the <TT>const</TT> modifier is <I>ignored</I>.  Therefore, the <TT>Foo</TT> base class above is equivalent to: </P><PRE class="prettyprint"><SPAN class="kwd">class</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Foo</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="kwd">virtual</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">void</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Bar</SPAN><SPAN class="pun">(</SPAN><SPAN class="kwd">int</SPAN><SPAN class="pln"> i</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">=</SPAN><SPAN class="pln"> </SPAN><SPAN class="lit">0</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"> &nbsp;</SPAN><SPAN class="com">// int or const int? &nbsp;Makes no difference.</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">};</SPAN></PRE><P>In fact, you can <I>declare</I> Bar() with an <TT>int</TT> parameter, and <I>define</I> it with a <TT>const int</TT> parameter.  The compiler will still match them up. </P><P>Since making a parameter <TT>const</TT> is meaningless in the method <I>declaration</I>, we recommend to remove it in both <TT>Foo</TT> and <TT>MockFoo</TT>. That should workaround the VC bug. </P><P>Note that we are talking about the <I>top-level</I> <TT>const</TT> modifier here. If the function parameter is passed by pointer or reference, declaring the <I>pointee</I> or <I>referee</I> as <TT>const</TT> is still meaningful.  For example, the following two declarations are <I>not</I> equivalent: </P><PRE class="prettyprint"><SPAN class="kwd">void</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Bar</SPAN><SPAN class="pun">(</SPAN><SPAN class="kwd">int</SPAN><SPAN class="pun">*</SPAN><SPAN class="pln"> p</SPAN><SPAN class="pun">);</SPAN><SPAN class="pln"> &nbsp; &nbsp; &nbsp; &nbsp;</SPAN><SPAN class="com">// Neither p nor *p is const.</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="kwd">void</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Bar</SPAN><SPAN class="pun">(</SPAN><SPAN class="kwd">const</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">int</SPAN><SPAN class="pun">*</SPAN><SPAN class="pln"> p</SPAN><SPAN class="pun">);</SPAN><SPAN class="pln"> &nbsp;</SPAN><SPAN class="com">// p is not const, but *p is.</SPAN></PRE></A><H2><A name="I_have_a_huge_mock_class,_and_Microsoft_Visual_C++_runs_out_of_m">I have a huge mock class, and Microsoft Visual C++ runs out of memory when compiling it.  What can I do?</A></H2><A name="I_have_a_huge_mock_class,_and_Microsoft_Visual_C++_runs_out_of_m"><P>We've noticed that when the <TT>/clr</TT> compiler flag is used, Visual C++ uses 5~6 times as much memory when compiling a mock class.  We suggest to avoid <TT>/clr</TT> when compiling native C++ mocks. </P></A><H2><A name="I_can&#39;t_figure_out_why_Google_Mock_thinks_my_expectations_a">I can't figure out why Google Mock thinks my expectations are not satisfied.  What should I do?</A></H2><A name="I_can&#39;t_figure_out_why_Google_Mock_thinks_my_expectations_a"><P>You might want to run your test with <TT>--gmock_verbose=info</TT>.  This flag lets Google Mock print a trace of every mock function call it receives.  By studying the trace, you'll gain insights on why the expectations you set are not met. </P></A><H2><A name="How_can_I_assert_that_a_function_is_NEVER_called?">How can I assert that a function is NEVER called?</A></H2><A name="How_can_I_assert_that_a_function_is_NEVER_called?"><PRE class="prettyprint"><SPAN class="pln">EXPECT_CALL</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">foo</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Bar</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">_</SPAN><SPAN class="pun">))</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">Times</SPAN><SPAN class="pun">(</SPAN><SPAN class="lit">0</SPAN><SPAN class="pun">);</SPAN></PRE></A><H2><A name="I_have_a_failed_test_where_Google_Mock_tells_me_TWICE_that_a_par">I have a failed test where Google Mock tells me TWICE that a particular expectation is not satisfied.  Isn't this redundant?</A></H2><A name="I_have_a_failed_test_where_Google_Mock_tells_me_TWICE_that_a_par"><P>When Google Mock detects a failure, it prints relevant information (the mock function arguments, the state of relevant expectations, and etc) to help the user debug.  If another failure is detected, Google Mock will do the same, including printing the state of relevant expectations. </P><P>Sometimes an expectation's state didn't change between two failures, and you'll see the same description of the state twice.  They are however <I>not</I> redundant, as they refer to <I>different points in time</I>. The fact they are the same <I>is</I> interesting information. </P></A><H2><A name="I_get_a_heap_check_failure_when_using_a_mock_object,_but_using_a">I get a heap check failure when using a mock object, but using a real object is fine.  What can be wrong?</A></H2><A name="I_get_a_heap_check_failure_when_using_a_mock_object,_but_using_a"><P>Does the class (hopefully a pure interface) you are mocking have a virtual destructor? </P><P>Whenever you derive from a base class, make sure its destructor is virtual.  Otherwise Bad Things will happen.  Consider the following code: </P><PRE class="prettyprint"><SPAN class="kwd">class</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Base</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp;</SPAN><SPAN class="kwd">public</SPAN><SPAN class="pun">:</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="com">// Not virtual, but should be.</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">~</SPAN><SPAN class="typ">Base</SPAN><SPAN class="pun">()</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">}</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">};</SPAN><SPAN class="pln"><BR><BR></SPAN><SPAN class="kwd">class</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Derived</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">:</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">public</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Base</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp;</SPAN><SPAN class="kwd">public</SPAN><SPAN class="pun">:</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR>&nbsp;</SPAN><SPAN class="kwd">private</SPAN><SPAN class="pun">:</SPAN><SPAN class="pln"><BR>&nbsp; std</SPAN><SPAN class="pun">::</SPAN><SPAN class="kwd">string</SPAN><SPAN class="pln"> value_</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">};</SPAN><SPAN class="pln"><BR><BR></SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="typ">Base</SPAN><SPAN class="pun">*</SPAN><SPAN class="pln"> p </SPAN><SPAN class="pun">=</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">new</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Derived</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="kwd">delete</SPAN><SPAN class="pln"> p</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"> &nbsp;</SPAN><SPAN class="com">// Surprise! ~Base() will be called, but ~Derived() will not</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</SPAN><SPAN class="com">// - value_ is leaked.</SPAN></PRE><P>By changing <TT>~Base()</TT> to virtual, <TT>~Derived()</TT> will be correctly called when <TT>delete p</TT> is executed, and the heap checker will be happy. </P></A><H2><A name="The_&quot;newer_expectations_override_older_ones&quot;_rule_make">The "newer expectations override older ones" rule makes writing expectations awkward.  Why does Google Mock do that?</A></H2><A name="The_&quot;newer_expectations_override_older_ones&quot;_rule_make"><P>When people complain about this, often they are referring to code like: </P><PRE class="prettyprint"><SPAN class="com">// foo.Bar() should be called twice, return 1 the first time, and return</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="com">// 2 the second time. &nbsp;However, I have to write the expectations in the</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="com">// reverse order. &nbsp;This sucks big time!!!</SPAN><SPAN class="pln"><BR>EXPECT_CALL</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">foo</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Bar</SPAN><SPAN class="pun">())</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">WillOnce</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">Return</SPAN><SPAN class="pun">(</SPAN><SPAN class="lit">2</SPAN><SPAN class="pun">))</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">RetiresOnSaturation</SPAN><SPAN class="pun">();</SPAN><SPAN class="pln"><BR>EXPECT_CALL</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">foo</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Bar</SPAN><SPAN class="pun">())</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">WillOnce</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">Return</SPAN><SPAN class="pun">(</SPAN><SPAN class="lit">1</SPAN><SPAN class="pun">))</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">RetiresOnSaturation</SPAN><SPAN class="pun">();</SPAN></PRE><P>The problem is that they didn't pick the <STRONG>best</STRONG> way to express the test's intent. </P><P>By default, expectations don't have to be matched in <I>any</I> particular order.  If you want them to match in a certain order, you need to be explicit.  This is Google Mock's (and jMock's) fundamental philosophy: it's easy to accidentally over-specify your tests, and we want to make it harder to do so. </P><P>There are two better ways to write the test spec.  You could either put the expectations in sequence: </P><PRE class="prettyprint"><SPAN class="com">// foo.Bar() should be called twice, return 1 the first time, and return</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="com">// 2 the second time. &nbsp;Using a sequence, we can write the expectations</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="com">// in their natural order.</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="typ">InSequence</SPAN><SPAN class="pln"> s</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR>&nbsp; EXPECT_CALL</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">foo</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Bar</SPAN><SPAN class="pun">())</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; &nbsp; </SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">WillOnce</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">Return</SPAN><SPAN class="pun">(</SPAN><SPAN class="lit">1</SPAN><SPAN class="pun">))</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; &nbsp; </SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">RetiresOnSaturation</SPAN><SPAN class="pun">();</SPAN><SPAN class="pln"><BR>&nbsp; EXPECT_CALL</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">foo</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Bar</SPAN><SPAN class="pun">())</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; &nbsp; </SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">WillOnce</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">Return</SPAN><SPAN class="pun">(</SPAN><SPAN class="lit">2</SPAN><SPAN class="pun">))</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; &nbsp; </SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">RetiresOnSaturation</SPAN><SPAN class="pun">();</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">}</SPAN></PRE><P>or you can put the sequence of actions in the same expectation: </P><PRE class="prettyprint"><SPAN class="com">// foo.Bar() should be called twice, return 1 the first time, and return</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="com">// 2 the second time.</SPAN><SPAN class="pln"><BR>EXPECT_CALL</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">foo</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Bar</SPAN><SPAN class="pun">())</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">WillOnce</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">Return</SPAN><SPAN class="pun">(</SPAN><SPAN class="lit">1</SPAN><SPAN class="pun">))</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">WillOnce</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">Return</SPAN><SPAN class="pun">(</SPAN><SPAN class="lit">2</SPAN><SPAN class="pun">))</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">RetiresOnSaturation</SPAN><SPAN class="pun">();</SPAN></PRE><P>Back to the original questions: why does Google Mock search the expectations (and <TT>ON_CALL</TT>s) from back to front?  Because this allows a user to set up a mock's behavior for the common case early (e.g. in the mock's constructor or the test fixture's set-up phase) and customize it with more specific rules later.  If Google Mock searches from front to back, this very useful pattern won't be possible. </P></A><H2><A name="Google_Mock_prints_a_warning_when_a_function_without_EXPECT_CALL">Google Mock prints a warning when a function without EXPECT_CALL is called, even if I have set its behavior using ON_CALL.  Would it be reasonable not to show the warning in this case?</A></H2><A name="Google_Mock_prints_a_warning_when_a_function_without_EXPECT_CALL"><P>When choosing between being neat and being safe, we lean toward the latter.  So the answer is that we think it's better to show the warning. </P><P>Often people write <TT>ON_CALL</TT>s in the mock object's constructor or <TT>SetUp()</TT>, as the default behavior rarely changes from test to test.  Then in the test body they set the expectations, which are often different for each test.  Having an <TT>ON_CALL</TT> in the set-up part of a test doesn't mean that the calls are expected.  If there's no <TT>EXPECT_CALL</TT> and the method is called, it's possibly an error.  If we quietly let the call go through without notifying the user, bugs may creep in unnoticed. </P><P>If, however, you are sure that the calls are OK, you can write </P><PRE class="prettyprint"><SPAN class="pln">EXPECT_CALL</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">foo</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Bar</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">_</SPAN><SPAN class="pun">))</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">WillRepeatedly</SPAN><SPAN class="pun">(...);</SPAN></PRE><P>instead of </P><PRE class="prettyprint"><SPAN class="pln">ON_CALL</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">foo</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Bar</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">_</SPAN><SPAN class="pun">))</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="pun">.</SPAN><SPAN class="typ">WillByDefault</SPAN><SPAN class="pun">(...);</SPAN></PRE><P>This tells Google Mock that you do expect the calls and no warning should be printed. </P><P>Also, you can control the verbosity using the <TT>--gmock_verbose</TT> flag. If you find the output too noisy when debugging, just choose a less verbose level. </P></A><H2><A name="How_can_I_delete_the_mock_function&#39;s_argument_in_an_action?">How can I delete the mock function's argument in an action?</A></H2><A name="How_can_I_delete_the_mock_function&#39;s_argument_in_an_action?"></A><P><A name="How_can_I_delete_the_mock_function&#39;s_argument_in_an_action?">If you find yourself needing to perform some action that's not supported by Google Mock directly, remember that you can define your own actions using </A><A href="http://code.google.com/p/googlemock/wiki/CookBook#Writing_New_Actions">MakeAction()</A> or <A href="http://code.google.com/p/googlemock/wiki/CookBook#Writing_New_Polymorphic_Actions">MakePolymorphicAction()</A>, or you can write a stub function and invoke it using <A href="http://code.google.com/p/googlemock/wiki/CookBook#Using_Functions_Methods_Functors">Invoke()</A>. </P><H2><A name="MOCK_METHODn()&#39;s_second_argument_looks_funny.__Why_don&#39;">MOCK_METHODn()'s second argument looks funny.  Why don't you use the MOCK_METHODn(Method, return_type, arg_1, ..., arg_n) syntax?</A></H2><A name="MOCK_METHODn()&#39;s_second_argument_looks_funny.__Why_don&#39;"><P>What?!  I think it's beautiful. :-) </P><P>While which syntax looks more natural is a subjective matter to some extent, Google Mock's syntax was chosen for several practical advantages it has. </P><P>Try to mock a function that takes a map as an argument: </P><PRE class="prettyprint"><SPAN class="kwd">virtual</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">int</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">GetSize</SPAN><SPAN class="pun">(</SPAN><SPAN class="kwd">const</SPAN><SPAN class="pln"> map</SPAN><SPAN class="pun">&lt;</SPAN><SPAN class="kwd">int</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> std</SPAN><SPAN class="pun">::</SPAN><SPAN class="kwd">string</SPAN><SPAN class="pun">&gt;&amp;</SPAN><SPAN class="pln"> m</SPAN><SPAN class="pun">);</SPAN></PRE><P>Using the proposed syntax, it would be: </P><PRE class="prettyprint"><SPAN class="pln">MOCK_METHOD1</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">GetSize</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">int</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">const</SPAN><SPAN class="pln"> map</SPAN><SPAN class="pun">&lt;</SPAN><SPAN class="kwd">int</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> std</SPAN><SPAN class="pun">::</SPAN><SPAN class="kwd">string</SPAN><SPAN class="pun">&gt;&amp;</SPAN><SPAN class="pln"> m</SPAN><SPAN class="pun">);</SPAN></PRE><P>Guess what?  You'll get a compiler error as the compiler thinks that <TT>const map&lt;int, std::string&gt;&amp; m</TT> are <STRONG>two</STRONG>, not one, arguments. To work around this you can use <TT>typedef</TT> to give the map type a name, but that gets in the way of your work.  Google Mock's syntax avoids this problem as the function's argument types are protected inside a pair of parentheses: </P><PRE class="prettyprint"><SPAN class="com">// This compiles fine.</SPAN><SPAN class="pln"><BR>MOCK_METHOD1</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">GetSize</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">int</SPAN><SPAN class="pun">(</SPAN><SPAN class="kwd">const</SPAN><SPAN class="pln"> map</SPAN><SPAN class="pun">&lt;</SPAN><SPAN class="kwd">int</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> std</SPAN><SPAN class="pun">::</SPAN><SPAN class="kwd">string</SPAN><SPAN class="pun">&gt;&amp;</SPAN><SPAN class="pln"> m</SPAN><SPAN class="pun">));</SPAN></PRE><P>You still need a <TT>typedef</TT> if the return type contains an unprotected comma, but that's much rarer. </P><P>Other advantages include: </P><OL><LI><TT>MOCK_METHOD1(Foo, int, bool)</TT> can leave a reader wonder whether the method returns <TT>int</TT> or <TT>bool</TT>, while there won't be such confusion using Google Mock's syntax. </LI><LI>The way Google Mock describes a function type is nothing new, although many people may not be familiar with it.  The same syntax was used in C, and the <TT>function</TT> library in <TT>tr1</TT> uses this syntax extensively.  Since <TT>tr1</TT> will become a part of the new version of STL, we feel very comfortable to be consistent with it. </LI><LI>The function type syntax is also used in other parts of Google Mock's API (e.g. the action interface) in order to make the implementation tractable. A user needs to learn it anyway in order to utilize Google Mock's more advanced features.  We'd as well stick to the same syntax in <TT>MOCK_METHOD*</TT>! </LI></OL><P></P></A><H2><A name="My_code_calls_a_static/global_function.__Can_I_mock_it?">My code calls a static/global function.  Can I mock it?</A></H2><A name="My_code_calls_a_static/global_function.__Can_I_mock_it?"><P>You can, but you need to make some changes. </P><P>In general, if you find yourself needing to mock a static function, it's a sign that your modules are too tightly coupled (and less flexible, less reusable, less testable, etc).  You are probably better off defining a small interface and call the function through that interface, which then can be easily mocked.  It's a bit of work initially, but usually pays for itself quickly. </P></A><P><A name="My_code_calls_a_static/global_function.__Can_I_mock_it?">This Google Testing Blog </A><A href="http://googletesting.blogspot.com/2008/06/defeat-static-cling.html" rel="nofollow">post</A> says it excellently.  Check it out. </P><H2><A name="My_mock_object_needs_to_do_complex_stuff.__It&#39;s_a_lot_of_pa">My mock object needs to do complex stuff.  It's a lot of pain to specify the actions.  Google Mock sucks!</A></H2><A name="My_mock_object_needs_to_do_complex_stuff.__It&#39;s_a_lot_of_pa"><P>I know it's not a question, but you get an answer for free any way. :-) </P><P>With Google Mock, you can create mocks in C++ easily.  And people might be tempted to use them everywhere. Sometimes they work great, and sometimes you may find them, well, a pain to use. So, what's wrong in the latter case? </P><P>When you write a test without using mocks, you exercise the code and assert that it returns the correct value or that the system is in an expected state.  This is sometimes called "state-based testing". </P><P>Mocks are great for what some call "interaction-based" testing: instead of checking the system state at the very end, mock objects verify that they are invoked the right way and report an error as soon as it arises, giving you a handle on the precise context in which the error was triggered.  This is often more effective and economical to do than state-based testing. </P><P>If you are doing state-based testing and using a test double just to simulate the real object, you are probably better off using a fake. Using a mock in this case causes pain, as it's not a strong point for mocks to perform complex actions.  If you experience this and think that mocks suck, you are just not using the right tool for your problem. Or, you might be trying to solve the wrong problem. :-) </P></A><H2><A name="I_got_a_warning_&quot;Uninteresting_function_call_encountered_-">I got a warning "Uninteresting function call encountered - default action taken.."  Should I panic?</A></H2><A name="I_got_a_warning_&quot;Uninteresting_function_call_encountered_-"><P>By all means, NO!  It's just an FYI. </P><P>What it means is that you have a mock function, you haven't set any expectations on it (by Google Mock's rule this means that you are not interested in calls to this function and therefore it can be called any number of times), and it is called.  That's OK - you didn't say it's not OK to call the function! </P><P>What if you actually meant to disallow this function to be called, but forgot to write <TT>EXPECT_CALL(foo, Bar()).Times(0)</TT>?  While one can argue that it's the user's fault, Google Mock tries to be nice and prints you a note. </P><P>So, when you see the message and believe that there shouldn't be any uninteresting calls, you should investigate what's going on.  To make your life easier, Google Mock prints the function name and arguments when an uninteresting call is encountered. </P></A><H2><A name="I_want_to_define_a_custom_action.__Should_I_use_Invoke()_or_impl">I want to define a custom action.  Should I use Invoke() or implement the action interface?</A></H2><A name="I_want_to_define_a_custom_action.__Should_I_use_Invoke()_or_impl"><P>Either way is fine - you want to choose the one that's more convenient for your circumstance. </P><P>Usually, if your action is for a particular function type, defining it using <TT>Invoke()</TT> should be easier; if your action can be used in functions of different types (e.g. if you are defining <TT>Return(value)</TT>), <TT>MakePolymorphicAction()</TT> is easiest.  Sometimes you want precise control on what types of functions the action can be used in, and implementing <TT>ActionInterface</TT> is the way to go here. See the implementation of <TT>Return()</TT> in <TT>include/gmock/gmock-actions.h</TT> for an example. </P></A><H2><A name="I&#39;m_using_the_set-argument-pointee_action,_and_the_compiler">I'm using the set-argument-pointee action, and the compiler complains about "conflicting return type specified".  What does it mean?</A></H2><A name="I&#39;m_using_the_set-argument-pointee_action,_and_the_compiler"><P>You got this error as Google Mock has no idea what value it should return when the mock method is called.  <TT>SetArgumentPointee()</TT> says what the side effect is, but doesn't say what the return value should be.  You need <TT>DoAll()</TT> to chain a <TT>SetArgumentPointee()</TT> with a <TT>Return()</TT>. </P></A><P><A name="I&#39;m_using_the_set-argument-pointee_action,_and_the_compiler">See this </A><A href="http://code.google.com/p/googlemock/wiki/CookBook#Mocking_Side_Effects">recipe</A> for more details and an example. </P><H2><A name="My_question_is_not_in_your_FAQ!">My question is not in your FAQ!</A></H2><A name="My_question_is_not_in_your_FAQ!"><P>If you cannot find the answer to your question in this FAQ, there are some other resources you can use: </P></A><OL><A name="My_question_is_not_in_your_FAQ!"></A><LI><A name="My_question_is_not_in_your_FAQ!">read other </A><A href="http://code.google.com/p/googlemock/w/list" rel="nofollow">wiki pages</A>, </LI><LI>search the mailing list <A href="http://groups.google.com/group/googlemock/topics" rel="nofollow">archive</A>, </LI><LI>ask it on <A href="mailto:googlemock@googlegroups.com" rel="nofollow">googlemock@googlegroups.com</A> and someone will answer it (to prevent spam, we require you to join the <A href="http://groups.google.com/group/googlemock" rel="nofollow">discussion group</A> before you can post.). </LI></OL><P>Please note that creating an issue in the <A href="http://code.google.com/p/googlemock/issues/list" rel="nofollow">issue tracker</A> is <I>not</I> a good way to get your answer, as it is monitored infrequently by a very small number of people. </P><P>When asking a question, it's helpful to provide as much of the following information as possible (people cannot help you if there's not enough information in your question): </P><UL><LI>the version (or the revision number if you check out from SVN directly) of Google Mock you use (Google Mock is under active development, so it's possible that your problem has been solved in a later version), </LI><LI>your operating system, </LI><LI>the name and version of your compiler, </LI><LI>the complete command line flags you give to your compiler, </LI><LI>the complete compiler error messages (if the question is about compilation), </LI><LI>the <I>actual</I> code (ideally, a minimal but complete program) that has the problem you encounter. </LI></UL>
+ </TD> 
+ </TR>
+ </TBODY></TABLE>
+ </DIV>
+
+
+ 
+ <BR>
+ 
+
+
+ 
+ 
+ 
+ 
+ 
+
+<DIV class="collapse">
+
+
+ 
+
+
+<DIV id="commentlist">
+
+ 
+ <DIV class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <SPAN class="author">Comment
+ 
+ by
+ 
+ <A style="white-space: nowrap" href="http://code.google.com/u/dascandy/">dascandy</A>,
+ 
+ </SPAN>
+ <SPAN class="date" title="Mon Dec 22 12:46:58 2008">Dec 22, 2008</SPAN>
+ <DIV>
+<DIV class="commentcontent">
+<P>Why write Google Mock when lots of other mocking frameworks are available - including amop, mockpp, hippo mocks and mockito++? </P>
+</DIV>
+ 
+ 
+ </DIV>
+ </DIV>
+ 
+
+ 
+ <DIV class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <SPAN class="author">Comment
+ 
+ by
+ 
+ <A style="white-space: nowrap" href="http://code.google.com/u/zhanyong.wan/">zhanyong.wan</A>,
+ 
+ </SPAN>
+ <SPAN class="date" title="Tue Jan 13 00:14:01 2009">Jan 13, 2009</SPAN>
+ <DIV>
+<DIV class="commentcontent">
+<P>dascandy, we started to write Google Mock before other C++ mocking frameworks were available (except mockpp).  It takes time and space to give a comprehensive comparison between Google Mock and other frameworks, but I do plan to do that at some time.  Meanwhile, you are welcome to read our documentation and play with it to arrive at your own conclusion.  We hope you'll like it as we did. </P>
+</DIV>
+ 
+ 
+ </DIV>
+ </DIV>
+ 
+
+</DIV>
+</DIV>
+
+ 
+
+
+ <SCRIPT type="text/javascript">
+ function delComment(sequence_num, delete_mode) {
+ var f = document.forms["delcom"];
+ f.sequence_num.value = sequence_num;
+ f.mode.value = delete_mode;
+ f.submit();
+ return false;
+ }
+ </SCRIPT>
+
+
+ 
+ 
+<FORM name="delcom" action="http://code.google.com/p/googlemock/w/delComment.do" method="POST">
+ <INPUT type="hidden" name="sequence_num" value="">
+ <INPUT type="hidden" name="mode" value="">
+ <INPUT type="hidden" name="pagename" value="FrequentlyAskedQuestions">
+ <INPUT type="hidden" name="token" value="">
+</FORM>
+
+
+
+<SCRIPT src="./FrequentlyAskedQuestions - googlemock - Google C++ Mocking Framework FAQ - Project Hosting on Google Code_files/prettify.js"></SCRIPT>
+<SCRIPT type="text/javascript">
+ prettyPrint();
+</SCRIPT>
+<SCRIPT type="text/javascript" src="./FrequentlyAskedQuestions - googlemock - Google C++ Mocking Framework FAQ - Project Hosting on Google Code_files/dit_scripts_20081013.js"></SCRIPT>
+
+
+
+  
+ 
+ <SCRIPT type="text/javascript" src="./FrequentlyAskedQuestions - googlemock - Google C++ Mocking Framework FAQ - Project Hosting on Google Code_files/core_scripts_20081103.js"></SCRIPT>
+ <SCRIPT type="text/javascript" src="./FrequentlyAskedQuestions - googlemock - Google C++ Mocking Framework FAQ - Project Hosting on Google Code_files/codesite_product_dictionary_ph.pack.04102009.js"></SCRIPT>
+ </DIV>
+<DIV id="footer" dir="ltr">
+ 
+ <DIV class="text">
+ 
+ ©2010 Google -
+ <A href="http://code.google.com/projecthosting/terms.html">Terms</A> -
+ <A href="http://www.google.com/privacy.html">Privacy</A> -
+ <A href="http://code.google.com/p/support/">Project Hosting Help</A>
+ 
+ </DIV>
+</DIV>
+
+ <DIV class="hostedBy" style="margin-top: -20px;">
+ <SPAN style="vertical-align: top;">Powered by <A href="http://code.google.com/projecthosting/">Google Project Hosting</A></SPAN>
+ </DIV>
+ 
+ 
+
+
+ 
+ 
+
+
+
+<DIV class="menuDiv instance0" id="menuDiv-projects-dropdown" style="display: none; "><DIV class="menuCategory controls"><A class="menuItem" style="display: block; " href="http://www.google.com/accounts/ServiceLogin?service=code&ltmpl=phosting&continue=http%3A%2F%2Fcode.google.com%2Fp%2Fgooglemock%2Fwiki%2FFrequentlyAskedQuestions&amp;followup=http%3A%2F%2Fcode.google.com%2Fp%2Fgooglemock%2Fwiki%2FFrequentlyAskedQuestions">Sign in to see your favorites</A><HR class="menuSeparator"><A class="menuItem" style="display: block; " href="http://code.google.com/more/">Find developer products...</A><A class="menuItem" style="display: block; " href="http://code.google.com/hosting/">Find open source projects...</A></DIV></DIV></BODY></HTML>

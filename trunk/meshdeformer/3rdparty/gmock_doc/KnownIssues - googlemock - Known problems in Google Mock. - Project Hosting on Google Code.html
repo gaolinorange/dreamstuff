@@ -1,0 +1,377 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0052)http://code.google.com/p/googlemock/wiki/KnownIssues -->
+<HTML><HEAD><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <LINK rel="icon" type="image/vnd.microsoft.icon" href="http://www.gstatic.com/codesite/ph/images/phosting.ico">
+ 
+ <SCRIPT type="text/javascript">
+ 
+ 
+ 
+ var codesite_token = null;
+ 
+ 
+ var logged_in_user_email = null;
+ 
+ 
+ var relative_base_url = "";
+ 
+ </SCRIPT>
+ 
+ 
+ <TITLE>KnownIssues - 
+ googlemock -
+ 
+ Known problems in Google Mock. - Project Hosting on Google Code</TITLE>
+ 
+ 
+ <LINK type="text/css" rel="stylesheet" href="./KnownIssues - googlemock - Known problems in Google Mock. - Project Hosting on Google Code_files/ph_core.css">
+ 
+ <LINK type="text/css" rel="stylesheet" href="./KnownIssues - googlemock - Known problems in Google Mock. - Project Hosting on Google Code_files/ph_detail.css">
+ 
+ 
+ 
+ <LINK type="application/atom+xml" rel="alternate" href="http://code.google.com/feeds/p/googlemock/svnchanges/basic?path=/wiki/KnownIssues.wiki">
+ 
+ 
+<!--[if IE]>
+ <link type="text/css" rel="stylesheet" href="http://www.gstatic.com/codesite/ph/6513215159156155175/css/d_ie.css" >
+<![endif]-->
+ <STYLE type="text/css">
+ .menuIcon.off { background: no-repeat url(http://www.gstatic.com/codesite/ph/images/dropdown_sprite.gif) 0 -42px }
+ .menuIcon.on { background: no-repeat url(http://www.gstatic.com/codesite/ph/images/dropdown_sprite.gif) 0 -28px }
+ .menuIcon.down { background: no-repeat url(http://www.gstatic.com/codesite/ph/images/dropdown_sprite.gif) 0 0; }
+ </STYLE>
+<SCRIPT type="text/javascript" src="./KnownIssues - googlemock - Known problems in Google Mock. - Project Hosting on Google Code_files/ga.js"></SCRIPT></HEAD><BODY class="t6">
+ <SCRIPT type="text/javascript">
+ var _gaq = _gaq || [];
+ _gaq.push(
+ ['siteTracker._setAccount', 'UA-18071-1'],
+ ['siteTracker._trackPageview']);
+ 
+ _gaq.push(
+ ['projectTracker._setAccount', 'UA-4068653-1'],
+ ['projectTracker._trackPageview']);
+ 
+ (function() {
+ var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+ (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+ })();
+ </SCRIPT>
+ <DIV id="gaia">
+ 
+ <SPAN>
+ 
+ 
+ <A href="http://code.google.com/p/googlemock/wiki/KnownIssues#" id="projects-dropdown" onclick="return false;"><U>My favorites</U> <SMALL>▼</SMALL></A>
+ 
+ | <A href="https://www.google.com/accounts/ServiceLogin?service=code&ltmpl=phosting&continue=http%3A%2F%2Fcode.google.com%2Fp%2Fgooglemock%2Fwiki%2FKnownIssues&followup=http%3A%2F%2Fcode.google.com%2Fp%2Fgooglemock%2Fwiki%2FKnownIssues" onclick="_CS_click(&#39;/gb/ph/signin&#39;);"><U>Sign in</U></A>
+ 
+ </SPAN>
+
+ </DIV>
+ <DIV class="gbh" style="left: 0pt;"></DIV>
+ <DIV class="gbh" style="right: 0pt;"></DIV>
+ 
+ 
+ <DIV style="height: 1px"></DIV>
+<!--[if IE 6]>
+<div style="text-align:center;">
+Support browsers that contribute to open source, try <a href="http://www.firefox.com">Firefox</a> or <a href="http://www.google.com/chrome">Google Chrome</a>.
+</div>
+<![endif]-->
+
+
+
+ <TABLE style="padding:0px; margin: 20px 0px 0px 0px; width:100%" cellpadding="0" cellspacing="0">
+ <TBODY><TR style="height: 58px;">
+ 
+ <TD style="width: 55px; text-align:center;">
+ <A href="http://code.google.com/p/googlemock/">
+ 
+ 
+ 
+ <IMG src="./KnownIssues - googlemock - Known problems in Google Mock. - Project Hosting on Google Code_files/logo" alt="Logo">
+ 
+ 
+ </A>
+ </TD>
+ 
+ <TD style="padding-left: 0.5em">
+ 
+ <DIV id="pname" style="margin: 0px 0px -3px 0px">
+ <A href="http://code.google.com/p/googlemock/" style="text-decoration:none; color:#000">googlemock</A>
+ 
+ </DIV>
+ <DIV id="psum">
+ <I><A id="project_summary_link" href="http://code.google.com/p/googlemock/" style="text-decoration:none; color:#000">Google C++ Mocking Framework</A></I>
+ </DIV>
+ 
+ </TD>
+ <TD style="white-space:nowrap;text-align:right">
+ <FORM action="http://code.google.com/hosting/search">
+ <INPUT size="30" name="q" value="">
+ <INPUT type="submit" name="projectsearch" value="Search projects">
+ </FORM>
+ </TD></TR>
+ </TBODY></TABLE>
+
+
+ 
+<TABLE id="mt" cellspacing="0" cellpadding="0" width="100%" border="0">
+ <TBODY><TR>
+ <TH onclick="if (!cancelBubble) _go(&#39;/p/googlemock/&#39;);">
+ <DIV class="tab inactive">
+ <DIV class="round4"></DIV>
+ <DIV class="round2"></DIV>
+ <DIV class="round1"></DIV>
+ <DIV class="box-inner">
+ <A onclick="cancelBubble=true;" href="http://code.google.com/p/googlemock/">Project&nbsp;Home</A>
+ </DIV>
+ </DIV>
+ </TH><TD>&nbsp;&nbsp;</TD>
+ 
+ 
+ 
+ 
+ <TH onclick="if (!cancelBubble) _go(&#39;/p/googlemock/downloads/list&#39;);">
+ <DIV class="tab inactive">
+ <DIV class="round4"></DIV>
+ <DIV class="round2"></DIV>
+ <DIV class="round1"></DIV>
+ <DIV class="box-inner">
+ <A onclick="cancelBubble=true;" href="http://code.google.com/p/googlemock/downloads/list">Downloads</A>
+ </DIV>
+ </DIV>
+ </TH><TD>&nbsp;&nbsp;</TD>
+ 
+ 
+ 
+ 
+ 
+ <TH onclick="if (!cancelBubble) _go(&#39;/p/googlemock/w/list&#39;);">
+ <DIV class="tab active">
+ <DIV class="round4"></DIV>
+ <DIV class="round2"></DIV>
+ <DIV class="round1"></DIV>
+ <DIV class="box-inner">
+ <A onclick="cancelBubble=true;" href="http://code.google.com/p/googlemock/w/list">Wiki</A>
+ </DIV>
+ </DIV>
+ </TH><TD>&nbsp;&nbsp;</TD>
+ 
+ 
+ 
+ 
+ 
+ <TH onclick="if (!cancelBubble) _go(&#39;/p/googlemock/issues/list&#39;);">
+ <DIV class="tab inactive">
+ <DIV class="round4"></DIV>
+ <DIV class="round2"></DIV>
+ <DIV class="round1"></DIV>
+ <DIV class="box-inner">
+ <A onclick="cancelBubble=true;" href="http://code.google.com/p/googlemock/issues/list">Issues</A>
+ </DIV>
+ </DIV>
+ </TH><TD>&nbsp;&nbsp;</TD>
+ 
+ 
+ 
+ 
+ 
+ <TH onclick="if (!cancelBubble) _go(&#39;/p/googlemock/source/checkout&#39;);">
+ <DIV class="tab inactive">
+ <DIV class="round4"></DIV>
+ <DIV class="round2"></DIV>
+ <DIV class="round1"></DIV>
+ <DIV class="box-inner">
+ <A onclick="cancelBubble=true;" href="http://code.google.com/p/googlemock/source/checkout">Source</A>
+ </DIV>
+ </DIV>
+ </TH><TD>&nbsp;&nbsp;</TD>
+ 
+ 
+ <TD width="100%">&nbsp;</TD>
+ </TR>
+</TBODY></TABLE>
+<TABLE cellspacing="0" cellpadding="0" width="100%" align="center" border="0" class="st">
+ <TBODY><TR>
+ 
+ 
+ 
+ <TD>
+ <DIV class="issueDetail">
+<DIV class="isf">
+ 
+ <SPAN class="inIssueList"> 
+ <SPAN>Search</SPAN>
+ <FORM action="http://code.google.com/p/googlemock/w/list" method="GET" style="display:inline">
+ <SELECT id="can" name="can" style="font-size:92%">
+ <OPTION disabled="disabled">Search within:</OPTION>
+ 
+ <OPTION value="1">&nbsp;All wiki pages</OPTION>
+ <OPTION value="3">&nbsp;Featured pages</OPTION>
+ <OPTION value="2" selected="selected">&nbsp;Current pages</OPTION>
+ 
+ 
+ <OPTION value="4">&nbsp;Deprecated pages</OPTION>
+ 
+ </SELECT>
+ <SPAN>for</SPAN>
+ <SPAN id="qq"><INPUT type="text" size="38" id="q" name="q" value="" style="font-size:92%"></SPAN>
+ 
+ 
+ <INPUT type="submit" value="Search" style="font-size:92%">
+ </FORM>
+ </SPAN>
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</DIV>
+</DIV>
+
+ </TD>
+ 
+ 
+ 
+ 
+ 
+ 
+ <TD height="4" align="right" valign="top" class="bevel-right">
+ <DIV class="round4"></DIV>
+ <DIV class="round2"></DIV>
+ <DIV class="round1"></DIV>
+ </TD>
+ </TR>
+</TBODY></TABLE>
+<SCRIPT type="text/javascript">
+ var cancelBubble = false;
+ function _go(url) { document.location = url; }
+</SCRIPT>
+
+
+<DIV id="maincol">
+
+ 
+<!-- IE -->
+
+
+
+
+
+
+
+ <STYLE type="text/css">
+ .artifactcomment {
+ margin: .5em 0 0 0;
+ padding: .3em 0 .3em .3em;
+ border-top: 3px solid #c3d9ff;
+ }
+ #commentlist {
+ border-bottom: 3px solid #c3d9ff;
+ }
+ #commentform { padding-top: 1em; }
+ .delcom { background: #e8e8e8 }
+ .commentcontent { margin: 1em 0;}
+ </STYLE>
+
+
+ <DIV id="wikicontent">
+ <TABLE width="100%" border="0" cellspacing="0" cellpadding="0">
+ <TBODY><TR>
+ 
+ <TD class="vt" id="wikimaincol" width="100%">
+ 
+ <DIV style="float:right; width:18em" id="wikimeta">
+ <DIV class="pmeta_bubble_bg">
+ <DIV class="round4"></DIV>
+ <DIV class="round2"></DIV>
+ <DIV class="round1"></DIV>
+ <DIV class="box-inner">
+ <TABLE style="padding: 5px">
+ <TBODY><TR><TD colspan="2" style="padding-bottom:5px">Updated <SPAN title="Thu Feb  4 12:31:43 2010">Feb 04, 2010</SPAN>
+ 
+ by <A style="white-space: nowrap" href="http://code.google.com/u/zhanyong.wan/">zhanyong.wan</A>
+ </TD></TR>
+ 
+ 
+ 
+ </TBODY></TABLE>
+ </DIV>
+ <DIV class="round1"></DIV>
+ <DIV class="round2"></DIV>
+ <DIV class="round4"></DIV>
+ </DIV>
+ </DIV>
+ 
+ <DIV id="wikiheader" style="margin-bottom:1em">
+ 
+ <SPAN style="font-size:120%;font-weight:bold">KnownIssues</SPAN>
+ &nbsp;
+ 
+ 
+ <DIV style="font-style:italic; margin-top: 3px">Known problems in Google Mock.</DIV>
+ 
+ </DIV>
+ <P>As any non-trivial software system, Google Mock has some known limitations and problems.  We are working on improving it, and welcome your help!  The follow is a list of issues we know about. </P><P></P><UL><UL><LI><A href="http://code.google.com/p/googlemock/wiki/KnownIssues#README_contains_outdated_information_on_Google_Mock's_compa">README contains outdated information on Google Mock's compatibility with other testing frameworks</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/KnownIssues#Tests_failing_on_machines_using_Power_PC_CPUs_(e.g._some_Macs)">Tests failing on machines using Power PC CPUs (e.g. some Macs)</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/KnownIssues#Failed_to_resolve_libgtest.so.0_in_tests_when_built_against_inst">Failed to resolve libgtest.so.0 in tests when built against installed Google Test</A></LI></UL></UL> <P></P><H2><A name="README_contains_outdated_information_on_Google_Mock&#39;s_compa">README contains outdated information on Google Mock's compatibility with other testing frameworks</A></H2><A name="README_contains_outdated_information_on_Google_Mock&#39;s_compa"><P>The <TT>README</TT> file in release 1.1.0 still says that Google Mock only works with Google Test.  Actually, you can configure Google Mock to work with any testing framework you choose. </P></A><H2><A name="Tests_failing_on_machines_using_Power_PC_CPUs_(e.g._some_Macs)">Tests failing on machines using Power PC CPUs (e.g. some Macs)</A></H2><A name="Tests_failing_on_machines_using_Power_PC_CPUs_(e.g._some_Macs)"><P><TT>gmock_output_test</TT> and <TT>gmock-printers_test</TT> are known to fail with Power PC CPUs.  This is due to portability issues with these tests, and is not an indication of problems in Google Mock itself.  You can safely ignore them. </P></A><H2><A name="Failed_to_resolve_libgtest.so.0_in_tests_when_built_against_inst">Failed to resolve libgtest.so.0 in tests when built against installed Google Test</A></H2><A name="Failed_to_resolve_libgtest.so.0_in_tests_when_built_against_inst"><P>This only applies if you manually built and installed Google Test, and then built a Google Mock against it (either explicitly, or because gtest-config was in your path post-install). In this situation, Libtool has a known issue with certain systems' ldconfig setup: </P></A><P><A href="http://article.gmane.org/gmane.comp.sysutils.automake.general/9025" rel="nofollow">http://article.gmane.org/gmane.comp.sysutils.automake.general/9025</A> </P><P>This requires a manual run of "sudo ldconfig" after the "sudo make install" for Google Test before any binaries which link against it can be executed. This isn't a bug in our install, but we should at least have documented it or hacked a work-around into our install. We should have one of these solutions in our next release. </P>
+ </TD> 
+ </TR>
+ </TBODY></TABLE>
+ </DIV>
+
+
+ 
+ 
+<FORM name="delcom" action="http://code.google.com/p/googlemock/w/delComment.do" method="POST">
+ <INPUT type="hidden" name="sequence_num" value="">
+ <INPUT type="hidden" name="mode" value="">
+ <INPUT type="hidden" name="pagename" value="KnownIssues">
+ <INPUT type="hidden" name="token" value="">
+</FORM>
+
+
+
+<SCRIPT src="./KnownIssues - googlemock - Known problems in Google Mock. - Project Hosting on Google Code_files/prettify.js"></SCRIPT>
+<SCRIPT type="text/javascript">
+ prettyPrint();
+</SCRIPT>
+<SCRIPT type="text/javascript" src="./KnownIssues - googlemock - Known problems in Google Mock. - Project Hosting on Google Code_files/dit_scripts_20081013.js"></SCRIPT>
+
+
+
+  
+ 
+ <SCRIPT type="text/javascript" src="./KnownIssues - googlemock - Known problems in Google Mock. - Project Hosting on Google Code_files/core_scripts_20081103.js"></SCRIPT>
+ <SCRIPT type="text/javascript" src="./KnownIssues - googlemock - Known problems in Google Mock. - Project Hosting on Google Code_files/codesite_product_dictionary_ph.pack.04102009.js"></SCRIPT>
+ </DIV>
+<DIV id="footer" dir="ltr">
+ 
+ <DIV class="text">
+ 
+ ©2010 Google -
+ <A href="http://code.google.com/projecthosting/terms.html">Terms</A> -
+ <A href="http://www.google.com/privacy.html">Privacy</A> -
+ <A href="http://code.google.com/p/support/">Project Hosting Help</A>
+ 
+ </DIV>
+</DIV>
+
+ <DIV class="hostedBy" style="margin-top: -20px;">
+ <SPAN style="vertical-align: top;">Powered by <A href="http://code.google.com/projecthosting/">Google Project Hosting</A></SPAN>
+ </DIV>
+ 
+ 
+
+
+ 
+ 
+
+
+
+<DIV class="menuDiv instance0" id="menuDiv-projects-dropdown" style="display: none; "><DIV class="menuCategory controls"><A class="menuItem" style="display: block; " href="http://www.google.com/accounts/ServiceLogin?service=code&ltmpl=phosting&continue=http%3A%2F%2Fcode.google.com%2Fp%2Fgooglemock%2Fwiki%2FKnownIssues&amp;followup=http%3A%2F%2Fcode.google.com%2Fp%2Fgooglemock%2Fwiki%2FKnownIssues">Sign in to see your favorites</A><HR class="menuSeparator"><A class="menuItem" style="display: block; " href="http://code.google.com/more/">Find developer products...</A><A class="menuItem" style="display: block; " href="http://code.google.com/hosting/">Find open source projects...</A></DIV></DIV></BODY></HTML>

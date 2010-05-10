@@ -1,0 +1,385 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0050)http://code.google.com/p/googlemock/wiki/DesignDoc -->
+<HTML><HEAD><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <LINK rel="icon" type="image/vnd.microsoft.icon" href="http://www.gstatic.com/codesite/ph/images/phosting.ico">
+ 
+ <SCRIPT type="text/javascript">
+ 
+ 
+ 
+ var codesite_token = null;
+ 
+ 
+ var logged_in_user_email = null;
+ 
+ 
+ var relative_base_url = "";
+ 
+ </SCRIPT>
+ 
+ 
+ <TITLE>DesignDoc - 
+ googlemock -
+ 
+ The design of new Google Mock features - Project Hosting on Google Code</TITLE>
+ 
+ 
+ <LINK type="text/css" rel="stylesheet" href="./DesignDoc - googlemock - The design of new Google Mock features - Project Hosting on Google Code_files/ph_core.css">
+ 
+ <LINK type="text/css" rel="stylesheet" href="./DesignDoc - googlemock - The design of new Google Mock features - Project Hosting on Google Code_files/ph_detail.css">
+ 
+ 
+ 
+ <LINK type="application/atom+xml" rel="alternate" href="http://code.google.com/feeds/p/googlemock/svnchanges/basic?path=/wiki/DesignDoc.wiki">
+ 
+ 
+<!--[if IE]>
+ <link type="text/css" rel="stylesheet" href="http://www.gstatic.com/codesite/ph/6513215159156155175/css/d_ie.css" >
+<![endif]-->
+ <STYLE type="text/css">
+ .menuIcon.off { background: no-repeat url(http://www.gstatic.com/codesite/ph/images/dropdown_sprite.gif) 0 -42px }
+ .menuIcon.on { background: no-repeat url(http://www.gstatic.com/codesite/ph/images/dropdown_sprite.gif) 0 -28px }
+ .menuIcon.down { background: no-repeat url(http://www.gstatic.com/codesite/ph/images/dropdown_sprite.gif) 0 0; }
+ </STYLE>
+<SCRIPT type="text/javascript" src="./DesignDoc - googlemock - The design of new Google Mock features - Project Hosting on Google Code_files/ga.js"></SCRIPT></HEAD><BODY class="t6">
+ <SCRIPT type="text/javascript">
+ var _gaq = _gaq || [];
+ _gaq.push(
+ ['siteTracker._setAccount', 'UA-18071-1'],
+ ['siteTracker._trackPageview']);
+ 
+ _gaq.push(
+ ['projectTracker._setAccount', 'UA-4068653-1'],
+ ['projectTracker._trackPageview']);
+ 
+ (function() {
+ var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+ (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+ })();
+ </SCRIPT>
+ <DIV id="gaia">
+ 
+ <SPAN>
+ 
+ 
+ <A href="http://code.google.com/p/googlemock/wiki/DesignDoc#" id="projects-dropdown" onclick="return false;"><U>My favorites</U> <SMALL>▼</SMALL></A>
+ 
+ | <A href="https://www.google.com/accounts/ServiceLogin?service=code&ltmpl=phosting&continue=http%3A%2F%2Fcode.google.com%2Fp%2Fgooglemock%2Fwiki%2FDesignDoc&followup=http%3A%2F%2Fcode.google.com%2Fp%2Fgooglemock%2Fwiki%2FDesignDoc" onclick="_CS_click(&#39;/gb/ph/signin&#39;);"><U>Sign in</U></A>
+ 
+ </SPAN>
+
+ </DIV>
+ <DIV class="gbh" style="left: 0pt;"></DIV>
+ <DIV class="gbh" style="right: 0pt;"></DIV>
+ 
+ 
+ <DIV style="height: 1px"></DIV>
+<!--[if IE 6]>
+<div style="text-align:center;">
+Support browsers that contribute to open source, try <a href="http://www.firefox.com">Firefox</a> or <a href="http://www.google.com/chrome">Google Chrome</a>.
+</div>
+<![endif]-->
+
+
+
+ <TABLE style="padding:0px; margin: 20px 0px 0px 0px; width:100%" cellpadding="0" cellspacing="0">
+ <TBODY><TR style="height: 58px;">
+ 
+ <TD style="width: 55px; text-align:center;">
+ <A href="http://code.google.com/p/googlemock/">
+ 
+ 
+ 
+ <IMG src="./DesignDoc - googlemock - The design of new Google Mock features - Project Hosting on Google Code_files/logo" alt="Logo">
+ 
+ 
+ </A>
+ </TD>
+ 
+ <TD style="padding-left: 0.5em">
+ 
+ <DIV id="pname" style="margin: 0px 0px -3px 0px">
+ <A href="http://code.google.com/p/googlemock/" style="text-decoration:none; color:#000">googlemock</A>
+ 
+ </DIV>
+ <DIV id="psum">
+ <I><A id="project_summary_link" href="http://code.google.com/p/googlemock/" style="text-decoration:none; color:#000">Google C++ Mocking Framework</A></I>
+ </DIV>
+ 
+ </TD>
+ <TD style="white-space:nowrap;text-align:right">
+ <FORM action="http://code.google.com/hosting/search">
+ <INPUT size="30" name="q" value="">
+ <INPUT type="submit" name="projectsearch" value="Search projects">
+ </FORM>
+ </TD></TR>
+ </TBODY></TABLE>
+
+
+ 
+<TABLE id="mt" cellspacing="0" cellpadding="0" width="100%" border="0">
+ <TBODY><TR>
+ <TH onclick="if (!cancelBubble) _go(&#39;/p/googlemock/&#39;);">
+ <DIV class="tab inactive">
+ <DIV class="round4"></DIV>
+ <DIV class="round2"></DIV>
+ <DIV class="round1"></DIV>
+ <DIV class="box-inner">
+ <A onclick="cancelBubble=true;" href="http://code.google.com/p/googlemock/">Project&nbsp;Home</A>
+ </DIV>
+ </DIV>
+ </TH><TD>&nbsp;&nbsp;</TD>
+ 
+ 
+ 
+ 
+ <TH onclick="if (!cancelBubble) _go(&#39;/p/googlemock/downloads/list&#39;);">
+ <DIV class="tab inactive">
+ <DIV class="round4"></DIV>
+ <DIV class="round2"></DIV>
+ <DIV class="round1"></DIV>
+ <DIV class="box-inner">
+ <A onclick="cancelBubble=true;" href="http://code.google.com/p/googlemock/downloads/list">Downloads</A>
+ </DIV>
+ </DIV>
+ </TH><TD>&nbsp;&nbsp;</TD>
+ 
+ 
+ 
+ 
+ 
+ <TH onclick="if (!cancelBubble) _go(&#39;/p/googlemock/w/list&#39;);">
+ <DIV class="tab active">
+ <DIV class="round4"></DIV>
+ <DIV class="round2"></DIV>
+ <DIV class="round1"></DIV>
+ <DIV class="box-inner">
+ <A onclick="cancelBubble=true;" href="http://code.google.com/p/googlemock/w/list">Wiki</A>
+ </DIV>
+ </DIV>
+ </TH><TD>&nbsp;&nbsp;</TD>
+ 
+ 
+ 
+ 
+ 
+ <TH onclick="if (!cancelBubble) _go(&#39;/p/googlemock/issues/list&#39;);">
+ <DIV class="tab inactive">
+ <DIV class="round4"></DIV>
+ <DIV class="round2"></DIV>
+ <DIV class="round1"></DIV>
+ <DIV class="box-inner">
+ <A onclick="cancelBubble=true;" href="http://code.google.com/p/googlemock/issues/list">Issues</A>
+ </DIV>
+ </DIV>
+ </TH><TD>&nbsp;&nbsp;</TD>
+ 
+ 
+ 
+ 
+ 
+ <TH onclick="if (!cancelBubble) _go(&#39;/p/googlemock/source/checkout&#39;);">
+ <DIV class="tab inactive">
+ <DIV class="round4"></DIV>
+ <DIV class="round2"></DIV>
+ <DIV class="round1"></DIV>
+ <DIV class="box-inner">
+ <A onclick="cancelBubble=true;" href="http://code.google.com/p/googlemock/source/checkout">Source</A>
+ </DIV>
+ </DIV>
+ </TH><TD>&nbsp;&nbsp;</TD>
+ 
+ 
+ <TD width="100%">&nbsp;</TD>
+ </TR>
+</TBODY></TABLE>
+<TABLE cellspacing="0" cellpadding="0" width="100%" align="center" border="0" class="st">
+ <TBODY><TR>
+ 
+ 
+ 
+ <TD>
+ <DIV class="issueDetail">
+<DIV class="isf">
+ 
+ <SPAN class="inIssueList"> 
+ <SPAN>Search</SPAN>
+ <FORM action="http://code.google.com/p/googlemock/w/list" method="GET" style="display:inline">
+ <SELECT id="can" name="can" style="font-size:92%">
+ <OPTION disabled="disabled">Search within:</OPTION>
+ 
+ <OPTION value="1">&nbsp;All wiki pages</OPTION>
+ <OPTION value="3">&nbsp;Featured pages</OPTION>
+ <OPTION value="2" selected="selected">&nbsp;Current pages</OPTION>
+ 
+ 
+ <OPTION value="4">&nbsp;Deprecated pages</OPTION>
+ 
+ </SELECT>
+ <SPAN>for</SPAN>
+ <SPAN id="qq"><INPUT type="text" size="38" id="q" name="q" value="" style="font-size:92%"></SPAN>
+ 
+ 
+ <INPUT type="submit" value="Search" style="font-size:92%">
+ </FORM>
+ </SPAN>
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</DIV>
+</DIV>
+
+ </TD>
+ 
+ 
+ 
+ 
+ 
+ 
+ <TD height="4" align="right" valign="top" class="bevel-right">
+ <DIV class="round4"></DIV>
+ <DIV class="round2"></DIV>
+ <DIV class="round1"></DIV>
+ </TD>
+ </TR>
+</TBODY></TABLE>
+<SCRIPT type="text/javascript">
+ var cancelBubble = false;
+ function _go(url) { document.location = url; }
+</SCRIPT>
+
+
+<DIV id="maincol">
+
+ 
+<!-- IE -->
+
+
+
+
+
+
+
+ <STYLE type="text/css">
+ .artifactcomment {
+ margin: .5em 0 0 0;
+ padding: .3em 0 .3em .3em;
+ border-top: 3px solid #c3d9ff;
+ }
+ #commentlist {
+ border-bottom: 3px solid #c3d9ff;
+ }
+ #commentform { padding-top: 1em; }
+ .delcom { background: #e8e8e8 }
+ .commentcontent { margin: 1em 0;}
+ </STYLE>
+
+
+ <DIV id="wikicontent">
+ <TABLE width="100%" border="0" cellspacing="0" cellpadding="0">
+ <TBODY><TR>
+ 
+ <TD class="vt" id="wikimaincol" width="100%">
+ 
+ <DIV style="float:right; width:18em" id="wikimeta">
+ <DIV class="pmeta_bubble_bg">
+ <DIV class="round4"></DIV>
+ <DIV class="round2"></DIV>
+ <DIV class="round1"></DIV>
+ <DIV class="box-inner">
+ <TABLE style="padding: 5px">
+ <TBODY><TR><TD colspan="2" style="padding-bottom:5px">Updated <SPAN title="Thu Feb  4 12:31:43 2010">Feb 04, 2010</SPAN>
+ 
+ by <A style="white-space: nowrap" href="http://code.google.com/u/zhanyong.wan/">zhanyong.wan</A>
+ </TD></TR>
+ 
+ <TR><TH class="vt">Labels:</TH>
+ <TD>
+ 
+ <A href="http://code.google.com/p/googlemock/w/list?q=label:Phase-Design" title="Project design and key concerns">Phase-Design</A>
+ 
+ </TD>
+ </TR>
+ 
+ 
+ 
+ </TBODY></TABLE>
+ </DIV>
+ <DIV class="round1"></DIV>
+ <DIV class="round2"></DIV>
+ <DIV class="round4"></DIV>
+ </DIV>
+ </DIV>
+ 
+ <DIV id="wikiheader" style="margin-bottom:1em">
+ 
+ <SPAN style="font-size:120%;font-weight:bold">DesignDoc</SPAN>
+ &nbsp;
+ 
+ 
+ <DIV style="font-style:italic; margin-top: 3px">The design of new Google Mock features</DIV>
+ 
+ </DIV>
+ <P>This page discusses the design of new Google Mock features. </P><P></P><UL><LI><A href="http://code.google.com/p/googlemock/wiki/DesignDoc#Macros_for_Defining_Actions">Macros for Defining Actions</A></LI><UL><LI><A href="http://code.google.com/p/googlemock/wiki/DesignDoc#Problem">Problem</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/DesignDoc#Solution">Solution</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/DesignDoc#Parameterized_actions">Parameterized actions</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/DesignDoc#Advanced_Usages">Advanced Usages</A></LI><UL><LI><A href="http://code.google.com/p/googlemock/wiki/DesignDoc#Overloading_Actions">Overloading Actions</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/DesignDoc#Restricting_the_Type_of_an_Argument_or_Parameter">Restricting the Type of an Argument or Parameter</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/DesignDoc#Using_the_ACTION_Object's_Type">Using the ACTION Object's Type</A></LI></UL><LI><A href="http://code.google.com/p/googlemock/wiki/DesignDoc#When_to_Use">When to Use</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/DesignDoc#Related_Work">Related Work</A></LI><LI><A href="http://code.google.com/p/googlemock/wiki/DesignDoc#Future_Improvements">Future Improvements</A></LI></UL><LI><A href="http://code.google.com/p/googlemock/wiki/DesignDoc#Macros_for_Defining_Matchers">Macros for Defining Matchers</A></LI></UL> <P></P><H1><A name="Macros_for_Defining_Actions">Macros for Defining Actions</A></H1><A name="Macros_for_Defining_Actions"></A><H2><A name="Problem">Problem</A></H2><A name="Problem"><P>Due to the lack of closures in C++, it currently requires some non-trivial effort to define a custom action in Google Mock.  For example, suppose you want to "increment the value pointed to by the second argument of the mock function and return it", you could write: </P><PRE class="prettyprint"><SPAN class="kwd">int</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">IncrementArg1</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">Unused</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">int</SPAN><SPAN class="pun">*</SPAN><SPAN class="pln"> p</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Unused</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="kwd">return</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">++(*</SPAN><SPAN class="pln">p</SPAN><SPAN class="pun">);</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">}</SPAN><SPAN class="pln"><BR><BR></SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">WillOnce</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">Invoke</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">IncrementArg1</SPAN><SPAN class="pun">));</SPAN></PRE><P>There are several things unsatisfactory about this approach: </P><UL><LI>Even though the action only cares about the second argument of the mock function, its definition needs to list other arguments as dummies.  This is tedious. </LI><LI>The defined action is usable only in mock functions that takes exactly 3 arguments - an unnecessary restriction. </LI><LI>To use the action, one has to say <TT>Invoke(IncrementArg1)</TT>, which isn't as nice as <TT>IncrementArg1()</TT>. </LI></UL><P>The latter two problems can be overcome using <TT>MakePolymorphicAction()</TT>, but it requires much more boilerplate code: </P><PRE class="prettyprint"><SPAN class="kwd">class</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">IncrementArg1Action</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp;</SPAN><SPAN class="kwd">public</SPAN><SPAN class="pun">:</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="kwd">template</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">&lt;</SPAN><SPAN class="kwd">typename</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Result</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">typename</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">ArgumentTuple</SPAN><SPAN class="pun">&gt;</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="typ">Result</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">Perform</SPAN><SPAN class="pun">(</SPAN><SPAN class="kwd">const</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">ArgumentTuple</SPAN><SPAN class="pun">&amp;</SPAN><SPAN class="pln"> args</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">const</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp; &nbsp; </SPAN><SPAN class="kwd">return</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">++(*</SPAN><SPAN class="pln">tr1</SPAN><SPAN class="pun">::</SPAN><SPAN class="kwd">get</SPAN><SPAN class="pun">&lt;</SPAN><SPAN class="lit">1</SPAN><SPAN class="pun">&gt;(</SPAN><SPAN class="pln">args</SPAN><SPAN class="pun">));</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">}</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">};</SPAN><SPAN class="pln"><BR><BR></SPAN><SPAN class="typ">PolymorphicAction</SPAN><SPAN class="pun">&lt;</SPAN><SPAN class="typ">IncrementArg1Action</SPAN><SPAN class="pun">&gt;</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">IncrementArg1</SPAN><SPAN class="pun">()</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="kwd">return</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">MakePolymorphicAction</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">IncrementArg1Action</SPAN><SPAN class="pun">());</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">}</SPAN><SPAN class="pln"><BR><BR></SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">WillOnce</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">IncrementArg1</SPAN><SPAN class="pun">());</SPAN></PRE><P>Our goal is to allow defining custom actions with the least amount of boiler-plate C++ requires. </P></A><H2><A name="Solution">Solution</A></H2><A name="Solution"><P>We propose to introduce a new macro: </P><PRE class="prettyprint"><SPAN class="pln">ACTION</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">name</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"> statements</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">}</SPAN></PRE><P>Using this in a namespace scope will define an action with the given name that executes the statements.  Inside the statements, you can refer to the K-th (0-based) argument of the mock function as <TT>argK</TT>. For example: </P><PRE class="prettyprint"><SPAN class="pln">ACTION</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">IncrementArg1</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">return</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">++(*</SPAN><SPAN class="pln">arg1</SPAN><SPAN class="pun">);</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">}</SPAN></PRE><P>allows you to write </P><PRE class="prettyprint"><SPAN class="pun">...</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">WillOnce</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">IncrementArg1</SPAN><SPAN class="pun">());</SPAN></PRE><P>Note that you don't need to specify the types of the mock function arguments, as brevity is a top design goal here.  Rest assured that your code is still type-safe though: you'll get a compiler error if <TT>*arg1</TT> doesn't support the <TT>++</TT> operator, or if the type of <TT>++(*arg1)</TT> isn't compatible with the mock function's return type. </P><P>Another example: </P><PRE class="prettyprint"><SPAN class="pln">ACTION</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">Foo</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">(*</SPAN><SPAN class="pln">arg2</SPAN><SPAN class="pun">)(</SPAN><SPAN class="lit">5</SPAN><SPAN class="pun">);</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="typ">Blah</SPAN><SPAN class="pun">();</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">*</SPAN><SPAN class="pln">arg1 </SPAN><SPAN class="pun">=</SPAN><SPAN class="pln"> </SPAN><SPAN class="lit">0</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="kwd">return</SPAN><SPAN class="pln"> arg0</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">}</SPAN></PRE><P>defines an action <TT>Foo()</TT> that invokes argument #2 (a function pointer) with 5, calls function <TT>Blah()</TT>, sets the value pointed to by argument #1 to 0, and returns argument #0. </P><P>For more convenience and flexibility, you can also use the following pre-defined symbols in the body of <TT>ACTION</TT>: </P><P></P><TABLE><TBODY><TR><TD style="border: 1px solid #aaa; padding: 5px;"> <TT>argK_type</TT> </TD><TD style="border: 1px solid #aaa; padding: 5px;"> The type of the K-th (0-based) argument of the mock function </TD></TR> <TR><TD style="border: 1px solid #aaa; padding: 5px;"> <TT>args</TT> </TD><TD style="border: 1px solid #aaa; padding: 5px;"> All arguments of the mock function as a tuple </TD></TR> <TR><TD style="border: 1px solid #aaa; padding: 5px;"> <TT>args_type</TT> </TD><TD style="border: 1px solid #aaa; padding: 5px;"> The type of all arguments of the mock function as a tuple </TD></TR> <TR><TD style="border: 1px solid #aaa; padding: 5px;"> <TT>return_type</TT> </TD><TD style="border: 1px solid #aaa; padding: 5px;"> The return type of the mock function </TD></TR> <TR><TD style="border: 1px solid #aaa; padding: 5px;"> <TT>function_type</TT> </TD><TD style="border: 1px solid #aaa; padding: 5px;"> The type of the mock function </TD></TR> </TBODY></TABLE><P></P><P>For example, when using an <TT>ACTION</TT> as a stub action for mock function: </P><PRE class="prettyprint"><SPAN class="kwd">int</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">DoSomething</SPAN><SPAN class="pun">(</SPAN><SPAN class="kwd">bool</SPAN><SPAN class="pln"> flag</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">int</SPAN><SPAN class="pun">*</SPAN><SPAN class="pln"> ptr</SPAN><SPAN class="pun">);</SPAN></PRE><P>we have: </P><TABLE><TBODY><TR><TD style="border: 1px solid #aaa; padding: 5px;"> <STRONG>Pre-defined Symbol</STRONG> </TD><TD style="border: 1px solid #aaa; padding: 5px;"> <STRONG>Is Bound To</STRONG> </TD></TR> <TR><TD style="border: 1px solid #aaa; padding: 5px;"> <TT>arg0</TT> </TD><TD style="border: 1px solid #aaa; padding: 5px;"> the value of <TT>flag</TT> </TD></TR> <TR><TD style="border: 1px solid #aaa; padding: 5px;"> <TT>arg0_type</TT> </TD><TD style="border: 1px solid #aaa; padding: 5px;"> the type <TT>bool</TT> </TD></TR> <TR><TD style="border: 1px solid #aaa; padding: 5px;"> <TT>arg1</TT> </TD><TD style="border: 1px solid #aaa; padding: 5px;"> the value of <TT>ptr</TT> </TD></TR> <TR><TD style="border: 1px solid #aaa; padding: 5px;"> <TT>arg1_type</TT> </TD><TD style="border: 1px solid #aaa; padding: 5px;"> the type <TT>int*</TT> </TD></TR> <TR><TD style="border: 1px solid #aaa; padding: 5px;"> <TT>args</TT> </TD><TD style="border: 1px solid #aaa; padding: 5px;"> the tuple <TT>(flag, ptr)</TT> </TD></TR> <TR><TD style="border: 1px solid #aaa; padding: 5px;"> <TT>args_type</TT> </TD><TD style="border: 1px solid #aaa; padding: 5px;"> the type <TT>std::tr1::tuple&lt;bool, int*&gt;</TT> </TD></TR> <TR><TD style="border: 1px solid #aaa; padding: 5px;"> <TT>return_type</TT> </TD><TD style="border: 1px solid #aaa; padding: 5px;"> the type <TT>int</TT> </TD></TR> <TR><TD style="border: 1px solid #aaa; padding: 5px;"> <TT>function_type</TT> </TD><TD style="border: 1px solid #aaa; padding: 5px;"> the type <TT>int(bool, int*)</TT> </TD></TR> </TBODY></TABLE><P></P></A><H2><A name="Parameterized_actions">Parameterized actions</A></H2><A name="Parameterized_actions"><P>Sometimes you'll want to parameterize the action.   For that we propose another macro </P><PRE class="prettyprint"><SPAN class="pln">ACTION_P</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">name</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> param</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"> statements</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">}</SPAN></PRE><P>For example, </P><PRE class="prettyprint"><SPAN class="pln">ACTION_P</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">Add</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> n</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">return</SPAN><SPAN class="pln"> arg0 </SPAN><SPAN class="pun">+</SPAN><SPAN class="pln"> n</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">}</SPAN></PRE><P>will allow you to write </P><PRE class="prettyprint"><SPAN class="com">// Returns argument #0 + 5.</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">WillOnce</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">Add</SPAN><SPAN class="pun">(</SPAN><SPAN class="lit">5</SPAN><SPAN class="pun">));</SPAN></PRE><P>For convenience, we use the term <I>arguments</I> for the values used to invoke the mock function, and the term <I>parameters</I> for the values used to instantiate an action. </P><P>Note that you don't need to provide the type of the parameter either. Suppose the parameter is named <TT>param</TT>, you can also use the Google-Mock-defined symbol <TT>param_type</TT> to refer to the type of the parameter as inferred by the compiler. </P><P>We will also provide <TT>ACTION_P2</TT>, <TT>ACTION_P3</TT>, and etc to support multi-parameter actions.  For example, </P><PRE class="prettyprint"><SPAN class="pln">ACTION_P2</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">ReturnDistanceTo</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> x</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> y</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="kwd">double</SPAN><SPAN class="pln"> dx </SPAN><SPAN class="pun">=</SPAN><SPAN class="pln"> arg0 </SPAN><SPAN class="pun">-</SPAN><SPAN class="pln"> x</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="kwd">double</SPAN><SPAN class="pln"> dy </SPAN><SPAN class="pun">=</SPAN><SPAN class="pln"> arg1 </SPAN><SPAN class="pun">-</SPAN><SPAN class="pln"> y</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="kwd">return</SPAN><SPAN class="pln"> sqrt</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">dx</SPAN><SPAN class="pun">*</SPAN><SPAN class="pln">dx </SPAN><SPAN class="pun">+</SPAN><SPAN class="pln"> dy</SPAN><SPAN class="pun">*</SPAN><SPAN class="pln">dy</SPAN><SPAN class="pun">);</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">}</SPAN></PRE><P>lets you write </P><PRE class="prettyprint"><SPAN class="pun">...</SPAN><SPAN class="pln"> </SPAN><SPAN class="typ">WillOnce</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">ReturnDistanceTo</SPAN><SPAN class="pun">(</SPAN><SPAN class="lit">5.0</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> </SPAN><SPAN class="lit">26.5</SPAN><SPAN class="pun">));</SPAN></PRE><P>You can view <TT>ACTION</TT> as a degenerated parameterized action where the number of parameters is 0. </P></A><H2><A name="Advanced_Usages">Advanced Usages</A></H2><A name="Advanced_Usages"></A><H3><A name="Overloading_Actions">Overloading Actions</A></H3><A name="Overloading_Actions"><P>You can easily define actions overloaded on the number of parameters: </P><PRE class="prettyprint"><SPAN class="pln">ACTION_P</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">Plus</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> a</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">}</SPAN><SPAN class="pln"><BR>ACTION_P2</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">Plus</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> a</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> b</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">}</SPAN></PRE></A><H3><A name="Restricting_the_Type_of_an_Argument_or_Parameter">Restricting the Type of an Argument or Parameter</A></H3><A name="Restricting_the_Type_of_an_Argument_or_Parameter"><P>For maximum brevity and reusability, the <TT>ACTION*</TT> macros don't let you specify the types of the mock function arguments and the action parameters.  Instead, we let the compiler infer the types for us. </P><P>Sometimes, however, we may want to be more explicit about the types. There are several tricks to do that.  For example: </P><PRE class="prettyprint"><SPAN class="pln">ACTION</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">Foo</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="com">// Makes sure arg0 can be converted to int.</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="kwd">int</SPAN><SPAN class="pln"> n </SPAN><SPAN class="pun">=</SPAN><SPAN class="pln"> arg0</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">use</SPAN><SPAN class="pln"> n instead of arg0 here </SPAN><SPAN class="pun">...</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">}</SPAN><SPAN class="pln"><BR><BR>ACTION_P</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">Bar</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln"> param</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="com">// Makes sure the type of arg1 is const char*.</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="pun">::</SPAN><SPAN class="pln">testing</SPAN><SPAN class="pun">::</SPAN><SPAN class="typ">StaticAssertTypeEq</SPAN><SPAN class="pun">&lt;</SPAN><SPAN class="kwd">const</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">char</SPAN><SPAN class="pun">*,</SPAN><SPAN class="pln"> arg1_type</SPAN><SPAN class="pun">&gt;();</SPAN><SPAN class="pln"><BR><BR>&nbsp; </SPAN><SPAN class="com">// Makes sure param can be converted to bool.</SPAN><SPAN class="pln"><BR>&nbsp; </SPAN><SPAN class="kwd">bool</SPAN><SPAN class="pln"> flag </SPAN><SPAN class="pun">=</SPAN><SPAN class="pln"> param</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"><BR></SPAN><SPAN class="pun">}</SPAN></PRE><P>where <TT>StaticAssertTypeEq</TT> is a compile-time assertion we plan to add to Google Test (the name is chosen to match <TT>static_assert</TT> in C++0x). </P></A><H3><A name="Using_the_ACTION_Object&#39;s_Type">Using the ACTION Object's Type</A></H3><A name="Using_the_ACTION_Object&#39;s_Type"><P>If you are writing a function that returns an <TT>ACTION</TT> object, you'll need to know its type.  The type depends on the macro used to define the action and the parameter types.  The rule is relatively simple: </P><TABLE><TBODY><TR><TD style="border: 1px solid #aaa; padding: 5px;"> <STRONG>Given Definition</STRONG> </TD><TD style="border: 1px solid #aaa; padding: 5px;"> <STRONG>Expression</STRONG> </TD><TD style="border: 1px solid #aaa; padding: 5px;"> <STRONG>Has Type</STRONG> </TD></TR> <TR><TD style="border: 1px solid #aaa; padding: 5px;"> <TT>ACTION(Foo)</TT> </TD><TD style="border: 1px solid #aaa; padding: 5px;"> <TT>Foo()</TT> </TD><TD style="border: 1px solid #aaa; padding: 5px;"> <TT>FooAction</TT> </TD></TR> <TR><TD style="border: 1px solid #aaa; padding: 5px;"> <TT>ACTION_P(Bar, param)</TT> </TD><TD style="border: 1px solid #aaa; padding: 5px;"> <TT>Bar(int_value)</TT> </TD><TD style="border: 1px solid #aaa; padding: 5px;"> <TT>BarActionP&lt;int&gt;</TT> </TD></TR> <TR><TD style="border: 1px solid #aaa; padding: 5px;"> <TT>ACTION_P2(Baz, p1, p2)</TT> </TD><TD style="border: 1px solid #aaa; padding: 5px;"> <TT>Baz(bool_value, int_value)</TT> </TD><TD style="border: 1px solid #aaa; padding: 5px;"> <TT>BazActionP2&lt;bool, int&gt;</TT> </TD></TR> <TR><TD style="border: 1px solid #aaa; padding: 5px;"> ... </TD><TD style="border: 1px solid #aaa; padding: 5px;"> ... </TD><TD style="border: 1px solid #aaa; padding: 5px;"> ... </TD></TR> </TBODY></TABLE><P></P><P>Note that we have to pick different suffixes (<TT>Action</TT>, <TT>ActionP</TT>, <TT>ActionP2</TT>, and etc) for actions with different numbers of parameters, or the action definitions cannot be overloaded on the number of parameters. </P></A><H2><A name="When_to_Use">When to Use</A></H2><A name="When_to_Use"><P>While the new macros are very convenient, please also consider other means of implementing actions (e.g. via <TT>ActionInterface</TT> or <TT>MakePolymorphicAction()</TT>), especially if you need to use the defined action a lot.  While the other approaches require more work, they give you more control on the types of the mock function arguments and the action parameters, which in general leads to better compiler error messages that pay off in the long run.  They also allow overloading actions based on parameter types, as opposed to just the number of parameters. </P></A><H2><A name="Related_Work">Related Work</A></H2><A name="Related_Work"><P>As you may have realized, the <TT>ACTION*</TT> macros resemble closures (also known as lambda expressions or anonymous functions).  Indeed, both of them seek to lower the syntactic overhead for defining a function. </P><P>C++0x will support lambdas, but they are not part of C++ right now. Some non-standard libraries (most notably BLL or Boost Lambda Library) try to alleviate this problem.  However, they are not a good choice for defining actions as: </P><UL><LI>They are non-standard and not widely installed.  Google Mock only depends on standard libraries and <TT>tr1::tuple</TT>, which is part of the new C++ standard and comes with gcc 4+.  We want to keep it that way. </LI><LI>They are not trivial to learn. </LI><LI>They will become obsolete when C++0x's lambda feature is widely supported.  We don't want to make our users use a dying library. </LI><LI>Since they are based on operators, they are rather ad hoc: you cannot use statements, and you cannot pass the lambda arguments to a function, for example. </LI><LI>They have subtle semantics that easily confuses new users.  For example, in expression <TT>_1++ + foo++</TT>, <TT>foo</TT> will be incremented only once where the expression is evaluated, while <TT>_1</TT> will be incremented every time the unnamed function is invoked.  This is far from intuitive. </LI></UL><P><TT>ACTION*</TT> avoid all these problems. </P></A><H2><A name="Future_Improvements">Future Improvements</A></H2><A name="Future_Improvements"><P>There may be a need for composing <TT>ACTION*</TT> definitions (i.e. invoking another <TT>ACTION</TT> inside the definition of one <TT>ACTION*</TT>).  We are not sure we want it yet, as one can get a similar effect by putting <TT>ACTION</TT> definitions in function templates and composing the function templates.  We'll revisit this based on user feedback. </P><P>The reason we don't allow <TT>ACTION*()</TT> inside a function body is that the current C++ standard doesn't allow function-local types to be used to instantiate templates.  The upcoming C++0x standard will lift this restriction.  Once this feature is widely supported by compilers, we can revisit the implementation and add support for using <TT>ACTION*()</TT> inside a function. </P><P>C++0x will also support lambda expressions.  When they become available, we may want to support using lambdas as actions. </P></A><H1><A name="Macros_for_Defining_Matchers">Macros for Defining Matchers</A></H1><A name="Macros_for_Defining_Matchers"><P>Once the macros for defining actions are implemented, we plan to do the same for matchers: </P><PRE class="prettyprint"><SPAN class="pln">MATCHER</SPAN><SPAN class="pun">(</SPAN><SPAN class="pln">name</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"> statements</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">}</SPAN></PRE><P>where you can refer to the value being matched as <TT>arg</TT>.  For example, given: </P><PRE class="prettyprint"><SPAN class="pln">MATCHER</SPAN><SPAN class="pun">(</SPAN><SPAN class="typ">IsPositive</SPAN><SPAN class="pun">)</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">{</SPAN><SPAN class="pln"> </SPAN><SPAN class="kwd">return</SPAN><SPAN class="pln"> arg </SPAN><SPAN class="pun">&gt;</SPAN><SPAN class="pln"> </SPAN><SPAN class="lit">0</SPAN><SPAN class="pun">;</SPAN><SPAN class="pln"> </SPAN><SPAN class="pun">}</SPAN></PRE><P>you can use <TT>IsPositive()</TT> as a matcher that matches a value iff it is greater than 0. </P><P>We will also add <TT>MATCHER_P</TT>, <TT>MATCHER_P2</TT>, and etc for parameterized matchers. </P>
+ </A></TD> 
+ </TR>
+ </TBODY></TABLE>
+ </DIV>
+
+
+ 
+ 
+<FORM name="delcom" action="http://code.google.com/p/googlemock/w/delComment.do" method="POST">
+ <INPUT type="hidden" name="sequence_num" value="">
+ <INPUT type="hidden" name="mode" value="">
+ <INPUT type="hidden" name="pagename" value="DesignDoc">
+ <INPUT type="hidden" name="token" value="">
+</FORM>
+
+
+
+<SCRIPT src="./DesignDoc - googlemock - The design of new Google Mock features - Project Hosting on Google Code_files/prettify.js"></SCRIPT>
+<SCRIPT type="text/javascript">
+ prettyPrint();
+</SCRIPT>
+<SCRIPT type="text/javascript" src="./DesignDoc - googlemock - The design of new Google Mock features - Project Hosting on Google Code_files/dit_scripts_20081013.js"></SCRIPT>
+
+
+
+  
+ 
+ <SCRIPT type="text/javascript" src="./DesignDoc - googlemock - The design of new Google Mock features - Project Hosting on Google Code_files/core_scripts_20081103.js"></SCRIPT>
+ <SCRIPT type="text/javascript" src="./DesignDoc - googlemock - The design of new Google Mock features - Project Hosting on Google Code_files/codesite_product_dictionary_ph.pack.04102009.js"></SCRIPT>
+ </DIV>
+<DIV id="footer" dir="ltr">
+ 
+ <DIV class="text">
+ 
+ ©2010 Google -
+ <A href="http://code.google.com/projecthosting/terms.html">Terms</A> -
+ <A href="http://www.google.com/privacy.html">Privacy</A> -
+ <A href="http://code.google.com/p/support/">Project Hosting Help</A>
+ 
+ </DIV>
+</DIV>
+
+ <DIV class="hostedBy" style="margin-top: -20px;">
+ <SPAN style="vertical-align: top;">Powered by <A href="http://code.google.com/projecthosting/">Google Project Hosting</A></SPAN>
+ </DIV>
+ 
+ 
+
+
+ 
+ 
+
+
+
+<DIV class="menuDiv instance0" id="menuDiv-projects-dropdown" style="display: none; "><DIV class="menuCategory controls"><A class="menuItem" style="display: block; " href="http://www.google.com/accounts/ServiceLogin?service=code&ltmpl=phosting&continue=http%3A%2F%2Fcode.google.com%2Fp%2Fgooglemock%2Fwiki%2FDesignDoc&amp;followup=http%3A%2F%2Fcode.google.com%2Fp%2Fgooglemock%2Fwiki%2FDesignDoc">Sign in to see your favorites</A><HR class="menuSeparator"><A class="menuItem" style="display: block; " href="http://code.google.com/more/">Find developer products...</A><A class="menuItem" style="display: block; " href="http://code.google.com/hosting/">Find open source projects...</A></DIV></DIV></BODY></HTML>
