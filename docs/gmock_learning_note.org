@@ -36,22 +36,13 @@
 ** CookBook
    C++ allows a subclass to change the access level of a virtual function in the base class
 
-   CookBook is a very good reference for gmock
+   CookBook is a very good reference for gmock.
+
    
    
-      
-      
-
-
-      
-
-
-
-      
-
 
    
 
 
    
-
+   
