@@ -1,3 +1,9 @@
+;;2010-5-14
+Test the another part of Deformaiton Graph
+using mock to test EDS algorithm.
+
+
+;;Previous
 1. use DevIL for imaging unit testing
 2. python script support for automatic testing
 3. with the DevIL generated image, convert the sequences to video. or parsed

@@ -18,12 +18,16 @@
 
 #include "testMeshCore.h"
 #include "../Plugin-EDS/EDS.h"
+#include "MockDeformationGraph.h"
+
+using ::testing::Return;
 
 class EDSTest : public MeshCoreTest
 {
  public:
   virtual void SetUp(  ) {
     MeshCoreTest::SetUp(  );
+    
     eds_ = new EDS(  );
     eds_->setMesh( mesh_ );    
   }
@@ -38,6 +42,7 @@ class EDSTest : public MeshCoreTest
  TEST_F( EDSTest, testInit ) {
    //no need to do things
  }
+
 
  TEST_F( EDSTest, testPrintMesh ) {
    assert( mesh_ != NULL );
@@ -54,6 +59,7 @@ TEST_F( EDSTest, testConstructDeformationGraph ) {
   EXPECT_EQ( 4,eds_->deformation_graph(  )->num_nodes(  ) );
 }
 
+/*
 TEST_F( EDSTest, testCalculateKNearestNodesUsingPoint ) {
   assert( eds_ != NULL );
   eds_->construct_deformation_graph( 4 );//important
@@ -63,7 +69,7 @@ TEST_F( EDSTest, testCalculateKNearestNodesUsingPoint ) {
   //TODO: add some assertion
   
 }
-
+*/
 
 TEST_F( EDSTest, testCalculateKNearestNodesUsingDGNode ) {
   assert( eds_ != NULL );

@@ -1,0 +1,660 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN"><head><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"><title>轻松编写 C++ 单元测试</title><!-- s-header-meta  for china -->
+<meta http-equiv="PICS-Label" content="(PICS-1.1 &quot;http://www.icra.org/ratingsv02.html&quot; l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) &quot;http://www.rsac.org/ratingsv01.html&quot; l gen true r (n 0 s 0 v 0 l 0) &quot;http://www.classify.org/safesurf/&quot; l gen true r (SS~~000 1))">
+<link rel="schema.DC" href="http://purl.org/DC/elements/1.0/">
+<link rel="SHORTCUT ICON" href="http://www.ibm.com/favicon.ico">
+<meta name="Owner" content="dw@cn.ibm.com">
+<meta name="DC.Language" scheme="rfc1766" content="zh-CN">
+<meta name="IBM.Country" content="CN">
+<meta name="Security" content="Public">
+<!-- 5.8 0421 egd: Added IBM.Special.Purpose meta tag and the meta tag to suppress the WI login in the masthead -->
+<meta name="IBM.SpecialPurpose" content="SP001">
+<meta name="IBM.PageAttributes" content="sid=1003"><meta name="Abstract" content="googletest 与 googlemock 是 Google 公司于 2008 年发布的两套用于单元测试的应用框架，本文将向读者介绍如何应用这两套应用框架轻松编写 C++ 单元测试代码。以下讨论基于 gtest-1.2.1 及 gmock-1.0.0 。"><meta name="Description" content="googletest 与 googlemock 是 Google 公司于 2008 年发布的两套用于单元测试的应用框架，本文将向读者介绍如何应用这两套应用框架轻松编写 C++ 单元测试代码。以下讨论基于 gtest-1.2.1 及 gmock-1.0.0 。"><meta name="Keywords" content="C++, 单元测试, googletest, googlemock, tttlca"><meta name="DC.Date" scheme="iso8601" content="2009-05-21"><meta name="DC.Type" scheme="IBM_ContentClassTaxonomy" content="CT316"><meta name="DC.Subject" scheme="IBM_SubjectTaxonomy" content="SWGC0"><meta name="DC.Rights" content="Copyright (c) 2009 by IBM Corporation"> <meta name="Robots" content="index,follow"><meta name="IBM.Effective" scheme="W3CDTF" content="2009-05-21"><meta name="Last update" content="21052009jincx@cn.ibm.com"><!-- STYLESHEETS/SCRIPTS -->
+<!-- for tables -->
+<link rel="stylesheet" type="text/css" media="screen,print" href="ibm_gtest_gmock_index_files/table.css"> 
+<!-- end for tables -->
+<script language="JavaScript" src="ibm_gtest_gmock_index_files/dwcss14.js" type="text/javascript"></script><link rel="stylesheet" href="ibm_gtest_gmock_index_files/r1v14.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="ibm_gtest_gmock_index_files/main.css">
+<link rel="stylesheet" type="text/css" media="all" href="ibm_gtest_gmock_index_files/screen.css">
+<link rel="stylesheet" type="text/css" media="print" href="ibm_gtest_gmock_index_files/print.css">
+<script type="text/javascript" src="ibm_gtest_gmock_index_files/ibmcommon.js">//</script>
+<script language="JavaScript" src="ibm_gtest_gmock_index_files/detection.js" type="text/javascript"></script>
+<script language="JavaScript" src="ibm_gtest_gmock_index_files/dropdown.js" type="text/javascript"></script>
+<script language="JavaScript" src="ibm_gtest_gmock_index_files/grabtitle.js" type="text/javascript"></script>
+<script language="JavaScript" src="ibm_gtest_gmock_index_files/emailfriend2.js" type="text/javascript"></script><!--START RESERVED FOR FUTURE USE INCLUDE FILES--><script language="javascript" src="ibm_gtest_gmock_index_files/ajax1.js" type="text/javascript"></script><script language="javascript" src="ibm_gtest_gmock_index_files/searchcount.js" type="text/javascript"></script><!--END RESERVED FOR FUTURE USE INCLUDE FILES--><script language="JavaScript" type="text/javascript">var emailAbstract = "googletest 与 googlemock 是 Google 公司于 2008 年发布的两套用于单元测试的应用框架，本文将向读者介绍如何应用这两套应用框架轻松编写 C++ 单元测试代码。以下讨论基于 gtest-1.2.1 及 gmock-1.0.0 。"; </script></head><body><!--MASTHEAD_BEGIN--><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr valign="top"><td class="bbg" width="110"><a href="http://www.ibm.com/cn/"><img alt="IBM®" src="ibm_gtest_gmock_index_files/ibm-logo.gif" height="52" width="110" border="0"></a></td><td class="bbg"><img src="ibm_gtest_gmock_index_files/c_002.gif" alt="" height="1" width="1" border="0"></td><td class="mbbg" width="650" align="right"><table align="right" border="0" cellpadding="0" cellspacing="0"><tbody><tr class="cty-tou"><td rowspan="2" class="upper-masthead-corner" width="17"><a href="#main"><img src="ibm_gtest_gmock_index_files/c_002.gif" alt="跳转到主要内容" height="1" width="1" border="0"></a></td><td align="left"><table align="left" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><span class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</span><b class="country">中国</b><span class="spacer">&nbsp;[</span><a class="ur-link" href="http://www.ibm.com/developerworks/cn/country/">选择</a><span class="spacer">]</span></td><td class="upper-masthead-divider" width="29">&nbsp;&nbsp;&nbsp;&nbsp;</td><td align="left"><a class="ur-link" href="http://www.ibm.com/legal/cn/">使用条款</a></td></tr></tbody></table></td><td width="40">&nbsp;</td></tr><tr><td class="cty-tou-border" colspan="2" height="1"><img src="ibm_gtest_gmock_index_files/c_002.gif" alt="" height="1" width="1"></td></tr><tr><td colspan="3"><img alt="" src="ibm_gtest_gmock_index_files/c_002.gif" height="8" width="1"></td></tr><tr><td>&nbsp;</td><td colspan="2" align="center"><form method="get" action="http://www-128.ibm.com/developerworks/search/searchResults.jsp" id="form1" name="form1"><input name="searchType" value="1" type="hidden"><input name="searchSite" value="dWChina" type="hidden"><input name="pageLang" value="zh" type="hidden"><input name="langEncoding" value="UTF8" type="hidden"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="1"><img src="ibm_gtest_gmock_index_files/c_002.gif" alt="Select a scope:" height="1" width="1"></td><td align="right">
+
+<label for="sq"></label>
+<select id="sq" name="searchScope" class="input-scope">
+<option value="dW" selected="selected">dW 全部内容</option>
+<option value="dW">-----------------</option>
+<option value="aixunix">&nbsp;&nbsp;AIX and UNIX</option>
+<option value="dmdd">&nbsp;&nbsp;Information management</option>
+<option value="lotusdd">&nbsp;&nbsp;Lotus</option>
+<option value="rdd">&nbsp;&nbsp;Rational</option>
+<option value="wsdd">&nbsp;&nbsp;WebSphere</option>
+<option value="dW">-----------------</option>
+<option value="archZ">&nbsp;&nbsp;Architecture</option>
+<option value="gridZ">&nbsp;&nbsp;Grid computing</option>
+<option value="javaZ">&nbsp;&nbsp;Java 技术</option>
+<option value="linuxZ">&nbsp;&nbsp;Linux</option>
+<option value="paZ">&nbsp;&nbsp;Multicore acceleration</option>
+<option value="opensrcZ">&nbsp;&nbsp;Open source</option>
+<option value="securityZ">&nbsp;&nbsp;Security</option>
+<option value="webservZ">&nbsp;&nbsp;SOA &amp; Web services</option>
+<option value="webarchZ">&nbsp;&nbsp;Web development</option>
+<option value="xmlZ">&nbsp;&nbsp;XML</option>
+<option value="dW">-----------------</option>
+<option value="all">IBM 全部内容</option>
+</select>
+</td><td width="1" align="right"><img src="ibm_gtest_gmock_index_files/c_002.gif" alt="Search for:" height="1" width="1">&nbsp;&nbsp;</td><td align="right"><input class="input" id="q" maxlength="100" name="query" size="15" type="text"></td><td width="7">&nbsp;</td><td><label for="q"></label><input alt="搜索" name="Search" src="ibm_gtest_gmock_index_files/search.gif" value="搜索" type="image"></td><td width="20">&nbsp;</td></tr></tbody></table></form></td></tr></tbody></table></td></tr><tr><td class="blbg" colspan="3"><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><span class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td><a class="masthead-mainlink" href="http://www.ibm.com/cn/">首页</a></td><td class="masthead-divider" width="27">&nbsp;&nbsp;&nbsp;&nbsp;</td><td><a class="masthead-mainlink" href="http://www.ibm.com/products/cn/">产品</a></td><td class="masthead-divider" width="27">&nbsp;&nbsp;&nbsp;&nbsp;</td><td><a class="masthead-mainlink" href="http://www.ibm.com/servicessolutions/cn/">服务与解决方案</a></td>	<td class="masthead-divider" width="27">&nbsp;&nbsp;&nbsp;&nbsp;</td><td><a class="masthead-mainlink" href="http://www.ibm.com/support/cn/">支持与下载</a></td><td class="masthead-divider" width="27">&nbsp;&nbsp;&nbsp;&nbsp;</td><td><a class="masthead-mainlink" href="http://www.ibm.com/account/cn/">个性化服务</a></td><td><span class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table><!--
+<script src="//www.ibm.com/common/v14/pmh.js" language="JavaScript" type="text/javascript"></script>
+-->
+<!-- end masthead dw liquid -->
+<!--MASTHEAD_END--><!-- CMA ID: 390832 --> <!-- Site ID: 10 --><table id="v14-body-table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr valign="top"><!--LEFTNAV_BEGIN--><td id="navigation" width="150"><table width="150" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="left-nav-spacer"><a href="http://www.ibm.com/developerworks/cn/" class="left-nav-overview">&nbsp;</a></td></tr></tbody></table><table width="150" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td colspan="2" class="left-nav-overview"><a href="http://www.ibm.com/developerworks/cn/" class="left-nav-overview">developerWorks<br>中国</a></td></tr></tbody></table><table width="150" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td colspan="2" class="left-nav-highlight"><a href="#" class="left-nav">本文内容包括：</a></td></tr><tr class="left-nav-child-highlight"><td><img alt="" src="ibm_gtest_gmock_index_files/cl-bullet.gif" height="8" width="2"></td><td><a href="#1.%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E6%A6%82%E8%BF%B0%7Coutline" class="left-nav-child">单元测试概述</a></td></tr><tr class="left-nav-child-highlight"><td><img alt="" src="ibm_gtest_gmock_index_files/cl-bullet.gif" height="8" width="2"></td><td><a href="#2.%E5%BA%94%E7%94%A8+googletest+%E7%BC%96%E5%86%99%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81%7Coutline" class="left-nav-child">应用 googletest 编写单元测试代码</a></td></tr><tr class="left-nav-child-highlight"><td><img alt="" src="ibm_gtest_gmock_index_files/cl-bullet.gif" height="8" width="2"></td><td><a href="#3.%E5%BA%94%E7%94%A8+googlemock+%E7%BC%96%E5%86%99+Mock+Objects%7Coutline" class="left-nav-child">应用 googlemock 编写 Mock Objects</a></td></tr><tr class="left-nav-child-highlight"><td><img alt="" src="ibm_gtest_gmock_index_files/cl-bullet.gif" height="8" width="2"></td><td><a href="#4.%E6%80%BB%E7%BB%93%7Coutline" class="left-nav-child">总结</a></td></tr><tr class="left-nav-child-highlight"><td><img alt="" src="ibm_gtest_gmock_index_files/cl-bullet.gif" height="8" width="2"></td><td><a href="#download" class="left-nav-child">下载</a></td></tr><tr class="left-nav-child-highlight"><td><img alt="" src="ibm_gtest_gmock_index_files/cl-bullet.gif" height="8" width="2"></td><td><a href="#resources" class="left-nav-child">参考资料 </a></td></tr><tr class="left-nav-child-highlight"><td><img alt="" src="ibm_gtest_gmock_index_files/cl-bullet.gif" height="8" width="2"></td><td><a href="#author" class="left-nav-child">关于作者</a></td></tr><tr class="left-nav-child-highlight"><td><img alt="" src="ibm_gtest_gmock_index_files/cl-bullet.gif" height="8" width="2"></td><td><a href="#rate" class="left-nav-child">对本文的评价</a></td></tr><tr class="left-nav-last"><td width="14"><img class="display-img" alt="" src="ibm_gtest_gmock_index_files/c.gif" height="1" width="14"></td><td width="136"><img class="display-img" alt="" src="ibm_gtest_gmock_index_files/left-nav-corner.gif" height="19" width="136"></td></tr></tbody></table><br><table width="150" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="related" colspan="2"><b class="related">相关链接：</b></td></tr><tr class="rlinks"><td><img alt="" src="ibm_gtest_gmock_index_files/rl-bullet.gif" height="8" width="2"></td><td><a class="rlinks" href="http://www.ibm.com/developerworks/cn/views/linux/libraryview.jsp">Linux 技术文档库</a></td></tr><!--START RESERVED FOR FUTURE USE INCLUDE FILES--><!-- No content currently --><!--END RESERVED FOR FUTURE USE INCLUDE FILES--><tr><td width="14"><img class="display-img" alt="" src="ibm_gtest_gmock_index_files/c.gif" height="1" width="14"></td><td width="136"><img class="display-img" alt="" src="ibm_gtest_gmock_index_files/c.gif" height="19" width="136"></td></tr></tbody></table><!--START RESERVED FOR FUTURE USE INCLUDE FILES--><!-- Next Steps Area:  Start -->
+<!-- Commented out the include call in the dwmaster version of this file to prevent ajax calls
+     being made during article previews and testing.  Live site has uncommented copy of this file (jpp) -->
+<!-- Call Next Steps Servlet -->
+<script language="JavaScript" type="text/javascript">
+<!--
+/*
+ * ajaxInclude makes a call to the url and render the results in the div tag specified in divId
+ */
+function ajaxInclude(url, divId) { 
+ var req = newXMLHttpRequest(); 
+ if (req) { 
+   req.onreadystatechange = getReadyStateHandler(req, 
+	function (result) {  
+           var contents = document.getElementById(divId);  
+           if (result != null && result.length > 0 && contents != null) {
+	     contents.innerHTML = result;  
+           }
+        }); 
+   req.open("GET", url, true);
+   req.send("");
+ }
+}
+//-->
+</script>
+
+<!-- Display Next Steps Result -->
+<div id="nextsteps">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table width="70%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><img src="ibm_gtest_gmock_index_files/c.gif" alt="" height="1" width="1"></td></tr></tbody></table>
+</div>
+
+<!-- Initiate Next Steps Call -->
+<script language="JavaScript" type="text/javascript">
+<!-- 
+ ajaxInclude("/developerworks/niagara/jsp/getNiagaraContent.jsp?url="+window.location.href,"nextsteps");
+//-->
+</script>
+<!-- Next Steps Area:  End --><!--END RESERVED FOR FUTURE USE INCLUDE FILES--></td><!--LEFTNAV_END--><td width="100%"><table id="content-table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr valign="top"><td width="100%"><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><a name="main"><img alt="跳转到主要内容" src="ibm_gtest_gmock_index_files/c.gif" height="1" width="592" border="0"></a></td></tr></tbody></table><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr valign="top"><td height="18" width="10"><img alt="" src="ibm_gtest_gmock_index_files/c.gif" height="18" width="10"></td><td width="100%"><img alt="" src="ibm_gtest_gmock_index_files/c.gif" height="6" width="1"><br><a href="http://www.ibm.com/developerworks/cn/" class="bctl">developerWorks 中国</a><span class="bct">&nbsp;&nbsp;&gt;&nbsp;&nbsp;</span><a class="bctl" href="http://www.ibm.com/developerworks/cn/linux/">Linux</a><span class="bct">&nbsp;&nbsp;&gt;</span><img alt="" src="ibm_gtest_gmock_index_files/c.gif" height="1" width="1"><br><h1>轻松编写 C++ 单元测试</h1><p id="subtitle"><em>介绍全新单元测试框架组合： googletest 与 googlemock</em></p><img alt="" src="ibm_gtest_gmock_index_files/c.gif" class="display-img" height="6" width="1"></td><td class="no-print" width="192"><img alt="developerWorks" src="ibm_gtest_gmock_index_files/dw.gif" height="18" width="192"></td></tr></tbody></table></td></tr></tbody></table><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr valign="top"><td width="10"><img alt="" src="ibm_gtest_gmock_index_files/c.gif" height="1" width="10"></td><td width="100%"><table class="no-print" width="160" align="right" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="10"><img alt="" src="ibm_gtest_gmock_index_files/c.gif" height="1" width="10"></td><td><table width="150" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="v14-header-1-small">文档选项</td></tr></tbody></table><table class="v14-gray-table-border" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="no-padding" width="150"><noscript></noscript><noscript><tr
+valign="top"><td width="8"><img alt="" height="1" width="8"
+src="//www.ibm.com/i/c.gif"/></td><td width="16"><img alt="" width="16"
+height="16" src="//www.ibm.com/i/c.gif"/></td><td class="small"
+width="122"><p><span class="ast">未显示需要 JavaScript
+的文档选项</span></p></td></tr></noscript><table width="143" border="0" cellpadding="0" cellspacing="0"><script language="JavaScript" type="text/javascript">
+<!--
+document.write('<tr valign="top"><td width="8"><img src="//www.ibm.com/i/c.gif" width="8" height="1" alt=""/></td><td width="16"><img alt="将打印机的版面设置成横向打印模式" height="16" src="//www.ibm.com/i/v14/icons/printer.gif" width="16" vspace="3" /></td><td width="122"><p><b><a class="smallplainlink" href="javascript:print()">打印本页</a></b></p></td></tr>');
+//-->
+</script><tbody><tr valign="top"><td width="8"><img src="ibm_gtest_gmock_index_files/c.gif" alt="" height="1" width="8"></td><td width="16"><img alt="将打印机的版面设置成横向打印模式" src="ibm_gtest_gmock_index_files/printer.gif" height="16" vspace="3" width="16"></td><td width="122"><p><b><a class="smallplainlink" href="javascript:print()">打印本页</a></b></p></td></tr>
+<form action="https://www.ibm.com/developerworks/secure/email-it.jsp" name="email"></form><input value="googletest 与 googlemock 是 Google 公司于 2008 年发布的两套用于单元测试的应用框架，本文将向读者介绍如何应用这两套应用框架轻松编写 C++ 单元测试代码。以下讨论基于 gtest-1.2.1 及 gmock-1.0.0 。" name="body" type="hidden"><input value="轻松编写 C++ 单元测试" name="subject" type="hidden"><input value="cn" name="lang" type="hidden"><script language="JavaScript" type="text/javascript">
+<!--
+document.write('<tr valign="top"><td width="8"><img src="//www.ibm.com/i/c.gif" width="8" height="1" alt=""/></td><td width="16"><img src="//www.ibm.com/i/v14/icons/em.gif" height="16" width="16" vspace="3" alt="将此页作为电子邮件发送" /></td><td width="122"><p><a class="smallplainlink" href="javascript:document.email.submit();"><b>将此页作为电子邮件发送</b></a></p></td></tr>');
+//-->
+</script><tr valign="top"><td width="8"><img src="ibm_gtest_gmock_index_files/c.gif" alt="" height="1" width="8"></td><td width="16"><img src="ibm_gtest_gmock_index_files/em.gif" alt="将此页作为电子邮件发送" height="16" vspace="3" width="16"></td><td width="122"><p><a class="smallplainlink" href="javascript:document.email.submit();"><b>将此页作为电子邮件发送</b></a></p></td></tr><tr valign="top"><td width="8"><img alt="" src="ibm_gtest_gmock_index_files/c.gif" height="1" width="8"></td><td width="16"><img alt="" src="ibm_gtest_gmock_index_files/dn.gif" height="16" vspace="3" width="16" border="0"></td><td width="122"><p><a href="#download" class="smallplainlink"><b>样例代码</b></a></p></td></tr></tbody></table></td></tr></tbody></table><!--START RESERVED FOR FUTURE USE INCLUDE FILES--><!-- this content will be automatically generated across all content areas --><!--END RESERVED FOR FUTURE USE INCLUDE FILES--><br></td></tr></tbody></table><p>级别： 初级</p><p><a href="#author">熊 伟</a> (<a href="mailto:billdavidcn@hotmail.com?subject=%E8%BD%BB%E6%9D%BE%E7%BC%96%E5%86%99%20C++%20%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95">billdavidcn@hotmail.com</a>), 高级软件工程师, Adobe<br></p><p>2009 年  5 月  21 日</p><blockquote>googletest
+与 googlemock 是 Google 公司于 2008
+年发布的两套用于单元测试的应用框架，本文将向读者介绍如何应用这两套应用框架轻松编写 C++ 单元测试代码。以下讨论基于 gtest-1.2.1
+及 gmock-1.0.0 。</blockquote><!--START RESERVED FOR FUTURE USE INCLUDE FILES--><!-- include java script once we verify teams wants to use this and it will work on dbcs and cyrillic characters -->
+
+<!--END RESERVED FOR FUTURE USE INCLUDE FILES-->
+			<p><a name="1.单元测试概述|outline"><span class="atitle">单元测试概述</span></a></p>
+			<p>测试并不只是测试工程师的责任，对于开发工程师，为了保证发布给测试环节的代码具有足够好的质量（ Quality ），为所编写的功能代码编写适量的单元测试是十分必要的。</p>
+			<p><b>单元测试</b>（ Unit Test ，模块测试）是开发者编写的一小段代码，用于检验被测代码的一个很小的、很明确的功能是否正确，通过编写单元测试可以在编码阶段发现程序编码错误，甚至是程序设计错误。</p>
+			<p>单元测试不但可以增加开发者对于所完成代码的自信，同时，好的单元测试用例往往可以在回归测试的过程中，很好地保证之前所发生的修改没有破坏已有的程序逻辑。因此，单元测试不但不会成为开发者的负担，反而可以在保证开发质量的情况下，加速迭代开发的过程。</p>
+			<p>对
+于单元测试框架，目前最为大家所熟知的是 JUnit 及其针对各语言的衍生产品， C++ 语言所对应的 JUnit 系单元测试框架就是
+CppUnit 。但是由于 CppUnit 的设计严格继承自 JUnit ，而没有充分考虑 C++ 与 Java 固有的差异（主要是由于
+C++ 没有反射机制，而这是 JUnit 设计的基础），在 C++ 中使用 CppUnit 进行单元测试显得十分繁琐，这一定程度上制约了
+CppUnit 的普及。笔者在这里要跟大家介绍的是一套由 google 发布的开源单元测试框架（ Testing Framework ）：
+googletest 。</p>
+			<br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><img src="ibm_gtest_gmock_index_files/blue_rule.gif" alt="" height="1" width="100%"><br><img alt="" src="ibm_gtest_gmock_index_files/c.gif" height="6" width="8" border="0"></td></tr></tbody></table><table class="no-print" align="right" cellpadding="0" cellspacing="0"><tbody><tr align="right"><td><img src="ibm_gtest_gmock_index_files/c.gif" alt="" height="4" width="100%"><br><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td valign="middle"><img src="ibm_gtest_gmock_index_files/u_bold.gif" alt="" height="16" width="16" border="0"><br></td><td valign="top" align="right"><a href="#main" class="fbox"><b>回页首</b></a></td></tr></tbody></table></td></tr></tbody></table><br><br><p><a name="2.应用 googletest 编写单元测试代码|outline"><span class="atitle">应用 googletest 编写单元测试代码</span></a></p>
+			<p>googletest
+是由 Google 公司发布，且遵循 New BSD License （可用作商业用途）的开源项目，并且 googletest
+可以支持绝大多数大家所熟知的平台。与 CppUnit 不同的是： googletest
+可以自动记录下所有定义好的测试，不需要用户通过列举来指明哪些测试需要运行。</p>
+			<p><a name="N1009A"><span class="smalltitle">定义单元测试</span></a></p>
+			<p>在应用 googletest 编写单元测试时，使用 TEST() 宏来声明测试函数。如：</p>
+			<br><a name="N100A5"><b>清单 1. 用 TEST() 宏声明测试函数</b></a><br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code-outline"><pre class="displaycode">TEST(GlobalConfigurationTest, configurationDataTest) 
+ TEST(GlobalConfigurationTest, noConfigureFileTest)</pre></td></tr></tbody></table><br>
+			<p>分别针对同一程序单元 GlobalConfiguration 声明了两个不同的测试（Test）函数，以分别对配置数据进行检查（ configurationDataTest ），以及测试没有配置文件的特殊情况（ noConfigureFileTest ）。</p>
+			<p><a name="N100AF"><span class="smalltitle">实现单元测试</span></a></p>
+			<p>针对同一程序单元设计出不同的测试场景后（即划分出不同的 Test 后），开发者就可以编写单元测试分别实现这些测试场景了。</p>
+			<p>在
+googletest 中实现单元测试，可通过 ASSERT_* 和 EXPECT_* 断言来对程序运行结果进行检查。 ASSERT_*
+版本的断言失败时会产生致命失败，并结束当前函数； EXPECT_* 版本的断言失败时产生非致命失败，但不会中止当前函数。因此，
+ASSERT_* 常常被用于后续测试逻辑强制依赖的处理结果的断言，如创建对象后检查指针是否为空，若为空，则后续对象方法调用会失败；而
+EXPECT_* 则用于即使失败也不会影响后续测试逻辑的处理结果的断言，如某个方法返回结果的多个属性的检查。</p>
+			<p>googletest 中定义了如下的断言：</p><br><a name="表格1|table"><b>表 1： googletest 定义的断言（ Assert ）</b></a><br>
+			<table class="data-table-1" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td style="vertical-align: top;">
+						<b>基本断言</b>
+					</td><td style="vertical-align: top;">
+						<b>二进制比较</b>
+					</td><td style="vertical-align: top;">
+						<b>字符串比较</b>
+					</td></tr><tr><td style="vertical-align: top;">ASSERT_TRUE(<i>condition</i>);<br>EXPECT_TRUE(<i>condition</i>);<br><i>condition</i>为真<br>ASSERT_FALSE(<i>condition</i>);<br>EXPECT_FALSE(<i>condition</i>);<br><i>condition</i>为假</td><td style="vertical-align: top;">ASSERT_EQ(<i>expected</i>,<i>actual</i>);<br>EXPECT_EQ(<i>expected</i>,<i>actual</i>);<br><i>expected</i>==<i>actual</i><br>ASSERT_NE(<i>val1</i>,<i>val2</i>);<br>EXPECT_NE(<i>val1</i>,<i>val2</i>);<br><i>val1</i>!=<i>val2</i><br>ASSERT_LT(<i>val1</i>,<i>val2</i>);<br>EXPECT_LT(<i>val1</i>,<i>val2</i>);<br><i>val1</i>&lt;<i>val2</i><br>ASSERT_LE(<i>val1</i>,<i>val2</i>);<br>EXPECT_LE(<i>val1</i>,<i>val2</i>);<br><i>val1</i>&lt;=<i>val2</i><br>ASSERT_GT(<i>val1</i>,<i>val2</i>);<br>EXPECT_GT(<i>val1</i>,<i>val2</i>);<br><i>val1</i>&gt;<i>val2</i><br>ASSERT_GE(<i>val1</i>,<i>val2</i>);<br>EXPECT_GE(<i>val1</i>,<i>val2</i>);<br><i>val1</i>&gt;=<i>val2</i>
+					</td><td style="vertical-align: top;">ASSERT_STREQ(<i>expected_str</i>,<i>actual_str</i>);<br>EXPECT_STREQ(<i>expected_str</i>,<i>actual_str</i>);<br>两个 C 字符串有相同的内容<br>ASSERT_STRNE(<i>str1</i>,<i>str2</i>);<br>EXPECT_STRNE(<i>str1</i>,<i>str2</i>);<br>两个 C 字符串有不同的内容<br>ASSERT_STRCASEEQ(<i>expected_str</i>,<i>actual_str</i>);<br>EXPECT_STRCASEEQ(<i>expected_str</i>,<i>actual_str</i>);<br>两个 C 字符串有相同的内容，忽略大小写<br>ASSERT_STRCASENE(<i>str1</i>,<i>str2</i>);<br>EXPECT_STRCASENE(<i>str1</i>,<i>str2</i>);<br>两个 C 字符串有不同的内容，忽略大小写</td></tr></tbody></table><br>
+			<p>下面的实例演示了上面部分断言的使用：</p>
+			<br><a name="N101D8"><b>清单 2. 一个较完整的 googletest 单元测试实例</b></a><br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code-outline"><pre class="displaycode">// Configure.h 
+ #pragma once 
+
+ #include &lt;string&gt; 
+ #include &lt;vector&gt; 
+
+ class Configure 
+ { 
+ private: 
+    std::vector&lt;std::string&gt; vItems; 
+
+ public: 
+    int addItem(std::string str); 
+
+    std::string getItem(int index); 
+
+    int getSize(); 
+ }; 
+
+ // Configure.cpp 
+ #include "Configure.h" 
+
+ #include &lt;algorithm&gt; 
+
+ /** 
+ * @brief Add an item to configuration store. Duplicate item will be ignored 
+ * @param str item to be stored 
+ * @return the index of added configuration item 
+ */ 
+ int Configure::addItem(std::string str) 
+ { 
+std::vector&lt;std::string&gt;::const_iterator vi=std::find(vItems.begin(), vItems.end(), str); 
+    if (vi != vItems.end()) 
+        return vi - vItems.begin(); 
+
+    vItems.push_back(str); 
+    return vItems.size() - 1; 
+ } 
+
+ /** 
+ * @brief Return the configure item at specified index. 
+ * If the index is out of range, "" will be returned 
+ * @param index the index of item 
+ * @return the item at specified index 
+ */ 
+ std::string Configure::getItem(int index) 
+ { 
+    if (index &gt;= vItems.size()) 
+        return ""; 
+    else 
+        return vItems.at(index); 
+ } 
+
+ /// Retrieve the information about how many configuration items we have had 
+ int Configure::getSize() 
+ { 
+    return vItems.size(); 
+ } 
+
+ // ConfigureTest.cpp 
+ #include &lt;gtest/gtest.h&gt; 
+
+ #include "Configure.h" 
+
+ TEST(ConfigureTest, addItem) 
+ { 
+    // do some initialization 
+    Configure* pc = new Configure(); 
+    
+    // validate the pointer is not null 
+    ASSERT_TRUE(pc != NULL); 
+
+    // call the method we want to test 
+    pc-&gt;addItem("A"); 
+    pc-&gt;addItem("B"); 
+    pc-&gt;addItem("A"); 
+
+    // validate the result after operation 
+    EXPECT_EQ(pc-&gt;getSize(), 2); 
+    EXPECT_STREQ(pc-&gt;getItem(0).c_str(), "A"); 
+    EXPECT_STREQ(pc-&gt;getItem(1).c_str(), "B"); 
+    EXPECT_STREQ(pc-&gt;getItem(10).c_str(), ""); 
+
+    delete pc; 
+ }</pre></td></tr></tbody></table><br>
+			<p><a name="N101DF"><span class="smalltitle">运行单元测试</span></a></p>
+			<p>在实现完单元测试的测试逻辑后，可以通过 RUN_ALL_TESTS() 来运行它们，如果所有测试成功，该函数返回 0，否则会返回 1 。 RUN_ALL_TESTS() 会运行你链接到的所有测试――它们可以来自不同的测试案例，甚至是来自不同的文件。</p>
+			<p>因此，运行 googletest 编写的单元测试的一种比较简单可行的方法是：</p><ul>
+				<li>为每一个被测试的 class 分别创建一个测试文件，并在该文件中编写针对这一 class 的单元测试；</li>
+				<li>编写一个 Main.cpp 文件，并在其中包含以下代码，以运行所有单元测试：</li>
+			</ul>
+			<br><a name="N101F5"><b>清单 3. 初始化 googletest 并运行所有测试</b></a><br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code-outline"><pre class="displaycode">#include &lt;gtest/gtest.h&gt; 
+
+ int main(int argc, char** argv) { 
+    testing::InitGoogleTest(&amp;argc, argv); 
+
+    // Runs all tests using Google Test. 
+    return RUN_ALL_TESTS(); 
+ }</pre></td></tr></tbody></table><br><ul>
+				<li>最后，将所有测试代码及 Main.cpp 编译并链接到目标程序中。</li>
+			</ul>
+			<p>此外，在运行可执行目标程序时，可以使用 --gtest_filter 来指定要执行的测试用例，如：</p><ul>
+				<li>
+					<a name="Running_a_Subset_of_the_Tests"><code>./foo_test 没有指定</code><code>
+					</code><code>filter</code><code>
+					</code><code>，运行所有测试；</code></a></li>
+<a name="Running_a_Subset_of_the_Tests">				</a><li>
+<a name="Running_a_Subset_of_the_Tests">					<code>./foo_test --gtest_filter=* 指定</code><code>
+					</code><code>filter</code><code>
+					</code><code>为</code><code>
+					</code><code>*</code><code>
+					</code><code>，运行所有测试；</code></a></li>
+<a name="Running_a_Subset_of_the_Tests">				</a><li>
+<a name="Running_a_Subset_of_the_Tests">					<code>./foo_test --gtest_filter=FooTest.* 运行测试用例</code><code>
+					</code><code>FooTest</code><code>
+					</code><code>的所有测试；</code></a></li>
+<a name="Running_a_Subset_of_the_Tests">				</a><li>
+<a name="Running_a_Subset_of_the_Tests">					<code>./foo_test --gtest_filter=*Null*:*Constructor* 运行所有全名（即测试用例名 + “ . ” + 测试名，如 GlobalConfigurationTest.noConfigureFileTest</code><code>
+					</code><code>）</code><code>含有</code><code>"Null"</code><code>
+					</code><code>或</code><code>
+					</code><code>"Constructor"</code><code>
+					</code><code>的测试；</code></a></li>
+<a name="Running_a_Subset_of_the_Tests">				</a><li>
+<a name="Running_a_Subset_of_the_Tests">					<code>./foo_test --gtest_filter=FooTest.*-FooTest.Bar 运行测试用例</code><code>
+					</code><code>FooTest</code><code>
+					</code><code>的所有测试，但不包括</code><code>
+					</code><code>FooTest.Bar</code><code>。</code></a></li>
+<a name="Running_a_Subset_of_the_Tests">			</a></ul>
+<a name="Running_a_Subset_of_the_Tests">			</a><p><a name="Running_a_Subset_of_the_Tests">这一特性在包含大量测试用例的项目中会十分有用。</a></p>
+<a name="Running_a_Subset_of_the_Tests">			<br></a><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><img src="ibm_gtest_gmock_index_files/blue_rule.gif" alt="" height="1" width="100%"><br><img alt="" src="ibm_gtest_gmock_index_files/c.gif" height="6" width="8" border="0"></td></tr></tbody></table><table class="no-print" align="right" cellpadding="0" cellspacing="0"><tbody><tr align="right"><td><img src="ibm_gtest_gmock_index_files/c.gif" alt="" height="4" width="100%"><br><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td valign="middle"><img src="ibm_gtest_gmock_index_files/u_bold.gif" alt="" height="16" width="16" border="0"><br></td><td valign="top" align="right"><a href="#main" class="fbox"><b>回页首</b></a></td></tr></tbody></table></td></tr></tbody></table><a name="Running_a_Subset_of_the_Tests"><br><br></a><p><a name="3.应用 googlemock 编写 Mock Objects|outline"><span class="atitle">应用 googlemock 编写 Mock Objects</span></a></p>
+			<p>很
+多 C++ 程序员对于 Mock Objects
+（模拟对象）可能比较陌生，模拟对象主要用于模拟整个应用程序的一部分。在单元测试用例编写过程中，常常需要编写模拟对象来隔离被测试单元的“下游”或
+“上游”程序逻辑或环境，从而达到对需要测试的部分进行隔离测试的目的。</p>
+			<p>例如，要对一个使用数据库的对象进行单元测试，安装、配
+置、启动数据库、运行测试，然后再卸装数据库的方式，不但很麻烦，过于耗时，而且容易由于环境因素造成测试失败，达不到单元测试的目的。模仿对象提供了解
+决这一问题的方法：模仿对象符合实际对象的接口，但只包含用来“欺骗”测试对象并跟踪其行为的必要代码。因此，其实现往往比实际实现类简单很多。</p>
+			<p>为
+了配合单元测试中对 Mocking Framework 的需要， Google 开发并于 2008 年底开放了： googlemock 。与
+googletest 一样， googlemock 也是遵循 New BSD License （可用作商业用途）的开源项目，并且
+googlemock 也可以支持绝大多数大家所熟知的平台。</p>
+			<p>注 1：在 Windows 平台上编译 googlemock</p>
+			<p>对
+于 Linux 平台开发者而言，编译 googlemock 可能不会遇到什么麻烦；但是对于 Windows 平台的开发者，由于 Visual
+Studio 还没有提供 tuple （ C++0x TR1 中新增的数据类型）的实现，编译 googlemock 需要为其指定一个
+tuple 类型的实现。著名的开源 C++ 程序库 boost 已经提供了 tr1 的实现，因此，在 Windows 平台下可以使用
+boost 来编译 googlemock 。为此，需要修改 %GMOCK_DIR%/msvc/gmock_config.vsprops
+，设定其中 BoostDir 到 boost 所在的目录，如：</p>
+			<table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code-outline"><pre class="displaycode">&lt;UserMacro 
+    Name="BoostDir" 
+    Value="$(BOOST_DIR)" 
+ /&gt;</pre></td></tr></tbody></table><br>
+			<p>其中 BOOST_DIR 是一个环境变量，其值为 boost 库解压后所在目录。</p>
+			<p>对
+于不希望在自己的开发环境上解包 boost 库的开发者，在 googlemock 的网站上还提供了一个从 boost 库中单独提取出来的
+tr1 的实现，可将其下载后将解压目录下的 boost 目录拷贝到 %GMOCK_DIR% 下（这种情况下，请勿修改上面的配置项；建议对
+boost 不甚了解的开发者采用后面这种方式）。</p>
+			<p>在应用 googlemock 来编写 Mock 类辅助单元测试时，需要：</p><ul>
+				<li>编写一个 Mock Class （如 class MockTurtle ），派生自待 Mock 的抽象类（如 class Turtle ）；</li>
+				<li>对于原抽象类中各待 Mock 的 virtual 方法，计算出其参数个数 n ；</li>
+				<li>在
+Mock Class 类中，使用 MOCK_METHODn() （对于 const 方法则需用 MOCK_CONST_METHODn()
+）宏来声明相应的 Mock 方法，其中第一个参数为待 Mock 方法的方法名，第二个参数为待 Mock 方法的类型。如下：</li>
+			</ul>
+			<br><a name="N102BB"><b>清单 4. 使用 MOCK_METHODn 声明 Mock 方法</b></a><br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code-outline"><pre class="displaycode">#include &lt;gmock/gmock.h&gt;  // Brings in Google Mock. 
+
+ class MockTurtle : public Turtle { 
+    MOCK_METHOD0(PenUp, void()); 
+    MOCK_METHOD0(PenDown, void()); 
+    MOCK_METHOD1(Forward, void(int distance)); 
+    MOCK_METHOD1(Turn, void(int degrees)); 
+    MOCK_METHOD2(GoTo, void(int x, int y)); 
+    MOCK_CONST_METHOD0(GetX, int()); 
+    MOCK_CONST_METHOD0(GetY, int()); 
+ };</pre></td></tr></tbody></table><br><ul>
+				<li>在完成上述工作后，就可以开始编写相应的单元测试用例了。在编写单元测试时，可通过 ON_CALL 宏来指定 Mock 方法被调用时的行为，或 EXPECT_CALL 宏来指定 Mock 方法被调用的次数、被调用时需执行的操作等，并对执行结果进行检查。如下：</li>
+			</ul>
+			<br><a name="N102C9"><b>清单 5. 使用 ON_CALL 及 EXPECT_CALL 宏</b></a><br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code-outline"><pre class="displaycode">using testing::Return;                              // #1，必要的声明
+
+ TEST(BarTest, DoesThis) { 
+    MockFoo foo;                                    // #2，创建 Mock 对象
+
+    ON_CALL(foo, GetSize())                         // #3，设定 Mock 对象默认的行为（可选）
+        .WillByDefault(Return(1)); 
+    // ... other default actions ... 
+
+    EXPECT_CALL(foo, Describe(5))                   // #4，设定期望对象被访问的方式及其响应
+        .Times(3) 
+        .WillRepeatedly(Return("Category 5")); 
+    // ... other expectations ... 
+
+    EXPECT_EQ("good", MyProductionFunction(&amp;foo));  
+    // #5，操作 Mock 对象并使用 googletest 提供的断言验证处理结果
+ }                                                  
+ // #6，当 Mock 对象被析构时， googlemock 会对结果进行验证以判断其行为是否与所有设定的预期一致</pre></td></tr></tbody></table><br>
+			<p>其中， WillByDefault 用于指定 Mock 方法被调用时的默认行为； Return 用于指定方法被调用时的返回值； Times 用于指定方法被调用的次数； WillRepeatedly 用于指定方法被调用时重复的行为。</p>
+			<p>对
+于未通过 EXPECT_CALL 声明而被调用的方法，或不满足 EXPECT_CALL 设定条件的 Mock 方法调用， googlemock
+会输出警告信息。对于前一种情况下的警告信息，如果开发者并不关心这些信息，可以使用 Adapter 类模板 NiceMock
+避免收到这一类警告信息。如下：</p>
+			<br><a name="N102D8"><b>清单 6. 使用 NiceMock 模板</b></a><br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code-outline"><pre class="displaycode">testing::NiceMock&lt;MockFoo&gt; nice_foo;</pre></td></tr></tbody></table><br>
+			<p>在
+笔者开发的应用中，被测试单元会通过初始化时传入的上层应用的接口指针，产生大量的处理成功或者失败的消息给上层应用，而开发者在编写单元测试时并不关心
+这些消息的内容，通过使用 NiceMock 可以避免为不关心的方法编写 Mock 代码（注意：这些方法仍需在 Mock 类中声明，否则
+Mock 类会被当作 abstract class 而无法实例化）。</p>
+			<p>与 googletest 一样，在编写完单元测试后，也需要编写一个如下的入口函数来执行所有的测试：</p>
+			<br><a name="N102E7"><b>清单 7. 初始化 googlemock 并运行所有测试</b></a><br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code-outline"><pre class="displaycode">#include &lt;gtest/gtest.h&gt; 
+ #include &lt;gmock/gmock.h&gt; 
+
+ int main(int argc, char** argv) { 
+    testing::InitGoogleMock(&amp;argc, argv); 
+
+    // Runs all tests using Google Test. 
+    return RUN_ALL_TESTS(); 
+ }</pre></td></tr></tbody></table><br>
+			<p>下
+面的代码演示了如何使用 googlemock 来创建 Mock Objects 并设定其行为，从而达到对核心类 AccountService
+的 transfer （转账）方法进行单元测试的目的。由于 AccountManager
+类的具体实现涉及数据库等复杂的外部环境，不便直接使用，因此，在编写单元测试时，我们用 MockAccountManager 替换了具体的
+AccountManager 实现。</p>
+			<br><a name="N102F3"><b>清单 8. 待测试的程序逻辑</b></a><br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code-outline"><pre class="displaycode">// Account.h 
+ // basic application data class 
+ #pragma once 
+
+ #include &lt;string&gt; 
+
+ class Account 
+ { 
+ private: 
+    std::string accountId; 
+
+    long balance; 
+
+ public: 
+    Account(); 
+
+    Account(const std::string&amp; accountId, long initialBalance); 
+
+    void debit(long amount); 
+
+    void credit(long amount); 
+
+    long getBalance() const; 
+
+    std::string getAccountId() const; 
+ }; 
+
+ // Account.cpp 
+ #include "Account.h" 
+
+ Account::Account() 
+ { 
+ } 
+
+ Account::Account(const std::string&amp; accountId, long initialBalance) 
+ { 
+    this-&gt;accountId = accountId; 
+    this-&gt;balance = initialBalance; 
+ } 
+
+ void Account::debit(long amount) 
+ { 
+    this-&gt;balance -= amount; 
+ } 
+
+ void Account::credit(long amount) 
+ { 
+    this-&gt;balance += amount; 
+ } 
+
+ long Account::getBalance() const 
+ { 
+    return this-&gt;balance; 
+ } 
+
+ std::string Account::getAccountId() const 
+ { 
+    return accountId; 
+ } 
+
+ // AccountManager.h 
+ // the interface of external services which should be mocked 
+ #pragma once 
+
+ #include &lt;string&gt; 
+
+ #include "Account.h" 
+
+ class AccountManager 
+ { 
+ public: 
+    virtual Account findAccountForUser(const std::string&amp; userId) = 0; 
+
+    virtual void updateAccount(const Account&amp; account) = 0; 
+ }; 
+
+ // AccountService.h 
+ // the class to be tested 
+ #pragma once 
+
+ #include &lt;string&gt; 
+
+ #include "Account.h" 
+ #include "AccountManager.h" 
+
+ class AccountService 
+ { 
+ private: 
+    AccountManager* pAccountManager; 
+
+ public: 
+    AccountService(); 
+
+    void setAccountManager(AccountManager* pManager); 
+    void transfer(const std::string&amp; senderId, 
+               const std::string&amp; beneficiaryId, long amount); 
+ }; 
+
+ // AccountService.cpp 
+ #include "AccountService.h" 
+
+ AccountService::AccountService() 
+ { 
+    this-&gt;pAccountManager = NULL; 
+ } 
+
+ void AccountService::setAccountManager(AccountManager* pManager) 
+ { 
+    this-&gt;pAccountManager = pManager; 
+ } 
+
+ void AccountService::transfer(const std::string&amp; senderId, 
+                  const std::string&amp; beneficiaryId, long amount) 
+ { 
+    Account sender = this-&gt;pAccountManager-&gt;findAccountForUser(senderId); 
+
+    Account beneficiary = this-&gt;pAccountManager-&gt;findAccountForUser(beneficiaryId); 
+
+    sender.debit(amount); 
+
+    beneficiary.credit(amount); 
+
+    this-&gt;pAccountManager-&gt;updateAccount(sender); 
+
+    this-&gt;pAccountManager-&gt;updateAccount(beneficiary); 
+ }</pre></td></tr></tbody></table><br>
+			<br><a name="N102FC"><b>清单 9. 相应的单元测试</b></a><br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code-outline"><pre class="displaycode">// AccountServiceTest.cpp 
+ // code to test AccountService 
+ #include &lt;map&gt; 
+ #include &lt;string&gt; 
+
+ #include &lt;gtest/gtest.h&gt; 
+ #include &lt;gmock/gmock.h&gt; 
+
+ #include "../Account.h" 
+ #include "../AccountService.h" 
+ #include "../AccountManager.h" 
+
+ // MockAccountManager, mock AccountManager with googlemock 
+ class MockAccountManager : public AccountManager 
+ { 
+ public: 
+    MOCK_METHOD1(findAccountForUser, Account(const std::string&amp;)); 
+
+    MOCK_METHOD1(updateAccount, void(const Account&amp;)); 
+ }; 
+
+ // A facility class acts as an external DB 
+ class AccountHelper 
+ { 
+ private: 
+    std::map&lt;std::string, Account&gt; mAccount; 
+             // an internal map to store all Accounts for test 
+
+ public: 
+    AccountHelper(std::map&lt;std::string, Account&gt;&amp; mAccount); 
+
+    void updateAccount(const Account&amp; account); 
+
+    Account findAccountForUser(const std::string&amp; userId); 
+ }; 
+
+ AccountHelper::AccountHelper(std::map&lt;std::string, Account&gt;&amp; mAccount) 
+ { 
+    this-&gt;mAccount = mAccount; 
+ } 
+
+ void AccountHelper::updateAccount(const Account&amp; account) 
+ { 
+    this-&gt;mAccount[account.getAccountId()] = account; 
+ } 
+
+ Account AccountHelper::findAccountForUser(const std::string&amp; userId) 
+ { 
+    if (this-&gt;mAccount.find(userId) != this-&gt;mAccount.end()) 
+        return this-&gt;mAccount[userId]; 
+    else 
+        return Account(); 
+ } 
+
+ // Test case to test AccountService 
+ TEST(AccountServiceTest, transferTest) 
+ { 
+    std::map&lt;std::string, Account&gt; mAccount; 
+    mAccount["A"] = Account("A", 3000); 
+    mAccount["B"] = Account("B", 2000); 
+    AccountHelper helper(mAccount); 
+
+    MockAccountManager* pManager = new MockAccountManager(); 
+
+    // specify the behavior of MockAccountManager 
+    // always invoke AccountHelper::findAccountForUser 
+     // when AccountManager::findAccountForUser is invoked 
+    EXPECT_CALL(*pManager, findAccountForUser(testing::_)).WillRepeatedly( 
+        testing::Invoke(&amp;helper, &amp;AccountHelper::findAccountForUser)); 
+
+    // always invoke AccountHelper::updateAccount 
+    //when AccountManager::updateAccount is invoked 
+    EXPECT_CALL(*pManager, updateAccount(testing::_)).WillRepeatedly( 
+        testing::Invoke(&amp;helper, &amp;AccountHelper::updateAccount)); 
+
+    AccountService as; 
+    // inject the MockAccountManager object into AccountService 
+    as.setAccountManager(pManager); 
+
+    // operate AccountService 
+    as.transfer("A", "B", 1005); 
+
+    // check the balance of Account("A") and Account("B") to 
+    //verify that AccountService has done the right job 
+    EXPECT_EQ(1995, helper.findAccountForUser("A").getBalance()); 
+    EXPECT_EQ(3005, helper.findAccountForUser("B").getBalance()); 
+
+    delete pManager; 
+ } 
+
+ // Main.cpp 
+ #include &lt;gtest/gtest.h&gt; 
+ #include &lt;gmock/gmock.h&gt; 
+
+ int main(int argc, char** argv) { 
+    testing::InitGoogleMock(&amp;argc, argv); 
+
+    // Runs all tests using Google Test. 
+    return RUN_ALL_TESTS(); 
+ }</pre></td></tr></tbody></table><br>
+			<p>注
+2：上述范例工程详见附件。要编译该工程，请读者自行添加环境变量 GTEST_DIR 、 GMOCK_DIR ，分别指向 googletest
+、 googlemock 解压后所在目录；对于 Windows 开发者，还需要将
+%GMOCK_DIR%/msvc/gmock_config.vsprops 通过 View-&gt;Property Manager
+添加到工程中，并将 gmock.lib 拷贝到工程目录下。</p>
+			<p>通过上面的实例可以看出， googlemock 为开发者设定
+Mock
+类行为，跟踪程序运行过程及结果，提供了丰富的支持。但与此同时，应用程序也应该尽量降低应用代码间的耦合度，使得单元测试可以很容易对被测试单元进行隔
+离（如上例中， AccountService 必须提供了相应的方法以支持 AccountManager
+的替换）。关于如何通过应用设计模式来降低应用代码间的耦合度，从而编写出易于单元测试的代码，请参考本人的另一篇文章《<a href="http://www.ibm.com/developerworks/cn/java/j-lo-testpartten/">应用设计模式编写易于单元测试的代码</a>》（ developerWorks ， 2008 年 7 月）。</p>
+			<p>注
+3：此外，开发者也可以直接通过继承被测试类，修改与外围环境相关的方法的实现，达到对其核心方法进行单元测试的目的。但由于这种方法直接改变了被测试类
+的行为，同时，对被测试类自身的结构有一些要求，因此，适用范围比较小，笔者也并不推荐采用这种原始的 Mock 方式来进行单元测试。</p>
+			<br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><img src="ibm_gtest_gmock_index_files/blue_rule.gif" alt="" height="1" width="100%"><br><img alt="" src="ibm_gtest_gmock_index_files/c.gif" height="6" width="8" border="0"></td></tr></tbody></table><table class="no-print" align="right" cellpadding="0" cellspacing="0"><tbody><tr align="right"><td><img src="ibm_gtest_gmock_index_files/c.gif" alt="" height="4" width="100%"><br><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td valign="middle"><img src="ibm_gtest_gmock_index_files/u_bold.gif" alt="" height="16" width="16" border="0"><br></td><td valign="top" align="right"><a href="#main" class="fbox"><b>回页首</b></a></td></tr></tbody></table></td></tr></tbody></table><br><br><p><a name="4.总结|outline"><span class="atitle">总结</span></a></p>
+			<p>Googletest
+与 googlemock 的组合，很大程度上简化了开发者进行 C++ 应用程序单元测试的编码工作，使得单元测试对于 C++
+开发者也可以变得十分轻松；同时， googletest 及 googlemock 目前仍在不断改进中，相信随着其不断发展，这一 C++
+单元测试的全新组合将变得越来越成熟、越来越强大，也越来越易用。</p>
+		<br><br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><img src="ibm_gtest_gmock_index_files/blue_rule.gif" alt="" height="1" width="100%"><br><img alt="" src="ibm_gtest_gmock_index_files/c.gif" height="6" width="8" border="0"></td></tr></tbody></table><table class="no-print" align="right" cellpadding="0" cellspacing="0"><tbody><tr align="right"><td><img src="ibm_gtest_gmock_index_files/c.gif" alt="" height="4" width="100%"><br><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td valign="middle"><img src="ibm_gtest_gmock_index_files/u_bold.gif" alt="" height="16" width="16" border="0"><br></td><td valign="top" align="right"><a href="#main" class="fbox"><b>回页首</b></a></td></tr></tbody></table></td></tr></tbody></table><br><br><p><span class="atitle"><a name="download">下载</a></span></p><table class="data-table-1" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th scope="col">描述</th><th scope="col">名字</th><th scope="col">大小</th><th scope="col">下载方法</th></tr><tr><th class="tb-row" scope="row">完整的使用 googletest 及 googlemock 编写单元测试的例子</th><td nowrap="nowrap">AccountService.tar.gz</td><td nowrap="nowrap">4KB</td><td nowrap="nowrap"><a class="fbox" onclick="sa_onclick(this.href)" onkeypress="sa_onclick(this.href)" href="http://www.ibm.com/developerworks/cn/linux/l-cn-cppunittest/AccountService.tar.gz"><b>HTTP</b></a></td></tr><tr><th class="tb-row" scope="row">一个较完整的使用 googletest 编写单元测试的例子</th><td nowrap="nowrap">ConfigureTest.tar.gz</td><td nowrap="nowrap">3KB</td><td nowrap="nowrap"><a class="fbox" onclick="sa_onclick(this.href)" onkeypress="sa_onclick(this.href)" href="http://www.ibm.com/developerworks/cn/linux/l-cn-cppunittest/ConfigureTest.tar.gz"><b>HTTP</b></a></td></tr></tbody></table><table border="0" cellpadding="0" cellspacing="0"><tbody><tr valign="top"><td colspan="5"><img alt="" src="ibm_gtest_gmock_index_files/c.gif" height="12" width="12" border="0"></td></tr><tr><td><img alt="" src="ibm_gtest_gmock_index_files/fw.gif" height="16" width="16"></td><td><a class="fbox" href="http://www.ibm.com/developerworks/cn/whichmethod.html">关于下载方法的信息</a></td><td><img alt="" src="ibm_gtest_gmock_index_files/c.gif" height="1" width="50"></td></tr></tbody></table><br><br><p><a name="resources"><span class="atitle">参考资料 </span></a></p><ul><li>“<a href="http://www.ibm.com/developerworks/cn/java/j-mocktest/">使用模仿对象进行单元测试</a>” （ developerWorks ，2003 年 3 月）：介绍如何使用模仿对象替换合作者以改进单元测试。<br><br></li><li>“<a href="http://www.ibm.com/developerworks/cn/java/j-lo-testpartten/">应用设计模式编写易于单元测试的代码</a>” （ developerWorks ，2008 年 7 月）：介绍如何应用设计模式编写易于单元测试的代码。<br><br></li><li>“<a href="http://dev.csdn.net/article/52/52371.shtm">用 Mock Object 进行独立单元测试</a>” ：介绍如何应用 jMock ， EasyMock 对单个的类进行隔离测试。<br><br></li><li>“<a href="http://martinfowler.com/articles/mocksArentStubs.html">Mock</a><a href="http://martinfowler.com/articles/mocksArentStubs.html">s</a><a href="http://martinfowler.com/articles/mocksArentStubs.html">Aren ’ t Stubs</a>”（ Martin Fowler ，2007 年 6 月）：介绍 Mock Objects 概念及其与传统 Stubs 测试方式的区别。<br><br></li><li>关于 googletest 的更多信息，请访问其项目主页：<a href="http://code.google.com/p/googletest/">http://code.google.com/p/googletest/</a>
+			<br><br></li><li>关于 googlemock 的更多信息，请访问其项目主页：<a href="http://code.google.com/p/googlemock/">http://code.google.com/p/googlemock/</a>
+			</li></ul><br><br><p><a name="author"><span class="atitle">关于作者</span></a></p><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td colspan="3"><img alt="" src="ibm_gtest_gmock_index_files/c.gif" height="5" width="100%"></td></tr><tr valign="top" align="left"><td><p></p></td><td><img alt="" src="ibm_gtest_gmock_index_files/c.gif" height="5" width="4"></td><td width="100%"><p>熊
+伟（Wayne Xiong），华中科技大学硕士，曾用网名 Bill David、大卫、大笨熊等。精于 C++，后转入 JAVA 阵营，曾就职于
+Lucent、BEA（Oracle）等公司，从事电信及 J2EE 应用平台的设计开发；现为 Adobe 公司高级软件工程师，主要从事
+Flash Media Server 及 RIA 相关应用的设计开发。可以通过 billdavidcn@hotmail.com 或博客
+http://blog.csdn.net/billdavid 与他联系。</p></td></tr></tbody></table><br><br><br><p class="no-print"><span class="atitle"><a name="rate">对本文的评价</a></span></p><span class="no-print"><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr valign="top"><td><form action="https://www.ibm.com/developerworks/secure/cnratings.jsp" method="GET"><input value="轻松编写 C++ 单元测试" name="ArticleTitle" type="hidden"><input value="Linux" name="Zone" type="hidden"><input value="http://www.ibm.com/developerworks/cn/thankyou/" name="RedirectURL" type="hidden"><input value="china" name="localsite" type="hidden"><script language="javascript">document.write('<input type="hidden" name="url" value="'+location.href+'" />');</script><input name="url" value="http://www.ibm.com/developerworks/cn/linux/l-cn-cppunittest/index.html" type="hidden"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><img alt="" src="ibm_gtest_gmock_index_files/c.gif" height="8" width="100" border="0"></td></tr><tr valign="top"><td><input value="1" name="Rating" type="RADIO">太差！ (1)</td></tr><tr valign="top"><td><input value="2" name="Rating" type="RADIO">需提高 (2)</td></tr><tr valign="top"><td><input value="3" name="Rating" type="RADIO">一般；尚可 (3)</td></tr><tr valign="top"><td><input value="4" name="Rating" type="RADIO">好文章 (4)</td></tr><tr valign="top"><td><input value="5" name="Rating" type="RADIO">真棒！(5)</td></tr></tbody></table><br><b>建议？</b><br><textarea cols="60" rows="5" wrap="virtual" id="Comments" name="Comments">&nbsp;</textarea><br><br><input value="反馈意见" type="SUBMIT"></form></td></tr><tr valign="top"><td bgcolor="#ffffff"><img alt="" src="ibm_gtest_gmock_index_files/c.gif" height="8" width="100" border="0"></td></tr></tbody></table></span><br><p><!-- --></p><!--START RESERVED FOR FUTURE USE INCLUDE FILES--><br><!--END RESERVED FOR FUTURE USE INCLUDE FILES--><br></td><td width="10"><img alt="" src="ibm_gtest_gmock_index_files/c.gif" height="1" width="10"></td></tr></tbody></table><span class="small">IBM 公司保留在 developerWorks 网站上发表的内容的著作权。未经IBM公司或原始作者的书面明确许可，请勿转载。如果您希望转载，请通过 <a href="https://www.ibm.com/developerworks/secure/reprintreq.jsp?domain=dwchina">提交转载请求表单</a> 联系我们的编辑团队。</span></td></tr></tbody></table><!--FOOTER_BEGIN--><!-- IBM FOOTER -->
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+
+<tbody><tr>
+<td class="bbg" height="19">
+<table border="0" cellpadding="0" cellspacing="0">
+<tbody><tr>
+<td><span class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</span><a class="mainlink" href="http://www.ibm.com/cn/ibm/index.shtml">关于 IBM</a></td>
+<td class="footer-divider" width="27">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td><a class="mainlink" href="http://www.ibm.com/cn/ibm/privacy/index.shtml">隐私条约</a></td>
+<td class="footer-divider" width="27">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td><a class="mainlink" href="http://www.ibm.com/contact/cn/">联系 IBM</a></td>
+<td class="footer-divider" width="27">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td><a class="mainlink" href="http://www.ibm.com/legal/cn/zh/">使用条款</a></td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+
+<!-- end footer -->
+<script type="text/javascript" language="JavaScript1.2" src="ibm_gtest_gmock_index_files/stats.js"></script>
+<noscript><img src="//stats.www.ibm.com/rc/images/uc.GIF?R=noscript" width="1" height="1" alt="" border="0" /></noscript><!--FOOTER_END--><!--XSLT stylesheet used to transform this file:  dw-document-html-5.11.xsl--></body></html>
