@@ -108,6 +108,7 @@ void EDS::calculate_k_nearest_nodes(  ) {
 }
 
 /**private test method*/
+//deprecated
 void EDS::calculate_k_nearest_nodes_using_point(  ) {
   typedef CGAL::Search_traits_3<Kernel> TreeTraits;
   typedef CGAL::Orthogonal_k_neighbor_search<TreeTraits> K_neighbor_search;
@@ -129,13 +130,14 @@ void EDS::calculate_k_nearest_nodes_using_point(  ) {
     K_neighbor_search search( tree,query,K+1 );
 
     std::cout<<"query is :"<<query.x( )<<","<<query.y(  )<<","<<query.z(  )<<std::endl;
-    //debug: print the results
+
     int i = 0;
     for (K_neighbor_search::iterator it = search.begin(  );
          it != search.end(  ); ++it) {
       std::cout<<"neighbor:"<<it->first<<",distance: "<<std::sqrt( it->second )<<std::endl;
       i++;
       //now , store the results
+      
     }
   }  
   
