@@ -258,7 +258,7 @@ void MainWindow::slotUpdateStatusBarMessage( const QString& message ) {
 void MainWindow::slotAddToolBox( QString title , QWidget* widget) {
   printf( "MainWindow::slotAddToolBox...\n" );
   
-  widget->setParent(toolbox_);
+  //widget->setParent(toolbox_);
   toolbox_->addItem( widget, title );
 }
 

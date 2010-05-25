@@ -4,7 +4,7 @@
 /**
  * /brief: Virtual class for adding widgets to the ConsoleWidgetContainer
  */
-class AbstractConsoleWidget : public QObject{
+class AbstractConsoleWidget {
  public:
   virtual ~AbstractConsoleWidget(){}
   virtual QString name() const = 0;  

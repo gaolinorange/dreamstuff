@@ -60,11 +60,11 @@ class EDS : public QObject,
     K = 4;
     vertex_k_nearest_deformationgraphnodes_properties_ = boost::make_assoc_property_map<Vertex_DeformationGraphNodes_Map>( vertex_deformationgraphnodes_map_ );
     
-    //setupWidgets(  );
+    setupWidgets(  );
   }
   ~EDS() {
     delete deformation_graph_;
-    //    releaseWidgets(  );
+    releaseWidgets(  );
   }
  private:
   void setupWidgets(  );
