@@ -16,7 +16,8 @@ int main(int argc,char ** argv)
 
   MainWindow * mainWindow = new MainWindow();
   mainWindow->resize(800,600);
-  mainWindow->showMaximized();
+  //  mainWindow->showMaximized();
+  mainWindow->show( );
 
   LOG( INFO ) <<"====== End Logging =======";
   return app.exec();
