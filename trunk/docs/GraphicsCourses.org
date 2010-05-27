@@ -1,0 +1,5 @@
+* Courses
+** Courses in Graphics
+   www-graphics.stanford.edu/courses/
+   detail: stanford offers the following courses in graphics
+   
