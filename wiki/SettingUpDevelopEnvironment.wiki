@@ -48,7 +48,7 @@ i-mesh needs some supporting tools, these tools includes the mesh libraries, ren
  cgal:
     cgal is the core library for mesh processing. as you can use this command to download and install it:
     sudo apt-get install libcgal-dev
-    *but* using this command will install the unwanted qt3 library, so I download the  source code from www.cgal.org, and then manually install it.
+    * But * using this command will install the unwanted qt3 library, so I download the  source code from www.cgal.org, and then manually install it.
     Follow the INSTALL file to install the auxilary libraries and cgal
     instead of download from the website, you can use
     sudo apt-get install libblas-dev
