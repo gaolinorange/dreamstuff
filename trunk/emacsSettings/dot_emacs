@@ -394,6 +394,17 @@ website: cg.xplore.cn")
 (require 'pythondev)
 
 
+;;;;;Graphviz mode;;;;;;;;;;;;;;
+(load-file graphviz-dot-mode.el)
+
+
+
+
+
+
+
+
+
 
 
 
