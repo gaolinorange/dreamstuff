@@ -20,15 +20,20 @@
 int main(int argc, char *argv[])
 {
   glutInit( &argc, argv );
-  glewInit(  );
-  if( glewIsSupported( "GL_VERSION_2_0" ) )
+  glutCreateWindow( "GLEW Check Test" );
+  GLenum err = glewInit(  );
+  if( GLEW_OK != err ) {
+    printf( "ERROR: %s\n",glewGetErrorString( err ) );
+  }
+  
+  if( GLEW_VERSION_2_0 )
     printf( "Ready for OpenGL 2.0\n" );
   else {
     printf( "OpenGL 2.0 not supported\n" );
     return -1;
   }
   
-  glutMainLoop(  );
+  //  glutMainLoop(  );
 
   return 0;
 }
