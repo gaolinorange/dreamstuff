@@ -124,6 +124,7 @@ void Viewer::reloadMesh(QString& filename)
   mesh_->delegate(builder);
   mesh_->set_indices();
   mesh_->init_index_to_vertex_map();
+  mesh_->compute_bounding_box(  );
 
   QString message;
   QTextStream(&message)<<"Mesh info: vertices num: "<<mesh_->size_of_vertices()<<" facet num: "<<mesh_->size_of_facets();
@@ -133,14 +134,15 @@ void Viewer::reloadMesh(QString& filename)
     
 	Iso_cuboid_3 box = mesh_->get_bounding_box();
 
-	LOG(INFO)<<"retrived bounding box: ("
+  std::cout<<"retrived bounding box: ("
 			     <<box.xmin()<<","
 			     <<box.ymin()<<","
 			     <<box.zmin()<<")"
 			     <<"    >>    ("
 			     <<box.xmax()<<","
 			     <<box.ymax()<<","
-			     <<box.zmax()<<")";
+			     <<box.zmax()<<")"
+           <<std::endl;
 
 	pCamera->setSceneBoundingBox(qglviewer::Vec(box.xmin(),box.ymin(),box.zmin()),
 				     qglviewer::Vec(box.xmax(),box.ymax(),box.zmax()));
