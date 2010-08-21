@@ -13,8 +13,22 @@
 1. Introduction
 
 2. Development
+first, download the sources of i-mesh:
+git svn clone -r 287 https://dreamstuff.googlecode.com/svn/trunk/ dreamstuff --username lai.jingwen2008
+
+
+
 2.1 required librareis
     to successfully compile the sources, you should have Qt4,boost,CGAL installed
+    if you're using ubuntu. these are trival:
+    a) sudo apt-get install qt4-dev-tools
+    b) sudo apt-get install libboost1.40-dev
+    c) browse www.cgal.org to download the cgal or go directly to:
+    https://gforge.inria.fr/frs/?group_id=52
+    d) download the related gmp and mpfr library
+    e) install the numeric libraries:
+       sudo apt-get install liblapack
+       sudo apt-get install libblas
 
 2.2 compiled 3rdparty libraries
     2.2.1 assimp      
@@ -25,7 +39,16 @@
 	  ref. www.libqglviewer.com
     2.2.3 CGAL
     	  CGAL is used to store the internal structure of the mesh
-    2.2.4 
+    2.2.4 PythonLibs
+    	  first, install Python first, then install PythonQt
+	  a) sudo apt-get install python2.6-dev
+	  b) currently,I use PythonQt 1.1 , authough the version 2.0 is released.
+	  pythonqt.sourceforege.net
+	  (http://sf.net/projects/pythonqt/files/)
+	  after compiled pythonqt, you should add the lib and install to the system profile.
+	  
+	  
+	  
 	  
 
 2.3 recompiled 3rdparty libraries
