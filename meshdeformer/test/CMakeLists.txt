@@ -25,7 +25,7 @@ set(QT_USE_QTOPENGL true)
 include(${QT_USE_FILE})
 
 if(UNIX)
-set(CGAL_DIR /usr/local/lib/CGAL)
+set(CGAL_DIR /usr/local/lib)
 endif(UNIX)
 find_package(CGAL REQUIRED)
 if(CGAL_FOUND)

@@ -21,7 +21,7 @@ endif()
 
 #CGALsupport
 if(UNIX)
-	set(CGAL_DIR /usr/local/lib/CGAL)
+	set(CGAL_DIR /usr/local/lib)
 endif(UNIX)
 find_package(CGAL REQUIRED)
 if(CGAL_FOUND)
