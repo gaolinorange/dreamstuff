@@ -12,6 +12,7 @@
 // Commentary: 
 // 
 //
+#include <stdio.h>
 #include "Common/glheaders.hpp"
 #include "DeformationGraph.h"
 

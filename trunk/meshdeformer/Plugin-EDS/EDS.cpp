@@ -17,7 +17,7 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QString>
-
+#include <stdio.h>
 #include "EDS.h"
 
 //for spatial searching
